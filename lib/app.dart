@@ -11,7 +11,12 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      onGenerateRoute: (settings) {
+        // if (settings.name == '/login') {}
+
+        // Default Routing
+        return MaterialPageRoute(builder: (context) => HomePage());
+      },
     );
   }
 }
