@@ -33,6 +33,8 @@ dependencies:
   hooks_riverpod: ^0.14.0+4
   state_notifier: ^0.7.0
   freezed_annotation: ^0.14.2
+  dio: ^4.0.0
+  flutter_dotenv: ^5.0.0
 
 
 dev_dependencies:
@@ -51,6 +53,9 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  assets:
+    - .env
 
   # To add assets to your application, add an assets section, like this:
   # assets:
