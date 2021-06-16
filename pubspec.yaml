@@ -31,10 +31,15 @@ dependencies:
   lint: ^1.5.3
   flutter_hooks: ^0.17.0
   hooks_riverpod: ^0.14.0+4
+  state_notifier: ^0.7.0
+  freezed_annotation: ^0.14.2
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: ^2.0.4
+  freezed: ^0.14.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
