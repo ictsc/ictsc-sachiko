@@ -8,7 +8,7 @@ part 'sign_in_request.g.dart';
 @freezed
 abstract class SignInRequest with _$SignInRequest {
   const factory SignInRequest({
-    required String name,
+    @JsonKey(name: 'name') required String userName,
     required String password,
   }) = _SignInRequest;
 

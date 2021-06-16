@@ -24,13 +24,23 @@ class Client {
     throw 'Error';
   }
 
+  Future<void> signOut() async {
+    final response = await dio.post('/auth/signout');
+
+    if (response.statusCode == 201) {
+      return;
+    }
+
+    throw 'Error';
+  }
+
   Future<void> signUp(SignUpRequest signUpRequest) async {
     final response = await dio.post(
-      '/users',
+      '/api/auth/sign-up',
       data: FormData.fromMap(signUpRequest.toJson()),
     );
 
-    if (response.statusCode == 404) {
+    if (response.statusCode == 201) {
       return;
     }
 

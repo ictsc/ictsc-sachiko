@@ -6,8 +6,7 @@ part 'sign_up_request.g.dart';
 @freezed
 class SignUpRequest with _$SignUpRequest {
   const factory SignUpRequest({
-    @JsonKey(name: 'user_name') required String userName,
-    @JsonKey(name: 'display_name') String? displayName,
+    @JsonKey(name: 'name') required String userName,
     required String password,
   }) = _SignUpRequest;
 

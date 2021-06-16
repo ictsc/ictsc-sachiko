@@ -21,12 +21,10 @@ class _$SignUpRequestTearOff {
   const _$SignUpRequestTearOff();
 
   _SignUpRequest call(
-      {@JsonKey(name: 'user_name') required String userName,
-      @JsonKey(name: 'display_name') String? displayName,
+      {@JsonKey(name: 'name') required String userName,
       required String password}) {
     return _SignUpRequest(
       userName: userName,
-      displayName: displayName,
       password: password,
     );
   }
@@ -41,10 +39,8 @@ const $SignUpRequest = _$SignUpRequestTearOff();
 
 /// @nodoc
 mixin _$SignUpRequest {
-  @JsonKey(name: 'user_name')
+  @JsonKey(name: 'name')
   String get userName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'display_name')
-  String? get displayName => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -58,10 +54,7 @@ abstract class $SignUpRequestCopyWith<$Res> {
   factory $SignUpRequestCopyWith(
           SignUpRequest value, $Res Function(SignUpRequest) then) =
       _$SignUpRequestCopyWithImpl<$Res>;
-  $Res call(
-      {@JsonKey(name: 'user_name') String userName,
-      @JsonKey(name: 'display_name') String? displayName,
-      String password});
+  $Res call({@JsonKey(name: 'name') String userName, String password});
 }
 
 /// @nodoc
@@ -76,7 +69,6 @@ class _$SignUpRequestCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userName = freezed,
-    Object? displayName = freezed,
     Object? password = freezed,
   }) {
     return _then(_value.copyWith(
@@ -84,10 +76,6 @@ class _$SignUpRequestCopyWithImpl<$Res>
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
-      displayName: displayName == freezed
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
       password: password == freezed
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
@@ -103,10 +91,7 @@ abstract class _$SignUpRequestCopyWith<$Res>
           _SignUpRequest value, $Res Function(_SignUpRequest) then) =
       __$SignUpRequestCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {@JsonKey(name: 'user_name') String userName,
-      @JsonKey(name: 'display_name') String? displayName,
-      String password});
+  $Res call({@JsonKey(name: 'name') String userName, String password});
 }
 
 /// @nodoc
@@ -123,7 +108,6 @@ class __$SignUpRequestCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userName = freezed,
-    Object? displayName = freezed,
     Object? password = freezed,
   }) {
     return _then(_SignUpRequest(
@@ -131,10 +115,6 @@ class __$SignUpRequestCopyWithImpl<$Res>
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
-      displayName: displayName == freezed
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
       password: password == freezed
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
@@ -147,25 +127,20 @@ class __$SignUpRequestCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_SignUpRequest with DiagnosticableTreeMixin implements _SignUpRequest {
   const _$_SignUpRequest(
-      {@JsonKey(name: 'user_name') required this.userName,
-      @JsonKey(name: 'display_name') this.displayName,
-      required this.password});
+      {@JsonKey(name: 'name') required this.userName, required this.password});
 
   factory _$_SignUpRequest.fromJson(Map<String, dynamic> json) =>
       _$_$_SignUpRequestFromJson(json);
 
   @override
-  @JsonKey(name: 'user_name')
+  @JsonKey(name: 'name')
   final String userName;
-  @override
-  @JsonKey(name: 'display_name')
-  final String? displayName;
   @override
   final String password;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignUpRequest(userName: $userName, displayName: $displayName, password: $password)';
+    return 'SignUpRequest(userName: $userName, password: $password)';
   }
 
   @override
@@ -174,7 +149,6 @@ class _$_SignUpRequest with DiagnosticableTreeMixin implements _SignUpRequest {
     properties
       ..add(DiagnosticsProperty('type', 'SignUpRequest'))
       ..add(DiagnosticsProperty('userName', userName))
-      ..add(DiagnosticsProperty('displayName', displayName))
       ..add(DiagnosticsProperty('password', password));
   }
 
@@ -185,9 +159,6 @@ class _$_SignUpRequest with DiagnosticableTreeMixin implements _SignUpRequest {
             (identical(other.userName, userName) ||
                 const DeepCollectionEquality()
                     .equals(other.userName, userName)) &&
-            (identical(other.displayName, displayName) ||
-                const DeepCollectionEquality()
-                    .equals(other.displayName, displayName)) &&
             (identical(other.password, password) ||
                 const DeepCollectionEquality()
                     .equals(other.password, password)));
@@ -197,7 +168,6 @@ class _$_SignUpRequest with DiagnosticableTreeMixin implements _SignUpRequest {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(userName) ^
-      const DeepCollectionEquality().hash(displayName) ^
       const DeepCollectionEquality().hash(password);
 
   @JsonKey(ignore: true)
@@ -213,19 +183,15 @@ class _$_SignUpRequest with DiagnosticableTreeMixin implements _SignUpRequest {
 
 abstract class _SignUpRequest implements SignUpRequest {
   const factory _SignUpRequest(
-      {@JsonKey(name: 'user_name') required String userName,
-      @JsonKey(name: 'display_name') String? displayName,
+      {@JsonKey(name: 'name') required String userName,
       required String password}) = _$_SignUpRequest;
 
   factory _SignUpRequest.fromJson(Map<String, dynamic> json) =
       _$_SignUpRequest.fromJson;
 
   @override
-  @JsonKey(name: 'user_name')
+  @JsonKey(name: 'name')
   String get userName => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(name: 'display_name')
-  String? get displayName => throw _privateConstructorUsedError;
   @override
   String get password => throw _privateConstructorUsedError;
   @override
