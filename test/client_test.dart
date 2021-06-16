@@ -2,6 +2,7 @@ import 'dart:io' as io;
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:ictsc_sachiko/model/authentication/sign_up_request.dart';
 import 'package:ictsc_sachiko/service/client.dart';
 
 void main() {
@@ -26,6 +27,22 @@ void main() {
       );
 
       expect(token, isNotEmpty);
+    });
+  });
+
+  group('Sign Up', () {
+    test('Sign Up', () async {
+      final path = dotenv.env['API_URL'].toString();
+      final client = Client(path);
+
+      // 関数実行時にエラーがないかチェック
+      expect(
+        client.signUp(
+          const SignUpRequest(
+              userName: 'test', password: 'password', displayName: 'test'),
+        ),
+        isNoSuchMethodError,
+      );
     });
   });
 }
