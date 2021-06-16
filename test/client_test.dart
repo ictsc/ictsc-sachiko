@@ -2,6 +2,7 @@ import 'dart:io' as io;
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:ictsc_sachiko/model/authentication/sign_in_request.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_up_request.dart';
 import 'package:ictsc_sachiko/service/client.dart';
 
@@ -20,11 +21,13 @@ void main() {
       final path = dotenv.env['API_URL'].toString();
       final client = Client(path);
 
-      // トークンの取得
-      final token = await client.signIn(
+      final signInRequest = SignInRequest(
         name: dotenv.env['TEST_USER_NAME'].toString(),
         password: dotenv.env['TEST_USER_PASSWORD'].toString(),
       );
+
+      // トークンの取得
+      final token = await client.signIn(signInRequest);
 
       expect(token, isNotEmpty);
     });
