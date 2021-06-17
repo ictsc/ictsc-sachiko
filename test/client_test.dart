@@ -1,5 +1,6 @@
 import 'dart:io' as io;
 
+import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_in_request.dart';
@@ -18,20 +19,32 @@ Future<void> main() async {
 
   Client getTestClient() {
     final path = dotenv.env['API_URL'].toString();
-    return Client(path);
+    return Client(Dio(), path);
   }
 
-  final testSignInRequest = SignInRequest(
-    userName: dotenv.env['TEST_USER_NAME'].toString(),
-    password: dotenv.env['TEST_USER_PASSWORD'].toString(),
-  );
-
   group('Authentication', () {
+    final signUpRequest = SignUpRequest(
+      userName: _uuid.v4(),
+      password: 'password',
+    );
+
+    final signInRequest = SignInRequest(
+      userName: signUpRequest.userName,
+      password: signUpRequest.password,
+    );
+
+    test('Sign Up', () async {
+      final client = getTestClient();
+
+      // 登録
+      await client.signUp(signUpRequest);
+    });
+
     test('Sign In', () async {
       final client = getTestClient();
 
       // ログイン
-      final token = await client.signIn(testSignInRequest);
+      final token = await client.signIn(signInRequest);
 
       // トークンが空ではないか
       expect(token, isNotEmpty);
@@ -41,33 +54,15 @@ Future<void> main() async {
       final client = getTestClient();
 
       // ログイン
-      final token = await client.signIn(testSignInRequest);
+      final token = await client.signIn(signInRequest);
 
       // TODO トークンのセット
 
+      // トークンが空ではないか
+      expect(token, isNotEmpty);
+
       // ログアウト
-      client.signOut();
-    });
-
-    test('Sign Up', () async {
-      final client = getTestClient();
-
-      final signUpRequest = SignUpRequest(
-        userName: _uuid.v4(),
-        password: 'password',
-      );
-
-      // 登録
-      client.signUp(signUpRequest);
-
-      // ログイン情報
-      final signInRequest = SignInRequest(
-        userName: signUpRequest.userName,
-        password: signUpRequest.password,
-      );
-
-      // ログイン
-      client.signIn(signInRequest);
+      await client.signOut();
     });
   });
 }

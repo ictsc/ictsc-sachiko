@@ -3,11 +3,10 @@ import 'package:ictsc_sachiko/model/authentication/sign_in_request.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_up_request.dart';
 
 class Client {
-  late final Dio dio;
+  final Dio dio;
   final String baseUrl;
 
-  Client(this.baseUrl) {
-    dio = Dio();
+  Client(this.dio, this.baseUrl) {
     dio.options.baseUrl = baseUrl;
   }
 
