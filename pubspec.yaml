@@ -31,13 +31,13 @@ dependencies:
   lint: ^1.5.3
   flutter_hooks: ^0.17.0
   hooks_riverpod: ^0.14.0+4
-  state_notifier: ^0.7.0
   freezed_annotation: ^0.14.2
   dio: ^4.0.0
   flutter_dotenv: ^5.0.0
   uuid: ^3.0.4
   shared_preferences: ^2.0.6
   responsive_framework: ^0.1.2
+  flutter_state_notifier: ^0.7.0
 
 
 dev_dependencies:

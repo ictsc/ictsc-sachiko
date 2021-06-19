@@ -14,11 +14,11 @@ class App extends StatelessWidget {
       ),
       onGenerateRoute: (settings) {
         if (settings.name == '/login') {
-          return MaterialPageRoute(builder: (context) => LoginPage());
+          return PageRouteBuilder(pageBuilder: (_, __, ___) => LoginPage());
         }
 
         // Default Routing
-        return MaterialPageRoute(builder: (context) => HomePage());
+        return PageRouteBuilder(pageBuilder: (_, __, ___) => HomePage());
       },
     );
   }

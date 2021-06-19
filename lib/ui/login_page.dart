@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_in_request.dart';
-import 'package:ictsc_sachiko/service/web_client.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:ictsc_sachiko/view_model/authentication_state_notifier.dart';
 
 class LoginPage extends HookWidget {
   final _formKey = GlobalKey<FormState>();
@@ -63,12 +62,14 @@ class LoginPage extends HookWidget {
                               onPressed: () {
                                 _formKey.currentState?.save();
 
-                                final client =
-                                    WebClient(dotenv.env['API_URL'].toString());
+                                context.read(auth.notifier).signIn(
+                                    SignInRequest(
+                                        userName: _userNameController.text,
+                                        password: _passwordController.text));
 
-                                client.signIn(SignInRequest(
-                                    userName: _userNameController.text,
-                                    password: _passwordController.text));
+                                // context._client.signIn(SignInRequest(
+                                //     userName: _userNameController.text,
+                                //     password: _passwordController.text));
                               },
                               child: const Padding(
                                 padding: EdgeInsets.all(16.0),

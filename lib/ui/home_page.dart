@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ictsc_sachiko/service/web_client.dart';
 
 class HomePage extends StatelessWidget {
   @override

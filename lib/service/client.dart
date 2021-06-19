@@ -45,4 +45,8 @@ class Client {
 
     throw 'Error';
   }
+
+  void setAuthorization(String token) {
+    dio.options.headers['authorization'] = 'Bearer $token';
+  }
 }
