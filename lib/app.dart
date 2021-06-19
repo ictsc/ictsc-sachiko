@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ictsc_sachiko/ui/home_page.dart';
+import 'package:ictsc_sachiko/ui/login_page.dart';
 
 class App extends StatelessWidget {
   // This widget is the root of your application.
@@ -12,7 +13,9 @@ class App extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       onGenerateRoute: (settings) {
-        // if (settings.name == '/login') {}
+        if (settings.name == '/login') {
+          return MaterialPageRoute(builder: (context) => LoginPage());
+        }
 
         // Default Routing
         return MaterialPageRoute(builder: (context) => HomePage());

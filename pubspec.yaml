@@ -36,6 +36,8 @@ dependencies:
   dio: ^4.0.0
   flutter_dotenv: ^5.0.0
   uuid: ^3.0.4
+  shared_preferences: ^2.0.6
+  responsive_framework: ^0.1.2
 
 
 dev_dependencies:
