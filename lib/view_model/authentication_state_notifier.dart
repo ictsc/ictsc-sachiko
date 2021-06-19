@@ -16,7 +16,7 @@ class AuthenticationStateNotifier extends StateNotifier<Authentication> {
         .signIn(signInRequest)
         .then((token) {
       _client.setAuthorization(token);
-      state.copyWith(isLogin: true)
+      state.copyWith(isLogin: true);
     });
   }
 }
