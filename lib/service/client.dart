@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_in_request.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_up_request.dart';
+import 'package:ictsc_sachiko/model/client/error.dart';
+import 'package:ictsc_sachiko/model/client/result.dart';
 
 class Client {
   final Dio dio;
@@ -8,19 +10,21 @@ class Client {
 
   Client(this.dio, this.baseUrl) {
     dio.options.baseUrl = baseUrl;
+    dio.interceptors.add(LogInterceptor(responseBody: true));
   }
 
-  Future<String> signIn(SignInRequest signInRequest) async {
-    final response = await dio.post(
-      '/api/auth/sign-in',
-      data: FormData.fromMap(signInRequest.toJson()),
-    );
-
-    if (response.statusCode == 201) {
-      return response.data['token'].toString();
+  Future<Result<String>> signIn(SignInRequest signInRequest) async {
+    try {
+      return await dio
+          .post(
+            '/api/auth/sign-in',
+            data: FormData.fromMap(signInRequest.toJson()),
+          )
+          .then(
+              (response) => Result.success(response.data['token'].toString()));
+    } on DioError catch (error) {
+      return Result.failure(Error.getApiError(error));
     }
-
-    throw 'Error';
   }
 
   Future<void> signOut() async {

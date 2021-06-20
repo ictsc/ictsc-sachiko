@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/view_model/login_form_state_notifier.dart';
 
 import 'common/header.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final state = context.read(loginForm.notifier);
+    final state = useProvider(loginForm);
+    final notifier = context.read(loginForm.notifier);
 
     return Scaffold(
       appBar: Header(appBar: AppBar()),
@@ -18,14 +20,14 @@ class LoginPage extends StatelessWidget {
             SizedBox(
               width: 512,
               child: Form(
-                key: state.formKey,
+                key: notifier.formKey,
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(16.0),
                         child: Text(
                           'ログイン',
                           style: Theme.of(context)
@@ -36,9 +38,20 @@ class LoginPage extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          state.errorMessage ?? '',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2!
+                              .copyWith(
+                                  color: Theme.of(context).colorScheme.error),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
                           decoration: const InputDecoration(labelText: 'ユーザー名'),
-                          controller: state.userNameController,
+                          controller: notifier.userNameController,
                         ),
                       ),
                       Padding(
@@ -46,7 +59,7 @@ class LoginPage extends StatelessWidget {
                         child: TextFormField(
                           obscureText: true,
                           decoration: const InputDecoration(labelText: 'パスワード'),
-                          controller: state.passwordController,
+                          controller: notifier.passwordController,
                         ),
                       ),
                       Padding(
@@ -54,7 +67,7 @@ class LoginPage extends StatelessWidget {
                         child: SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                              onPressed: state.onTapLoginButton(context),
+                              onPressed: notifier.onTapLoginButton(context),
                               child: const Padding(
                                 padding: EdgeInsets.all(16.0),
                                 child: Text('ログイン'),

@@ -1,5 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_in_request.dart';
 import 'package:ictsc_sachiko/model/login_form_state.dart';
@@ -16,6 +16,9 @@ class LoginFormStateNotifier extends StateNotifier<LoginFormState>
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  /// フォームをセーブしログインを送信する、失敗ならエラーメッセージを更新
   Function() onTapLoginButton(BuildContext context) => () {
         formKey.currentState?.save();
 
@@ -25,11 +28,17 @@ class LoginFormStateNotifier extends StateNotifier<LoginFormState>
               userName: userNameController.text,
               password: passwordController.text,
             ))
-            .then((_) => context.router.pushNamed('/'));
+            .then((response) => response.when(
+                  success: () {},
+                  failed: (message) {
+                    // エラーメッセージの処理
+                    state = state.copyWith(errorMessage: message);
+                  },
+                ));
       };
 }
 
 final loginForm =
-    StateNotifierProvider.autoDispose<LoginFormStateNotifier, LoginFormState>(
+    StateNotifierProvider<LoginFormStateNotifier, LoginFormState>(
   (refs) => LoginFormStateNotifier(const LoginFormState(), refs),
 );
