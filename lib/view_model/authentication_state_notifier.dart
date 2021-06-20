@@ -12,17 +12,14 @@ class AuthenticationStateNotifier extends StateNotifier<Authentication> {
 
   Future<void> signIn(SignInRequest signInRequest) async {
     // TODO エラーメッセージ
-    await _client
-        .signIn(signInRequest)
-        .then((token) {
+    await _client.signIn(signInRequest).then((token) {
       _client.setAuthorization(token);
-      state.copyWith(isLogin: true);
+      state = state.copyWith(isLogin: true);
     });
   }
 }
 
 final auth = StateNotifierProvider<AuthenticationStateNotifier, Authentication>(
-      (refs) =>
-      AuthenticationStateNotifier(
-          const Authentication(), WebClient(dotenv.env['API_URL'] ?? '')),
+  (refs) => AuthenticationStateNotifier(
+      const Authentication(), WebClient(dotenv.env['API_URL'] ?? '')),
 );

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:ictsc_sachiko/model/authentication/sign_in_request.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:ictsc_sachiko/model/authentication/sign_in_request.dart';
 import 'package:ictsc_sachiko/view_model/authentication_state_notifier.dart';
+
+import 'common/header.dart';
 
 class LoginPage extends HookWidget {
   final _formKey = GlobalKey<FormState>();
@@ -15,7 +17,7 @@ class LoginPage extends HookWidget {
     useEffect(() {}, []);
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: Header(appBar: AppBar()),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -62,10 +64,13 @@ class LoginPage extends HookWidget {
                               onPressed: () {
                                 _formKey.currentState?.save();
 
-                                context.read(auth.notifier).signIn(
-                                    SignInRequest(
+                                context
+                                    .read(auth.notifier)
+                                    .signIn(SignInRequest(
                                         userName: _userNameController.text,
-                                        password: _passwordController.text));
+                                        password: _passwordController.text))
+                                    .then((_) =>
+                                        Navigator.pushNamed(context, '/'));
 
                                 // context._client.signIn(SignInRequest(
                                 //     userName: _userNameController.text,

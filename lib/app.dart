@@ -13,6 +13,7 @@ class App extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       onGenerateRoute: (settings) {
+        // pageBuilderは画面遷移のアニメーションをオフにしている
         if (settings.name == '/login') {
           return PageRouteBuilder(pageBuilder: (_, __, ___) => LoginPage());
         }
