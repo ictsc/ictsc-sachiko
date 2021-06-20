@@ -21,7 +21,10 @@ class LoginFormStateNotifier extends StateNotifier<LoginFormState>
 
         ref
             .read(auth.notifier)
-            .signIn(const SignInRequest(userName: 'name', password: 'password'))
+            .signIn(SignInRequest(
+              userName: userNameController.text,
+              password: passwordController.text,
+            ))
             .then((_) => context.router.pushNamed('/'));
       };
 }
