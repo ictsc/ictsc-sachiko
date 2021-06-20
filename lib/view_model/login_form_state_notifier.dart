@@ -12,6 +12,10 @@ class LoginFormStateNotifier extends StateNotifier<LoginFormState>
 
   final ProviderReference ref;
 
+  final formKey = GlobalKey<FormState>();
+  final TextEditingController userNameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   void onTapLoginButton(BuildContext context) {
     ref
         .read(auth.notifier)

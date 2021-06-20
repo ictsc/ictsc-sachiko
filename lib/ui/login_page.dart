@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/view_model/login_form_state_notifier.dart';
 
 import 'common/header.dart';
 
-class LoginPage extends HookWidget {
-  final _formKey = GlobalKey<FormState>();
-
-  final TextEditingController _userNameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-
+class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    useEffect(() {}, []);
+    final state = context.read(loginForm.notifier);
 
     return Scaffold(
       appBar: Header(appBar: AppBar()),
@@ -24,7 +18,7 @@ class LoginPage extends HookWidget {
             SizedBox(
               width: 512,
               child: Form(
-                key: _formKey,
+                key: state.formKey,
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
@@ -44,7 +38,7 @@ class LoginPage extends HookWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
                           decoration: const InputDecoration(labelText: 'ユーザー名'),
-                          controller: _userNameController,
+                          controller: state.userNameController,
                         ),
                       ),
                       Padding(
@@ -52,7 +46,7 @@ class LoginPage extends HookWidget {
                         child: TextFormField(
                           obscureText: true,
                           decoration: const InputDecoration(labelText: 'パスワード'),
-                          controller: _passwordController,
+                          controller: state.passwordController,
                         ),
                       ),
                       Padding(
@@ -61,23 +55,7 @@ class LoginPage extends HookWidget {
                           width: double.infinity,
                           child: ElevatedButton(
                               onPressed: () {
-                                _formKey.currentState?.save();
-
-                                context
-                                    .read(loginForm.notifier)
-                                    .onTapLoginButton(context);
-
-                                // context
-                                //     .read(auth.notifier)
-                                //     .signIn(SignInRequest(
-                                //         userName: _userNameController.text,
-                                //         password: _passwordController.text))
-                                //     .then((_) =>
-                                //         Navigator.pushNamed(context, '/'));
-
-                                // context._client.signIn(SignInRequest(
-                                //     userName: _userNameController.text,
-                                //     password: _passwordController.text));
+                                state.onTapLoginButton(context);
                               },
                               child: const Padding(
                                 padding: EdgeInsets.all(16.0),
