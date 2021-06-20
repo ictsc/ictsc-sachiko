@@ -16,12 +16,14 @@ class LoginFormStateNotifier extends StateNotifier<LoginFormState>
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  void onTapLoginButton(BuildContext context) {
-    ref
-        .read(auth.notifier)
-        .signIn(const SignInRequest(userName: 'name', password: 'password'))
-        .then((_) => context.router.pushNamed('/'));
-  }
+  Function() onTapLoginButton(BuildContext context) => () {
+        formKey.currentState?.save();
+
+        ref
+            .read(auth.notifier)
+            .signIn(const SignInRequest(userName: 'name', password: 'password'))
+            .then((_) => context.router.pushNamed('/'));
+      };
 }
 
 final loginForm =

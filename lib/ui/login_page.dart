@@ -54,9 +54,7 @@ class LoginPage extends StatelessWidget {
                         child: SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                              onPressed: () {
-                                state.onTapLoginButton(context);
-                              },
+                              onPressed: state.onTapLoginButton(context),
                               child: const Padding(
                                 padding: EdgeInsets.all(16.0),
                                 child: Text('ログイン'),
