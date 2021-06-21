@@ -41,23 +41,23 @@ Future<void> main() async {
           }));
     });
 
-    test('Sign Out', () async {
-      final client = getTestClient();
-
-      // ログイン
-      await client.signIn(signInRequest).then((result) => result.when(
-          success: (_) {},
-          failure: (e) {
-            expect(e, isNull);
-          }));
-
-      // ログアウト
-      await client.signOut().then((result) => result.when(
-          success: (_) {},
-          failure: (e) {
-            expect(e, isNull);
-          }));
-    });
+    // test('Sign Out', () async {
+    //   final client = getTestClient();
+    //
+    //   // ログイン
+    //   await client.signIn(signInRequest).then((result) => result.when(
+    //       success: (_) {},
+    //       failure: (e) {
+    //         expect(e, isNull);
+    //       }));
+    //
+    //   // ログアウト
+    //   await client.signOut().then((result) => result.when(
+    //       success: (_) {},
+    //       failure: (e) {
+    //         expect(e, isNull);
+    //       }));
+    // });
 
     test('Sign Up', () async {
       final client = getTestClient();

@@ -30,7 +30,7 @@ class Client {
   Future<Result<void>> signOut() async {
     try {
       return await dio
-          .post('/api/auth/signout')
+          .delete('/api/auth/signout')
           // ignore: void_checks
           .then((_) => const Result.success(''));
     } on DioError catch (error) {
