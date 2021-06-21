@@ -37,8 +37,3 @@ class LoginFormStateNotifier extends StateNotifier<LoginFormState>
                 ));
       };
 }
-
-final loginForm =
-    StateNotifierProvider<LoginFormStateNotifier, LoginFormState>(
-  (refs) => LoginFormStateNotifier(const LoginFormState(), refs),
-);

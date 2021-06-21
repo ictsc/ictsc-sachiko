@@ -27,10 +27,8 @@ class AuthenticationStateNotifier extends StateNotifier<Authentication> {
 
     return SignInResponse.failed(const Error.unexpectedError().errorMessage);
   }
-
-// );
 }
 
-final auth = StateNotifierProvider<AuthenticationStateNotifier, Authentication>(
+final auth = StateNotifierProvider.autoDispose<AuthenticationStateNotifier, Authentication>(
   (refs) => AuthenticationStateNotifier(const Authentication(), refs),
 );

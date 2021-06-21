@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:ictsc_sachiko/model/login_form_state.dart';
 import 'package:ictsc_sachiko/view_model/login_form_state_notifier.dart';
 
 import 'common/header.dart';
 
 class LoginPage extends HookWidget {
+  final loginForm =
+      StateNotifierProvider<LoginFormStateNotifier, LoginFormState>(
+    (refs) => LoginFormStateNotifier(const LoginFormState(), refs),
+  );
+
   @override
   Widget build(BuildContext context) {
     final state = useProvider(loginForm);

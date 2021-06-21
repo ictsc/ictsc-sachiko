@@ -11,7 +11,6 @@ Widget fadeIn(BuildContext context, Animation<double> animation,
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AutoRoute(path: '/', page: HomePage, initial: true),
     CustomRoute(
       path: '/',
       page: HomePage,
@@ -21,7 +20,6 @@ Widget fadeIn(BuildContext context, Animation<double> animation,
     CustomRoute(
       path: '/login',
       page: LoginPage,
-      initial: true,
       transitionsBuilder: fadeIn,
     ),
   ],
