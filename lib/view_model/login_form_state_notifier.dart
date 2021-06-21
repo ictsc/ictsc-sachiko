@@ -12,14 +12,13 @@ class LoginFormStateNotifier extends StateNotifier<LoginFormState>
 
   final ProviderReference ref;
 
-  final formKey = GlobalKey<FormState>();
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  final scaffoldKey = GlobalKey<ScaffoldState>();
-
   /// フォームをセーブしログインを送信する、失敗ならエラーメッセージを更新
-  Function() onTapLoginButton(BuildContext context) => () {
+  Function() onTapLoginButton(
+          BuildContext context, GlobalKey<FormState> formKey) =>
+      () {
         formKey.currentState?.save();
 
         ref
@@ -37,3 +36,7 @@ class LoginFormStateNotifier extends StateNotifier<LoginFormState>
                 ));
       };
 }
+
+final loginForm = StateNotifierProvider<LoginFormStateNotifier, LoginFormState>(
+  (refs) => LoginFormStateNotifier(const LoginFormState(), refs),
+);
