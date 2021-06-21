@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'sign_in_response.dart';
+part of 'sign_out_response.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,7 +12,7 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-SignInResponse _$SignInResponseFromJson(Map<String, dynamic> json) {
+SignOutResponse _$SignOutResponseFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType'] as String) {
     case 'success':
       return Success.fromJson(json);
@@ -25,8 +25,8 @@ SignInResponse _$SignInResponseFromJson(Map<String, dynamic> json) {
 }
 
 /// @nodoc
-class _$SignInResponseTearOff {
-  const _$SignInResponseTearOff();
+class _$SignOutResponseTearOff {
+  const _$SignOutResponseTearOff();
 
   Success success() {
     return const Success();
@@ -38,16 +38,16 @@ class _$SignInResponseTearOff {
     );
   }
 
-  SignInResponse fromJson(Map<String, Object> json) {
-    return SignInResponse.fromJson(json);
+  SignOutResponse fromJson(Map<String, Object> json) {
+    return SignOutResponse.fromJson(json);
   }
 }
 
 /// @nodoc
-const $SignInResponse = _$SignInResponseTearOff();
+const $SignOutResponse = _$SignOutResponseTearOff();
 
 /// @nodoc
-mixin _$SignInResponse {
+mixin _$SignOutResponse {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() success,
@@ -78,20 +78,20 @@ mixin _$SignInResponse {
 }
 
 /// @nodoc
-abstract class $SignInResponseCopyWith<$Res> {
-  factory $SignInResponseCopyWith(
-          SignInResponse value, $Res Function(SignInResponse) then) =
-      _$SignInResponseCopyWithImpl<$Res>;
+abstract class $SignOutResponseCopyWith<$Res> {
+  factory $SignOutResponseCopyWith(
+          SignOutResponse value, $Res Function(SignOutResponse) then) =
+      _$SignOutResponseCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SignInResponseCopyWithImpl<$Res>
-    implements $SignInResponseCopyWith<$Res> {
-  _$SignInResponseCopyWithImpl(this._value, this._then);
+class _$SignOutResponseCopyWithImpl<$Res>
+    implements $SignOutResponseCopyWith<$Res> {
+  _$SignOutResponseCopyWithImpl(this._value, this._then);
 
-  final SignInResponse _value;
+  final SignOutResponse _value;
   // ignore: unused_field
-  final $Res Function(SignInResponse) _then;
+  final $Res Function(SignOutResponse) _then;
 }
 
 /// @nodoc
@@ -101,7 +101,7 @@ abstract class $SuccessCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SuccessCopyWithImpl<$Res> extends _$SignInResponseCopyWithImpl<$Res>
+class _$SuccessCopyWithImpl<$Res> extends _$SignOutResponseCopyWithImpl<$Res>
     implements $SuccessCopyWith<$Res> {
   _$SuccessCopyWithImpl(Success _value, $Res Function(Success) _then)
       : super(_value, (v) => _then(v as Success));
@@ -120,13 +120,13 @@ class _$Success with DiagnosticableTreeMixin implements Success {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignInResponse.success()';
+    return 'SignOutResponse.success()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'SignInResponse.success'));
+    properties..add(DiagnosticsProperty('type', 'SignOutResponse.success'));
   }
 
   @override
@@ -187,7 +187,7 @@ class _$Success with DiagnosticableTreeMixin implements Success {
   }
 }
 
-abstract class Success implements SignInResponse {
+abstract class Success implements SignOutResponse {
   const factory Success() = _$Success;
 
   factory Success.fromJson(Map<String, dynamic> json) = _$Success.fromJson;
@@ -201,7 +201,7 @@ abstract class $FailureCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$FailureCopyWithImpl<$Res> extends _$SignInResponseCopyWithImpl<$Res>
+class _$FailureCopyWithImpl<$Res> extends _$SignOutResponseCopyWithImpl<$Res>
     implements $FailureCopyWith<$Res> {
   _$FailureCopyWithImpl(Failure _value, $Res Function(Failure) _then)
       : super(_value, (v) => _then(v as Failure));
@@ -235,14 +235,14 @@ class _$Failure with DiagnosticableTreeMixin implements Failure {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignInResponse.failed(errorMessage: $errorMessage)';
+    return 'SignOutResponse.failed(errorMessage: $errorMessage)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'SignInResponse.failed'))
+      ..add(DiagnosticsProperty('type', 'SignOutResponse.failed'))
       ..add(DiagnosticsProperty('errorMessage', errorMessage));
   }
 
@@ -314,7 +314,7 @@ class _$Failure with DiagnosticableTreeMixin implements Failure {
   }
 }
 
-abstract class Failure implements SignInResponse {
+abstract class Failure implements SignOutResponse {
   const factory Failure(String errorMessage) = _$Failure;
 
   factory Failure.fromJson(Map<String, dynamic> json) = _$Failure.fromJson;

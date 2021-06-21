@@ -6,9 +6,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_in_request.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_up_request.dart';
 import 'package:ictsc_sachiko/service/client.dart';
-import 'package:uuid/uuid.dart';
-
-const _uuid = Uuid();
 
 Future<void> main() async {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -24,8 +21,8 @@ Future<void> main() async {
 
   group('Authentication', () {
     final signUpRequest = SignUpRequest(
-      userName: _uuid.v4(),
-      password: 'password',
+      userName: dotenv.env['TEST_USER_NAME'].toString(),
+      password: dotenv.env['TEST_USER_PASSWORD'].toString(),
     );
 
     final signInRequest = SignInRequest(
@@ -33,36 +30,40 @@ Future<void> main() async {
       password: signUpRequest.password,
     );
 
-    test('Sign Up', () async {
-      final client = getTestClient();
-
-      // 登録
-      await client.signUp(signUpRequest);
-    });
-
     test('Sign In', () async {
       final client = getTestClient();
 
       // ログイン
-      final token = await client.signIn(signInRequest);
-
-      // トークンが空ではないか
-      expect(token, isNotEmpty);
+      await client.signIn(signInRequest).then((result) => result.when(
+          success: (_) {},
+          failure: (e) {
+            expect(e, isNull);
+          }));
     });
 
     test('Sign Out', () async {
       final client = getTestClient();
 
       // ログイン
-      final token = await client.signIn(signInRequest);
-
-      // TODO トークンのセット
-
-      // トークンが空ではないか
-      expect(token, isNotEmpty);
+      await client.signIn(signInRequest).then((result) => result.when(
+          success: (_) {},
+          failure: (e) {
+            expect(e, isNull);
+          }));
 
       // ログアウト
-      await client.signOut();
+      await client.signOut().then((result) => result.when(
+          success: (_) {},
+          failure: (e) {
+            expect(e, isNull);
+          }));
+    });
+
+    test('Sign Up', () async {
+      final client = getTestClient();
+
+      // 登録
+      await client.signUp(signUpRequest);
     });
   });
 }

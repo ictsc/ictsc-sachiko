@@ -27,14 +27,15 @@ class Client {
     }
   }
 
-  Future<void> signOut() async {
-    final response = await dio.post('/auth/signout');
-
-    if (response.statusCode == 201) {
-      return;
+  Future<Result<void>> signOut() async {
+    try {
+      return await dio
+          .post('/api/auth/signout')
+          // ignore: void_checks
+          .then((_) => const Result.success(''));
+    } on DioError catch (error) {
+      return Result.failure(Error.getApiError(error));
     }
-
-    throw 'Error';
   }
 
   Future<void> signUp(SignUpRequest signUpRequest) async {

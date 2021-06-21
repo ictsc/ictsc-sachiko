@@ -2,6 +2,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/model/authentication/authentication.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_in_request.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_in_response.dart';
+import 'package:ictsc_sachiko/model/authentication/sign_out_response.dart';
 import 'package:ictsc_sachiko/view_model/common/client_provider.dart';
 
 class AuthenticationStateNotifier extends StateNotifier<Authentication> {
@@ -27,6 +28,18 @@ class AuthenticationStateNotifier extends StateNotifier<Authentication> {
             },
           ),
         );
+  }
+
+  Future<SignOutResponse> signOut() async {
+    final client = ref.read(clientProvider).state;
+
+    return client.signOut().then((result) => result.when(success: (_) {
+          state = state.copyWith(isLogin: false);
+
+          return const SignOutResponse.success();
+        }, failure: (error) {
+          return SignOutResponse.failed(error.errorMessage);
+        }));
   }
 }
 

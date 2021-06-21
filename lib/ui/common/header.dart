@@ -21,6 +21,7 @@ class Header extends HookWidget implements PreferredSizeWidget {
             context.router.pushNamed('/login');
           } else {
             // TODO ログアウトの処理
+            context.read(auth.notifier).signOut();
           }
         },
         child: Text(
