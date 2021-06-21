@@ -13,15 +13,15 @@ class Client {
     dio.interceptors.add(LogInterceptor(responseBody: true));
   }
 
-  Future<Result<String>> signIn(SignInRequest signInRequest) async {
+  Future<Result<void>> signIn(SignInRequest signInRequest) async {
     try {
       return await dio
           .post(
-            '/api/auth/sign-in',
-            data: FormData.fromMap(signInRequest.toJson()),
+            '/api/auth/signin',
+            data: signInRequest.toJson(),
           )
-          .then(
-              (response) => Result.success(response.data['token'].toString()));
+          // ignore: void_checks
+          .then((_) => const Result.success(''));
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }
@@ -48,9 +48,5 @@ class Client {
     }
 
     throw 'Error';
-  }
-
-  void setAuthorization(String token) {
-    dio.options.headers['authorization'] = 'Bearer $token';
   }
 }

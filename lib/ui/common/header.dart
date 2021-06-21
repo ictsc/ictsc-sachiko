@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/view_model/common/authentication_state_notifier.dart';
 
+/// アプリ全体で使われるヘッダー
 class Header extends HookWidget implements PreferredSizeWidget {
   final AppBar appBar;
 
@@ -14,7 +15,6 @@ class Header extends HookWidget implements PreferredSizeWidget {
     final authState = useProvider(auth);
 
     Widget toLoginLinkButton() {
-
       return TextButton(
         onPressed: () {
           if (!authState.isLogin) {

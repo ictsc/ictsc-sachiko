@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -15,7 +16,7 @@ class LoginFormStateNotifier extends StateNotifier<LoginFormState>
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  /// フォームをセーブしログインを送信する、失敗ならエラーメッセージを更新
+  /// フォームをセーブしログインを送信する、失敗ならエラーメッセージを更新する。
   Function() onTapLoginButton(
           BuildContext context, GlobalKey<FormState> formKey) =>
       () {
@@ -28,7 +29,11 @@ class LoginFormStateNotifier extends StateNotifier<LoginFormState>
               password: passwordController.text,
             ))
             .then((response) => response.when(
-                  success: () {},
+                  success: () {
+                    state = state.copyWith(errorMessage: '');
+                    // ページを飛ばす
+                    context.router.pushNamed('/');
+                  },
                   failed: (message) {
                     // エラーメッセージの処理
                     state = state.copyWith(errorMessage: message);
