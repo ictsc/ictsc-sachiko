@@ -20,9 +20,10 @@ LoginFormState _$LoginFormStateFromJson(Map<String, dynamic> json) {
 class _$LoginFormStateTearOff {
   const _$LoginFormStateTearOff();
 
-  _LoginFormState call({String? errorMessage}) {
+  _LoginFormState call({String? errorMessage, bool isLoading = false}) {
     return _LoginFormState(
       errorMessage: errorMessage,
+      isLoading: isLoading,
     );
   }
 
@@ -37,6 +38,7 @@ const $LoginFormState = _$LoginFormStateTearOff();
 /// @nodoc
 mixin _$LoginFormState {
   String? get errorMessage => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,7 +51,7 @@ abstract class $LoginFormStateCopyWith<$Res> {
   factory $LoginFormStateCopyWith(
           LoginFormState value, $Res Function(LoginFormState) then) =
       _$LoginFormStateCopyWithImpl<$Res>;
-  $Res call({String? errorMessage});
+  $Res call({String? errorMessage, bool isLoading});
 }
 
 /// @nodoc
@@ -64,12 +66,17 @@ class _$LoginFormStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? errorMessage = freezed,
+    Object? isLoading = freezed,
   }) {
     return _then(_value.copyWith(
       errorMessage: errorMessage == freezed
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
+      isLoading: isLoading == freezed
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -81,7 +88,7 @@ abstract class _$LoginFormStateCopyWith<$Res>
           _LoginFormState value, $Res Function(_LoginFormState) then) =
       __$LoginFormStateCopyWithImpl<$Res>;
   @override
-  $Res call({String? errorMessage});
+  $Res call({String? errorMessage, bool isLoading});
 }
 
 /// @nodoc
@@ -98,12 +105,17 @@ class __$LoginFormStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? errorMessage = freezed,
+    Object? isLoading = freezed,
   }) {
     return _then(_LoginFormState(
       errorMessage: errorMessage == freezed
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
+      isLoading: isLoading == freezed
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -113,17 +125,20 @@ class __$LoginFormStateCopyWithImpl<$Res>
 class _$_LoginFormState
     with DiagnosticableTreeMixin
     implements _LoginFormState {
-  const _$_LoginFormState({this.errorMessage});
+  const _$_LoginFormState({this.errorMessage, this.isLoading = false});
 
   factory _$_LoginFormState.fromJson(Map<String, dynamic> json) =>
       _$_$_LoginFormStateFromJson(json);
 
   @override
   final String? errorMessage;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool isLoading;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LoginFormState(errorMessage: $errorMessage)';
+    return 'LoginFormState(errorMessage: $errorMessage, isLoading: $isLoading)';
   }
 
   @override
@@ -131,7 +146,8 @@ class _$_LoginFormState
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'LoginFormState'))
-      ..add(DiagnosticsProperty('errorMessage', errorMessage));
+      ..add(DiagnosticsProperty('errorMessage', errorMessage))
+      ..add(DiagnosticsProperty('isLoading', isLoading));
   }
 
   @override
@@ -140,12 +156,17 @@ class _$_LoginFormState
         (other is _LoginFormState &&
             (identical(other.errorMessage, errorMessage) ||
                 const DeepCollectionEquality()
-                    .equals(other.errorMessage, errorMessage)));
+                    .equals(other.errorMessage, errorMessage)) &&
+            (identical(other.isLoading, isLoading) ||
+                const DeepCollectionEquality()
+                    .equals(other.isLoading, isLoading)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(errorMessage);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(errorMessage) ^
+      const DeepCollectionEquality().hash(isLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -159,13 +180,16 @@ class _$_LoginFormState
 }
 
 abstract class _LoginFormState implements LoginFormState {
-  const factory _LoginFormState({String? errorMessage}) = _$_LoginFormState;
+  const factory _LoginFormState({String? errorMessage, bool isLoading}) =
+      _$_LoginFormState;
 
   factory _LoginFormState.fromJson(Map<String, dynamic> json) =
       _$_LoginFormState.fromJson;
 
   @override
   String? get errorMessage => throw _privateConstructorUsedError;
+  @override
+  bool get isLoading => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$LoginFormStateCopyWith<_LoginFormState> get copyWith =>

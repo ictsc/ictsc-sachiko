@@ -8,6 +8,7 @@ part 'login_form_state.g.dart';
 abstract class LoginFormState with _$LoginFormState {
   const factory LoginFormState({
     String? errorMessage,
+    @Default(false) bool isLoading,
   }) = _LoginFormState;
 
   factory LoginFormState.fromJson(Map<String, dynamic> json) =>
