@@ -36,7 +36,7 @@ class Header extends HookWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       actions: [
         Padding(
-            padding: const EdgeInsets.only(right: 8.0),
+            padding: const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 8.0, right: 16.0),
             // ログインページへのボタン
             child: toLoginLinkButton()),
       ],

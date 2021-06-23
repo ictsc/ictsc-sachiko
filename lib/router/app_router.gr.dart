@@ -7,30 +7,55 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
-import '../ui/home_page.dart' as _i3;
-import '../ui/login_page.dart' as _i5;
-import 'app_router.dart' as _i4;
+import '../ui/home_page.dart' as _i4;
+import '../ui/login_page.dart' as _i6;
+import '../ui/my_page.dart' as _i7;
+import 'app_auth_page.dart' as _i8;
+import 'app_router.dart' as _i5;
+import 'auth_route_guard.dart' as _i3;
 
 class AppRouter extends _i1.RootStackRouter {
-  AppRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
+  AppRouter(
+      {_i2.GlobalKey<_i2.NavigatorState>? navigatorKey,
+      required this.authGuard})
       : super(navigatorKey);
+
+  final _i3.AuthGuard authGuard;
 
   @override
   final Map<String, _i1.PageFactory> pagesMap = {
     HomeRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i3.HomePage();
+          return _i4.HomePage();
         },
-        transitionsBuilder: _i4.fadeIn,
+        transitionsBuilder: _i5.fadeIn,
         opaque: true,
         barrierDismissible: false),
     LoginRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i5.LoginPage();
+          return _i6.LoginPage();
         },
-        transitionsBuilder: _i4.fadeIn,
+        transitionsBuilder: _i5.fadeIn,
+        opaque: true,
+        barrierDismissible: false),
+    MyRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i7.MyPage();
+        },
+        transitionsBuilder: _i5.fadeIn,
+        opaque: true,
+        barrierDismissible: false),
+    AppAuthRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final args = data.argsAs<AppAuthRouteArgs>(
+              orElse: () => const AppAuthRouteArgs());
+          return _i8.AppAuthPage(onComplete: args.onComplete);
+        },
+        transitionsBuilder: _i5.fadeIn,
         opaque: true,
         barrierDismissible: false)
   };
@@ -38,7 +63,9 @@ class AppRouter extends _i1.RootStackRouter {
   @override
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig(HomeRoute.name, path: '/'),
-        _i1.RouteConfig(LoginRoute.name, path: '/login')
+        _i1.RouteConfig(LoginRoute.name, path: '/login'),
+        _i1.RouteConfig(MyRoute.name, path: '/mypage', guards: [authGuard]),
+        _i1.RouteConfig(AppAuthRoute.name, path: '/app-auth-page')
       ];
 }
 
@@ -52,4 +79,25 @@ class LoginRoute extends _i1.PageRouteInfo {
   const LoginRoute() : super(name, path: '/login');
 
   static const String name = 'LoginRoute';
+}
+
+class MyRoute extends _i1.PageRouteInfo {
+  const MyRoute() : super(name, path: '/mypage');
+
+  static const String name = 'MyRoute';
+}
+
+class AppAuthRoute extends _i1.PageRouteInfo<AppAuthRouteArgs> {
+  AppAuthRoute({Function? onComplete})
+      : super(name,
+            path: '/app-auth-page',
+            args: AppAuthRouteArgs(onComplete: onComplete));
+
+  static const String name = 'AppAuthRoute';
+}
+
+class AppAuthRouteArgs {
+  const AppAuthRouteArgs({this.onComplete});
+
+  final Function? onComplete;
 }
