@@ -8,8 +8,8 @@ import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
 import '../ui/home_page.dart' as _i4;
-import '../ui/login_page.dart' as _i6;
 import '../ui/my_page.dart' as _i7;
+import '../ui/sign_in_page.dart' as _i6;
 import 'app_auth_page.dart' as _i8;
 import 'app_router.dart' as _i5;
 import 'auth_route_guard.dart' as _i3;
@@ -32,10 +32,10 @@ class AppRouter extends _i1.RootStackRouter {
         transitionsBuilder: _i5.fadeIn,
         opaque: true,
         barrierDismissible: false),
-    LoginRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+    SignInRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i6.LoginPage();
+          return _i6.SignInPage();
         },
         transitionsBuilder: _i5.fadeIn,
         opaque: true,
@@ -63,9 +63,9 @@ class AppRouter extends _i1.RootStackRouter {
   @override
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig(HomeRoute.name, path: '/'),
-        _i1.RouteConfig(LoginRoute.name, path: '/login'),
+        _i1.RouteConfig(SignInRoute.name, path: '/login'),
         _i1.RouteConfig(MyRoute.name, path: '/mypage', guards: [authGuard]),
-        _i1.RouteConfig(AppAuthRoute.name, path: '/app-auth-page')
+        _i1.RouteConfig(AppAuthRoute.name, path: '/auth')
       ];
 }
 
@@ -75,10 +75,10 @@ class HomeRoute extends _i1.PageRouteInfo {
   static const String name = 'HomeRoute';
 }
 
-class LoginRoute extends _i1.PageRouteInfo {
-  const LoginRoute() : super(name, path: '/login');
+class SignInRoute extends _i1.PageRouteInfo {
+  const SignInRoute() : super(name, path: '/login');
 
-  static const String name = 'LoginRoute';
+  static const String name = 'SignInRoute';
 }
 
 class MyRoute extends _i1.PageRouteInfo {
@@ -90,8 +90,7 @@ class MyRoute extends _i1.PageRouteInfo {
 class AppAuthRoute extends _i1.PageRouteInfo<AppAuthRouteArgs> {
   AppAuthRoute({Function? onComplete})
       : super(name,
-            path: '/app-auth-page',
-            args: AppAuthRouteArgs(onComplete: onComplete));
+            path: '/auth', args: AppAuthRouteArgs(onComplete: onComplete));
 
   static const String name = 'AppAuthRoute';
 }

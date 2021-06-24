@@ -21,7 +21,7 @@ class AppAuthPage extends StatelessWidget {
           onComplete!();
         } else {
           // ログイン状態でなければログインページへ
-          context.router.push(const LoginRoute());
+          context.router.push(const SignInRoute());
         }
       });
     }
