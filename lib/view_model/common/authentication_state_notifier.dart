@@ -19,9 +19,7 @@ class AuthenticationStateNotifier extends StateNotifier<Authentication> {
       result.when(
         success: (_) {
           // ログイン成功
-          print('success');
-          print(_.data);
-          state = state.copyWith(isLogin: true);
+          state = state.copyWith(user: _.data.user);
         },
         failure: (_) {},
       );
@@ -34,7 +32,7 @@ class AuthenticationStateNotifier extends StateNotifier<Authentication> {
     final client = ref.read(clientProvider).state;
 
     return client.signOut().then((result) => result.when(success: (_) {
-          state = state.copyWith(isLogin: false);
+          state = state.copyWith(user: null);
 
           return const SignOutResponse.success();
         }, failure: (error) {

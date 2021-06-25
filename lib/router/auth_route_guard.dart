@@ -8,9 +8,9 @@ class AuthGuard extends AutoRouteGuard {
   void onNavigation(NavigationResolver resolver, StackRouter router) {
     final context = router.navigatorKey.currentContext;
 
-    final isLogin = context?.read(auth).isLogin ?? false;
+    final user = context?.read(auth).user;
 
-    if (isLogin) {
+    if (user != null) {
       resolver.next();
     } else {
       router.push(const SignInRoute());

@@ -14,20 +14,91 @@ class Header extends HookWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final authState = useProvider(auth);
 
+    final user = authState.user;
+
     Widget toLoginLinkButton() {
-      return TextButton(
-        onPressed: () {
-          if (!authState.isLogin) {
+      if (user == null) {
+        return TextButton(
+          onPressed: () {
             context.router.pushNamed('/login');
-          } else {
-            // TODO ログアウトの処理
-            context.read(auth.notifier).signOut();
-          }
-        },
-        child: Text(
-          !authState.isLogin ? 'ログイン' : 'ログアウト',
-          style: Theme.of(context).primaryTextTheme.bodyText1,
-        ),
+          },
+          child: Text(
+            'ログイン',
+            style: Theme.of(context).primaryTextTheme.bodyText1,
+          ),
+        );
+      }
+
+      return Row(
+        children: [
+          PopupMenuButton(
+            onSelected: (value) {
+              if (value == 'mypage') {
+                context.router.pushNamed('/mypage');
+              }
+
+              if (value == 'logout') {
+                // TODO ログアウトの処理
+                context.read(auth.notifier).signOut();
+              }
+            },
+            itemBuilder: (BuildContext context) => [
+              PopupMenuItem(
+                enabled: false,
+                height: 36,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Text(
+                        'チーム：${user.userGroup?.name ?? ''}',
+                        style: Theme.of(context)
+                            .primaryTextTheme
+                            .subtitle1!
+                            .copyWith(
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2!
+                                    .color),
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 8.0),
+                      child: Divider(),
+                    )
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                value: 'mypage',
+                height: 36,
+                child: Text(
+                  'マイページ',
+                  style: Theme.of(context).primaryTextTheme.bodyText2!.copyWith(
+                      color: Theme.of(context).textTheme.bodyText2!.color),
+                ),
+              ),
+              PopupMenuItem(
+                value: 'logout',
+                height: 36,
+                child: Text(
+                  'ログアウト',
+                  style: Theme.of(context).primaryTextTheme.bodyText2!.copyWith(
+                      color: Theme.of(context).textTheme.bodyText2!.color),
+                ),
+              )
+            ],
+            offset: const Offset(0, 48),
+            child: Center(
+                child: Row(
+              children: [
+                Text(user.displayName),
+                const Icon(Icons.arrow_drop_down),
+              ],
+            )),
+          ),
+        ],
       );
     }
 
@@ -36,7 +107,8 @@ class Header extends HookWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       actions: [
         Padding(
-            padding: const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 8.0, right: 16.0),
+            padding: const EdgeInsets.only(
+                top: 8.0, bottom: 8.0, left: 8.0, right: 16.0),
             // ログインページへのボタン
             child: toLoginLinkButton()),
       ],

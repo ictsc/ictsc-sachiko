@@ -20,9 +20,9 @@ Authentication _$AuthenticationFromJson(Map<String, dynamic> json) {
 class _$AuthenticationTearOff {
   const _$AuthenticationTearOff();
 
-  _Authentication call({bool isLogin = false}) {
+  _Authentication call({User? user}) {
     return _Authentication(
-      isLogin: isLogin,
+      user: user,
     );
   }
 
@@ -36,7 +36,7 @@ const $Authentication = _$AuthenticationTearOff();
 
 /// @nodoc
 mixin _$Authentication {
-  bool get isLogin => throw _privateConstructorUsedError;
+  User? get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,7 +49,9 @@ abstract class $AuthenticationCopyWith<$Res> {
   factory $AuthenticationCopyWith(
           Authentication value, $Res Function(Authentication) then) =
       _$AuthenticationCopyWithImpl<$Res>;
-  $Res call({bool isLogin});
+  $Res call({User? user});
+
+  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -63,14 +65,25 @@ class _$AuthenticationCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? isLogin = freezed,
+    Object? user = freezed,
   }) {
     return _then(_value.copyWith(
-      isLogin: isLogin == freezed
-          ? _value.isLogin
-          : isLogin // ignore: cast_nullable_to_non_nullable
-              as bool,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
     ));
+  }
+
+  @override
+  $UserCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value));
+    });
   }
 }
 
@@ -81,7 +94,10 @@ abstract class _$AuthenticationCopyWith<$Res>
           _Authentication value, $Res Function(_Authentication) then) =
       __$AuthenticationCopyWithImpl<$Res>;
   @override
-  $Res call({bool isLogin});
+  $Res call({User? user});
+
+  @override
+  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -97,34 +113,31 @@ class __$AuthenticationCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? isLogin = freezed,
+    Object? user = freezed,
   }) {
     return _then(_Authentication(
-      isLogin: isLogin == freezed
-          ? _value.isLogin
-          : isLogin // ignore: cast_nullable_to_non_nullable
-              as bool,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_Authentication
-    with DiagnosticableTreeMixin
-    implements _Authentication {
-  const _$_Authentication({this.isLogin = false});
+class _$_Authentication extends _Authentication with DiagnosticableTreeMixin {
+  const _$_Authentication({this.user}) : super._();
 
   factory _$_Authentication.fromJson(Map<String, dynamic> json) =>
       _$_$_AuthenticationFromJson(json);
 
-  @JsonKey(defaultValue: false)
   @override
-  final bool isLogin;
+  final User? user;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Authentication(isLogin: $isLogin)';
+    return 'Authentication(user: $user)';
   }
 
   @override
@@ -132,20 +145,20 @@ class _$_Authentication
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'Authentication'))
-      ..add(DiagnosticsProperty('isLogin', isLogin));
+      ..add(DiagnosticsProperty('user', user));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Authentication &&
-            (identical(other.isLogin, isLogin) ||
-                const DeepCollectionEquality().equals(other.isLogin, isLogin)));
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(isLogin);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
 
   @JsonKey(ignore: true)
   @override
@@ -158,14 +171,15 @@ class _$_Authentication
   }
 }
 
-abstract class _Authentication implements Authentication {
-  const factory _Authentication({bool isLogin}) = _$_Authentication;
+abstract class _Authentication extends Authentication {
+  const factory _Authentication({User? user}) = _$_Authentication;
+  const _Authentication._() : super._();
 
   factory _Authentication.fromJson(Map<String, dynamic> json) =
       _$_Authentication.fromJson;
 
   @override
-  bool get isLogin => throw _privateConstructorUsedError;
+  User? get user => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AuthenticationCopyWith<_Authentication> get copyWith =>

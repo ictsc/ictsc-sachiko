@@ -28,7 +28,6 @@ class SignInPageStateNotifier extends StateNotifier<SignInFormState>
     }
 
     return () {
-      print("isLoading");
       state = state.copyWith(isLoading: true);
 
       // フォームの保存
@@ -44,17 +43,12 @@ class SignInPageStateNotifier extends StateNotifier<SignInFormState>
                 success: (value) {
                   state = state.copyWith(errorMessage: '');
 
-                  print(value.code);
-
                   // ページを飛ばす
                   context.router.pushNamed('/');
                 },
                 failure: (error) {
                   // エラーメッセージの処理
                   state = state.copyWith(errorMessage: error.errorMessage);
-
-                  print("更新");
-                  print(state);
 
                   // パスワードのクリア
                   passwordController.clear();

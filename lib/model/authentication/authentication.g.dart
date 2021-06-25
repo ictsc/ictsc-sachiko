@@ -8,11 +8,13 @@ part of 'authentication.dart';
 
 _$_Authentication _$_$_AuthenticationFromJson(Map<String, dynamic> json) {
   return _$_Authentication(
-    isLogin: json['isLogin'] as bool? ?? false,
+    user: json['user'] == null
+        ? null
+        : User.fromJson(json['user'] as Map<String, dynamic>),
   );
 }
 
 Map<String, dynamic> _$_$_AuthenticationToJson(_$_Authentication instance) =>
     <String, dynamic>{
-      'isLogin': instance.isLogin,
+      'user': instance.user,
     };
