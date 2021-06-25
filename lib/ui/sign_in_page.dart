@@ -14,6 +14,8 @@ class SignInPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    useProvider(loginForm);
+
     final provider = context.read(loginForm.notifier);
 
     return Scaffold(

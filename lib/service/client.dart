@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_in_request.dart';
+import 'package:ictsc_sachiko/model/authentication/sign_in_response.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_up_request.dart';
 import 'package:ictsc_sachiko/model/client/error.dart';
 import 'package:ictsc_sachiko/model/client/result.dart';
@@ -13,15 +14,14 @@ class Client {
     dio.interceptors.add(LogInterceptor(responseBody: true));
   }
 
-  Future<Result<void>> signIn(SignInRequest signInRequest) async {
+  Future<Result<SignInResponse>> signIn(SignInRequest signInRequest) async {
     try {
       return await dio
           .post(
             '/api/auth/signin',
             data: signInRequest.toJson(),
           )
-          // ignore: void_checks
-          .then((_) => const Result.success(''));
+          .then((_) => Result.success(SignInResponse.fromJson({..._.data})));
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }

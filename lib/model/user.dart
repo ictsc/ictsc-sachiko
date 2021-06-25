@@ -14,8 +14,8 @@ class User with _$User {
     @JsonKey(name: 'user_group_id') required String userGroupId,
     @JsonKey(name: 'created_at') required DateTime createdAt,
     @JsonKey(name: 'updated_at') required DateTime updatedAt,
+    @JsonKey(name: 'user_group') UserGroup? userGroup,
     @JsonKey(name: 'is_read_only') required bool isReadOnly,
-    UserGroup? userGroup,
   }) = _User;
 
  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

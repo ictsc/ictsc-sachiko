@@ -14,10 +14,10 @@ _$_User _$_$_UserFromJson(Map<String, dynamic> json) {
     userGroupId: json['user_group_id'] as String,
     createdAt: DateTime.parse(json['created_at'] as String),
     updatedAt: DateTime.parse(json['updated_at'] as String),
-    isReadOnly: json['is_read_only'] as bool,
-    userGroup: json['userGroup'] == null
+    userGroup: json['user_group'] == null
         ? null
-        : UserGroup.fromJson(json['userGroup'] as Map<String, dynamic>),
+        : UserGroup.fromJson(json['user_group'] as Map<String, dynamic>),
+    isReadOnly: json['is_read_only'] as bool,
   );
 }
 
@@ -28,6 +28,6 @@ Map<String, dynamic> _$_$_UserToJson(_$_User instance) => <String, dynamic>{
       'user_group_id': instance.userGroupId,
       'created_at': instance.createdAt.toIso8601String(),
       'updated_at': instance.updatedAt.toIso8601String(),
+      'user_group': instance.userGroup,
       'is_read_only': instance.isReadOnly,
-      'userGroup': instance.userGroup,
     };

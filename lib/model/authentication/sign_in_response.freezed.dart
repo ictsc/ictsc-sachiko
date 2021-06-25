@@ -13,28 +13,17 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 SignInResponse _$SignInResponseFromJson(Map<String, dynamic> json) {
-  switch (json['runtimeType'] as String) {
-    case 'success':
-      return Success.fromJson(json);
-    case 'failed':
-      return Failure.fromJson(json);
-
-    default:
-      throw FallThroughError();
-  }
+  return _SignInResponse.fromJson(json);
 }
 
 /// @nodoc
 class _$SignInResponseTearOff {
   const _$SignInResponseTearOff();
 
-  Success success() {
-    return const Success();
-  }
-
-  Failure failed(String errorMessage) {
-    return Failure(
-      errorMessage,
+  _SignInResponse call({required int code, required Data data}) {
+    return _SignInResponse(
+      code: code,
+      data: data,
     );
   }
 
@@ -48,33 +37,13 @@ const $SignInResponse = _$SignInResponseTearOff();
 
 /// @nodoc
 mixin _$SignInResponse {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() success,
-    required TResult Function(String errorMessage) failed,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? success,
-    TResult Function(String errorMessage)? failed,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Success value) success,
-    required TResult Function(Failure value) failed,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Success value)? success,
-    TResult Function(Failure value)? failed,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  int get code => throw _privateConstructorUsedError;
+  Data get data => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SignInResponseCopyWith<SignInResponse> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -82,6 +51,9 @@ abstract class $SignInResponseCopyWith<$Res> {
   factory $SignInResponseCopyWith(
           SignInResponse value, $Res Function(SignInResponse) then) =
       _$SignInResponseCopyWithImpl<$Res>;
+  $Res call({int code, Data data});
+
+  $DataCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -92,234 +64,303 @@ class _$SignInResponseCopyWithImpl<$Res>
   final SignInResponse _value;
   // ignore: unused_field
   final $Res Function(SignInResponse) _then;
-}
-
-/// @nodoc
-abstract class $SuccessCopyWith<$Res> {
-  factory $SuccessCopyWith(Success value, $Res Function(Success) then) =
-      _$SuccessCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$SuccessCopyWithImpl<$Res> extends _$SignInResponseCopyWithImpl<$Res>
-    implements $SuccessCopyWith<$Res> {
-  _$SuccessCopyWithImpl(Success _value, $Res Function(Success) _then)
-      : super(_value, (v) => _then(v as Success));
-
-  @override
-  Success get _value => super._value as Success;
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$Success with DiagnosticableTreeMixin implements Success {
-  const _$Success();
-
-  factory _$Success.fromJson(Map<String, dynamic> json) =>
-      _$_$SuccessFromJson(json);
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignInResponse.success()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'SignInResponse.success'));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Success);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() success,
-    required TResult Function(String errorMessage) failed,
-  }) {
-    return success();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? success,
-    TResult Function(String errorMessage)? failed,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Success value) success,
-    required TResult Function(Failure value) failed,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Success value)? success,
-    TResult Function(Failure value)? failed,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$SuccessToJson(this)..['runtimeType'] = 'success';
-  }
-}
-
-abstract class Success implements SignInResponse {
-  const factory Success() = _$Success;
-
-  factory Success.fromJson(Map<String, dynamic> json) = _$Success.fromJson;
-}
-
-/// @nodoc
-abstract class $FailureCopyWith<$Res> {
-  factory $FailureCopyWith(Failure value, $Res Function(Failure) then) =
-      _$FailureCopyWithImpl<$Res>;
-  $Res call({String errorMessage});
-}
-
-/// @nodoc
-class _$FailureCopyWithImpl<$Res> extends _$SignInResponseCopyWithImpl<$Res>
-    implements $FailureCopyWith<$Res> {
-  _$FailureCopyWithImpl(Failure _value, $Res Function(Failure) _then)
-      : super(_value, (v) => _then(v as Failure));
-
-  @override
-  Failure get _value => super._value as Failure;
 
   @override
   $Res call({
-    Object? errorMessage = freezed,
+    Object? code = freezed,
+    Object? data = freezed,
   }) {
-    return _then(Failure(
-      errorMessage == freezed
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(_value.copyWith(
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as int,
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as Data,
+    ));
+  }
+
+  @override
+  $DataCopyWith<$Res> get data {
+    return $DataCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$SignInResponseCopyWith<$Res>
+    implements $SignInResponseCopyWith<$Res> {
+  factory _$SignInResponseCopyWith(
+          _SignInResponse value, $Res Function(_SignInResponse) then) =
+      __$SignInResponseCopyWithImpl<$Res>;
+  @override
+  $Res call({int code, Data data});
+
+  @override
+  $DataCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class __$SignInResponseCopyWithImpl<$Res>
+    extends _$SignInResponseCopyWithImpl<$Res>
+    implements _$SignInResponseCopyWith<$Res> {
+  __$SignInResponseCopyWithImpl(
+      _SignInResponse _value, $Res Function(_SignInResponse) _then)
+      : super(_value, (v) => _then(v as _SignInResponse));
+
+  @override
+  _SignInResponse get _value => super._value as _SignInResponse;
+
+  @override
+  $Res call({
+    Object? code = freezed,
+    Object? data = freezed,
+  }) {
+    return _then(_SignInResponse(
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as int,
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as Data,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$Failure with DiagnosticableTreeMixin implements Failure {
-  const _$Failure(this.errorMessage);
+class _$_SignInResponse
+    with DiagnosticableTreeMixin
+    implements _SignInResponse {
+  const _$_SignInResponse({required this.code, required this.data});
 
-  factory _$Failure.fromJson(Map<String, dynamic> json) =>
-      _$_$FailureFromJson(json);
+  factory _$_SignInResponse.fromJson(Map<String, dynamic> json) =>
+      _$_$_SignInResponseFromJson(json);
 
   @override
-  final String errorMessage;
+  final int code;
+  @override
+  final Data data;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignInResponse.failed(errorMessage: $errorMessage)';
+    return 'SignInResponse(code: $code, data: $data)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'SignInResponse.failed'))
-      ..add(DiagnosticsProperty('errorMessage', errorMessage));
+      ..add(DiagnosticsProperty('type', 'SignInResponse'))
+      ..add(DiagnosticsProperty('code', code))
+      ..add(DiagnosticsProperty('data', data));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Failure &&
-            (identical(other.errorMessage, errorMessage) ||
-                const DeepCollectionEquality()
-                    .equals(other.errorMessage, errorMessage)));
+        (other is _SignInResponse &&
+            (identical(other.code, code) ||
+                const DeepCollectionEquality().equals(other.code, code)) &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(errorMessage);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(code) ^
+      const DeepCollectionEquality().hash(data);
 
   @JsonKey(ignore: true)
   @override
-  $FailureCopyWith<Failure> get copyWith =>
-      _$FailureCopyWithImpl<Failure>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() success,
-    required TResult Function(String errorMessage) failed,
-  }) {
-    return failed(errorMessage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? success,
-    TResult Function(String errorMessage)? failed,
-    required TResult orElse(),
-  }) {
-    if (failed != null) {
-      return failed(errorMessage);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Success value) success,
-    required TResult Function(Failure value) failed,
-  }) {
-    return failed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Success value)? success,
-    TResult Function(Failure value)? failed,
-    required TResult orElse(),
-  }) {
-    if (failed != null) {
-      return failed(this);
-    }
-    return orElse();
-  }
+  _$SignInResponseCopyWith<_SignInResponse> get copyWith =>
+      __$SignInResponseCopyWithImpl<_SignInResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$FailureToJson(this)..['runtimeType'] = 'failed';
+    return _$_$_SignInResponseToJson(this);
   }
 }
 
-abstract class Failure implements SignInResponse {
-  const factory Failure(String errorMessage) = _$Failure;
+abstract class _SignInResponse implements SignInResponse {
+  const factory _SignInResponse({required int code, required Data data}) =
+      _$_SignInResponse;
 
-  factory Failure.fromJson(Map<String, dynamic> json) = _$Failure.fromJson;
+  factory _SignInResponse.fromJson(Map<String, dynamic> json) =
+      _$_SignInResponse.fromJson;
 
-  String get errorMessage => throw _privateConstructorUsedError;
+  @override
+  int get code => throw _privateConstructorUsedError;
+  @override
+  Data get data => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
-  $FailureCopyWith<Failure> get copyWith => throw _privateConstructorUsedError;
+  _$SignInResponseCopyWith<_SignInResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Data _$DataFromJson(Map<String, dynamic> json) {
+  return _Data.fromJson(json);
+}
+
+/// @nodoc
+class _$DataTearOff {
+  const _$DataTearOff();
+
+  _Data call({required User user}) {
+    return _Data(
+      user: user,
+    );
+  }
+
+  Data fromJson(Map<String, Object> json) {
+    return Data.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $Data = _$DataTearOff();
+
+/// @nodoc
+mixin _$Data {
+  User get user => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DataCopyWith<Data> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DataCopyWith<$Res> {
+  factory $DataCopyWith(Data value, $Res Function(Data) then) =
+      _$DataCopyWithImpl<$Res>;
+  $Res call({User user});
+
+  $UserCopyWith<$Res> get user;
+}
+
+/// @nodoc
+class _$DataCopyWithImpl<$Res> implements $DataCopyWith<$Res> {
+  _$DataCopyWithImpl(this._value, this._then);
+
+  final Data _value;
+  // ignore: unused_field
+  final $Res Function(Data) _then;
+
+  @override
+  $Res call({
+    Object? user = freezed,
+  }) {
+    return _then(_value.copyWith(
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
+    ));
+  }
+
+  @override
+  $UserCopyWith<$Res> get user {
+    return $UserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$DataCopyWith<$Res> implements $DataCopyWith<$Res> {
+  factory _$DataCopyWith(_Data value, $Res Function(_Data) then) =
+      __$DataCopyWithImpl<$Res>;
+  @override
+  $Res call({User user});
+
+  @override
+  $UserCopyWith<$Res> get user;
+}
+
+/// @nodoc
+class __$DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res>
+    implements _$DataCopyWith<$Res> {
+  __$DataCopyWithImpl(_Data _value, $Res Function(_Data) _then)
+      : super(_value, (v) => _then(v as _Data));
+
+  @override
+  _Data get _value => super._value as _Data;
+
+  @override
+  $Res call({
+    Object? user = freezed,
+  }) {
+    return _then(_Data(
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Data with DiagnosticableTreeMixin implements _Data {
+  const _$_Data({required this.user});
+
+  factory _$_Data.fromJson(Map<String, dynamic> json) =>
+      _$_$_DataFromJson(json);
+
+  @override
+  final User user;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'Data(user: $user)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Data'))
+      ..add(DiagnosticsProperty('user', user));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _Data &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
+
+  @JsonKey(ignore: true)
+  @override
+  _$DataCopyWith<_Data> get copyWith =>
+      __$DataCopyWithImpl<_Data>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_DataToJson(this);
+  }
+}
+
+abstract class _Data implements Data {
+  const factory _Data({required User user}) = _$_Data;
+
+  factory _Data.fromJson(Map<String, dynamic> json) = _$_Data.fromJson;
+
+  @override
+  User get user => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$DataCopyWith<_Data> get copyWith => throw _privateConstructorUsedError;
 }

@@ -6,19 +6,25 @@ part of 'sign_in_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$Success _$_$SuccessFromJson(Map<String, dynamic> json) {
-  return _$Success();
-}
-
-Map<String, dynamic> _$_$SuccessToJson(_$Success instance) =>
-    <String, dynamic>{};
-
-_$Failure _$_$FailureFromJson(Map<String, dynamic> json) {
-  return _$Failure(
-    json['errorMessage'] as String,
+_$_SignInResponse _$_$_SignInResponseFromJson(Map<String, dynamic> json) {
+  return _$_SignInResponse(
+    code: json['code'] as int,
+    data: Data.fromJson(json['data'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$_$FailureToJson(_$Failure instance) => <String, dynamic>{
-      'errorMessage': instance.errorMessage,
+Map<String, dynamic> _$_$_SignInResponseToJson(_$_SignInResponse instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'data': instance.data,
+    };
+
+_$_Data _$_$_DataFromJson(Map<String, dynamic> json) {
+  return _$_Data(
+    user: User.fromJson(json['user'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$_$_DataToJson(_$_Data instance) => <String, dynamic>{
+      'user': instance.user,
     };
