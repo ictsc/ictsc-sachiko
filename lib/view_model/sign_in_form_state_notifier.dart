@@ -17,35 +17,46 @@ class SignInPageStateNotifier extends StateNotifier<SignInFormState>
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  String get errorMessage {
+    return state.errorMessage ?? '';
+  }
+
   /// フォームをセーブしログインを送信する、失敗ならエラーメッセージを更新する。
-  Function() onTapSignInButton(BuildContext context) => () {
-        state = state.copyWith(isLoading: true);
+  Function()? onTapSignInButton(BuildContext context) {
+    if (state.isLoading) {
+      return null;
+    }
 
-        formKey.currentState?.save();
+    return () {
+      state = state.copyWith(isLoading: true);
 
-        ref
-            .read(auth.notifier)
-            .signIn(SignInRequest(
-              userName: userNameController.text,
-              password: passwordController.text,
-            ))
-            .then((response) => response.when(
-                  success: () {
-                    state = state.copyWith(errorMessage: '');
+      // フォームの保存
+      formKey.currentState?.save();
 
-                    // ページを飛ばす
-                    context.router.pushNamed('/');
-                  },
-                  failed: (message) {
-                    // エラーメッセージの処理
-                    state = state.copyWith(errorMessage: message);
+      ref
+          .read(auth.notifier)
+          .signIn(SignInRequest(
+            userName: userNameController.text,
+            password: passwordController.text,
+          ))
+          .then((response) => response.when(
+                success: () {
+                  state = state.copyWith(errorMessage: '');
 
-                    // パスワードのクリア
-                    passwordController.clear();
-                  },
-                ))
-            .whenComplete(
-              () => state = state.copyWith(isLoading: false),
-            );
-      };
+                  // ページを飛ばす
+                  context.router.pushNamed('/');
+                },
+                failed: (message) {
+                  // エラーメッセージの処理
+                  state = state.copyWith(errorMessage: message);
+
+                  // パスワードのクリア
+                  passwordController.clear();
+                },
+              ))
+          .whenComplete(
+            () => state = state.copyWith(isLoading: false),
+          );
+    };
+  }
 }

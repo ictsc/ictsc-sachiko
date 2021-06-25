@@ -14,8 +14,7 @@ class SignInPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = useProvider(loginForm);
-    final notifier = context.read(loginForm.notifier);
+    final provider = context.read(loginForm.notifier);
 
     return Scaffold(
       appBar: Header(appBar: AppBar()),
@@ -26,7 +25,7 @@ class SignInPage extends HookWidget {
             SizedBox(
               width: 512,
               child: Form(
-                key: notifier.formKey,
+                key: provider.formKey,
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
@@ -45,7 +44,7 @@ class SignInPage extends HookWidget {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          state.errorMessage ?? '',
+                          provider.errorMessage,
                           style: Theme.of(context)
                               .textTheme
                               .bodyText2!
@@ -57,7 +56,7 @@ class SignInPage extends HookWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
                           decoration: const InputDecoration(labelText: 'ユーザー名'),
-                          controller: notifier.userNameController,
+                          controller: provider.userNameController,
                         ),
                       ),
                       Padding(
@@ -65,7 +64,7 @@ class SignInPage extends HookWidget {
                         child: TextFormField(
                           obscureText: true,
                           decoration: const InputDecoration(labelText: 'パスワード'),
-                          controller: notifier.passwordController,
+                          controller: provider.passwordController,
                         ),
                       ),
                       Padding(
@@ -73,9 +72,7 @@ class SignInPage extends HookWidget {
                         child: SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                              onPressed: state.isLoading
-                                  ? null
-                                  : notifier.onTapSignInButton(context),
+                              onPressed: provider.onTapSignInButton(context),
                               child: const Padding(
                                 padding: EdgeInsets.all(16.0),
                                 child: Text('ログイン'),
