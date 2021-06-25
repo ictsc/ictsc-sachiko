@@ -25,13 +25,19 @@ class _$UserTearOff {
       required String name,
       @JsonKey(name: 'display_name') required String displayName,
       @JsonKey(name: 'user_group_id') required String userGroupId,
-      @JsonKey(name: 'is_read_only') required bool isReadOnly}) {
+      @JsonKey(name: 'created_at') required DateTime createdAt,
+      @JsonKey(name: 'updated_at') required DateTime updatedAt,
+      @JsonKey(name: 'is_read_only') required bool isReadOnly,
+      UserGroup? userGroup}) {
     return _User(
       id: id,
       name: name,
       displayName: displayName,
       userGroupId: userGroupId,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
       isReadOnly: isReadOnly,
+      userGroup: userGroup,
     );
   }
 
@@ -51,8 +57,13 @@ mixin _$User {
   String get displayName => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_group_id')
   String get userGroupId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
+  DateTime get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'updated_at')
+  DateTime get updatedAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_read_only')
   bool get isReadOnly => throw _privateConstructorUsedError;
+  UserGroup? get userGroup => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -68,7 +79,12 @@ abstract class $UserCopyWith<$Res> {
       String name,
       @JsonKey(name: 'display_name') String displayName,
       @JsonKey(name: 'user_group_id') String userGroupId,
-      @JsonKey(name: 'is_read_only') bool isReadOnly});
+      @JsonKey(name: 'created_at') DateTime createdAt,
+      @JsonKey(name: 'updated_at') DateTime updatedAt,
+      @JsonKey(name: 'is_read_only') bool isReadOnly,
+      UserGroup? userGroup});
+
+  $UserGroupCopyWith<$Res>? get userGroup;
 }
 
 /// @nodoc
@@ -85,7 +101,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? name = freezed,
     Object? displayName = freezed,
     Object? userGroupId = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
     Object? isReadOnly = freezed,
+    Object? userGroup = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -104,11 +123,34 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.userGroupId
           : userGroupId // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updatedAt: updatedAt == freezed
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       isReadOnly: isReadOnly == freezed
           ? _value.isReadOnly
           : isReadOnly // ignore: cast_nullable_to_non_nullable
               as bool,
+      userGroup: userGroup == freezed
+          ? _value.userGroup
+          : userGroup // ignore: cast_nullable_to_non_nullable
+              as UserGroup?,
     ));
+  }
+
+  @override
+  $UserGroupCopyWith<$Res>? get userGroup {
+    if (_value.userGroup == null) {
+      return null;
+    }
+
+    return $UserGroupCopyWith<$Res>(_value.userGroup!, (value) {
+      return _then(_value.copyWith(userGroup: value));
+    });
   }
 }
 
@@ -122,7 +164,13 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String name,
       @JsonKey(name: 'display_name') String displayName,
       @JsonKey(name: 'user_group_id') String userGroupId,
-      @JsonKey(name: 'is_read_only') bool isReadOnly});
+      @JsonKey(name: 'created_at') DateTime createdAt,
+      @JsonKey(name: 'updated_at') DateTime updatedAt,
+      @JsonKey(name: 'is_read_only') bool isReadOnly,
+      UserGroup? userGroup});
+
+  @override
+  $UserGroupCopyWith<$Res>? get userGroup;
 }
 
 /// @nodoc
@@ -140,7 +188,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? name = freezed,
     Object? displayName = freezed,
     Object? userGroupId = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
     Object? isReadOnly = freezed,
+    Object? userGroup = freezed,
   }) {
     return _then(_User(
       id: id == freezed
@@ -159,10 +210,22 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.userGroupId
           : userGroupId // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updatedAt: updatedAt == freezed
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       isReadOnly: isReadOnly == freezed
           ? _value.isReadOnly
           : isReadOnly // ignore: cast_nullable_to_non_nullable
               as bool,
+      userGroup: userGroup == freezed
+          ? _value.userGroup
+          : userGroup // ignore: cast_nullable_to_non_nullable
+              as UserGroup?,
     ));
   }
 }
@@ -175,7 +238,10 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       required this.name,
       @JsonKey(name: 'display_name') required this.displayName,
       @JsonKey(name: 'user_group_id') required this.userGroupId,
-      @JsonKey(name: 'is_read_only') required this.isReadOnly});
+      @JsonKey(name: 'created_at') required this.createdAt,
+      @JsonKey(name: 'updated_at') required this.updatedAt,
+      @JsonKey(name: 'is_read_only') required this.isReadOnly,
+      this.userGroup});
 
   factory _$_User.fromJson(Map<String, dynamic> json) =>
       _$_$_UserFromJson(json);
@@ -191,12 +257,20 @@ class _$_User with DiagnosticableTreeMixin implements _User {
   @JsonKey(name: 'user_group_id')
   final String userGroupId;
   @override
+  @JsonKey(name: 'created_at')
+  final DateTime createdAt;
+  @override
+  @JsonKey(name: 'updated_at')
+  final DateTime updatedAt;
+  @override
   @JsonKey(name: 'is_read_only')
   final bool isReadOnly;
+  @override
+  final UserGroup? userGroup;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User(id: $id, name: $name, displayName: $displayName, userGroupId: $userGroupId, isReadOnly: $isReadOnly)';
+    return 'User(id: $id, name: $name, displayName: $displayName, userGroupId: $userGroupId, createdAt: $createdAt, updatedAt: $updatedAt, isReadOnly: $isReadOnly, userGroup: $userGroup)';
   }
 
   @override
@@ -208,7 +282,10 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('displayName', displayName))
       ..add(DiagnosticsProperty('userGroupId', userGroupId))
-      ..add(DiagnosticsProperty('isReadOnly', isReadOnly));
+      ..add(DiagnosticsProperty('createdAt', createdAt))
+      ..add(DiagnosticsProperty('updatedAt', updatedAt))
+      ..add(DiagnosticsProperty('isReadOnly', isReadOnly))
+      ..add(DiagnosticsProperty('userGroup', userGroup));
   }
 
   @override
@@ -225,9 +302,18 @@ class _$_User with DiagnosticableTreeMixin implements _User {
             (identical(other.userGroupId, userGroupId) ||
                 const DeepCollectionEquality()
                     .equals(other.userGroupId, userGroupId)) &&
+            (identical(other.createdAt, createdAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdAt, createdAt)) &&
+            (identical(other.updatedAt, updatedAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.updatedAt, updatedAt)) &&
             (identical(other.isReadOnly, isReadOnly) ||
                 const DeepCollectionEquality()
-                    .equals(other.isReadOnly, isReadOnly)));
+                    .equals(other.isReadOnly, isReadOnly)) &&
+            (identical(other.userGroup, userGroup) ||
+                const DeepCollectionEquality()
+                    .equals(other.userGroup, userGroup)));
   }
 
   @override
@@ -237,7 +323,10 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(displayName) ^
       const DeepCollectionEquality().hash(userGroupId) ^
-      const DeepCollectionEquality().hash(isReadOnly);
+      const DeepCollectionEquality().hash(createdAt) ^
+      const DeepCollectionEquality().hash(updatedAt) ^
+      const DeepCollectionEquality().hash(isReadOnly) ^
+      const DeepCollectionEquality().hash(userGroup);
 
   @JsonKey(ignore: true)
   @override
@@ -256,7 +345,10 @@ abstract class _User implements User {
       required String name,
       @JsonKey(name: 'display_name') required String displayName,
       @JsonKey(name: 'user_group_id') required String userGroupId,
-      @JsonKey(name: 'is_read_only') required bool isReadOnly}) = _$_User;
+      @JsonKey(name: 'created_at') required DateTime createdAt,
+      @JsonKey(name: 'updated_at') required DateTime updatedAt,
+      @JsonKey(name: 'is_read_only') required bool isReadOnly,
+      UserGroup? userGroup}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
@@ -271,8 +363,16 @@ abstract class _User implements User {
   @JsonKey(name: 'user_group_id')
   String get userGroupId => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'created_at')
+  DateTime get createdAt => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'updated_at')
+  DateTime get updatedAt => throw _privateConstructorUsedError;
+  @override
   @JsonKey(name: 'is_read_only')
   bool get isReadOnly => throw _privateConstructorUsedError;
+  @override
+  UserGroup? get userGroup => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;
