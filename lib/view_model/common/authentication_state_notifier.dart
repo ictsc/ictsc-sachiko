@@ -17,9 +17,9 @@ class AuthenticationStateNotifier extends StateNotifier<Authentication> {
 
     return client.signIn(signInRequest).then((result) {
       result.when(
-        success: (_) {
+        success: (result) {
           // ログイン成功
-          state = state.copyWith(user: _.data.user);
+          state = state.copyWith(user: result.data.user);
         },
         failure: (_) {},
       );
@@ -28,16 +28,19 @@ class AuthenticationStateNotifier extends StateNotifier<Authentication> {
     });
   }
 
-  Future<SignOutResponse> signOut() async {
+  Future<Result<SignOutResponse>> signOut() async {
     final client = ref.read(clientProvider).state;
 
-    return client.signOut().then((result) => result.when(success: (_) {
-          state = state.copyWith(user: null);
+    return client.signOut().then((result) {
+      result.when(
+          success: (_) {
+            // ログアウト成功
+            state = state.copyWith(user: null);
+          },
+          failure: (_) {});
 
-          return const SignOutResponse.success();
-        }, failure: (error) {
-          return SignOutResponse.failed(error.errorMessage);
-        }));
+      return result;
+    });
   }
 }
 

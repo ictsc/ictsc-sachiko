@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_in_request.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_in_response.dart';
+import 'package:ictsc_sachiko/model/authentication/sign_out_response.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_up_request.dart';
 import 'package:ictsc_sachiko/model/client/error.dart';
 import 'package:ictsc_sachiko/model/client/result.dart';
@@ -21,18 +22,17 @@ class Client {
             '/api/auth/signin',
             data: signInRequest.toJson(),
           )
-          .then((_) => Result.success(SignInResponse.fromJson({..._.data})));
+          .then((result) =>
+              Result.success(SignInResponse.fromJson({...result.data})));
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }
   }
 
-  Future<Result<void>> signOut() async {
+  Future<Result<SignOutResponse>> signOut() async {
     try {
-      return await dio
-          .delete('/api/auth/signout')
-          // ignore: void_checks
-          .then((_) => const Result.success(''));
+      return await dio.delete('/api/auth/signout').then((result) =>
+          Result.success(SignOutResponse.fromJson({...result.data})));
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }

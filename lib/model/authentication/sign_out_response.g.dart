@@ -6,19 +6,13 @@ part of 'sign_out_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$Success _$_$SuccessFromJson(Map<String, dynamic> json) {
-  return _$Success();
-}
-
-Map<String, dynamic> _$_$SuccessToJson(_$Success instance) =>
-    <String, dynamic>{};
-
-_$Failure _$_$FailureFromJson(Map<String, dynamic> json) {
-  return _$Failure(
-    json['errorMessage'] as String,
+_$_SignOutResponse _$_$_SignOutResponseFromJson(Map<String, dynamic> json) {
+  return _$_SignOutResponse(
+    code: json['code'] as int,
   );
 }
 
-Map<String, dynamic> _$_$FailureToJson(_$Failure instance) => <String, dynamic>{
-      'errorMessage': instance.errorMessage,
+Map<String, dynamic> _$_$_SignOutResponseToJson(_$_SignOutResponse instance) =>
+    <String, dynamic>{
+      'code': instance.code,
     };

@@ -13,28 +13,16 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 SignOutResponse _$SignOutResponseFromJson(Map<String, dynamic> json) {
-  switch (json['runtimeType'] as String) {
-    case 'success':
-      return Success.fromJson(json);
-    case 'failed':
-      return Failure.fromJson(json);
-
-    default:
-      throw FallThroughError();
-  }
+  return _SignOutResponse.fromJson(json);
 }
 
 /// @nodoc
 class _$SignOutResponseTearOff {
   const _$SignOutResponseTearOff();
 
-  Success success() {
-    return const Success();
-  }
-
-  Failure failed(String errorMessage) {
-    return Failure(
-      errorMessage,
+  _SignOutResponse call({required int code}) {
+    return _SignOutResponse(
+      code: code,
     );
   }
 
@@ -48,33 +36,12 @@ const $SignOutResponse = _$SignOutResponseTearOff();
 
 /// @nodoc
 mixin _$SignOutResponse {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() success,
-    required TResult Function(String errorMessage) failed,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? success,
-    TResult Function(String errorMessage)? failed,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Success value) success,
-    required TResult Function(Failure value) failed,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Success value)? success,
-    TResult Function(Failure value)? failed,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  int get code => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SignOutResponseCopyWith<SignOutResponse> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -82,6 +49,7 @@ abstract class $SignOutResponseCopyWith<$Res> {
   factory $SignOutResponseCopyWith(
           SignOutResponse value, $Res Function(SignOutResponse) then) =
       _$SignOutResponseCopyWithImpl<$Res>;
+  $Res call({int code});
 }
 
 /// @nodoc
@@ -92,234 +60,113 @@ class _$SignOutResponseCopyWithImpl<$Res>
   final SignOutResponse _value;
   // ignore: unused_field
   final $Res Function(SignOutResponse) _then;
-}
-
-/// @nodoc
-abstract class $SuccessCopyWith<$Res> {
-  factory $SuccessCopyWith(Success value, $Res Function(Success) then) =
-      _$SuccessCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$SuccessCopyWithImpl<$Res> extends _$SignOutResponseCopyWithImpl<$Res>
-    implements $SuccessCopyWith<$Res> {
-  _$SuccessCopyWithImpl(Success _value, $Res Function(Success) _then)
-      : super(_value, (v) => _then(v as Success));
-
-  @override
-  Success get _value => super._value as Success;
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$Success with DiagnosticableTreeMixin implements Success {
-  const _$Success();
-
-  factory _$Success.fromJson(Map<String, dynamic> json) =>
-      _$_$SuccessFromJson(json);
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignOutResponse.success()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'SignOutResponse.success'));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Success);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() success,
-    required TResult Function(String errorMessage) failed,
-  }) {
-    return success();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? success,
-    TResult Function(String errorMessage)? failed,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Success value) success,
-    required TResult Function(Failure value) failed,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Success value)? success,
-    TResult Function(Failure value)? failed,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$SuccessToJson(this)..['runtimeType'] = 'success';
-  }
-}
-
-abstract class Success implements SignOutResponse {
-  const factory Success() = _$Success;
-
-  factory Success.fromJson(Map<String, dynamic> json) = _$Success.fromJson;
-}
-
-/// @nodoc
-abstract class $FailureCopyWith<$Res> {
-  factory $FailureCopyWith(Failure value, $Res Function(Failure) then) =
-      _$FailureCopyWithImpl<$Res>;
-  $Res call({String errorMessage});
-}
-
-/// @nodoc
-class _$FailureCopyWithImpl<$Res> extends _$SignOutResponseCopyWithImpl<$Res>
-    implements $FailureCopyWith<$Res> {
-  _$FailureCopyWithImpl(Failure _value, $Res Function(Failure) _then)
-      : super(_value, (v) => _then(v as Failure));
-
-  @override
-  Failure get _value => super._value as Failure;
 
   @override
   $Res call({
-    Object? errorMessage = freezed,
+    Object? code = freezed,
   }) {
-    return _then(Failure(
-      errorMessage == freezed
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(_value.copyWith(
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$SignOutResponseCopyWith<$Res>
+    implements $SignOutResponseCopyWith<$Res> {
+  factory _$SignOutResponseCopyWith(
+          _SignOutResponse value, $Res Function(_SignOutResponse) then) =
+      __$SignOutResponseCopyWithImpl<$Res>;
+  @override
+  $Res call({int code});
+}
+
+/// @nodoc
+class __$SignOutResponseCopyWithImpl<$Res>
+    extends _$SignOutResponseCopyWithImpl<$Res>
+    implements _$SignOutResponseCopyWith<$Res> {
+  __$SignOutResponseCopyWithImpl(
+      _SignOutResponse _value, $Res Function(_SignOutResponse) _then)
+      : super(_value, (v) => _then(v as _SignOutResponse));
+
+  @override
+  _SignOutResponse get _value => super._value as _SignOutResponse;
+
+  @override
+  $Res call({
+    Object? code = freezed,
+  }) {
+    return _then(_SignOutResponse(
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$Failure with DiagnosticableTreeMixin implements Failure {
-  const _$Failure(this.errorMessage);
+class _$_SignOutResponse
+    with DiagnosticableTreeMixin
+    implements _SignOutResponse {
+  const _$_SignOutResponse({required this.code});
 
-  factory _$Failure.fromJson(Map<String, dynamic> json) =>
-      _$_$FailureFromJson(json);
+  factory _$_SignOutResponse.fromJson(Map<String, dynamic> json) =>
+      _$_$_SignOutResponseFromJson(json);
 
   @override
-  final String errorMessage;
+  final int code;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignOutResponse.failed(errorMessage: $errorMessage)';
+    return 'SignOutResponse(code: $code)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'SignOutResponse.failed'))
-      ..add(DiagnosticsProperty('errorMessage', errorMessage));
+      ..add(DiagnosticsProperty('type', 'SignOutResponse'))
+      ..add(DiagnosticsProperty('code', code));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Failure &&
-            (identical(other.errorMessage, errorMessage) ||
-                const DeepCollectionEquality()
-                    .equals(other.errorMessage, errorMessage)));
+        (other is _SignOutResponse &&
+            (identical(other.code, code) ||
+                const DeepCollectionEquality().equals(other.code, code)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(errorMessage);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(code);
 
   @JsonKey(ignore: true)
   @override
-  $FailureCopyWith<Failure> get copyWith =>
-      _$FailureCopyWithImpl<Failure>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() success,
-    required TResult Function(String errorMessage) failed,
-  }) {
-    return failed(errorMessage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? success,
-    TResult Function(String errorMessage)? failed,
-    required TResult orElse(),
-  }) {
-    if (failed != null) {
-      return failed(errorMessage);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Success value) success,
-    required TResult Function(Failure value) failed,
-  }) {
-    return failed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Success value)? success,
-    TResult Function(Failure value)? failed,
-    required TResult orElse(),
-  }) {
-    if (failed != null) {
-      return failed(this);
-    }
-    return orElse();
-  }
+  _$SignOutResponseCopyWith<_SignOutResponse> get copyWith =>
+      __$SignOutResponseCopyWithImpl<_SignOutResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$FailureToJson(this)..['runtimeType'] = 'failed';
+    return _$_$_SignOutResponseToJson(this);
   }
 }
 
-abstract class Failure implements SignOutResponse {
-  const factory Failure(String errorMessage) = _$Failure;
+abstract class _SignOutResponse implements SignOutResponse {
+  const factory _SignOutResponse({required int code}) = _$_SignOutResponse;
 
-  factory Failure.fromJson(Map<String, dynamic> json) = _$Failure.fromJson;
+  factory _SignOutResponse.fromJson(Map<String, dynamic> json) =
+      _$_SignOutResponse.fromJson;
 
-  String get errorMessage => throw _privateConstructorUsedError;
+  @override
+  int get code => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
-  $FailureCopyWith<Failure> get copyWith => throw _privateConstructorUsedError;
+  _$SignOutResponseCopyWith<_SignOutResponse> get copyWith =>
+      throw _privateConstructorUsedError;
 }
