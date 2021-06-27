@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ictsc_sachiko/config/palette.dart';
 import 'package:ictsc_sachiko/router/app_router.gr.dart';
 import 'package:ictsc_sachiko/router/auth_route_guard.dart';
 
@@ -12,8 +13,8 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+          brightness: Brightness.light,
+          primarySwatch: Palette.themeMaterialColor),
       routerDelegate: _appRouter.delegate(),
       routeInformationParser: _appRouter.defaultRouteParser(),
     );
