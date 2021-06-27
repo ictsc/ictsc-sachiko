@@ -20,15 +20,15 @@ Future<void> main() async {
   }
 
   group('Authentication', () {
-    final signUpRequest = SignUpRequest(
-      userName: dotenv.env['TEST_USER_NAME'].toString(),
-      password: dotenv.env['TEST_USER_PASSWORD'].toString(),
-    );
-
-    final signInRequest = SignInRequest(
-      userName: signUpRequest.userName,
-      password: signUpRequest.password,
-    );
+    // final signUpRequest = SignUpRequest(
+    //   userName: dotenv.env['TEST_USER_NAME'].toString(),
+    //   password: dotenv.env['TEST_USER_PASSWORD'].toString(),
+    // );
+    //
+    // final signInRequest = SignInRequest(
+    //   userName: signUpRequest.userName,
+    //   password: signUpRequest.password,
+    // );
 
     test('Sign In', () async {
       final client = getTestClient();
@@ -59,11 +59,11 @@ Future<void> main() async {
     //       }));
     // });
 
-    test('Sign Up', () async {
-      final client = getTestClient();
-
-      // 登録
-      await client.signUp(signUpRequest);
-    });
+    // test('Sign Up', () async {
+    //   final client = getTestClient();
+    //
+    //   // 登録
+    //   await client.signUp(signUpRequest);
+    // });
   });
 }
