@@ -3,8 +3,6 @@ import 'dart:io' as io;
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ictsc_sachiko/model/authentication/sign_in_request.dart';
-import 'package:ictsc_sachiko/model/authentication/sign_up_request.dart';
 import 'package:ictsc_sachiko/service/client.dart';
 
 Future<void> main() async {
@@ -30,16 +28,16 @@ Future<void> main() async {
     //   password: signUpRequest.password,
     // );
 
-    test('Sign In', () async {
-      final client = getTestClient();
-
-      // ログイン
-      await client.signIn(signInRequest).then((result) => result.when(
-          success: (_) {},
-          failure: (e) {
-            expect(e, isNull);
-          }));
-    });
+    // test('Sign In', () async {
+    //   final client = getTestClient();
+    //
+    //   // ログイン
+    //   await client.signIn(signInRequest).then((result) => result.when(
+    //       success: (_) {},
+    //       failure: (e) {
+    //         expect(e, isNull);
+    //       }));
+    // });
 
     // test('Sign Out', () async {
     //   final client = getTestClient();
