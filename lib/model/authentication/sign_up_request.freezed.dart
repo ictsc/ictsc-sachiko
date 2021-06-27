@@ -23,8 +23,8 @@ class _$SignUpRequestTearOff {
   _SignUpRequest call(
       {required String name,
       required String password,
-      @Key('user_group_id') required String userGroupId,
-      @Key('invitation_code') required String invitationCode}) {
+      required String userGroupId,
+      required String invitationCode}) {
     return _SignUpRequest(
       name: name,
       password: password,
@@ -45,9 +45,7 @@ const $SignUpRequest = _$SignUpRequestTearOff();
 mixin _$SignUpRequest {
   String get name => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
-  @Key('user_group_id')
   String get userGroupId => throw _privateConstructorUsedError;
-  @Key('invitation_code')
   String get invitationCode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -64,8 +62,8 @@ abstract class $SignUpRequestCopyWith<$Res> {
   $Res call(
       {String name,
       String password,
-      @Key('user_group_id') String userGroupId,
-      @Key('invitation_code') String invitationCode});
+      String userGroupId,
+      String invitationCode});
 }
 
 /// @nodoc
@@ -115,8 +113,8 @@ abstract class _$SignUpRequestCopyWith<$Res>
   $Res call(
       {String name,
       String password,
-      @Key('user_group_id') String userGroupId,
-      @Key('invitation_code') String invitationCode});
+      String userGroupId,
+      String invitationCode});
 }
 
 /// @nodoc
@@ -164,8 +162,8 @@ class _$_SignUpRequest with DiagnosticableTreeMixin implements _SignUpRequest {
   const _$_SignUpRequest(
       {required this.name,
       required this.password,
-      @Key('user_group_id') required this.userGroupId,
-      @Key('invitation_code') required this.invitationCode});
+      required this.userGroupId,
+      required this.invitationCode});
 
   factory _$_SignUpRequest.fromJson(Map<String, dynamic> json) =>
       _$_$_SignUpRequestFromJson(json);
@@ -175,10 +173,8 @@ class _$_SignUpRequest with DiagnosticableTreeMixin implements _SignUpRequest {
   @override
   final String password;
   @override
-  @Key('user_group_id')
   final String userGroupId;
   @override
-  @Key('invitation_code')
   final String invitationCode;
 
   @override
@@ -235,11 +231,10 @@ class _$_SignUpRequest with DiagnosticableTreeMixin implements _SignUpRequest {
 
 abstract class _SignUpRequest implements SignUpRequest {
   const factory _SignUpRequest(
-          {required String name,
-          required String password,
-          @Key('user_group_id') required String userGroupId,
-          @Key('invitation_code') required String invitationCode}) =
-      _$_SignUpRequest;
+      {required String name,
+      required String password,
+      required String userGroupId,
+      required String invitationCode}) = _$_SignUpRequest;
 
   factory _SignUpRequest.fromJson(Map<String, dynamic> json) =
       _$_SignUpRequest.fromJson;
@@ -249,10 +244,8 @@ abstract class _SignUpRequest implements SignUpRequest {
   @override
   String get password => throw _privateConstructorUsedError;
   @override
-  @Key('user_group_id')
   String get userGroupId => throw _privateConstructorUsedError;
   @override
-  @Key('invitation_code')
   String get invitationCode => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

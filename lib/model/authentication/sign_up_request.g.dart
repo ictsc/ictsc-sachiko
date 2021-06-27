@@ -10,8 +10,8 @@ _$_SignUpRequest _$_$_SignUpRequestFromJson(Map<String, dynamic> json) {
   return _$_SignUpRequest(
     name: json['name'] as String,
     password: json['password'] as String,
-    userGroupId: json['userGroupId'] as String,
-    invitationCode: json['invitationCode'] as String,
+    userGroupId: json['user_group_id'] as String,
+    invitationCode: json['invitation_code'] as String,
   );
 }
 
@@ -19,6 +19,6 @@ Map<String, dynamic> _$_$_SignUpRequestToJson(_$_SignUpRequest instance) =>
     <String, dynamic>{
       'name': instance.name,
       'password': instance.password,
-      'userGroupId': instance.userGroupId,
-      'invitationCode': instance.invitationCode,
+      'user_group_id': instance.userGroupId,
+      'invitation_code': instance.invitationCode,
     };

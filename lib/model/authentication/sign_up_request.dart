@@ -9,8 +9,8 @@ class SignUpRequest with _$SignUpRequest {
   const factory SignUpRequest({
     required String name,
     required String password,
-    @Key('user_group_id') required String userGroupId,
-    @Key('invitation_code') required String invitationCode,
+    required String userGroupId,
+    required String invitationCode,
   }) = _SignUpRequest;
 
  factory SignUpRequest.fromJson(Map<String, dynamic> json) => _$SignUpRequestFromJson(json);

@@ -49,12 +49,8 @@ class AuthenticationStateNotifier extends StateNotifier<Authentication> {
     final client = ref.read(clientProvider).state;
 
     return client.signUp(signUpRequest).then((result) {
-      result.when(
-          success: (result) {
-            // 登録 && ログイン
-            state = state.copyWith(user: result.data.user);
-          },
-          failure: (_) {});
+      // 登録完了
+      result.when(success: (_) {}, failure: (_) {});
 
       return result;
     });
