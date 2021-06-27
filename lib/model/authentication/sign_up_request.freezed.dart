@@ -21,11 +21,15 @@ class _$SignUpRequestTearOff {
   const _$SignUpRequestTearOff();
 
   _SignUpRequest call(
-      {@JsonKey(name: 'name') required String userName,
-      required String password}) {
+      {required String name,
+      required String password,
+      @Key('user_group_id') required String userGroupId,
+      @Key('invitation_code') required String invitationCode}) {
     return _SignUpRequest(
-      userName: userName,
+      name: name,
       password: password,
+      userGroupId: userGroupId,
+      invitationCode: invitationCode,
     );
   }
 
@@ -39,9 +43,12 @@ const $SignUpRequest = _$SignUpRequestTearOff();
 
 /// @nodoc
 mixin _$SignUpRequest {
-  @JsonKey(name: 'name')
-  String get userName => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
+  @Key('user_group_id')
+  String get userGroupId => throw _privateConstructorUsedError;
+  @Key('invitation_code')
+  String get invitationCode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,7 +61,11 @@ abstract class $SignUpRequestCopyWith<$Res> {
   factory $SignUpRequestCopyWith(
           SignUpRequest value, $Res Function(SignUpRequest) then) =
       _$SignUpRequestCopyWithImpl<$Res>;
-  $Res call({@JsonKey(name: 'name') String userName, String password});
+  $Res call(
+      {String name,
+      String password,
+      @Key('user_group_id') String userGroupId,
+      @Key('invitation_code') String invitationCode});
 }
 
 /// @nodoc
@@ -68,17 +79,27 @@ class _$SignUpRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? userName = freezed,
+    Object? name = freezed,
     Object? password = freezed,
+    Object? userGroupId = freezed,
+    Object? invitationCode = freezed,
   }) {
     return _then(_value.copyWith(
-      userName: userName == freezed
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       password: password == freezed
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      userGroupId: userGroupId == freezed
+          ? _value.userGroupId
+          : userGroupId // ignore: cast_nullable_to_non_nullable
+              as String,
+      invitationCode: invitationCode == freezed
+          ? _value.invitationCode
+          : invitationCode // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -91,7 +112,11 @@ abstract class _$SignUpRequestCopyWith<$Res>
           _SignUpRequest value, $Res Function(_SignUpRequest) then) =
       __$SignUpRequestCopyWithImpl<$Res>;
   @override
-  $Res call({@JsonKey(name: 'name') String userName, String password});
+  $Res call(
+      {String name,
+      String password,
+      @Key('user_group_id') String userGroupId,
+      @Key('invitation_code') String invitationCode});
 }
 
 /// @nodoc
@@ -107,17 +132,27 @@ class __$SignUpRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? userName = freezed,
+    Object? name = freezed,
     Object? password = freezed,
+    Object? userGroupId = freezed,
+    Object? invitationCode = freezed,
   }) {
     return _then(_SignUpRequest(
-      userName: userName == freezed
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       password: password == freezed
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      userGroupId: userGroupId == freezed
+          ? _value.userGroupId
+          : userGroupId // ignore: cast_nullable_to_non_nullable
+              as String,
+      invitationCode: invitationCode == freezed
+          ? _value.invitationCode
+          : invitationCode // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -127,20 +162,28 @@ class __$SignUpRequestCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_SignUpRequest with DiagnosticableTreeMixin implements _SignUpRequest {
   const _$_SignUpRequest(
-      {@JsonKey(name: 'name') required this.userName, required this.password});
+      {required this.name,
+      required this.password,
+      @Key('user_group_id') required this.userGroupId,
+      @Key('invitation_code') required this.invitationCode});
 
   factory _$_SignUpRequest.fromJson(Map<String, dynamic> json) =>
       _$_$_SignUpRequestFromJson(json);
 
   @override
-  @JsonKey(name: 'name')
-  final String userName;
+  final String name;
   @override
   final String password;
+  @override
+  @Key('user_group_id')
+  final String userGroupId;
+  @override
+  @Key('invitation_code')
+  final String invitationCode;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignUpRequest(userName: $userName, password: $password)';
+    return 'SignUpRequest(name: $name, password: $password, userGroupId: $userGroupId, invitationCode: $invitationCode)';
   }
 
   @override
@@ -148,27 +191,36 @@ class _$_SignUpRequest with DiagnosticableTreeMixin implements _SignUpRequest {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'SignUpRequest'))
-      ..add(DiagnosticsProperty('userName', userName))
-      ..add(DiagnosticsProperty('password', password));
+      ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('password', password))
+      ..add(DiagnosticsProperty('userGroupId', userGroupId))
+      ..add(DiagnosticsProperty('invitationCode', invitationCode));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _SignUpRequest &&
-            (identical(other.userName, userName) ||
-                const DeepCollectionEquality()
-                    .equals(other.userName, userName)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.password, password) ||
                 const DeepCollectionEquality()
-                    .equals(other.password, password)));
+                    .equals(other.password, password)) &&
+            (identical(other.userGroupId, userGroupId) ||
+                const DeepCollectionEquality()
+                    .equals(other.userGroupId, userGroupId)) &&
+            (identical(other.invitationCode, invitationCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.invitationCode, invitationCode)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(userName) ^
-      const DeepCollectionEquality().hash(password);
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(password) ^
+      const DeepCollectionEquality().hash(userGroupId) ^
+      const DeepCollectionEquality().hash(invitationCode);
 
   @JsonKey(ignore: true)
   @override
@@ -183,17 +235,25 @@ class _$_SignUpRequest with DiagnosticableTreeMixin implements _SignUpRequest {
 
 abstract class _SignUpRequest implements SignUpRequest {
   const factory _SignUpRequest(
-      {@JsonKey(name: 'name') required String userName,
-      required String password}) = _$_SignUpRequest;
+          {required String name,
+          required String password,
+          @Key('user_group_id') required String userGroupId,
+          @Key('invitation_code') required String invitationCode}) =
+      _$_SignUpRequest;
 
   factory _SignUpRequest.fromJson(Map<String, dynamic> json) =
       _$_SignUpRequest.fromJson;
 
   @override
-  @JsonKey(name: 'name')
-  String get userName => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   @override
   String get password => throw _privateConstructorUsedError;
+  @override
+  @Key('user_group_id')
+  String get userGroupId => throw _privateConstructorUsedError;
+  @override
+  @Key('invitation_code')
+  String get invitationCode => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$SignUpRequestCopyWith<_SignUpRequest> get copyWith =>

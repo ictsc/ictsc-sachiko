@@ -8,13 +8,17 @@ part of 'sign_up_request.dart';
 
 _$_SignUpRequest _$_$_SignUpRequestFromJson(Map<String, dynamic> json) {
   return _$_SignUpRequest(
-    userName: json['name'] as String,
+    name: json['name'] as String,
     password: json['password'] as String,
+    userGroupId: json['userGroupId'] as String,
+    invitationCode: json['invitationCode'] as String,
   );
 }
 
 Map<String, dynamic> _$_$_SignUpRequestToJson(_$_SignUpRequest instance) =>
     <String, dynamic>{
-      'name': instance.userName,
+      'name': instance.name,
       'password': instance.password,
+      'userGroupId': instance.userGroupId,
+      'invitationCode': instance.invitationCode,
     };
