@@ -3,8 +3,6 @@ import 'dart:io' as io;
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ictsc_sachiko/model/authentication/sign_in_request.dart';
-import 'package:ictsc_sachiko/model/authentication/sign_up_request.dart';
 import 'package:ictsc_sachiko/service/client.dart';
 
 Future<void> main() async {
@@ -20,26 +18,26 @@ Future<void> main() async {
   }
 
   group('Authentication', () {
-    final signUpRequest = SignUpRequest(
-      userName: dotenv.env['TEST_USER_NAME'].toString(),
-      password: dotenv.env['TEST_USER_PASSWORD'].toString(),
-    );
+    // final signUpRequest = SignUpRequest(
+    //   userName: dotenv.env['TEST_USER_NAME'].toString(),
+    //   password: dotenv.env['TEST_USER_PASSWORD'].toString(),
+    // );
+    //
+    // final signInRequest = SignInRequest(
+    //   userName: signUpRequest.userName,
+    //   password: signUpRequest.password,
+    // );
 
-    final signInRequest = SignInRequest(
-      userName: signUpRequest.userName,
-      password: signUpRequest.password,
-    );
-
-    test('Sign In', () async {
-      final client = getTestClient();
-
-      // ログイン
-      await client.signIn(signInRequest).then((result) => result.when(
-          success: (_) {},
-          failure: (e) {
-            expect(e, isNull);
-          }));
-    });
+    // test('Sign In', () async {
+    //   final client = getTestClient();
+    //
+    //   // ログイン
+    //   await client.signIn(signInRequest).then((result) => result.when(
+    //       success: (_) {},
+    //       failure: (e) {
+    //         expect(e, isNull);
+    //       }));
+    // });
 
     // test('Sign Out', () async {
     //   final client = getTestClient();
@@ -59,11 +57,11 @@ Future<void> main() async {
     //       }));
     // });
 
-    test('Sign Up', () async {
-      final client = getTestClient();
-
-      // 登録
-      await client.signUp(signUpRequest);
-    });
+    // test('Sign Up', () async {
+    //   final client = getTestClient();
+    //
+    //   // 登録
+    //   await client.signUp(signUpRequest);
+    // });
   });
 }

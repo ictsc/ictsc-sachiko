@@ -3,6 +3,7 @@ import 'package:ictsc_sachiko/model/authentication/sign_in_request.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_in_response.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_out_response.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_up_request.dart';
+import 'package:ictsc_sachiko/model/authentication/sign_up_response.dart';
 import 'package:ictsc_sachiko/model/client/error.dart';
 import 'package:ictsc_sachiko/model/client/result.dart';
 
@@ -38,16 +39,17 @@ class Client {
     }
   }
 
-  Future<void> signUp(SignUpRequest signUpRequest) async {
-    final response = await dio.post(
-      '/api/auth/sign-up',
-      data: FormData.fromMap(signUpRequest.toJson()),
-    );
-
-    if (response.statusCode == 201) {
-      return;
+  Future<Result<SignUpResponse>> signUp(SignUpRequest signUpRequest) async {
+    try {
+      return await dio
+          .post(
+            '/api/users',
+            data: signUpRequest.toJson(),
+          )
+          .then((result) =>
+              Result.success(SignUpResponse.fromJson({...result.data})));
+    } on DioError catch (error) {
+      return Result.failure(Error.getApiError(error));
     }
-
-    throw 'Error';
   }
 }

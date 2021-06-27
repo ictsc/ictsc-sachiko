@@ -5,3 +5,6 @@ targets:
         generate_for:
           include:
             - lib/model/**.dart
+      json_serializable:
+        options:
+          field_rename: snake

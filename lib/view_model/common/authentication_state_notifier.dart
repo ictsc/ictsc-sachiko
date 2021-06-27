@@ -3,6 +3,8 @@ import 'package:ictsc_sachiko/model/authentication/authentication.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_in_request.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_in_response.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_out_response.dart';
+import 'package:ictsc_sachiko/model/authentication/sign_up_request.dart';
+import 'package:ictsc_sachiko/model/authentication/sign_up_response.dart';
 import 'package:ictsc_sachiko/model/client/result.dart';
 import 'package:ictsc_sachiko/view_model/common/client_provider.dart';
 
@@ -38,6 +40,17 @@ class AuthenticationStateNotifier extends StateNotifier<Authentication> {
             state = state.copyWith(user: null);
           },
           failure: (_) {});
+
+      return result;
+    });
+  }
+
+  Future<Result<SignUpResponse>> signUp(SignUpRequest signUpRequest) async {
+    final client = ref.read(clientProvider).state;
+
+    return client.signUp(signUpRequest).then((result) {
+      // 登録完了
+      result.when(success: (_) {}, failure: (_) {});
 
       return result;
     });
