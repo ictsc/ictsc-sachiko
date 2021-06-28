@@ -14,7 +14,9 @@ class App extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
           brightness: Brightness.light,
-          primarySwatch: Palette.themeMaterialColor),
+          primarySwatch: Palette.themeMaterialColor,
+          textTheme: Theme.of(context).textTheme
+      ),
       routerDelegate: _appRouter.delegate(),
       routeInformationParser: _appRouter.defaultRouteParser(),
     );
