@@ -16,8 +16,3 @@ class ProblemCreatePageStateNotifier
     state = state.copyWith(isPreview: isPreview);
   }
 }
-
-final createProblemProvider = StateNotifierProvider.autoDispose<
-    ProblemCreatePageStateNotifier, ProblemCreatePageState>(
-  (refs) => ProblemCreatePageStateNotifier(const ProblemCreatePageState()),
-);
