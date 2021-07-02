@@ -7,9 +7,9 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
+import '../ui/create_problem_page.dart' as _i9;
 import '../ui/home_page.dart' as _i4;
 import '../ui/my_page.dart' as _i8;
-import '../ui/problem_create_page.dart' as _i9;
 import '../ui/sign_in_page.dart' as _i6;
 import '../ui/sign_up_page.dart' as _i7;
 import 'app_router.dart' as _i5;
@@ -57,10 +57,10 @@ class AppRouter extends _i1.RootStackRouter {
         transitionsBuilder: _i5.fadeIn,
         opaque: true,
         barrierDismissible: false),
-    ProblemCreateRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+    CreateProblemRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i9.ProblemCreatePage();
+          return _i9.CreateProblemPage();
         },
         transitionsBuilder: _i5.fadeIn,
         opaque: true,
@@ -73,7 +73,7 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(SignInRoute.name, path: '/login'),
         _i1.RouteConfig(SignUpRoute.name, path: '/signup'),
         _i1.RouteConfig(MyRoute.name, path: '/mypage', guards: [authGuard]),
-        _i1.RouteConfig(ProblemCreateRoute.name, path: '/problems/new')
+        _i1.RouteConfig(CreateProblemRoute.name, path: '/problems/new')
       ];
 }
 
@@ -101,8 +101,8 @@ class MyRoute extends _i1.PageRouteInfo {
   static const String name = 'MyRoute';
 }
 
-class ProblemCreateRoute extends _i1.PageRouteInfo {
-  const ProblemCreateRoute() : super(name, path: '/problems/new');
+class CreateProblemRoute extends _i1.PageRouteInfo {
+  const CreateProblemRoute() : super(name, path: '/problems/new');
 
-  static const String name = 'ProblemCreateRoute';
+  static const String name = 'CreateProblemRoute';
 }

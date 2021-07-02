@@ -1,13 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/model/problem.dart';
+import 'package:ictsc_sachiko/model/problem/create_problem_request.dart';
 import 'package:ictsc_sachiko/model/problem_create_page_state.dart';
 import 'package:ictsc_sachiko/view_model/common/authentication_state_notifier.dart';
+import 'package:ictsc_sachiko/view_model/common/client_provider.dart';
 import 'package:state_notifier/state_notifier.dart';
 
-class ProblemCreatePageStateNotifier
+class CreateProblemPageStateNotifier
     extends StateNotifier<ProblemCreatePageState> with LocatorMixin {
-  ProblemCreatePageStateNotifier(ProblemCreatePageState state, this.ref)
+  CreateProblemPageStateNotifier(ProblemCreatePageState state, this.ref)
       : super(state) {
     // ログイン中のユーザーをauthorに代入
     this.state = this.state.copyWith(author: ref.read(auth).user);
@@ -39,9 +41,9 @@ class ProblemCreatePageStateNotifier
 
       formKey.currentState?.save();
 
-      // 問題インスタンスの作成
+      // 問題のインスタンスを作成
       final problem = Problem(
-        code: '',
+        code: codeController.text,
         authorId: state.author?.id ?? '',
         title: titleController.text,
         body: bodyController.text,
@@ -50,7 +52,15 @@ class ProblemCreatePageStateNotifier
         previousProblemId: state.previousProblem?.id,
       );
 
-      state = state.copyWith(isLoading: false);
+      ref
+          .read(clientProvider)
+          .state
+          .createProblem(CreateProblemRequest(problem: problem))
+          .then((response) => response.when(
+                success: (_) {},
+                failure: (_) {},
+              ))
+          .whenComplete(() => state = state.copyWith(isLoading: false));
     };
   }
 }

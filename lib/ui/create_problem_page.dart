@@ -4,15 +4,15 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/model/problem_create_page_state.dart';
 import 'package:ictsc_sachiko/ui/common/editor_header.dart';
-import 'package:ictsc_sachiko/view_model/problem_create_page_state_notifier.dart';
+import 'package:ictsc_sachiko/view_model/create_problem_page_state_notifier.dart';
 import 'package:markdown/markdown.dart' as md;
 
 final createProblemProvider = StateNotifierProvider.autoDispose<
-    ProblemCreatePageStateNotifier, ProblemCreatePageState>(
-  (refs) => ProblemCreatePageStateNotifier(const ProblemCreatePageState(), refs),
+    CreateProblemPageStateNotifier, ProblemCreatePageState>(
+  (refs) => CreateProblemPageStateNotifier(const ProblemCreatePageState(), refs),
 );
 
-class ProblemCreatePage extends HookWidget {
+class CreateProblemPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     useProvider(createProblemProvider);
@@ -63,6 +63,7 @@ class ProblemCreatePage extends HookWidget {
                                   labelText: '問題コード',
                                   labelStyle:
                                       Theme.of(context).textTheme.caption),
+                              controller: notifier.codeController,
                             ),
                           ),
                           const Padding(padding: EdgeInsets.only(right: 8.0)),
@@ -218,7 +219,7 @@ class ProblemCreateSideMenu extends HookWidget {
             PopupMenuItem(
                 value: 'user1',
                 height: 18,
-                child: Text("User1",
+                child: Text('User1',
                     style: Theme.of(context).textTheme.bodyText2)),
           ],
           child: Center(
