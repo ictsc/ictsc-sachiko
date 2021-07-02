@@ -76,6 +76,7 @@ class ProblemCreatePage extends HookWidget {
                                   labelText: 'ポイント',
                                   labelStyle:
                                       Theme.of(context).textTheme.caption),
+                              controller: notifier.pointController,
                             ),
                           ),
                           const Padding(padding: EdgeInsets.only(right: 8.0)),
@@ -89,6 +90,7 @@ class ProblemCreatePage extends HookWidget {
                                   labelText: '解決基準ポイント',
                                   labelStyle:
                                       Theme.of(context).textTheme.caption),
+                              controller: notifier.solvedCriterionController,
                             ),
                           ),
                         ],

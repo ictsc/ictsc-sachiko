@@ -37,6 +37,8 @@ class ProblemCreatePageStateNotifier
     return () {
       state = state.copyWith(isLoading: true);
 
+      formKey.currentState?.save();
+
       // 問題インスタンスの作成
       final problem = Problem(
         code: '',
@@ -47,8 +49,6 @@ class ProblemCreatePageStateNotifier
         solvedCriterion: int.tryParse(solvedCriterionController.text) ?? 0,
         previousProblemId: state.previousProblem?.id,
       );
-
-      print(problem);
 
       state = state.copyWith(isLoading: false);
     };
