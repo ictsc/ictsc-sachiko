@@ -7,6 +7,7 @@ part 'problem.g.dart';
 @freezed
 abstract class Problem with _$Problem {
   const factory Problem({
+    @Default('') String id,
     required String code,
     required String authorId,
     @Default('') String title,

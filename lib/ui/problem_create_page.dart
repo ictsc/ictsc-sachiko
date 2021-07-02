@@ -9,7 +9,7 @@ import 'package:markdown/markdown.dart' as md;
 
 final createProblemProvider = StateNotifierProvider.autoDispose<
     ProblemCreatePageStateNotifier, ProblemCreatePageState>(
-  (refs) => ProblemCreatePageStateNotifier(const ProblemCreatePageState()),
+  (refs) => ProblemCreatePageStateNotifier(const ProblemCreatePageState(), refs),
 );
 
 class ProblemCreatePage extends HookWidget {
@@ -23,9 +23,7 @@ class ProblemCreatePage extends HookWidget {
         floatingActionButton: Container(
           margin: const EdgeInsets.only(bottom: 16, right: 16),
           child: FloatingActionButton.extended(
-            onPressed: () {
-              // Add your onPressed code here!
-            },
+            onPressed: notifier.onSaveButton(),
             label: const Text('保存する'),
           ),
         ),
@@ -140,7 +138,7 @@ class ProblemEditor extends HookWidget {
     final provider = useProvider(createProblemProvider);
 
     final editorTextController =
-        useProvider(createProblemProvider.notifier).editorTextController;
+        useProvider(createProblemProvider.notifier).bodyController;
 
     if (provider.isPreview) {
       return SizedBox(
@@ -209,8 +207,18 @@ class ProblemCreateSideMenu extends HookWidget {
           child: Divider(),
         ),
         PopupMenuButton(
-          itemBuilder: (BuildContext context) => [],
-          enabled: false,
+          onSelected: (value) {
+            // 配列の番号を作者に入れる
+            print(value);
+          },
+          offset: const Offset(0, 18),
+          itemBuilder: (BuildContext context) => [
+            PopupMenuItem(
+                value: 'user1',
+                height: 18,
+                child: Text("User1",
+                    style: Theme.of(context).textTheme.bodyText2)),
+          ],
           child: Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -220,18 +228,26 @@ class ProblemCreateSideMenu extends HookWidget {
                   style: Theme.of(context).textTheme.subtitle2,
                 ),
                 const Icon(
-                  Icons.settings_rounded,
+                  Icons.settings,
                   size: 16,
                 ),
               ],
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 8.0),
-          child: Text(
-            '末登録',
-            style: Theme.of(context).textTheme.caption,
+        TextFormField(
+          enabled: false,
+          initialValue: 'admin',
+          style: Theme.of(context)
+              .textTheme
+              .caption!
+              .copyWith(color: Theme.of(context).textTheme.bodyText1?.color),
+          decoration: InputDecoration(
+            hintText: '末登録',
+            hintStyle: Theme.of(context).textTheme.caption,
+            isDense: true,
+            contentPadding: const EdgeInsets.only(top: 8, bottom: 4),
+            border: InputBorder.none,
           ),
         ),
         const Padding(

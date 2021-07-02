@@ -13,7 +13,7 @@ import '../ui/problem_create_page.dart' as _i9;
 import '../ui/sign_in_page.dart' as _i6;
 import '../ui/sign_up_page.dart' as _i7;
 import 'app_router.dart' as _i5;
-import 'auth_route_guard.dart' as _i3;
+import 'guard/auth_route_guard.dart' as _i3;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter(

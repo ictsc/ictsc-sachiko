@@ -8,6 +8,7 @@ part of 'problem.dart';
 
 _$_Problem _$_$_ProblemFromJson(Map<String, dynamic> json) {
   return _$_Problem(
+    id: json['id'] as String? ?? '',
     code: json['code'] as String,
     authorId: json['author_id'] as String,
     title: json['title'] as String? ?? '',
@@ -20,6 +21,7 @@ _$_Problem _$_$_ProblemFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$_$_ProblemToJson(_$_Problem instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'code': instance.code,
       'author_id': instance.authorId,
       'title': instance.title,

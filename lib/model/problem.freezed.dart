@@ -21,7 +21,8 @@ class _$ProblemTearOff {
   const _$ProblemTearOff();
 
   _Problem call(
-      {required String code,
+      {String id = '',
+      required String code,
       required String authorId,
       String title = '',
       String body = '',
@@ -29,6 +30,7 @@ class _$ProblemTearOff {
       int solvedCriterion = 0,
       String? previousProblemId}) {
     return _Problem(
+      id: id,
       code: code,
       authorId: authorId,
       title: title,
@@ -49,6 +51,7 @@ const $Problem = _$ProblemTearOff();
 
 /// @nodoc
 mixin _$Problem {
+  String get id => throw _privateConstructorUsedError;
   String get code => throw _privateConstructorUsedError;
   String get authorId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
@@ -67,7 +70,8 @@ abstract class $ProblemCopyWith<$Res> {
   factory $ProblemCopyWith(Problem value, $Res Function(Problem) then) =
       _$ProblemCopyWithImpl<$Res>;
   $Res call(
-      {String code,
+      {String id,
+      String code,
       String authorId,
       String title,
       String body,
@@ -86,6 +90,7 @@ class _$ProblemCopyWithImpl<$Res> implements $ProblemCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? code = freezed,
     Object? authorId = freezed,
     Object? title = freezed,
@@ -95,6 +100,10 @@ class _$ProblemCopyWithImpl<$Res> implements $ProblemCopyWith<$Res> {
     Object? previousProblemId = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       code: code == freezed
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -133,7 +142,8 @@ abstract class _$ProblemCopyWith<$Res> implements $ProblemCopyWith<$Res> {
       __$ProblemCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String code,
+      {String id,
+      String code,
       String authorId,
       String title,
       String body,
@@ -153,6 +163,7 @@ class __$ProblemCopyWithImpl<$Res> extends _$ProblemCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? code = freezed,
     Object? authorId = freezed,
     Object? title = freezed,
@@ -162,6 +173,10 @@ class __$ProblemCopyWithImpl<$Res> extends _$ProblemCopyWithImpl<$Res>
     Object? previousProblemId = freezed,
   }) {
     return _then(_Problem(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       code: code == freezed
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -198,7 +213,8 @@ class __$ProblemCopyWithImpl<$Res> extends _$ProblemCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Problem with DiagnosticableTreeMixin implements _Problem {
   const _$_Problem(
-      {required this.code,
+      {this.id = '',
+      required this.code,
       required this.authorId,
       this.title = '',
       this.body = '',
@@ -209,6 +225,9 @@ class _$_Problem with DiagnosticableTreeMixin implements _Problem {
   factory _$_Problem.fromJson(Map<String, dynamic> json) =>
       _$_$_ProblemFromJson(json);
 
+  @JsonKey(defaultValue: '')
+  @override
+  final String id;
   @override
   final String code;
   @override
@@ -230,7 +249,7 @@ class _$_Problem with DiagnosticableTreeMixin implements _Problem {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Problem(code: $code, authorId: $authorId, title: $title, body: $body, point: $point, solvedCriterion: $solvedCriterion, previousProblemId: $previousProblemId)';
+    return 'Problem(id: $id, code: $code, authorId: $authorId, title: $title, body: $body, point: $point, solvedCriterion: $solvedCriterion, previousProblemId: $previousProblemId)';
   }
 
   @override
@@ -238,6 +257,7 @@ class _$_Problem with DiagnosticableTreeMixin implements _Problem {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'Problem'))
+      ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('code', code))
       ..add(DiagnosticsProperty('authorId', authorId))
       ..add(DiagnosticsProperty('title', title))
@@ -251,6 +271,8 @@ class _$_Problem with DiagnosticableTreeMixin implements _Problem {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Problem &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.code, code) ||
                 const DeepCollectionEquality().equals(other.code, code)) &&
             (identical(other.authorId, authorId) ||
@@ -273,6 +295,7 @@ class _$_Problem with DiagnosticableTreeMixin implements _Problem {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(authorId) ^
       const DeepCollectionEquality().hash(title) ^
@@ -294,7 +317,8 @@ class _$_Problem with DiagnosticableTreeMixin implements _Problem {
 
 abstract class _Problem implements Problem {
   const factory _Problem(
-      {required String code,
+      {String id,
+      required String code,
       required String authorId,
       String title,
       String body,
@@ -304,6 +328,8 @@ abstract class _Problem implements Problem {
 
   factory _Problem.fromJson(Map<String, dynamic> json) = _$_Problem.fromJson;
 
+  @override
+  String get id => throw _privateConstructorUsedError;
   @override
   String get code => throw _privateConstructorUsedError;
   @override

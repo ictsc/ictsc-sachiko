@@ -1,6 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:ictsc_sachiko/router/auth_route_guard.dart';
+import 'package:ictsc_sachiko/router/guard/auth_route_guard.dart';
 import 'package:ictsc_sachiko/ui/home_page.dart';
 import 'package:ictsc_sachiko/ui/my_page.dart';
 import 'package:ictsc_sachiko/ui/problem_create_page.dart';
@@ -40,6 +40,7 @@ Widget fadeIn(BuildContext context, Animation<double> animation,
     ),
     CustomRoute(
       path: '/problems/new',
+      // guards: [AdminGuard],
       page: ProblemCreatePage,
       transitionsBuilder: fadeIn,
     ),
