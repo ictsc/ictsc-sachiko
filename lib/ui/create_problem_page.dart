@@ -181,7 +181,7 @@ class ProblemEditor extends HookWidget {
 class ProblemCreateSideMenu extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    useProvider(createProblemProvider);
+    final provider = useProvider(createProblemProvider);
     final notifier = useProvider(createProblemProvider.notifier);
 
     return Column(
@@ -217,9 +217,9 @@ class ProblemCreateSideMenu extends HookWidget {
           offset: const Offset(0, 18),
           itemBuilder: (BuildContext context) => [
             PopupMenuItem(
-                value: 'user1',
+                value: provider.author?.displayName,
                 height: 18,
-                child: Text('User1',
+                child: Text(provider.author?.displayName ?? '',
                     style: Theme.of(context).textTheme.bodyText2)),
           ],
           child: Center(
