@@ -7,62 +7,66 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
-import '../ui/create_problem_page.dart' as _i9;
-import '../ui/home_page.dart' as _i4;
-import '../ui/my_page.dart' as _i8;
-import '../ui/sign_in_page.dart' as _i6;
-import '../ui/sign_up_page.dart' as _i7;
-import 'app_router.dart' as _i5;
+import '../ui/create_problem_page.dart' as _i10;
+import '../ui/home_page.dart' as _i5;
+import '../ui/my_page.dart' as _i9;
+import '../ui/sign_in_page.dart' as _i7;
+import '../ui/sign_up_page.dart' as _i8;
+import 'app_router.dart' as _i6;
+import 'guard/admin_route_guard.dart' as _i4;
 import 'guard/auth_route_guard.dart' as _i3;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter(
       {_i2.GlobalKey<_i2.NavigatorState>? navigatorKey,
-      required this.authGuard})
+      required this.authGuard,
+      required this.adminGuard})
       : super(navigatorKey);
 
   final _i3.AuthGuard authGuard;
+
+  final _i4.AdminGuard adminGuard;
 
   @override
   final Map<String, _i1.PageFactory> pagesMap = {
     HomeRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i4.HomePage();
+          return _i5.HomePage();
         },
-        transitionsBuilder: _i5.fadeIn,
+        transitionsBuilder: _i6.fadeIn,
         opaque: true,
         barrierDismissible: false),
     SignInRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i6.SignInPage();
+          return _i7.SignInPage();
         },
-        transitionsBuilder: _i5.fadeIn,
+        transitionsBuilder: _i6.fadeIn,
         opaque: true,
         barrierDismissible: false),
     SignUpRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i7.SignUpPage();
+          return _i8.SignUpPage();
         },
-        transitionsBuilder: _i5.fadeIn,
+        transitionsBuilder: _i6.fadeIn,
         opaque: true,
         barrierDismissible: false),
     MyRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i8.MyPage();
+          return _i9.MyPage();
         },
-        transitionsBuilder: _i5.fadeIn,
+        transitionsBuilder: _i6.fadeIn,
         opaque: true,
         barrierDismissible: false),
     CreateProblemRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i9.CreateProblemPage();
+          return _i10.CreateProblemPage();
         },
-        transitionsBuilder: _i5.fadeIn,
+        transitionsBuilder: _i6.fadeIn,
         opaque: true,
         barrierDismissible: false)
   };
@@ -73,7 +77,8 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(SignInRoute.name, path: '/login'),
         _i1.RouteConfig(SignUpRoute.name, path: '/signup'),
         _i1.RouteConfig(MyRoute.name, path: '/mypage', guards: [authGuard]),
-        _i1.RouteConfig(CreateProblemRoute.name, path: '/problems/new')
+        _i1.RouteConfig(CreateProblemRoute.name,
+            path: '/manage/problems/new', guards: [adminGuard])
       ];
 }
 
@@ -102,7 +107,7 @@ class MyRoute extends _i1.PageRouteInfo {
 }
 
 class CreateProblemRoute extends _i1.PageRouteInfo {
-  const CreateProblemRoute() : super(name, path: '/problems/new');
+  const CreateProblemRoute() : super(name, path: '/manage/problems/new');
 
   static const String name = 'CreateProblemRoute';
 }

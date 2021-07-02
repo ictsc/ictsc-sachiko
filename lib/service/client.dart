@@ -55,6 +55,7 @@ class Client {
     }
   }
 
+  /// 問題のフォームを送り、問題を作成する
   Future<Result<CreateProblemResponse>> createProblem(
       CreateProblemRequest createProblemRequest) async {
     try {
