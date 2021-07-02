@@ -6,6 +6,8 @@ import 'package:ictsc_sachiko/model/authentication/sign_up_request.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_up_response.dart';
 import 'package:ictsc_sachiko/model/client/error.dart';
 import 'package:ictsc_sachiko/model/client/result.dart';
+import 'package:ictsc_sachiko/model/problem/create_problem_request.dart';
+import 'package:ictsc_sachiko/model/problem/create_problem_response.dart';
 
 class Client {
   final Dio dio;
@@ -48,6 +50,21 @@ class Client {
           )
           .then((result) =>
               Result.success(SignUpResponse.fromJson({...result.data})));
+    } on DioError catch (error) {
+      return Result.failure(Error.getApiError(error));
+    }
+  }
+
+  /// 問題のフォームを送り、問題を作成する
+  Future<Result<CreateProblemResponse>> createProblem(
+      CreateProblemRequest createProblemRequest) async {
+    try {
+      print(createProblemRequest);
+
+      return await dio
+          .post('/api/problems', data: createProblemRequest.problem.toJson())
+          .then((result) =>
+              Result.success(CreateProblemResponse.fromJson({...result.data})));
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }

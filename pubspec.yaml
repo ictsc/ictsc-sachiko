@@ -40,6 +40,7 @@ dependencies:
   flutter_state_notifier: ^0.7.0
   auto_route: ^2.2.0
   flutter_svg: ^0.22.0
+  flutter_markdown: ^0.6.2
 
 
 dev_dependencies:
