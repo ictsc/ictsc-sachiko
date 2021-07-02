@@ -18,6 +18,7 @@ class Client {
     dio.interceptors.add(LogInterceptor(responseBody: true));
   }
 
+  /// ログイン
   Future<Result<SignInResponse>> signIn(SignInRequest signInRequest) async {
     try {
       return await dio
@@ -32,6 +33,7 @@ class Client {
     }
   }
 
+  /// ログアウト
   Future<Result<SignOutResponse>> signOut() async {
     try {
       return await dio.delete('/api/auth/signout').then((result) =>
@@ -41,6 +43,7 @@ class Client {
     }
   }
 
+  /// 新規登録
   Future<Result<SignUpResponse>> signUp(SignUpRequest signUpRequest) async {
     try {
       return await dio
