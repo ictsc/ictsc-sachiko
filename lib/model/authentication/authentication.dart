@@ -8,6 +8,7 @@ part 'authentication.g.dart';
 @freezed
 abstract class Authentication with _$Authentication {
   const factory Authentication({
+    @Default(false) bool isLoginChecked,
     User? user,
   }) = _Authentication;
 

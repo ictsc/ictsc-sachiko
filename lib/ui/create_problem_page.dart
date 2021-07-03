@@ -211,8 +211,7 @@ class ProblemCreateSideMenu extends HookWidget {
         ),
         PopupMenuButton(
           onSelected: (value) {
-            // 配列の番号を作者に入れる
-            print(value);
+            // TODO 配列の番号を作者に入れる
           },
           offset: const Offset(0, 18),
           itemBuilder: (BuildContext context) => [

@@ -18,6 +18,7 @@ class Client {
     dio.interceptors.add(LogInterceptor(responseBody: true));
   }
 
+  /// ログイン
   Future<Result<SignInResponse>> signIn(SignInRequest signInRequest) async {
     try {
       return await dio
@@ -32,6 +33,7 @@ class Client {
     }
   }
 
+  /// ログアウト
   Future<Result<SignOutResponse>> signOut() async {
     try {
       return await dio.delete('/api/auth/signout').then((result) =>
@@ -41,6 +43,7 @@ class Client {
     }
   }
 
+  /// 新規登録
   Future<Result<SignUpResponse>> signUp(SignUpRequest signUpRequest) async {
     try {
       return await dio
@@ -55,12 +58,24 @@ class Client {
     }
   }
 
+  /// 自分の情報を取得する
+  Future<Result<SignInResponse>> self() async {
+    try {
+      return await dio
+          .get(
+            '/api/auth/self',
+          )
+          .then((result) =>
+              Result.success(SignInResponse.fromJson({...result.data})));
+    } on DioError catch (error) {
+      return Result.failure(Error.getApiError(error));
+    }
+  }
+
   /// 問題のフォームを送り、問題を作成する
   Future<Result<CreateProblemResponse>> createProblem(
       CreateProblemRequest createProblemRequest) async {
     try {
-      print(createProblemRequest);
-
       return await dio
           .post('/api/problems', data: createProblemRequest.problem.toJson())
           .then((result) =>

@@ -55,9 +55,26 @@ class AuthenticationStateNotifier extends StateNotifier<Authentication> {
       return result;
     });
   }
+
+  /// ログインを試行し、呼び出し元に成功か失敗かを通知する。
+  Future<Result<SignInResponse>> signCheck() async {
+    final client = ref.read(clientProvider).state;
+
+    return client.self().then((result) {
+      result.when(
+        success: (result) {
+          // ログイン成功
+          state = state.copyWith(user: result.data.user);
+        },
+        failure: (_) {},
+      );
+
+      return result;
+    }).whenComplete(() => state = state.copyWith(isLoginChecked: true));
+  }
 }
 
-final auth = StateNotifierProvider.autoDispose<AuthenticationStateNotifier,
+final auth = StateNotifierProvider<AuthenticationStateNotifier,
     Authentication>(
   (refs) => AuthenticationStateNotifier(const Authentication(), refs),
 );
