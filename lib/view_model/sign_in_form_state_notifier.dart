@@ -14,7 +14,7 @@ class SignInPageStateNotifier extends StateNotifier<SignInFormState>
   final ProviderReference ref;
 
   final formKey = GlobalKey<FormState>();
-  final TextEditingController userNameController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   String get errorMessage {
@@ -36,7 +36,7 @@ class SignInPageStateNotifier extends StateNotifier<SignInFormState>
       ref
           .read(auth.notifier)
           .signIn(SignInRequest(
-            userName: userNameController.text,
+            name: nameController.text,
             password: passwordController.text,
           ))
           .then((response) => response.when(

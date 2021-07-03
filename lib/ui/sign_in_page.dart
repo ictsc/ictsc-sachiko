@@ -58,7 +58,7 @@ class SignInPage extends HookWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
                           decoration: const InputDecoration(labelText: 'ユーザー名'),
-                          controller: provider.userNameController,
+                          controller: provider.nameController,
                         ),
                       ),
                       Padding(

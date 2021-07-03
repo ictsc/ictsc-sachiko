@@ -20,11 +20,9 @@ SignInRequest _$SignInRequestFromJson(Map<String, dynamic> json) {
 class _$SignInRequestTearOff {
   const _$SignInRequestTearOff();
 
-  _SignInRequest call(
-      {@JsonKey(name: 'name') required String userName,
-      required String password}) {
+  _SignInRequest call({required String name, required String password}) {
     return _SignInRequest(
-      userName: userName,
+      name: name,
       password: password,
     );
   }
@@ -39,8 +37,7 @@ const $SignInRequest = _$SignInRequestTearOff();
 
 /// @nodoc
 mixin _$SignInRequest {
-  @JsonKey(name: 'name')
-  String get userName => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -54,7 +51,7 @@ abstract class $SignInRequestCopyWith<$Res> {
   factory $SignInRequestCopyWith(
           SignInRequest value, $Res Function(SignInRequest) then) =
       _$SignInRequestCopyWithImpl<$Res>;
-  $Res call({@JsonKey(name: 'name') String userName, String password});
+  $Res call({String name, String password});
 }
 
 /// @nodoc
@@ -68,13 +65,13 @@ class _$SignInRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? userName = freezed,
+    Object? name = freezed,
     Object? password = freezed,
   }) {
     return _then(_value.copyWith(
-      userName: userName == freezed
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       password: password == freezed
           ? _value.password
@@ -91,7 +88,7 @@ abstract class _$SignInRequestCopyWith<$Res>
           _SignInRequest value, $Res Function(_SignInRequest) then) =
       __$SignInRequestCopyWithImpl<$Res>;
   @override
-  $Res call({@JsonKey(name: 'name') String userName, String password});
+  $Res call({String name, String password});
 }
 
 /// @nodoc
@@ -107,13 +104,13 @@ class __$SignInRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? userName = freezed,
+    Object? name = freezed,
     Object? password = freezed,
   }) {
     return _then(_SignInRequest(
-      userName: userName == freezed
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       password: password == freezed
           ? _value.password
@@ -126,21 +123,19 @@ class __$SignInRequestCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_SignInRequest with DiagnosticableTreeMixin implements _SignInRequest {
-  const _$_SignInRequest(
-      {@JsonKey(name: 'name') required this.userName, required this.password});
+  const _$_SignInRequest({required this.name, required this.password});
 
   factory _$_SignInRequest.fromJson(Map<String, dynamic> json) =>
       _$_$_SignInRequestFromJson(json);
 
   @override
-  @JsonKey(name: 'name')
-  final String userName;
+  final String name;
   @override
   final String password;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignInRequest(userName: $userName, password: $password)';
+    return 'SignInRequest(name: $name, password: $password)';
   }
 
   @override
@@ -148,7 +143,7 @@ class _$_SignInRequest with DiagnosticableTreeMixin implements _SignInRequest {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'SignInRequest'))
-      ..add(DiagnosticsProperty('userName', userName))
+      ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('password', password));
   }
 
@@ -156,9 +151,8 @@ class _$_SignInRequest with DiagnosticableTreeMixin implements _SignInRequest {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _SignInRequest &&
-            (identical(other.userName, userName) ||
-                const DeepCollectionEquality()
-                    .equals(other.userName, userName)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.password, password) ||
                 const DeepCollectionEquality()
                     .equals(other.password, password)));
@@ -167,7 +161,7 @@ class _$_SignInRequest with DiagnosticableTreeMixin implements _SignInRequest {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(userName) ^
+      const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(password);
 
   @JsonKey(ignore: true)
@@ -183,15 +177,13 @@ class _$_SignInRequest with DiagnosticableTreeMixin implements _SignInRequest {
 
 abstract class _SignInRequest implements SignInRequest {
   const factory _SignInRequest(
-      {@JsonKey(name: 'name') required String userName,
-      required String password}) = _$_SignInRequest;
+      {required String name, required String password}) = _$_SignInRequest;
 
   factory _SignInRequest.fromJson(Map<String, dynamic> json) =
       _$_SignInRequest.fromJson;
 
   @override
-  @JsonKey(name: 'name')
-  String get userName => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   @override
   String get password => throw _privateConstructorUsedError;
   @override
