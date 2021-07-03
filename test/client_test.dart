@@ -1,9 +1,7 @@
 import 'dart:io' as io;
 
-import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ictsc_sachiko/service/client.dart';
 
 Future<void> main() async {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -12,10 +10,10 @@ Future<void> main() async {
   // 環境変数のロード
   await dotenv.load();
 
-  Client getTestClient() {
-    final path = dotenv.env['API_URL'].toString();
-    return Client(Dio(), path);
-  }
+  // Client getTestClient() {
+  //   final path = dotenv.env['API_URL'].toString();
+  //   return Client(Dio(), path);
+  // }
 
   group('Authentication', () {
     // final signUpRequest = SignUpRequest(

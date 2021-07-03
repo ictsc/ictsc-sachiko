@@ -20,8 +20,9 @@ Authentication _$AuthenticationFromJson(Map<String, dynamic> json) {
 class _$AuthenticationTearOff {
   const _$AuthenticationTearOff();
 
-  _Authentication call({User? user}) {
+  _Authentication call({bool isLoginChecked = false, User? user}) {
     return _Authentication(
+      isLoginChecked: isLoginChecked,
       user: user,
     );
   }
@@ -36,6 +37,7 @@ const $Authentication = _$AuthenticationTearOff();
 
 /// @nodoc
 mixin _$Authentication {
+  bool get isLoginChecked => throw _privateConstructorUsedError;
   User? get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,7 +51,7 @@ abstract class $AuthenticationCopyWith<$Res> {
   factory $AuthenticationCopyWith(
           Authentication value, $Res Function(Authentication) then) =
       _$AuthenticationCopyWithImpl<$Res>;
-  $Res call({User? user});
+  $Res call({bool isLoginChecked, User? user});
 
   $UserCopyWith<$Res>? get user;
 }
@@ -65,9 +67,14 @@ class _$AuthenticationCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? isLoginChecked = freezed,
     Object? user = freezed,
   }) {
     return _then(_value.copyWith(
+      isLoginChecked: isLoginChecked == freezed
+          ? _value.isLoginChecked
+          : isLoginChecked // ignore: cast_nullable_to_non_nullable
+              as bool,
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -94,7 +101,7 @@ abstract class _$AuthenticationCopyWith<$Res>
           _Authentication value, $Res Function(_Authentication) then) =
       __$AuthenticationCopyWithImpl<$Res>;
   @override
-  $Res call({User? user});
+  $Res call({bool isLoginChecked, User? user});
 
   @override
   $UserCopyWith<$Res>? get user;
@@ -113,9 +120,14 @@ class __$AuthenticationCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? isLoginChecked = freezed,
     Object? user = freezed,
   }) {
     return _then(_Authentication(
+      isLoginChecked: isLoginChecked == freezed
+          ? _value.isLoginChecked
+          : isLoginChecked // ignore: cast_nullable_to_non_nullable
+              as bool,
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -127,17 +139,20 @@ class __$AuthenticationCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Authentication extends _Authentication with DiagnosticableTreeMixin {
-  const _$_Authentication({this.user}) : super._();
+  const _$_Authentication({this.isLoginChecked = false, this.user}) : super._();
 
   factory _$_Authentication.fromJson(Map<String, dynamic> json) =>
       _$_$_AuthenticationFromJson(json);
 
+  @JsonKey(defaultValue: false)
+  @override
+  final bool isLoginChecked;
   @override
   final User? user;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Authentication(user: $user)';
+    return 'Authentication(isLoginChecked: $isLoginChecked, user: $user)';
   }
 
   @override
@@ -145,6 +160,7 @@ class _$_Authentication extends _Authentication with DiagnosticableTreeMixin {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'Authentication'))
+      ..add(DiagnosticsProperty('isLoginChecked', isLoginChecked))
       ..add(DiagnosticsProperty('user', user));
   }
 
@@ -152,13 +168,18 @@ class _$_Authentication extends _Authentication with DiagnosticableTreeMixin {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Authentication &&
+            (identical(other.isLoginChecked, isLoginChecked) ||
+                const DeepCollectionEquality()
+                    .equals(other.isLoginChecked, isLoginChecked)) &&
             (identical(other.user, user) ||
                 const DeepCollectionEquality().equals(other.user, user)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(isLoginChecked) ^
+      const DeepCollectionEquality().hash(user);
 
   @JsonKey(ignore: true)
   @override
@@ -172,12 +193,15 @@ class _$_Authentication extends _Authentication with DiagnosticableTreeMixin {
 }
 
 abstract class _Authentication extends Authentication {
-  const factory _Authentication({User? user}) = _$_Authentication;
+  const factory _Authentication({bool isLoginChecked, User? user}) =
+      _$_Authentication;
   const _Authentication._() : super._();
 
   factory _Authentication.fromJson(Map<String, dynamic> json) =
       _$_Authentication.fromJson;
 
+  @override
+  bool get isLoginChecked => throw _privateConstructorUsedError;
   @override
   User? get user => throw _privateConstructorUsedError;
   @override

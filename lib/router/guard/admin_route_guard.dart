@@ -10,8 +10,6 @@ class AdminGuard extends AutoRouteGuard {
 
     final user = context?.read(auth).user;
 
-    print(user?.userGroup?.isFullAccess);
-
     if (user?.userGroup?.isFullAccess ?? false) {
       resolver.next();
     } else {
