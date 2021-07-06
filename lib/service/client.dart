@@ -8,6 +8,7 @@ import 'package:ictsc_sachiko/model/client/error.dart';
 import 'package:ictsc_sachiko/model/client/result.dart';
 import 'package:ictsc_sachiko/model/problem/create_problem_request.dart';
 import 'package:ictsc_sachiko/model/problem/create_problem_response.dart';
+import 'package:ictsc_sachiko/model/problem/find_all_problem_response.dart';
 
 class Client {
   final Dio dio;
@@ -80,6 +81,20 @@ class Client {
           .post('/api/problems', data: createProblemRequest.problem.toJson())
           .then((result) =>
               Result.success(CreateProblemResponse.fromJson({...result.data})));
+    } on DioError catch (error) {
+      return Result.failure(Error.getApiError(error));
+    }
+  }
+
+  /// 問題一覧を取得する
+  Future<Result<FindAllProblemResponse>> findAllProblem() async {
+    try {
+      return await dio
+          .get(
+            '/api/problems',
+          )
+          .then((result) => Result.success(
+              FindAllProblemResponse.fromJson({...result.data})));
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }
