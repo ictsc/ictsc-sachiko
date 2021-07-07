@@ -23,7 +23,7 @@ class CreateProblemPage extends HookWidget {
         floatingActionButton: Container(
           margin: const EdgeInsets.only(bottom: 16, right: 16),
           child: FloatingActionButton.extended(
-            onPressed: notifier.onSaveButton(),
+            onPressed: notifier.onSaveButton(context),
             label: const Text('保存する'),
           ),
         ),

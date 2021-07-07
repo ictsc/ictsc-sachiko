@@ -4,7 +4,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/model/problem_list_page_state.dart';
-import 'package:ictsc_sachiko/router/app_router.gr.dart';
 import 'package:ictsc_sachiko/ui/common/header.dart';
 import 'package:ictsc_sachiko/view_model/problem_list_page_state_notifier.dart';
 
@@ -17,28 +16,24 @@ class ProblemListPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final state = useProvider(problemListProvider);
-    final notifier = useProvider(problemListProvider.notifier);
 
     final dataRows = state.problems.map((problem) {
       return DataRow(
         cells: <DataCell>[
-          DataCell(Text(problem.code)),
+          DataCell(DataText(problem.code)),
           if (problem.title.isNotEmpty)
-            DataCell(Text(problem.title))
+            DataCell(DataText(problem.title))
           else
-            DataCell(Text(
-              '<none>',
-              style: Theme.of(context).textTheme.caption,
-            )),
-          DataCell(Text(problem.id)),
-          DataCell(Text('${problem.point}pt')),
-          DataCell(Text('${problem.solvedCriterion}pt')),
+            const DataCell(DataText('<none>')),
+          DataCell(DataText(problem.id)),
+          DataCell(DataText('${problem.point}pt')),
+          DataCell(DataText('${problem.solvedCriterion}pt')),
           // 問題文
           DataCell(SizedBox(
               width: 512,
-              child: Text(
+              child: DataText(
                 problem.body.replaceAll('\n', '　'),
-                overflow: TextOverflow.ellipsis,
+                textOverflow: TextOverflow.ellipsis,
                 maxLines: 1,
               ))),
         ],
@@ -63,7 +58,7 @@ class ProblemListPage extends HookWidget {
               const Gap(48),
               TextButton(
                   onPressed: () {
-                    context.router.push(const CreateProblemRoute());
+                    context.router.pushNamed('/manage/problems/new');
                   },
                   child: Row(
                     children: [
@@ -77,22 +72,65 @@ class ProblemListPage extends HookWidget {
                   ))
             ],
           ),
-          Scrollbar(
-            isAlwaysShown: true,
-            child: SingleChildScrollView(
+          if (!state.isLoading)
+            SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              child: DataTable(columns: [
-                const DataColumn(label: Text('CODE')),
-                const DataColumn(label: Text('タイトル')),
-                const DataColumn(label: Text('ID')),
-                const DataColumn(label: Text('ポイント'), numeric: true),
-                const DataColumn(label: Text('解決基準ポイント'), numeric: true),
-                const DataColumn(label: Text('問題文')),
-              ], rows: dataRows),
+              child: DataTable(
+                columns: [
+                  const DataColumn(label: HeadingText('コード')),
+                  const DataColumn(label: HeadingText('タイトル')),
+                  const DataColumn(label: HeadingText('ID')),
+                  const DataColumn(label: HeadingText('ポイント'), numeric: true),
+                  const DataColumn(
+                      label: HeadingText('解決基準ポイント'), numeric: true),
+                  const DataColumn(label: HeadingText('問題文')),
+                ],
+                rows: dataRows,
+                dataRowHeight: 40,
+                headingRowHeight: 40,
+              ),
+            )
+          else
+            const Expanded(
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
             ),
-          ),
         ],
       ),
+    );
+  }
+}
+
+class HeadingText extends StatelessWidget {
+  final String text;
+
+  const HeadingText(this.text);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(text,
+        style: Theme.of(context)
+            .textTheme
+            .caption!
+            .copyWith(color: Theme.of(context).textTheme.bodyText2?.color));
+  }
+}
+
+class DataText extends StatelessWidget {
+  final String text;
+  final TextOverflow? textOverflow;
+  final int? maxLines;
+
+  const DataText(this.text, {this.textOverflow, this.maxLines});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: Theme.of(context).textTheme.caption,
+      overflow: textOverflow,
+      maxLines: maxLines,
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/model/problem.dart';
@@ -31,7 +32,7 @@ class CreateProblemPageStateNotifier
   }
 
   /// 保存処理の関数を返す
-  void Function()? onSaveButton() {
+  void Function()? onSaveButton(BuildContext context) {
     if (state.isLoading) {
       return null;
     }
@@ -57,7 +58,9 @@ class CreateProblemPageStateNotifier
           .state
           .createProblem(CreateProblemRequest(problem: problem))
           .then((response) => response.when(
-                success: (_) {},
+                success: (_) {
+                  context.router.pushNamed('/manage/problems');
+                },
                 failure: (_) {},
               ))
           .whenComplete(() => state = state.copyWith(isLoading: false));

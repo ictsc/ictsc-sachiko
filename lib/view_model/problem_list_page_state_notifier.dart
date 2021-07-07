@@ -14,6 +14,8 @@ class ProblemListPageStateNotifier extends StateNotifier<ProblemListPageState>
 
   /// 問題一覧を取得する
   Future<void> fetchProblems() async {
+    state = state.copyWith(isLoading: true);
+
     await ref
         .read(clientProvider)
         .state
@@ -23,6 +25,7 @@ class ProblemListPageStateNotifier extends StateNotifier<ProblemListPageState>
                 state = state.copyWith(problems: response.data.problems);
               },
               failure: (_) {},
-            ));
+            ))
+        .whenComplete(() => state = state.copyWith(isLoading: false));
   }
 }
