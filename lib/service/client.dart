@@ -78,7 +78,7 @@ class Client {
       CreateProblemRequest createProblemRequest) async {
     try {
       return await dio
-          .post('/api/problems', data: createProblemRequest.problem.toJson())
+          .post('/api/problems', data: createProblemRequest.toJson())
           .then((result) =>
               Result.success(CreateProblemResponse.fromJson({...result.data})));
     } on DioError catch (error) {

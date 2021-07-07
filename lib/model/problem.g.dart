@@ -16,6 +16,8 @@ _$_Problem _$_$_ProblemFromJson(Map<String, dynamic> json) {
     point: json['point'] as int? ?? 0,
     solvedCriterion: json['solved_criterion'] as int? ?? 0,
     previousProblemId: json['previous_problem_id'] as String?,
+    updatedAt: DateTime.parse(json['updated_at'] as String),
+    createdAt: DateTime.parse(json['created_at'] as String),
   );
 }
 
@@ -29,4 +31,6 @@ Map<String, dynamic> _$_$_ProblemToJson(_$_Problem instance) =>
       'point': instance.point,
       'solved_criterion': instance.solvedCriterion,
       'previous_problem_id': instance.previousProblemId,
+      'updated_at': instance.updatedAt.toIso8601String(),
+      'created_at': instance.createdAt.toIso8601String(),
     };

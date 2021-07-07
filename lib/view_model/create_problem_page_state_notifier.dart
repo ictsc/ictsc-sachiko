@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ictsc_sachiko/model/problem.dart';
 import 'package:ictsc_sachiko/model/problem/create_problem_request.dart';
 import 'package:ictsc_sachiko/model/problem_create_page_state.dart';
 import 'package:ictsc_sachiko/view_model/common/authentication_state_notifier.dart';
@@ -43,7 +42,7 @@ class CreateProblemPageStateNotifier
       formKey.currentState?.save();
 
       // 問題のインスタンスを作成
-      final problem = Problem(
+      final createProblemRequest = CreateProblemRequest(
         code: codeController.text,
         authorId: state.author?.id ?? '',
         title: titleController.text,
@@ -56,7 +55,7 @@ class CreateProblemPageStateNotifier
       ref
           .read(clientProvider)
           .state
-          .createProblem(CreateProblemRequest(problem: problem))
+          .createProblem(createProblemRequest)
           .then((response) => response.when(
                 success: (_) {
                   context.router.pushNamed('/manage/problems');

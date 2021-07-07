@@ -28,7 +28,9 @@ class _$ProblemTearOff {
       String body = '',
       int point = 0,
       int solvedCriterion = 0,
-      String? previousProblemId}) {
+      String? previousProblemId,
+      required DateTime updatedAt,
+      required DateTime createdAt}) {
     return _Problem(
       id: id,
       code: code,
@@ -38,6 +40,8 @@ class _$ProblemTearOff {
       point: point,
       solvedCriterion: solvedCriterion,
       previousProblemId: previousProblemId,
+      updatedAt: updatedAt,
+      createdAt: createdAt,
     );
   }
 
@@ -59,6 +63,8 @@ mixin _$Problem {
   int get point => throw _privateConstructorUsedError;
   int get solvedCriterion => throw _privateConstructorUsedError;
   String? get previousProblemId => throw _privateConstructorUsedError;
+  DateTime get updatedAt => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -77,7 +83,9 @@ abstract class $ProblemCopyWith<$Res> {
       String body,
       int point,
       int solvedCriterion,
-      String? previousProblemId});
+      String? previousProblemId,
+      DateTime updatedAt,
+      DateTime createdAt});
 }
 
 /// @nodoc
@@ -98,6 +106,8 @@ class _$ProblemCopyWithImpl<$Res> implements $ProblemCopyWith<$Res> {
     Object? point = freezed,
     Object? solvedCriterion = freezed,
     Object? previousProblemId = freezed,
+    Object? updatedAt = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -132,6 +142,14 @@ class _$ProblemCopyWithImpl<$Res> implements $ProblemCopyWith<$Res> {
           ? _value.previousProblemId
           : previousProblemId // ignore: cast_nullable_to_non_nullable
               as String?,
+      updatedAt: updatedAt == freezed
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -149,7 +167,9 @@ abstract class _$ProblemCopyWith<$Res> implements $ProblemCopyWith<$Res> {
       String body,
       int point,
       int solvedCriterion,
-      String? previousProblemId});
+      String? previousProblemId,
+      DateTime updatedAt,
+      DateTime createdAt});
 }
 
 /// @nodoc
@@ -171,6 +191,8 @@ class __$ProblemCopyWithImpl<$Res> extends _$ProblemCopyWithImpl<$Res>
     Object? point = freezed,
     Object? solvedCriterion = freezed,
     Object? previousProblemId = freezed,
+    Object? updatedAt = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_Problem(
       id: id == freezed
@@ -205,6 +227,14 @@ class __$ProblemCopyWithImpl<$Res> extends _$ProblemCopyWithImpl<$Res>
           ? _value.previousProblemId
           : previousProblemId // ignore: cast_nullable_to_non_nullable
               as String?,
+      updatedAt: updatedAt == freezed
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -220,7 +250,9 @@ class _$_Problem with DiagnosticableTreeMixin implements _Problem {
       this.body = '',
       this.point = 0,
       this.solvedCriterion = 0,
-      this.previousProblemId});
+      this.previousProblemId,
+      required this.updatedAt,
+      required this.createdAt});
 
   factory _$_Problem.fromJson(Map<String, dynamic> json) =>
       _$_$_ProblemFromJson(json);
@@ -246,10 +278,14 @@ class _$_Problem with DiagnosticableTreeMixin implements _Problem {
   final int solvedCriterion;
   @override
   final String? previousProblemId;
+  @override
+  final DateTime updatedAt;
+  @override
+  final DateTime createdAt;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Problem(id: $id, code: $code, authorId: $authorId, title: $title, body: $body, point: $point, solvedCriterion: $solvedCriterion, previousProblemId: $previousProblemId)';
+    return 'Problem(id: $id, code: $code, authorId: $authorId, title: $title, body: $body, point: $point, solvedCriterion: $solvedCriterion, previousProblemId: $previousProblemId, updatedAt: $updatedAt, createdAt: $createdAt)';
   }
 
   @override
@@ -264,7 +300,9 @@ class _$_Problem with DiagnosticableTreeMixin implements _Problem {
       ..add(DiagnosticsProperty('body', body))
       ..add(DiagnosticsProperty('point', point))
       ..add(DiagnosticsProperty('solvedCriterion', solvedCriterion))
-      ..add(DiagnosticsProperty('previousProblemId', previousProblemId));
+      ..add(DiagnosticsProperty('previousProblemId', previousProblemId))
+      ..add(DiagnosticsProperty('updatedAt', updatedAt))
+      ..add(DiagnosticsProperty('createdAt', createdAt));
   }
 
   @override
@@ -289,7 +327,13 @@ class _$_Problem with DiagnosticableTreeMixin implements _Problem {
                     .equals(other.solvedCriterion, solvedCriterion)) &&
             (identical(other.previousProblemId, previousProblemId) ||
                 const DeepCollectionEquality()
-                    .equals(other.previousProblemId, previousProblemId)));
+                    .equals(other.previousProblemId, previousProblemId)) &&
+            (identical(other.updatedAt, updatedAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.updatedAt, updatedAt)) &&
+            (identical(other.createdAt, createdAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdAt, createdAt)));
   }
 
   @override
@@ -302,7 +346,9 @@ class _$_Problem with DiagnosticableTreeMixin implements _Problem {
       const DeepCollectionEquality().hash(body) ^
       const DeepCollectionEquality().hash(point) ^
       const DeepCollectionEquality().hash(solvedCriterion) ^
-      const DeepCollectionEquality().hash(previousProblemId);
+      const DeepCollectionEquality().hash(previousProblemId) ^
+      const DeepCollectionEquality().hash(updatedAt) ^
+      const DeepCollectionEquality().hash(createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -324,7 +370,9 @@ abstract class _Problem implements Problem {
       String body,
       int point,
       int solvedCriterion,
-      String? previousProblemId}) = _$_Problem;
+      String? previousProblemId,
+      required DateTime updatedAt,
+      required DateTime createdAt}) = _$_Problem;
 
   factory _Problem.fromJson(Map<String, dynamic> json) = _$_Problem.fromJson;
 
@@ -344,6 +392,10 @@ abstract class _Problem implements Problem {
   int get solvedCriterion => throw _privateConstructorUsedError;
   @override
   String? get previousProblemId => throw _privateConstructorUsedError;
+  @override
+  DateTime get updatedAt => throw _privateConstructorUsedError;
+  @override
+  DateTime get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ProblemCopyWith<_Problem> get copyWith =>

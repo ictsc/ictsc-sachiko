@@ -15,6 +15,8 @@ abstract class Problem with _$Problem {
     @Default(0) int point,
     @Default(0) int solvedCriterion,
     String? previousProblemId,
+    required DateTime updatedAt,
+    required DateTime createdAt,
   }) = _Problem;
 
   factory Problem.fromJson(Map<String, dynamic> json) =>
