@@ -9,15 +9,15 @@ import 'package:ictsc_sachiko/ui/common/header.dart';
 import 'package:ictsc_sachiko/view_model/problem_list_page_state_notifier.dart';
 
 final problemListProvider = StateNotifierProvider.autoDispose<
-    ProblemListPageStateNotifier,
-    ProblemListPageState>(
-      (ref) => ProblemListPageStateNotifier(const ProblemListPageState(), ref),
+    ProblemListPageStateNotifier, ProblemListPageState>(
+  (ref) => ProblemListPageStateNotifier(const ProblemListPageState(), ref),
 );
 
 class ProblemListPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final state = useProvider(problemListProvider);
+    final notifier = useProvider(problemListProvider.notifier);
 
     final dataRows = state.problems.map((problem) {
       return DataRow(
@@ -63,34 +63,46 @@ class ProblemListPage extends HookWidget {
         children: [
           const Gap(8),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Gap(24),
-              Text(
-                '問題の管理',
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .headline6,
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Gap(24),
+                  Text(
+                    '問題の管理',
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  const Gap(48),
+                  TextButton(
+                      onPressed: () {
+                        context.router.pushNamed('/manage/problems/edit/new');
+                      },
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.add_box,
+                            size:
+                                Theme.of(context).textTheme.subtitle1!.fontSize,
+                          ),
+                          const Gap(2),
+                          const Text('問題の作成'),
+                        ],
+                      ))
+                ],
               ),
-              const Gap(48),
-              TextButton(
-                  onPressed: () {
-                    context.router.pushNamed('/manage/problems/edit/new');
-                  },
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.add_box,
-                        size: Theme
-                            .of(context)
-                            .textTheme
-                            .subtitle1!
-                            .fontSize,
-                      ),
-                      const Gap(2),
-                      const Text('問題の作成'),
-                    ],
-                  ))
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: () {notifier.fetchProblems();},
+                    icon: Icon(
+                      Icons.refresh,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                  const Gap(24)
+                ],
+              )
             ],
           ),
           if (!state.isLoading)
@@ -136,15 +148,10 @@ class HeadingText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(text,
-        style: Theme
-            .of(context)
+        style: Theme.of(context)
             .textTheme
             .caption!
-            .copyWith(color: Theme
-            .of(context)
-            .textTheme
-            .bodyText2
-            ?.color));
+            .copyWith(color: Theme.of(context).textTheme.bodyText2?.color));
   }
 }
 
@@ -160,10 +167,7 @@ class DataText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: Theme
-          .of(context)
-          .textTheme
-          .caption,
+      style: Theme.of(context).textTheme.caption,
       overflow: textOverflow,
       maxLines: maxLines,
     );
