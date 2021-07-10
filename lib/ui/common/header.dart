@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:ictsc_sachiko/router/app_router.gr.dart';
 import 'package:ictsc_sachiko/view_model/common/authentication_state_notifier.dart';
 
 /// アプリ全体で使われるヘッダー
@@ -107,7 +108,7 @@ class Header extends HookWidget implements PreferredSizeWidget {
       // 戻るボタンを削除
       automaticallyImplyLeading: false,
       leading: GestureDetector(
-        onTap: () => context.router.pushNamed('/'),
+        onTap: () => context.router.pushAndPopUntil(const HomeRoute(), predicate: (route) => route.isFirst),
         child: SizedBox(
           height: 72,
           child: Padding(

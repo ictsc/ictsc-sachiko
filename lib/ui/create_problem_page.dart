@@ -24,6 +24,15 @@ class CreateProblemPage extends HookWidget {
     useProvider(createProblemProvider);
     final notifier = useProvider(createProblemProvider.notifier);
 
+    useEffect(() {
+      WidgetsBinding.instance?.addPostFrameCallback((_) {
+        final id = problemId;
+        if (id != null && id != 'new') {
+          notifier.fetchProblem(id);
+        }
+      });
+    }, []);
+
     final formKey = GlobalKey<FormState>();
 
     return Scaffold(
@@ -31,7 +40,11 @@ class CreateProblemPage extends HookWidget {
         floatingActionButton: Container(
           margin: const EdgeInsets.only(bottom: 16, right: 16),
           child: FloatingActionButton.extended(
-            onPressed: notifier.onSaveButton(context, formKey),
+            onPressed: notifier.onSaveButton(
+              context: context,
+              key: formKey,
+              id: problemId == 'new' ? null : problemId,
+            ),
             label: const Text('保存する'),
           ),
         ),

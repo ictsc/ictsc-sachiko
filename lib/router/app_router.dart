@@ -52,6 +52,7 @@ Widget fadeIn(BuildContext context, Animation<double> animation,
       page: ProblemListPage,
       transitionsBuilder: fadeIn,
     ),
+    RedirectRoute(path: '*', redirectTo: '/'),
   ],
 )
 class $AppRouter {}

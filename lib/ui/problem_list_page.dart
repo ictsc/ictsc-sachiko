@@ -4,12 +4,14 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/model/problem_list_page_state.dart';
+import 'package:ictsc_sachiko/router/app_router.gr.dart';
 import 'package:ictsc_sachiko/ui/common/header.dart';
 import 'package:ictsc_sachiko/view_model/problem_list_page_state_notifier.dart';
 
 final problemListProvider = StateNotifierProvider.autoDispose<
-    ProblemListPageStateNotifier, ProblemListPageState>(
-  (ref) => ProblemListPageStateNotifier(const ProblemListPageState(), ref),
+    ProblemListPageStateNotifier,
+    ProblemListPageState>(
+      (ref) => ProblemListPageStateNotifier(const ProblemListPageState(), ref),
 );
 
 class ProblemListPage extends HookWidget {
@@ -40,7 +42,9 @@ class ProblemListPage extends HookWidget {
           DataCell(DataText('${problem.createdAt}')),
           DataCell(IconButton(
             icon: const Icon(Icons.edit),
-            onPressed: () {},
+            onPressed: () {
+              context.router.push(CreateProblemRoute(problemId: problem.id));
+            },
           )),
           DataCell(IconButton(
             icon: const Icon(Icons.delete),
@@ -63,7 +67,10 @@ class ProblemListPage extends HookWidget {
               const Gap(24),
               Text(
                 '問題の管理',
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme
+                    .of(context)
+                    .textTheme
+                    .headline6,
               ),
               const Gap(48),
               TextButton(
@@ -74,7 +81,11 @@ class ProblemListPage extends HookWidget {
                     children: [
                       Icon(
                         Icons.add_box,
-                        size: Theme.of(context).textTheme.subtitle1!.fontSize,
+                        size: Theme
+                            .of(context)
+                            .textTheme
+                            .subtitle1!
+                            .fontSize,
                       ),
                       const Gap(2),
                       const Text('問題の作成'),
@@ -125,10 +136,15 @@ class HeadingText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(text,
-        style: Theme.of(context)
+        style: Theme
+            .of(context)
             .textTheme
             .caption!
-            .copyWith(color: Theme.of(context).textTheme.bodyText2?.color));
+            .copyWith(color: Theme
+            .of(context)
+            .textTheme
+            .bodyText2
+            ?.color));
   }
 }
 
@@ -144,7 +160,10 @@ class DataText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: Theme.of(context).textTheme.caption,
+      style: Theme
+          .of(context)
+          .textTheme
+          .caption,
       overflow: textOverflow,
       maxLines: maxLines,
     );

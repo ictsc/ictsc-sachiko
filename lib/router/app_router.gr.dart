@@ -93,7 +93,9 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(CreateProblemRoute.name,
             path: '/manage/problems/edit/:problemId', guards: [adminGuard]),
         _i1.RouteConfig(ProblemListRoute.name,
-            path: '/manage/problems', guards: [adminGuard])
+            path: '/manage/problems', guards: [adminGuard]),
+        _i1.RouteConfig('*#redirect',
+            path: '*', redirectTo: '/', fullMatch: true)
       ];
 }
 
