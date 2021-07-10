@@ -18,6 +18,7 @@ class ProblemListPage extends HookWidget {
   Widget build(BuildContext context) {
     final state = useProvider(problemListProvider);
     final notifier = useProvider(problemListProvider.notifier);
+    final _scrollController = useScrollController();
 
     final dataRows = state.problems.map((problem) {
       return DataRow(
@@ -106,25 +107,31 @@ class ProblemListPage extends HookWidget {
             ],
           ),
           if (!state.isLoading)
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: DataTable(
-                columns: [
-                  const DataColumn(label: HeadingText('コード')),
-                  const DataColumn(label: HeadingText('タイトル')),
-                  const DataColumn(label: HeadingText('ID')),
-                  const DataColumn(label: HeadingText('ポイント'), numeric: true),
-                  const DataColumn(
-                      label: HeadingText('解決基準ポイント'), numeric: true),
-                  const DataColumn(label: HeadingText('問題文')),
-                  const DataColumn(label: HeadingText('更新日')),
-                  const DataColumn(label: HeadingText('作成日')),
-                  const DataColumn(label: HeadingText('編集')),
-                  const DataColumn(label: HeadingText('削除')),
-                ],
-                rows: dataRows,
-                dataRowHeight: 40,
-                headingRowHeight: 40,
+            Scrollbar(
+              isAlwaysShown: true,
+              controller: _scrollController,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                controller: _scrollController,
+                physics: const ClampingScrollPhysics(),
+                child: DataTable(
+                  columns: [
+                    const DataColumn(label: HeadingText('コード')),
+                    const DataColumn(label: HeadingText('タイトル')),
+                    const DataColumn(label: HeadingText('ID')),
+                    const DataColumn(label: HeadingText('ポイント'), numeric: true),
+                    const DataColumn(
+                        label: HeadingText('解決基準ポイント'), numeric: true),
+                    const DataColumn(label: HeadingText('問題文')),
+                    const DataColumn(label: HeadingText('更新日')),
+                    const DataColumn(label: HeadingText('作成日')),
+                    const DataColumn(label: HeadingText('編集')),
+                    const DataColumn(label: HeadingText('削除')),
+                  ],
+                  rows: dataRows,
+                  dataRowHeight: 40,
+                  headingRowHeight: 40,
+                ),
               ),
             )
           else
