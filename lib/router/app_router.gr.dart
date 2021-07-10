@@ -64,8 +64,12 @@ class AppRouter extends _i1.RootStackRouter {
         barrierDismissible: false),
     CreateProblemRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
-        builder: (_) {
-          return _i10.CreateProblemPage();
+        builder: (data) {
+          final pathParams = data.pathParams;
+          final args = data.argsAs<CreateProblemRouteArgs>(
+              orElse: () => CreateProblemRouteArgs(
+                  problemId: pathParams.optString('problemId')));
+          return _i10.CreateProblemPage(problemId: args.problemId);
         },
         transitionsBuilder: _i6.fadeIn,
         opaque: true,
@@ -87,7 +91,7 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(SignUpRoute.name, path: '/signup'),
         _i1.RouteConfig(MyRoute.name, path: '/mypage', guards: [authGuard]),
         _i1.RouteConfig(CreateProblemRoute.name,
-            path: '/manage/problems/new', guards: [adminGuard]),
+            path: '/manage/problems/edit/:problemId', guards: [adminGuard]),
         _i1.RouteConfig(ProblemListRoute.name,
             path: '/manage/problems', guards: [adminGuard])
       ];
@@ -117,10 +121,20 @@ class MyRoute extends _i1.PageRouteInfo {
   static const String name = 'MyRoute';
 }
 
-class CreateProblemRoute extends _i1.PageRouteInfo {
-  const CreateProblemRoute() : super(name, path: '/manage/problems/new');
+class CreateProblemRoute extends _i1.PageRouteInfo<CreateProblemRouteArgs> {
+  CreateProblemRoute({String? problemId})
+      : super(name,
+            path: '/manage/problems/edit/:problemId',
+            args: CreateProblemRouteArgs(problemId: problemId),
+            rawPathParams: {'problemId': problemId});
 
   static const String name = 'CreateProblemRoute';
+}
+
+class CreateProblemRouteArgs {
+  const CreateProblemRouteArgs({this.problemId});
+
+  final String? problemId;
 }
 
 class ProblemListRoute extends _i1.PageRouteInfo {

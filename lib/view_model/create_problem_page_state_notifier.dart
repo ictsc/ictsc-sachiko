@@ -17,7 +17,6 @@ class CreateProblemPageStateNotifier
 
   final ProviderReference ref;
 
-  final formKey = GlobalKey<FormState>();
   final titleController = TextEditingController();
   final bodyController = TextEditingController();
   final pointController = TextEditingController();
@@ -31,7 +30,7 @@ class CreateProblemPageStateNotifier
   }
 
   /// 保存処理の関数を返す
-  void Function()? onSaveButton(BuildContext context) {
+  void Function()? onSaveButton(BuildContext context, GlobalKey<FormState> key) {
     if (state.isLoading) {
       return null;
     }
@@ -39,7 +38,7 @@ class CreateProblemPageStateNotifier
     return () {
       state = state.copyWith(isLoading: true);
 
-      formKey.currentState?.save();
+      key.currentState?.save();
 
       // 問題のインスタンスを作成
       final createProblemRequest = CreateProblemRequest(

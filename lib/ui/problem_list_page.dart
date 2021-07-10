@@ -36,6 +36,16 @@ class ProblemListPage extends HookWidget {
                 textOverflow: TextOverflow.ellipsis,
                 maxLines: 1,
               ))),
+          DataCell(DataText('${problem.updatedAt}')),
+          DataCell(DataText('${problem.createdAt}')),
+          DataCell(IconButton(
+            icon: const Icon(Icons.edit),
+            onPressed: () {},
+          )),
+          DataCell(IconButton(
+            icon: const Icon(Icons.delete),
+            onPressed: () {},
+          )),
         ],
       );
     }).toList();
@@ -58,7 +68,7 @@ class ProblemListPage extends HookWidget {
               const Gap(48),
               TextButton(
                   onPressed: () {
-                    context.router.pushNamed('/manage/problems/new');
+                    context.router.pushNamed('/manage/problems/edit/new');
                   },
                   child: Row(
                     children: [
@@ -84,6 +94,10 @@ class ProblemListPage extends HookWidget {
                   const DataColumn(
                       label: HeadingText('解決基準ポイント'), numeric: true),
                   const DataColumn(label: HeadingText('問題文')),
+                  const DataColumn(label: HeadingText('更新日')),
+                  const DataColumn(label: HeadingText('作成日')),
+                  const DataColumn(label: HeadingText('編集')),
+                  const DataColumn(label: HeadingText('削除')),
                 ],
                 rows: dataRows,
                 dataRowHeight: 40,
@@ -102,6 +116,7 @@ class ProblemListPage extends HookWidget {
   }
 }
 
+/// データテーブルのヘッダーテキスト
 class HeadingText extends StatelessWidget {
   final String text;
 
@@ -117,6 +132,7 @@ class HeadingText extends StatelessWidget {
   }
 }
 
+/// データテーブルのデータテキスト
 class DataText extends StatelessWidget {
   final String text;
   final TextOverflow? textOverflow;

@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -9,21 +10,28 @@ import 'package:markdown/markdown.dart' as md;
 
 final createProblemProvider = StateNotifierProvider.autoDispose<
     CreateProblemPageStateNotifier, ProblemCreatePageState>(
-  (refs) => CreateProblemPageStateNotifier(const ProblemCreatePageState(), refs),
+  (refs) =>
+      CreateProblemPageStateNotifier(const ProblemCreatePageState(), refs),
 );
 
 class CreateProblemPage extends HookWidget {
+  const CreateProblemPage({@PathParam('problemId') this.problemId});
+
+  final String? problemId;
+
   @override
   Widget build(BuildContext context) {
     useProvider(createProblemProvider);
     final notifier = useProvider(createProblemProvider.notifier);
+
+    final formKey = GlobalKey<FormState>();
 
     return Scaffold(
         appBar: EditorHeader(appBar: AppBar()),
         floatingActionButton: Container(
           margin: const EdgeInsets.only(bottom: 16, right: 16),
           child: FloatingActionButton.extended(
-            onPressed: notifier.onSaveButton(context),
+            onPressed: notifier.onSaveButton(context, formKey),
             label: const Text('保存する'),
           ),
         ),
@@ -32,7 +40,7 @@ class CreateProblemPage extends HookWidget {
             child: SizedBox(
               width: 1024,
               child: Form(
-                key: notifier.formKey,
+                key: formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

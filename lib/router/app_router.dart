@@ -41,7 +41,7 @@ Widget fadeIn(BuildContext context, Animation<double> animation,
       transitionsBuilder: fadeIn,
     ),
     CustomRoute(
-      path: '/manage/problems/new',
+      path: '/manage/problems/edit/:problemId',
       guards: [AdminGuard],
       page: CreateProblemPage,
       transitionsBuilder: fadeIn,

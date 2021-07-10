@@ -15,7 +15,7 @@ class EditorHeader extends HookWidget implements PreferredSizeWidget {
         icon: const Icon(Icons.arrow_back_ios),
         onPressed: () {
           // TODO 問題一覧に飛ばす予定
-          context.router.pop();
+          context.router.pushNamed('/manage/problems');
         },
       ),
     );

@@ -9,6 +9,8 @@ import 'package:ictsc_sachiko/model/client/result.dart';
 import 'package:ictsc_sachiko/model/problem/create_problem_request.dart';
 import 'package:ictsc_sachiko/model/problem/create_problem_response.dart';
 import 'package:ictsc_sachiko/model/problem/find_all_problem_response.dart';
+import 'package:ictsc_sachiko/model/problem/find_problem_request.dart';
+import 'package:ictsc_sachiko/model/problem/find_problem_response.dart';
 
 class Client {
   final Dio dio;
@@ -95,6 +97,18 @@ class Client {
           )
           .then((result) => Result.success(
               FindAllProblemResponse.fromJson({...result.data})));
+    } on DioError catch (error) {
+      return Result.failure(Error.getApiError(error));
+    }
+  }
+
+  Future<Result<FindProblemResponse>> findByIdProblem(
+      FindProblemRequest findProblemRequest) async {
+    try {
+      return await dio
+          .post('/api/problems', data: findProblemRequest.toJson())
+          .then((result) =>
+              Result.success(FindProblemResponse.fromJson({...result.data})));
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }
