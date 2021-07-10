@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'problem.dart';
+part of 'update_problem_request.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,112 +12,96 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Problem _$ProblemFromJson(Map<String, dynamic> json) {
-  return _Problem.fromJson(json);
+UpdateProblemRequest _$UpdateProblemRequestFromJson(Map<String, dynamic> json) {
+  return _UpdateProblemRequest.fromJson(json);
 }
 
 /// @nodoc
-class _$ProblemTearOff {
-  const _$ProblemTearOff();
+class _$UpdateProblemRequestTearOff {
+  const _$UpdateProblemRequestTearOff();
 
-  _Problem call(
-      {String id = '',
-      required String code,
+  _UpdateProblemRequest call(
+      {required String id,
       required String authorId,
       String title = '',
       String body = '',
       int point = 0,
       int solvedCriterion = 0,
-      String? previousProblemId,
-      required DateTime updatedAt,
-      required DateTime createdAt}) {
-    return _Problem(
+      String? previousProblemId}) {
+    return _UpdateProblemRequest(
       id: id,
-      code: code,
       authorId: authorId,
       title: title,
       body: body,
       point: point,
       solvedCriterion: solvedCriterion,
       previousProblemId: previousProblemId,
-      updatedAt: updatedAt,
-      createdAt: createdAt,
     );
   }
 
-  Problem fromJson(Map<String, Object> json) {
-    return Problem.fromJson(json);
+  UpdateProblemRequest fromJson(Map<String, Object> json) {
+    return UpdateProblemRequest.fromJson(json);
   }
 }
 
 /// @nodoc
-const $Problem = _$ProblemTearOff();
+const $UpdateProblemRequest = _$UpdateProblemRequestTearOff();
 
 /// @nodoc
-mixin _$Problem {
+mixin _$UpdateProblemRequest {
   String get id => throw _privateConstructorUsedError;
-  String get code => throw _privateConstructorUsedError;
   String get authorId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get body => throw _privateConstructorUsedError;
   int get point => throw _privateConstructorUsedError;
   int get solvedCriterion => throw _privateConstructorUsedError;
   String? get previousProblemId => throw _privateConstructorUsedError;
-  DateTime get updatedAt => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ProblemCopyWith<Problem> get copyWith => throw _privateConstructorUsedError;
+  $UpdateProblemRequestCopyWith<UpdateProblemRequest> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProblemCopyWith<$Res> {
-  factory $ProblemCopyWith(Problem value, $Res Function(Problem) then) =
-      _$ProblemCopyWithImpl<$Res>;
+abstract class $UpdateProblemRequestCopyWith<$Res> {
+  factory $UpdateProblemRequestCopyWith(UpdateProblemRequest value,
+          $Res Function(UpdateProblemRequest) then) =
+      _$UpdateProblemRequestCopyWithImpl<$Res>;
   $Res call(
       {String id,
-      String code,
       String authorId,
       String title,
       String body,
       int point,
       int solvedCriterion,
-      String? previousProblemId,
-      DateTime updatedAt,
-      DateTime createdAt});
+      String? previousProblemId});
 }
 
 /// @nodoc
-class _$ProblemCopyWithImpl<$Res> implements $ProblemCopyWith<$Res> {
-  _$ProblemCopyWithImpl(this._value, this._then);
+class _$UpdateProblemRequestCopyWithImpl<$Res>
+    implements $UpdateProblemRequestCopyWith<$Res> {
+  _$UpdateProblemRequestCopyWithImpl(this._value, this._then);
 
-  final Problem _value;
+  final UpdateProblemRequest _value;
   // ignore: unused_field
-  final $Res Function(Problem) _then;
+  final $Res Function(UpdateProblemRequest) _then;
 
   @override
   $Res call({
     Object? id = freezed,
-    Object? code = freezed,
     Object? authorId = freezed,
     Object? title = freezed,
     Object? body = freezed,
     Object? point = freezed,
     Object? solvedCriterion = freezed,
     Object? previousProblemId = freezed,
-    Object? updatedAt = freezed,
-    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      code: code == freezed
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String,
       authorId: authorId == freezed
           ? _value.authorId
           : authorId // ignore: cast_nullable_to_non_nullable
@@ -142,66 +126,52 @@ class _$ProblemCopyWithImpl<$Res> implements $ProblemCopyWith<$Res> {
           ? _value.previousProblemId
           : previousProblemId // ignore: cast_nullable_to_non_nullable
               as String?,
-      updatedAt: updatedAt == freezed
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      createdAt: createdAt == freezed
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$ProblemCopyWith<$Res> implements $ProblemCopyWith<$Res> {
-  factory _$ProblemCopyWith(_Problem value, $Res Function(_Problem) then) =
-      __$ProblemCopyWithImpl<$Res>;
+abstract class _$UpdateProblemRequestCopyWith<$Res>
+    implements $UpdateProblemRequestCopyWith<$Res> {
+  factory _$UpdateProblemRequestCopyWith(_UpdateProblemRequest value,
+          $Res Function(_UpdateProblemRequest) then) =
+      __$UpdateProblemRequestCopyWithImpl<$Res>;
   @override
   $Res call(
       {String id,
-      String code,
       String authorId,
       String title,
       String body,
       int point,
       int solvedCriterion,
-      String? previousProblemId,
-      DateTime updatedAt,
-      DateTime createdAt});
+      String? previousProblemId});
 }
 
 /// @nodoc
-class __$ProblemCopyWithImpl<$Res> extends _$ProblemCopyWithImpl<$Res>
-    implements _$ProblemCopyWith<$Res> {
-  __$ProblemCopyWithImpl(_Problem _value, $Res Function(_Problem) _then)
-      : super(_value, (v) => _then(v as _Problem));
+class __$UpdateProblemRequestCopyWithImpl<$Res>
+    extends _$UpdateProblemRequestCopyWithImpl<$Res>
+    implements _$UpdateProblemRequestCopyWith<$Res> {
+  __$UpdateProblemRequestCopyWithImpl(
+      _UpdateProblemRequest _value, $Res Function(_UpdateProblemRequest) _then)
+      : super(_value, (v) => _then(v as _UpdateProblemRequest));
 
   @override
-  _Problem get _value => super._value as _Problem;
+  _UpdateProblemRequest get _value => super._value as _UpdateProblemRequest;
 
   @override
   $Res call({
     Object? id = freezed,
-    Object? code = freezed,
     Object? authorId = freezed,
     Object? title = freezed,
     Object? body = freezed,
     Object? point = freezed,
     Object? solvedCriterion = freezed,
     Object? previousProblemId = freezed,
-    Object? updatedAt = freezed,
-    Object? createdAt = freezed,
   }) {
-    return _then(_Problem(
+    return _then(_UpdateProblemRequest(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      code: code == freezed
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
               as String,
       authorId: authorId == freezed
           ? _value.authorId
@@ -227,41 +197,29 @@ class __$ProblemCopyWithImpl<$Res> extends _$ProblemCopyWithImpl<$Res>
           ? _value.previousProblemId
           : previousProblemId // ignore: cast_nullable_to_non_nullable
               as String?,
-      updatedAt: updatedAt == freezed
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      createdAt: createdAt == freezed
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_Problem with DiagnosticableTreeMixin implements _Problem {
-  const _$_Problem(
-      {this.id = '',
-      required this.code,
+class _$_UpdateProblemRequest
+    with DiagnosticableTreeMixin
+    implements _UpdateProblemRequest {
+  const _$_UpdateProblemRequest(
+      {required this.id,
       required this.authorId,
       this.title = '',
       this.body = '',
       this.point = 0,
       this.solvedCriterion = 0,
-      this.previousProblemId,
-      required this.updatedAt,
-      required this.createdAt});
+      this.previousProblemId});
 
-  factory _$_Problem.fromJson(Map<String, dynamic> json) =>
-      _$_$_ProblemFromJson(json);
+  factory _$_UpdateProblemRequest.fromJson(Map<String, dynamic> json) =>
+      _$_$_UpdateProblemRequestFromJson(json);
 
-  @JsonKey(defaultValue: '')
   @override
   final String id;
-  @override
-  final String code;
   @override
   final String authorId;
   @JsonKey(defaultValue: '')
@@ -278,41 +236,32 @@ class _$_Problem with DiagnosticableTreeMixin implements _Problem {
   final int solvedCriterion;
   @override
   final String? previousProblemId;
-  @override
-  final DateTime updatedAt;
-  @override
-  final DateTime createdAt;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Problem(id: $id, code: $code, authorId: $authorId, title: $title, body: $body, point: $point, solvedCriterion: $solvedCriterion, previousProblemId: $previousProblemId, updatedAt: $updatedAt, createdAt: $createdAt)';
+    return 'UpdateProblemRequest(id: $id, authorId: $authorId, title: $title, body: $body, point: $point, solvedCriterion: $solvedCriterion, previousProblemId: $previousProblemId)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'Problem'))
+      ..add(DiagnosticsProperty('type', 'UpdateProblemRequest'))
       ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('code', code))
       ..add(DiagnosticsProperty('authorId', authorId))
       ..add(DiagnosticsProperty('title', title))
       ..add(DiagnosticsProperty('body', body))
       ..add(DiagnosticsProperty('point', point))
       ..add(DiagnosticsProperty('solvedCriterion', solvedCriterion))
-      ..add(DiagnosticsProperty('previousProblemId', previousProblemId))
-      ..add(DiagnosticsProperty('updatedAt', updatedAt))
-      ..add(DiagnosticsProperty('createdAt', createdAt));
+      ..add(DiagnosticsProperty('previousProblemId', previousProblemId));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Problem &&
+        (other is _UpdateProblemRequest &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
             (identical(other.authorId, authorId) ||
                 const DeepCollectionEquality()
                     .equals(other.authorId, authorId)) &&
@@ -327,59 +276,47 @@ class _$_Problem with DiagnosticableTreeMixin implements _Problem {
                     .equals(other.solvedCriterion, solvedCriterion)) &&
             (identical(other.previousProblemId, previousProblemId) ||
                 const DeepCollectionEquality()
-                    .equals(other.previousProblemId, previousProblemId)) &&
-            (identical(other.updatedAt, updatedAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.updatedAt, updatedAt)) &&
-            (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.createdAt, createdAt)));
+                    .equals(other.previousProblemId, previousProblemId)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(authorId) ^
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(body) ^
       const DeepCollectionEquality().hash(point) ^
       const DeepCollectionEquality().hash(solvedCriterion) ^
-      const DeepCollectionEquality().hash(previousProblemId) ^
-      const DeepCollectionEquality().hash(updatedAt) ^
-      const DeepCollectionEquality().hash(createdAt);
+      const DeepCollectionEquality().hash(previousProblemId);
 
   @JsonKey(ignore: true)
   @override
-  _$ProblemCopyWith<_Problem> get copyWith =>
-      __$ProblemCopyWithImpl<_Problem>(this, _$identity);
+  _$UpdateProblemRequestCopyWith<_UpdateProblemRequest> get copyWith =>
+      __$UpdateProblemRequestCopyWithImpl<_UpdateProblemRequest>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_ProblemToJson(this);
+    return _$_$_UpdateProblemRequestToJson(this);
   }
 }
 
-abstract class _Problem implements Problem {
-  const factory _Problem(
-      {String id,
-      required String code,
+abstract class _UpdateProblemRequest implements UpdateProblemRequest {
+  const factory _UpdateProblemRequest(
+      {required String id,
       required String authorId,
       String title,
       String body,
       int point,
       int solvedCriterion,
-      String? previousProblemId,
-      required DateTime updatedAt,
-      required DateTime createdAt}) = _$_Problem;
+      String? previousProblemId}) = _$_UpdateProblemRequest;
 
-  factory _Problem.fromJson(Map<String, dynamic> json) = _$_Problem.fromJson;
+  factory _UpdateProblemRequest.fromJson(Map<String, dynamic> json) =
+      _$_UpdateProblemRequest.fromJson;
 
   @override
   String get id => throw _privateConstructorUsedError;
-  @override
-  String get code => throw _privateConstructorUsedError;
   @override
   String get authorId => throw _privateConstructorUsedError;
   @override
@@ -393,11 +330,7 @@ abstract class _Problem implements Problem {
   @override
   String? get previousProblemId => throw _privateConstructorUsedError;
   @override
-  DateTime get updatedAt => throw _privateConstructorUsedError;
-  @override
-  DateTime get createdAt => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
-  _$ProblemCopyWith<_Problem> get copyWith =>
+  _$UpdateProblemRequestCopyWith<_UpdateProblemRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }

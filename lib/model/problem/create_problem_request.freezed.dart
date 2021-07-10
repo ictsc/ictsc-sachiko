@@ -20,9 +20,24 @@ CreateProblemRequest _$CreateProblemRequestFromJson(Map<String, dynamic> json) {
 class _$CreateProblemRequestTearOff {
   const _$CreateProblemRequestTearOff();
 
-  _CreateProblemRequest call({required Problem problem}) {
+  _CreateProblemRequest call(
+      {String id = '',
+      required String code,
+      required String authorId,
+      String title = '',
+      String body = '',
+      int point = 0,
+      int solvedCriterion = 0,
+      String? previousProblemId}) {
     return _CreateProblemRequest(
-      problem: problem,
+      id: id,
+      code: code,
+      authorId: authorId,
+      title: title,
+      body: body,
+      point: point,
+      solvedCriterion: solvedCriterion,
+      previousProblemId: previousProblemId,
     );
   }
 
@@ -36,7 +51,14 @@ const $CreateProblemRequest = _$CreateProblemRequestTearOff();
 
 /// @nodoc
 mixin _$CreateProblemRequest {
-  Problem get problem => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  String get code => throw _privateConstructorUsedError;
+  String get authorId => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  String get body => throw _privateConstructorUsedError;
+  int get point => throw _privateConstructorUsedError;
+  int get solvedCriterion => throw _privateConstructorUsedError;
+  String? get previousProblemId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,9 +71,15 @@ abstract class $CreateProblemRequestCopyWith<$Res> {
   factory $CreateProblemRequestCopyWith(CreateProblemRequest value,
           $Res Function(CreateProblemRequest) then) =
       _$CreateProblemRequestCopyWithImpl<$Res>;
-  $Res call({Problem problem});
-
-  $ProblemCopyWith<$Res> get problem;
+  $Res call(
+      {String id,
+      String code,
+      String authorId,
+      String title,
+      String body,
+      int point,
+      int solvedCriterion,
+      String? previousProblemId});
 }
 
 /// @nodoc
@@ -65,21 +93,49 @@ class _$CreateProblemRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? problem = freezed,
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? authorId = freezed,
+    Object? title = freezed,
+    Object? body = freezed,
+    Object? point = freezed,
+    Object? solvedCriterion = freezed,
+    Object? previousProblemId = freezed,
   }) {
     return _then(_value.copyWith(
-      problem: problem == freezed
-          ? _value.problem
-          : problem // ignore: cast_nullable_to_non_nullable
-              as Problem,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorId: authorId == freezed
+          ? _value.authorId
+          : authorId // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      body: body == freezed
+          ? _value.body
+          : body // ignore: cast_nullable_to_non_nullable
+              as String,
+      point: point == freezed
+          ? _value.point
+          : point // ignore: cast_nullable_to_non_nullable
+              as int,
+      solvedCriterion: solvedCriterion == freezed
+          ? _value.solvedCriterion
+          : solvedCriterion // ignore: cast_nullable_to_non_nullable
+              as int,
+      previousProblemId: previousProblemId == freezed
+          ? _value.previousProblemId
+          : previousProblemId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
-  }
-
-  @override
-  $ProblemCopyWith<$Res> get problem {
-    return $ProblemCopyWith<$Res>(_value.problem, (value) {
-      return _then(_value.copyWith(problem: value));
-    });
   }
 }
 
@@ -90,10 +146,15 @@ abstract class _$CreateProblemRequestCopyWith<$Res>
           $Res Function(_CreateProblemRequest) then) =
       __$CreateProblemRequestCopyWithImpl<$Res>;
   @override
-  $Res call({Problem problem});
-
-  @override
-  $ProblemCopyWith<$Res> get problem;
+  $Res call(
+      {String id,
+      String code,
+      String authorId,
+      String title,
+      String body,
+      int point,
+      int solvedCriterion,
+      String? previousProblemId});
 }
 
 /// @nodoc
@@ -109,13 +170,48 @@ class __$CreateProblemRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? problem = freezed,
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? authorId = freezed,
+    Object? title = freezed,
+    Object? body = freezed,
+    Object? point = freezed,
+    Object? solvedCriterion = freezed,
+    Object? previousProblemId = freezed,
   }) {
     return _then(_CreateProblemRequest(
-      problem: problem == freezed
-          ? _value.problem
-          : problem // ignore: cast_nullable_to_non_nullable
-              as Problem,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorId: authorId == freezed
+          ? _value.authorId
+          : authorId // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      body: body == freezed
+          ? _value.body
+          : body // ignore: cast_nullable_to_non_nullable
+              as String,
+      point: point == freezed
+          ? _value.point
+          : point // ignore: cast_nullable_to_non_nullable
+              as int,
+      solvedCriterion: solvedCriterion == freezed
+          ? _value.solvedCriterion
+          : solvedCriterion // ignore: cast_nullable_to_non_nullable
+              as int,
+      previousProblemId: previousProblemId == freezed
+          ? _value.previousProblemId
+          : previousProblemId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -125,17 +221,44 @@ class __$CreateProblemRequestCopyWithImpl<$Res>
 class _$_CreateProblemRequest
     with DiagnosticableTreeMixin
     implements _CreateProblemRequest {
-  const _$_CreateProblemRequest({required this.problem});
+  const _$_CreateProblemRequest(
+      {this.id = '',
+      required this.code,
+      required this.authorId,
+      this.title = '',
+      this.body = '',
+      this.point = 0,
+      this.solvedCriterion = 0,
+      this.previousProblemId});
 
   factory _$_CreateProblemRequest.fromJson(Map<String, dynamic> json) =>
       _$_$_CreateProblemRequestFromJson(json);
 
+  @JsonKey(defaultValue: '')
   @override
-  final Problem problem;
+  final String id;
+  @override
+  final String code;
+  @override
+  final String authorId;
+  @JsonKey(defaultValue: '')
+  @override
+  final String title;
+  @JsonKey(defaultValue: '')
+  @override
+  final String body;
+  @JsonKey(defaultValue: 0)
+  @override
+  final int point;
+  @JsonKey(defaultValue: 0)
+  @override
+  final int solvedCriterion;
+  @override
+  final String? previousProblemId;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CreateProblemRequest(problem: $problem)';
+    return 'CreateProblemRequest(id: $id, code: $code, authorId: $authorId, title: $title, body: $body, point: $point, solvedCriterion: $solvedCriterion, previousProblemId: $previousProblemId)';
   }
 
   @override
@@ -143,20 +266,52 @@ class _$_CreateProblemRequest
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'CreateProblemRequest'))
-      ..add(DiagnosticsProperty('problem', problem));
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('code', code))
+      ..add(DiagnosticsProperty('authorId', authorId))
+      ..add(DiagnosticsProperty('title', title))
+      ..add(DiagnosticsProperty('body', body))
+      ..add(DiagnosticsProperty('point', point))
+      ..add(DiagnosticsProperty('solvedCriterion', solvedCriterion))
+      ..add(DiagnosticsProperty('previousProblemId', previousProblemId));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _CreateProblemRequest &&
-            (identical(other.problem, problem) ||
-                const DeepCollectionEquality().equals(other.problem, problem)));
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.code, code) ||
+                const DeepCollectionEquality().equals(other.code, code)) &&
+            (identical(other.authorId, authorId) ||
+                const DeepCollectionEquality()
+                    .equals(other.authorId, authorId)) &&
+            (identical(other.title, title) ||
+                const DeepCollectionEquality().equals(other.title, title)) &&
+            (identical(other.body, body) ||
+                const DeepCollectionEquality().equals(other.body, body)) &&
+            (identical(other.point, point) ||
+                const DeepCollectionEquality().equals(other.point, point)) &&
+            (identical(other.solvedCriterion, solvedCriterion) ||
+                const DeepCollectionEquality()
+                    .equals(other.solvedCriterion, solvedCriterion)) &&
+            (identical(other.previousProblemId, previousProblemId) ||
+                const DeepCollectionEquality()
+                    .equals(other.previousProblemId, previousProblemId)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(problem);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(code) ^
+      const DeepCollectionEquality().hash(authorId) ^
+      const DeepCollectionEquality().hash(title) ^
+      const DeepCollectionEquality().hash(body) ^
+      const DeepCollectionEquality().hash(point) ^
+      const DeepCollectionEquality().hash(solvedCriterion) ^
+      const DeepCollectionEquality().hash(previousProblemId);
 
   @JsonKey(ignore: true)
   @override
@@ -171,14 +326,35 @@ class _$_CreateProblemRequest
 }
 
 abstract class _CreateProblemRequest implements CreateProblemRequest {
-  const factory _CreateProblemRequest({required Problem problem}) =
-      _$_CreateProblemRequest;
+  const factory _CreateProblemRequest(
+      {String id,
+      required String code,
+      required String authorId,
+      String title,
+      String body,
+      int point,
+      int solvedCriterion,
+      String? previousProblemId}) = _$_CreateProblemRequest;
 
   factory _CreateProblemRequest.fromJson(Map<String, dynamic> json) =
       _$_CreateProblemRequest.fromJson;
 
   @override
-  Problem get problem => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  @override
+  String get code => throw _privateConstructorUsedError;
+  @override
+  String get authorId => throw _privateConstructorUsedError;
+  @override
+  String get title => throw _privateConstructorUsedError;
+  @override
+  String get body => throw _privateConstructorUsedError;
+  @override
+  int get point => throw _privateConstructorUsedError;
+  @override
+  int get solvedCriterion => throw _privateConstructorUsedError;
+  @override
+  String? get previousProblemId => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$CreateProblemRequestCopyWith<_CreateProblemRequest> get copyWith =>

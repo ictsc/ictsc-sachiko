@@ -24,11 +24,13 @@ class _$ProblemCreatePageStateTearOff {
   _ProblemCreatePageState call(
       {bool isLoading = false,
       bool isPreview = false,
+      Problem? problem,
       User? author,
       Problem? previousProblem}) {
     return _ProblemCreatePageState(
       isLoading: isLoading,
       isPreview: isPreview,
+      problem: problem,
       author: author,
       previousProblem: previousProblem,
     );
@@ -46,6 +48,7 @@ const $ProblemCreatePageState = _$ProblemCreatePageStateTearOff();
 mixin _$ProblemCreatePageState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isPreview => throw _privateConstructorUsedError;
+  Problem? get problem => throw _privateConstructorUsedError;
   User? get author => throw _privateConstructorUsedError;
   Problem? get previousProblem => throw _privateConstructorUsedError;
 
@@ -61,8 +64,13 @@ abstract class $ProblemCreatePageStateCopyWith<$Res> {
           $Res Function(ProblemCreatePageState) then) =
       _$ProblemCreatePageStateCopyWithImpl<$Res>;
   $Res call(
-      {bool isLoading, bool isPreview, User? author, Problem? previousProblem});
+      {bool isLoading,
+      bool isPreview,
+      Problem? problem,
+      User? author,
+      Problem? previousProblem});
 
+  $ProblemCopyWith<$Res>? get problem;
   $UserCopyWith<$Res>? get author;
   $ProblemCopyWith<$Res>? get previousProblem;
 }
@@ -80,6 +88,7 @@ class _$ProblemCreatePageStateCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = freezed,
     Object? isPreview = freezed,
+    Object? problem = freezed,
     Object? author = freezed,
     Object? previousProblem = freezed,
   }) {
@@ -92,6 +101,10 @@ class _$ProblemCreatePageStateCopyWithImpl<$Res>
           ? _value.isPreview
           : isPreview // ignore: cast_nullable_to_non_nullable
               as bool,
+      problem: problem == freezed
+          ? _value.problem
+          : problem // ignore: cast_nullable_to_non_nullable
+              as Problem?,
       author: author == freezed
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
@@ -101,6 +114,17 @@ class _$ProblemCreatePageStateCopyWithImpl<$Res>
           : previousProblem // ignore: cast_nullable_to_non_nullable
               as Problem?,
     ));
+  }
+
+  @override
+  $ProblemCopyWith<$Res>? get problem {
+    if (_value.problem == null) {
+      return null;
+    }
+
+    return $ProblemCopyWith<$Res>(_value.problem!, (value) {
+      return _then(_value.copyWith(problem: value));
+    });
   }
 
   @override
@@ -134,8 +158,14 @@ abstract class _$ProblemCreatePageStateCopyWith<$Res>
       __$ProblemCreatePageStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {bool isLoading, bool isPreview, User? author, Problem? previousProblem});
+      {bool isLoading,
+      bool isPreview,
+      Problem? problem,
+      User? author,
+      Problem? previousProblem});
 
+  @override
+  $ProblemCopyWith<$Res>? get problem;
   @override
   $UserCopyWith<$Res>? get author;
   @override
@@ -157,6 +187,7 @@ class __$ProblemCreatePageStateCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = freezed,
     Object? isPreview = freezed,
+    Object? problem = freezed,
     Object? author = freezed,
     Object? previousProblem = freezed,
   }) {
@@ -169,6 +200,10 @@ class __$ProblemCreatePageStateCopyWithImpl<$Res>
           ? _value.isPreview
           : isPreview // ignore: cast_nullable_to_non_nullable
               as bool,
+      problem: problem == freezed
+          ? _value.problem
+          : problem // ignore: cast_nullable_to_non_nullable
+              as Problem?,
       author: author == freezed
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
@@ -189,6 +224,7 @@ class _$_ProblemCreatePageState
   const _$_ProblemCreatePageState(
       {this.isLoading = false,
       this.isPreview = false,
+      this.problem,
       this.author,
       this.previousProblem});
 
@@ -202,13 +238,15 @@ class _$_ProblemCreatePageState
   @override
   final bool isPreview;
   @override
+  final Problem? problem;
+  @override
   final User? author;
   @override
   final Problem? previousProblem;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ProblemCreatePageState(isLoading: $isLoading, isPreview: $isPreview, author: $author, previousProblem: $previousProblem)';
+    return 'ProblemCreatePageState(isLoading: $isLoading, isPreview: $isPreview, problem: $problem, author: $author, previousProblem: $previousProblem)';
   }
 
   @override
@@ -218,6 +256,7 @@ class _$_ProblemCreatePageState
       ..add(DiagnosticsProperty('type', 'ProblemCreatePageState'))
       ..add(DiagnosticsProperty('isLoading', isLoading))
       ..add(DiagnosticsProperty('isPreview', isPreview))
+      ..add(DiagnosticsProperty('problem', problem))
       ..add(DiagnosticsProperty('author', author))
       ..add(DiagnosticsProperty('previousProblem', previousProblem));
   }
@@ -232,6 +271,9 @@ class _$_ProblemCreatePageState
             (identical(other.isPreview, isPreview) ||
                 const DeepCollectionEquality()
                     .equals(other.isPreview, isPreview)) &&
+            (identical(other.problem, problem) ||
+                const DeepCollectionEquality()
+                    .equals(other.problem, problem)) &&
             (identical(other.author, author) ||
                 const DeepCollectionEquality().equals(other.author, author)) &&
             (identical(other.previousProblem, previousProblem) ||
@@ -244,6 +286,7 @@ class _$_ProblemCreatePageState
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(isLoading) ^
       const DeepCollectionEquality().hash(isPreview) ^
+      const DeepCollectionEquality().hash(problem) ^
       const DeepCollectionEquality().hash(author) ^
       const DeepCollectionEquality().hash(previousProblem);
 
@@ -263,6 +306,7 @@ abstract class _ProblemCreatePageState implements ProblemCreatePageState {
   const factory _ProblemCreatePageState(
       {bool isLoading,
       bool isPreview,
+      Problem? problem,
       User? author,
       Problem? previousProblem}) = _$_ProblemCreatePageState;
 
@@ -273,6 +317,8 @@ abstract class _ProblemCreatePageState implements ProblemCreatePageState {
   bool get isLoading => throw _privateConstructorUsedError;
   @override
   bool get isPreview => throw _privateConstructorUsedError;
+  @override
+  Problem? get problem => throw _privateConstructorUsedError;
   @override
   User? get author => throw _privateConstructorUsedError;
   @override

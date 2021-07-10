@@ -11,6 +11,7 @@ class ProblemCreatePageState with _$ProblemCreatePageState {
   const factory ProblemCreatePageState({
     @Default(false) bool isLoading,
     @Default(false) bool isPreview,
+    Problem? problem,
     User? author,
     Problem? previousProblem,
   }) = _ProblemCreatePageState;

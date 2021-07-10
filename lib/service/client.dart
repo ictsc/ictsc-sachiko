@@ -8,6 +8,11 @@ import 'package:ictsc_sachiko/model/client/error.dart';
 import 'package:ictsc_sachiko/model/client/result.dart';
 import 'package:ictsc_sachiko/model/problem/create_problem_request.dart';
 import 'package:ictsc_sachiko/model/problem/create_problem_response.dart';
+import 'package:ictsc_sachiko/model/problem/find_all_problem_response.dart';
+import 'package:ictsc_sachiko/model/problem/find_problem_request.dart';
+import 'package:ictsc_sachiko/model/problem/find_problem_response.dart';
+import 'package:ictsc_sachiko/model/problem/update_problem_request.dart';
+import 'package:ictsc_sachiko/model/problem/update_problem_response.dart';
 
 class Client {
   final Dio dio;
@@ -77,9 +82,45 @@ class Client {
       CreateProblemRequest createProblemRequest) async {
     try {
       return await dio
-          .post('/api/problems', data: createProblemRequest.problem.toJson())
+          .post('/api/problems', data: createProblemRequest.toJson())
           .then((result) =>
               Result.success(CreateProblemResponse.fromJson({...result.data})));
+    } on DioError catch (error) {
+      return Result.failure(Error.getApiError(error));
+    }
+  }
+
+  /// 問題一覧を取得する
+  Future<Result<FindAllProblemResponse>> findAllProblem() async {
+    try {
+      return await dio
+          .get(
+            '/api/problems',
+          )
+          .then((result) => Result.success(
+              FindAllProblemResponse.fromJson({...result.data})));
+    } on DioError catch (error) {
+      return Result.failure(Error.getApiError(error));
+    }
+  }
+
+  Future<Result<FindProblemResponse>> findByIdProblem(
+      FindProblemRequest findProblemRequest) async {
+    try {
+      return await dio.get('/api/problems/${findProblemRequest.id}').then(
+          (result) =>
+              Result.success(FindProblemResponse.fromJson({...result.data})));
+    } on DioError catch (error) {
+      return Result.failure(Error.getApiError(error));
+    }
+  }
+
+  Future<Result<UpdateProblemResponse>> updateProblem(
+      UpdateProblemRequest updateProblemRequest) async {
+    try {
+      return await dio.put('/api/problems/${updateProblemRequest.id}', data: updateProblemRequest.toJson()).then(
+          (result) =>
+              Result.success(UpdateProblemResponse.fromJson({...result.data})));
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }

@@ -5,6 +5,7 @@ import 'package:ictsc_sachiko/router/guard/auth_route_guard.dart';
 import 'package:ictsc_sachiko/ui/create_problem_page.dart';
 import 'package:ictsc_sachiko/ui/home_page.dart';
 import 'package:ictsc_sachiko/ui/my_page.dart';
+import 'package:ictsc_sachiko/ui/problem_list_page.dart';
 import 'package:ictsc_sachiko/ui/sign_in_page.dart';
 import 'package:ictsc_sachiko/ui/sign_up_page.dart';
 
@@ -40,11 +41,18 @@ Widget fadeIn(BuildContext context, Animation<double> animation,
       transitionsBuilder: fadeIn,
     ),
     CustomRoute(
-      path: '/manage/problems/new',
+      path: '/manage/problems/edit/:problemId',
       guards: [AdminGuard],
       page: CreateProblemPage,
       transitionsBuilder: fadeIn,
     ),
+    CustomRoute(
+      path: '/manage/problems',
+      guards: [AdminGuard],
+      page: ProblemListPage,
+      transitionsBuilder: fadeIn,
+    ),
+    RedirectRoute(path: '*', redirectTo: '/'),
   ],
 )
 class $AppRouter {}
