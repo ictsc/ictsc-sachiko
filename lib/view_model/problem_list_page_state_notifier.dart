@@ -3,6 +3,11 @@ import 'package:ictsc_sachiko/model/problem_list_page_state.dart';
 import 'package:ictsc_sachiko/view_model/common/client_provider.dart';
 import 'package:state_notifier/state_notifier.dart';
 
+final problemListProvider = StateNotifierProvider.autoDispose<
+    ProblemListPageStateNotifier, ProblemListPageState>(
+      (ref) => ProblemListPageStateNotifier(const ProblemListPageState(), ref),
+);
+
 class ProblemListPageStateNotifier extends StateNotifier<ProblemListPageState>
     with LocatorMixin {
   ProblemListPageStateNotifier(ProblemListPageState state, this.ref)

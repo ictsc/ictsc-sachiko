@@ -7,10 +7,11 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
-import '../ui/create_problem_page.dart' as _i10;
+import '../ui/create_problem_page.dart' as _i11;
 import '../ui/home_page.dart' as _i5;
+import '../ui/manage_problem_list_page.dart' as _i12;
 import '../ui/my_page.dart' as _i9;
-import '../ui/problem_list_page.dart' as _i11;
+import '../ui/problem_list_page.dart' as _i10;
 import '../ui/sign_in_page.dart' as _i7;
 import '../ui/sign_up_page.dart' as _i8;
 import 'app_router.dart' as _i6;
@@ -62,6 +63,14 @@ class AppRouter extends _i1.RootStackRouter {
         transitionsBuilder: _i6.fadeIn,
         opaque: true,
         barrierDismissible: false),
+    ProblemListRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i10.ProblemListPage();
+        },
+        transitionsBuilder: _i6.fadeIn,
+        opaque: true,
+        barrierDismissible: false),
     CreateProblemRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (data) {
@@ -69,15 +78,15 @@ class AppRouter extends _i1.RootStackRouter {
           final args = data.argsAs<CreateProblemRouteArgs>(
               orElse: () => CreateProblemRouteArgs(
                   problemId: pathParams.optString('problemId')));
-          return _i10.CreateProblemPage(problemId: args.problemId);
+          return _i11.CreateProblemPage(problemId: args.problemId);
         },
         transitionsBuilder: _i6.fadeIn,
         opaque: true,
         barrierDismissible: false),
-    ProblemListRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+    ManageProblemListRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i11.ProblemListPage();
+          return _i12.ManageProblemListPage();
         },
         transitionsBuilder: _i6.fadeIn,
         opaque: true,
@@ -90,9 +99,11 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(SignInRoute.name, path: '/login'),
         _i1.RouteConfig(SignUpRoute.name, path: '/signup'),
         _i1.RouteConfig(MyRoute.name, path: '/mypage', guards: [authGuard]),
+        _i1.RouteConfig(ProblemListRoute.name,
+            path: '/problems', guards: [adminGuard]),
         _i1.RouteConfig(CreateProblemRoute.name,
             path: '/manage/problems/edit/:problemId', guards: [adminGuard]),
-        _i1.RouteConfig(ProblemListRoute.name,
+        _i1.RouteConfig(ManageProblemListRoute.name,
             path: '/manage/problems', guards: [adminGuard]),
         _i1.RouteConfig('*#redirect',
             path: '*', redirectTo: '/', fullMatch: true)
@@ -123,6 +134,12 @@ class MyRoute extends _i1.PageRouteInfo {
   static const String name = 'MyRoute';
 }
 
+class ProblemListRoute extends _i1.PageRouteInfo {
+  const ProblemListRoute() : super(name, path: '/problems');
+
+  static const String name = 'ProblemListRoute';
+}
+
 class CreateProblemRoute extends _i1.PageRouteInfo<CreateProblemRouteArgs> {
   CreateProblemRoute({String? problemId})
       : super(name,
@@ -139,8 +156,8 @@ class CreateProblemRouteArgs {
   final String? problemId;
 }
 
-class ProblemListRoute extends _i1.PageRouteInfo {
-  const ProblemListRoute() : super(name, path: '/manage/problems');
+class ManageProblemListRoute extends _i1.PageRouteInfo {
+  const ManageProblemListRoute() : super(name, path: '/manage/problems');
 
-  static const String name = 'ProblemListRoute';
+  static const String name = 'ManageProblemListRoute';
 }
