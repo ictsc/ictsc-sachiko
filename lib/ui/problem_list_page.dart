@@ -151,7 +151,7 @@ class ProblemLink extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: Text(
-                      '100 pt',
+                      '${problem.point} pt',
                       style: pointTextStyle,
                       textAlign: TextAlign.end,
                     ),
