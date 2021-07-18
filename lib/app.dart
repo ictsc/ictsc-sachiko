@@ -36,11 +36,13 @@ class App extends HookWidget {
           brightness: Brightness.light,
           primarySwatch: Palette.themeMaterialColor,
           textTheme: Theme.of(context).textTheme.copyWith(
-                // bodyText2: Theme.of(context).textTheme.bodyText2?.copyWith(
-                //       fontSize: 16,
-                //       height: 1.3,
-                //       color: Theme.of(context).textTheme.bodyText2?.color,
-                //     ),
+                bodyText2: Theme.of(context).textTheme.bodyText2?.copyWith(
+                      fontSize: 16,
+                      height: 1.3,
+                    ),
+                caption: Theme.of(context).textTheme.caption?.copyWith(
+                      fontSize: 14,
+                    ),
                 // headline2: Theme.of(context).textTheme.headline2?.copyWith(
                 //       fontSize: 28,
                 //       height: 1.3,

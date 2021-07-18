@@ -142,7 +142,7 @@ class ProblemLink extends StatelessWidget {
                     color: Theme.of(context).primaryColor),
                 children: [
                   TextSpan(
-                      text: 'チャーハン チャーハン チャーハン チャーハン', style: titleTextStyle),
+                      text: problem.title.isNotEmpty ? problem.title : 'Untitled', style: titleTextStyle),
                 ],
               )),
               Column(

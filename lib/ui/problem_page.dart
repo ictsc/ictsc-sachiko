@@ -17,7 +17,7 @@ class ProblemPage extends HookWidget {
           fontWeight: FontWeight.bold,
         );
 
-    // final captionTextStyle = Theme.of(context).textTheme.caption;
+    final captionTextStyle = Theme.of(context).textTheme.caption;
 
     return Scaffold(
       appBar: Header(
@@ -79,7 +79,10 @@ class ProblemPage extends HookWidget {
                                 size: 18,
                               ),
                               const Gap(2),
-                              const Text('問題文'),
+                              Text(
+                                '問題文',
+                                style: captionTextStyle,
+                              ),
                             ],
                           ),
                           const Gap(12),
