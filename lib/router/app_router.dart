@@ -4,8 +4,10 @@ import 'package:ictsc_sachiko/router/guard/admin_route_guard.dart';
 import 'package:ictsc_sachiko/router/guard/auth_route_guard.dart';
 import 'package:ictsc_sachiko/ui/create_problem_page.dart';
 import 'package:ictsc_sachiko/ui/home_page.dart';
+import 'package:ictsc_sachiko/ui/manage_problem_list_page.dart';
 import 'package:ictsc_sachiko/ui/my_page.dart';
 import 'package:ictsc_sachiko/ui/problem_list_page.dart';
+import 'package:ictsc_sachiko/ui/problem_page.dart';
 import 'package:ictsc_sachiko/ui/sign_in_page.dart';
 import 'package:ictsc_sachiko/ui/sign_up_page.dart';
 
@@ -41,6 +43,18 @@ Widget fadeIn(BuildContext context, Animation<double> animation,
       transitionsBuilder: fadeIn,
     ),
     CustomRoute(
+      path: '/problems',
+      guards: [AuthGuard],
+      page: ProblemListPage,
+      transitionsBuilder: fadeIn,
+    ),
+    CustomRoute(
+      path: '/problems/:id',
+      guards: [AuthGuard],
+      page: ProblemPage,
+      transitionsBuilder: fadeIn,
+    ),
+    CustomRoute(
       path: '/manage/problems/edit/:problemId',
       guards: [AdminGuard],
       page: CreateProblemPage,
@@ -49,7 +63,7 @@ Widget fadeIn(BuildContext context, Animation<double> animation,
     CustomRoute(
       path: '/manage/problems',
       guards: [AdminGuard],
-      page: ProblemListPage,
+      page: ManageProblemListPage,
       transitionsBuilder: fadeIn,
     ),
     RedirectRoute(path: '*', redirectTo: '/'),

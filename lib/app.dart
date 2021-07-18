@@ -35,7 +35,40 @@ class App extends HookWidget {
       theme: ThemeData(
           brightness: Brightness.light,
           primarySwatch: Palette.themeMaterialColor,
-          textTheme: Theme.of(context).textTheme),
+          textTheme: Theme.of(context).textTheme.copyWith(
+                bodyText2: Theme.of(context).textTheme.bodyText2?.copyWith(
+                      fontSize: 16,
+                      height: 1.3,
+                    ),
+                caption: Theme.of(context).textTheme.caption?.copyWith(
+                      fontSize: 14,
+                    ),
+                // headline2: Theme.of(context).textTheme.headline2?.copyWith(
+                //       fontSize: 28,
+                //       height: 1.3,
+                //       color: Theme.of(context).textTheme.bodyText2?.color,
+                //     ),
+                // headline3: Theme.of(context).textTheme.headline2?.copyWith(
+                //       fontSize: 26,
+                //       height: 1.3,
+                //       color: Theme.of(context).textTheme.bodyText2?.color,
+                //     ),
+                // headline4: Theme.of(context).textTheme.headline2?.copyWith(
+                //       fontSize: 24,
+                //       height: 1.3,
+                //       color: Theme.of(context).textTheme.bodyText2?.color,
+                //     ),
+                // headline5: Theme.of(context).textTheme.headline2?.copyWith(
+                //       fontSize: 22,
+                //       height: 1.3,
+                //       color: Theme.of(context).textTheme.bodyText2?.color,
+                //     ),
+                // headline6: Theme.of(context).textTheme.headline2?.copyWith(
+                //       fontSize: 20,
+                //       height: 1.3,
+                //       color: Theme.of(context).textTheme.bodyText2?.color,
+                //     ),
+              )),
       routerDelegate: _appRouter.delegate(),
       routeInformationParser: _appRouter.defaultRouteParser(),
     );
