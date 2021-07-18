@@ -7,6 +7,7 @@ import 'package:ictsc_sachiko/ui/home_page.dart';
 import 'package:ictsc_sachiko/ui/manage_problem_list_page.dart';
 import 'package:ictsc_sachiko/ui/my_page.dart';
 import 'package:ictsc_sachiko/ui/problem_list_page.dart';
+import 'package:ictsc_sachiko/ui/problem_page.dart';
 import 'package:ictsc_sachiko/ui/sign_in_page.dart';
 import 'package:ictsc_sachiko/ui/sign_up_page.dart';
 
@@ -43,8 +44,14 @@ Widget fadeIn(BuildContext context, Animation<double> animation,
     ),
     CustomRoute(
       path: '/problems',
-      guards: [AdminGuard],
+      guards: [AuthGuard],
       page: ProblemListPage,
+      transitionsBuilder: fadeIn,
+    ),
+    CustomRoute(
+      path: '/problems/:id',
+      guards: [AuthGuard],
+      page: ProblemPage,
       transitionsBuilder: fadeIn,
     ),
     CustomRoute(

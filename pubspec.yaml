@@ -43,6 +43,7 @@ dependencies:
   flutter_markdown: ^0.6.2
   gap: ^2.0.0
   responsive_grid: ^2.0.0
+  markdown_widget: ^1.2.6-nullsafety
 
 
 dev_dependencies:

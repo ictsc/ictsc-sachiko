@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
@@ -17,7 +18,7 @@ class ProblemListPage extends HookWidget {
         .headline6
         ?.copyWith(fontWeight: FontWeight.bold);
 
-    List<ResponsiveGridCol> problems = [];
+    final List<ResponsiveGridCol> problems = [];
 
     state.problems.asMap().forEach((i, e) => problems.add(ResponsiveGridCol(
           xl: 3,
@@ -40,7 +41,7 @@ class ProblemListPage extends HookWidget {
               width: 1040,
               child: Column(
                 children: [
-                  Gap(24),
+                  const Gap(24),
                   Padding(
                     padding: const EdgeInsets.only(left: 16, top: 16),
                     child: Text(
@@ -127,7 +128,9 @@ class ProblemLink extends StatelessWidget {
         customBorder: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
-        onTap: () {},
+        onTap: () {
+          AutoRouter.of(context).pushNamed('/problems/${problem.id}');
+        },
         child: ProblemCard(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
