@@ -17,7 +17,9 @@ class ProblemPage extends HookWidget {
           fontWeight: FontWeight.bold,
         );
 
-    final captionTextStyle = Theme.of(context).textTheme.caption;
+    final captionTextStyle = Theme.of(context).textTheme.bodyText2?.copyWith(
+      color: Theme.of(context).textTheme.caption?.color
+    );
 
     return Scaffold(
       appBar: Header(
@@ -60,9 +62,24 @@ class ProblemPage extends HookWidget {
                   const Gap(40),
                   Padding(
                     padding: const EdgeInsets.only(left: 4.0),
-                    child: SelectableText(
-                      'WEBページが見れない',
-                      style: titleTextStyle,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        SelectableText(
+                          'WEBページが見れない',
+                          style: titleTextStyle,
+                        ),
+                        const Gap(8),
+                        Column(
+                          children: [
+                            SelectableText(
+                              '100 pt',
+                              style: captionTextStyle,
+                            ),
+                            const Gap(2),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                   const Gap(40),
