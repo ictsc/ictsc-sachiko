@@ -118,8 +118,10 @@ class Client {
   Future<Result<UpdateProblemResponse>> updateProblem(
       UpdateProblemRequest updateProblemRequest) async {
     try {
-      return await dio.put('/api/problems/${updateProblemRequest.id}', data: updateProblemRequest.toJson()).then(
-          (result) =>
+      return await dio
+          .put('/api/problems/${updateProblemRequest.id}',
+              data: updateProblemRequest.toJson())
+          .then((result) =>
               Result.success(UpdateProblemResponse.fromJson({...result.data})));
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));

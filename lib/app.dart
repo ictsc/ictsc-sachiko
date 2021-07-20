@@ -38,7 +38,7 @@ class App extends HookWidget {
           textTheme: Theme.of(context).textTheme.copyWith(
                 bodyText2: Theme.of(context).textTheme.bodyText2?.copyWith(
                       fontSize: 16,
-                      height: 1.3,
+                      height: 1.5,
                     ),
                 caption: Theme.of(context).textTheme.caption?.copyWith(
                       fontSize: 14,

@@ -1,34 +1,52 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:markdown_widget/markdown_generator.dart';
+import 'package:markdown_widget/config/widget_config.dart';
+import 'package:markdown_widget/markdown_widget.dart';
 
 class ProblemMarkdown extends StatelessWidget {
+  final String data;
+
+  const ProblemMarkdown({Key? key, required this.data}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    // final hTextStyle = Theme.of(context).textTheme.bodyText2?.copyWith();
-
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      ...MarkdownGenerator(data: '''
-## Headers 見出し
-
-先頭に`#`をレベル分記述します。
-
-```
-# 見出し1
-## 見出し2
-### 見出し3
-#### 見出し4
-##### 見出し5
-###### 見出し6
-```
-
-# 見出し1
-## 見出し2
-### 見出し3
-#### 見出し4
-##### 見出し5
-###### 見出し6
-''').widgets!,
-    ]);
+    return MarkdownWidget(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      data: data,
+      widgetConfig: WidgetConfig(
+        p: (_) {
+          return SelectableText(_.textContent);
+        },
+        pre: (_) {
+          return Container(
+            decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: SelectableText(
+                _.textContent.trimRight(),
+                style: Theme.of(context)
+                    .textTheme
+                    .caption
+                    ?.copyWith(color: Colors.white),
+              ),
+            ),
+          );
+        },
+      ),
+      styleConfig: StyleConfig(
+        titleConfig: TitleConfig(
+          titleWrapper: (_) {
+            return Padding(
+              padding: const EdgeInsets.only(top: 24.0),
+              child: _,
+            );
+          }
+        )
+      ),
+    );
   }
 }
