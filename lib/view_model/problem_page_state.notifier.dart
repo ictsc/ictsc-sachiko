@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ictsc_sachiko/model/answer/create_answer_request.dart';
-import 'package:ictsc_sachiko/model/problem/find_problem_request.dart';
 import 'package:ictsc_sachiko/model/problem_page_state.dart';
+import 'package:ictsc_sachiko/service/answer_api.dart';
+import 'package:ictsc_sachiko/service/model/answer_api.dart';
+import 'package:ictsc_sachiko/service/model/problem_api.dart';
+import 'package:ictsc_sachiko/service/problem_api.dart';
 import 'package:state_notifier/state_notifier.dart';
-
-import 'common/client_provider.dart';
 
 final problemPageStateProvider = StateNotifierProvider.autoDispose<
         ProblemPageStateNotifier, ProblemPageState>(
@@ -23,8 +23,7 @@ class ProblemPageStateNotifier extends StateNotifier<ProblemPageState>
     state = state.copyWith(isLoading: true);
 
     await ref
-        .read(clientProvider)
-        .state
+        .read(problemProvider)
         .findByIdProblem(FindProblemRequest(id: id))
         .then((result) => result.when(
               success: (response) {
@@ -38,8 +37,7 @@ class ProblemPageStateNotifier extends StateNotifier<ProblemPageState>
   /// 回答を作成する関数を返す処理
   Function() onPostAnswer(String problemId) => () async {
         await ref
-            .read(clientProvider)
-            .state
+            .read(answerProvider)
             .createAnswer(
               CreateAnswerRequest(
                 problemId: problemId,
