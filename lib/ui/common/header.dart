@@ -4,7 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/router/app_router.gr.dart';
-import 'package:ictsc_sachiko/view_model/common/authentication_state_notifier.dart';
+import 'package:ictsc_sachiko/view_model/common/auth_state_notifier.dart';
 
 /// アプリ全体で使われるヘッダー
 class Header extends HookWidget implements PreferredSizeWidget {
@@ -14,7 +14,7 @@ class Header extends HookWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authState = useProvider(auth);
+    final authState = useProvider(authStateProvider);
 
     final user = authState.user;
 
@@ -41,7 +41,7 @@ class Header extends HookWidget implements PreferredSizeWidget {
 
               if (value == 'logout') {
                 // TODO ログアウトの処理
-                context.read(auth.notifier).signOut();
+                context.read(authStateProvider.notifier).signOut();
               }
             },
             itemBuilder: (BuildContext context) => [

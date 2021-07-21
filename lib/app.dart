@@ -5,7 +5,7 @@ import 'package:ictsc_sachiko/config/palette.dart';
 import 'package:ictsc_sachiko/router/app_router.gr.dart';
 import 'package:ictsc_sachiko/router/guard/admin_route_guard.dart';
 import 'package:ictsc_sachiko/router/guard/auth_route_guard.dart';
-import 'package:ictsc_sachiko/view_model/common/authentication_state_notifier.dart';
+import 'package:ictsc_sachiko/view_model/common/auth_state_notifier.dart';
 
 class App extends HookWidget {
   // This widget is the root of your application.
@@ -16,16 +16,16 @@ class App extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    useProvider(auth);
+    useProvider(authStateProvider);
 
     //　起動時に一度だけログイン済みかチェックする
     useEffect(() {
       WidgetsBinding.instance?.addPostFrameCallback((_) {
-        context.read(auth.notifier).signCheck();
+        context.read(authStateProvider.notifier).signCheck();
       });
     }, []);
 
-    if (!useProvider(auth).isLoginChecked) {
+    if (!useProvider(authStateProvider).isLoginChecked) {
       return Container();
     }
 

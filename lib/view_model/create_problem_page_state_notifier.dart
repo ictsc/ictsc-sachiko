@@ -5,7 +5,7 @@ import 'package:ictsc_sachiko/model/problem/create_problem_request.dart';
 import 'package:ictsc_sachiko/model/problem/find_problem_request.dart';
 import 'package:ictsc_sachiko/model/problem/update_problem_request.dart';
 import 'package:ictsc_sachiko/model/problem_create_page_state.dart';
-import 'package:ictsc_sachiko/view_model/common/authentication_state_notifier.dart';
+import 'package:ictsc_sachiko/view_model/common/auth_state_notifier.dart';
 import 'package:ictsc_sachiko/view_model/common/client_provider.dart';
 import 'package:state_notifier/state_notifier.dart';
 
@@ -14,7 +14,7 @@ class CreateProblemPageStateNotifier
   CreateProblemPageStateNotifier(ProblemCreatePageState state, this.ref)
       : super(state) {
     // ログイン中のユーザーをauthorに代入
-    this.state = this.state.copyWith(author: ref.read(auth).user);
+    this.state = this.state.copyWith(author: ref.read(authStateProvider).user);
   }
 
   final ProviderReference ref;

@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ictsc_sachiko/model/client/error.dart';
+import 'package:ictsc_sachiko/service/base/model/error.dart';
 
 part 'result.freezed.dart';
 

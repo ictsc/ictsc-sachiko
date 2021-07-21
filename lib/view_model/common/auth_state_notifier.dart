@@ -1,21 +1,17 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ictsc_sachiko/model/authentication/authentication.dart';
-import 'package:ictsc_sachiko/model/authentication/sign_in_request.dart';
-import 'package:ictsc_sachiko/model/authentication/sign_in_response.dart';
-import 'package:ictsc_sachiko/model/authentication/sign_out_response.dart';
-import 'package:ictsc_sachiko/model/authentication/sign_up_request.dart';
-import 'package:ictsc_sachiko/model/authentication/sign_up_response.dart';
-import 'package:ictsc_sachiko/model/client/result.dart';
-import 'package:ictsc_sachiko/view_model/common/client_provider.dart';
+import 'package:ictsc_sachiko/service/auth.dart';
+import 'package:ictsc_sachiko/service/base/model/result.dart';
+import 'package:ictsc_sachiko/service/model/auth.dart';
+import 'package:ictsc_sachiko/view_model/common/model/auth_state.dart';
 
-class AuthenticationStateNotifier extends StateNotifier<Authentication> {
-  AuthenticationStateNotifier(Authentication state, this.ref) : super(state);
+class AuthStateNotifier extends StateNotifier<AuthState> {
+  AuthStateNotifier(AuthState state, this.ref) : super(state);
 
   final ProviderReference ref;
 
   /// ログインを試行し、呼び出し元に成功か失敗かを通知する。
   Future<Result<SignInResponse>> signIn(SignInRequest signInRequest) async {
-    final client = ref.read(clientProvider).state;
+    final client = ref.read(authProvider);
 
     return client.signIn(signInRequest).then((result) {
       result.when(
@@ -31,7 +27,7 @@ class AuthenticationStateNotifier extends StateNotifier<Authentication> {
   }
 
   Future<Result<SignOutResponse>> signOut() async {
-    final client = ref.read(clientProvider).state;
+    final client = ref.read(authProvider);
 
     return client.signOut().then((result) {
       result.when(
@@ -46,7 +42,7 @@ class AuthenticationStateNotifier extends StateNotifier<Authentication> {
   }
 
   Future<Result<SignUpResponse>> signUp(SignUpRequest signUpRequest) async {
-    final client = ref.read(clientProvider).state;
+    final client = ref.read(authProvider);
 
     return client.signUp(signUpRequest).then((result) {
       // 登録完了
@@ -58,7 +54,7 @@ class AuthenticationStateNotifier extends StateNotifier<Authentication> {
 
   /// ログインを試行し、呼び出し元に成功か失敗かを通知する。
   Future<Result<SignInResponse>> signCheck() async {
-    final client = ref.read(clientProvider).state;
+    final client = ref.read(authProvider);
 
     return client.self().then((result) {
       result.when(
@@ -74,7 +70,6 @@ class AuthenticationStateNotifier extends StateNotifier<Authentication> {
   }
 }
 
-final auth = StateNotifierProvider<AuthenticationStateNotifier,
-    Authentication>(
-  (refs) => AuthenticationStateNotifier(const Authentication(), refs),
+final authStateProvider = StateNotifierProvider<AuthStateNotifier, AuthState>(
+  (refs) => AuthStateNotifier(const AuthState(), refs),
 );
