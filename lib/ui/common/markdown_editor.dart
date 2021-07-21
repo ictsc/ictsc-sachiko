@@ -9,7 +9,12 @@ class MarkdownEditor extends StatelessWidget {
   final String? hintText;
   final bool isBorder;
 
-  const MarkdownEditor({required this.controller, required this.isPreview, this.hintText, this.isBorder = false,});
+  const MarkdownEditor({
+    required this.controller,
+    required this.isPreview,
+    this.hintText,
+    this.isBorder = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +30,18 @@ class MarkdownEditor extends StatelessWidget {
     }
 
     return TextFormField(
-      // textCapitalization: TextCapitalization.sentences,
+        // textCapitalization: TextCapitalization.sentences,
         minLines: 9,
         maxLines: null,
         controller: controller,
         decoration: InputDecoration(
           hintText: hintText,
           border: !isBorder ? InputBorder.none : null,
+          enabledBorder: !isBorder
+              ? InputBorder.none
+              : UnderlineInputBorder(
+                  borderSide:
+                      BorderSide(color: Theme.of(context).dividerColor)),
         ),
         style: Theme.of(context).textTheme.bodyText2);
   }

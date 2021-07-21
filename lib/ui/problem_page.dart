@@ -164,6 +164,22 @@ class AnswerEditor extends HookWidget {
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
+            const Gap(12),
+            Center(
+              child: Text('回答フォーム',
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline5
+                      ?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  )),
+            ),
+            const Gap(32),
+            Container(
+              color: Theme.of(context).dividerColor,
+              height: 1,
+            ),
+            const Gap(16),
             Row(
               children: [
                 // Gap(4),
