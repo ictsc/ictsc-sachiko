@@ -1,4 +1,3 @@
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -138,8 +137,7 @@ class ProblemPage extends HookWidget {
                             ),
                           ),
                           const Gap(36),
-                          AnswerEditor(
-                              notifier.bodyController),
+                          AnswerEditor(notifier.bodyController),
                           const Gap(1280),
                         ],
                       ),
@@ -164,6 +162,7 @@ class AnswerEditor extends HookWidget {
         width: 1024,
         child: ProblemCard(
             child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Row(
               children: [
@@ -206,6 +205,16 @@ class AnswerEditor extends HookWidget {
 ### 1. /etc/hoge/hoo.bar の編集
                                           ''',
             ),
+            const Gap(8),
+            ElevatedButton(
+                onPressed: () {},
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    '提出する',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ))
           ],
         )));
   }
