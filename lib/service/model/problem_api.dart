@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ictsc_sachiko/model/problem.dart';
 
-part 'problem.freezed.dart';
-part 'problem.g.dart';
+part 'problem_api.freezed.dart';
+part 'problem_api.g.dart';
 
 @freezed
 class CreateProblemRequest with _$CreateProblemRequest {
@@ -43,3 +43,25 @@ class CreateProblemResponseData with _$CreateProblemResponseData {
   factory CreateProblemResponseData.fromJson(Map<String, dynamic> json) =>
       _$CreateProblemResponseDataFromJson(json);
 }
+
+@freezed
+class DeleteProblemRequest with _$DeleteProblemRequest {
+  const factory DeleteProblemRequest({
+    required String id,
+  }) = _DeleteProblemRequest;
+
+  factory DeleteProblemRequest.fromJson(Map<String, dynamic> json) =>
+      _$DeleteProblemRequestFromJson(json);
+}
+
+@freezed
+class DeleteProblemResponse with _$DeleteProblemResponse {
+  const factory DeleteProblemResponse({
+    required int code,
+  }) = _DeleteProblemResponse;
+
+  factory DeleteProblemResponse.fromJson(Map<String, dynamic> json) =>
+      _$DeleteProblemResponseFromJson(json);
+}
+
+

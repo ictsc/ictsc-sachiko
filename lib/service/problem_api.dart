@@ -4,14 +4,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'base/client.dart';
 import 'base/model/error.dart';
 import 'base/model/result.dart';
-import 'model/problem.dart';
+import 'model/problem_api.dart';
 
-final problemProvider = Provider((ref) => Problem(ref.read));
+final problemProvider = Provider((ref) => ProblemAPI(ref.read));
 
-class Problem {
+class ProblemAPI {
   late final Dio client;
 
-  Problem(Reader reader) {
+  ProblemAPI(Reader reader) {
     client = reader(clientProvider);
   }
 
@@ -23,6 +23,17 @@ class Problem {
           .post('/api/problems', data: createProblemRequest.toJson())
           .then((result) =>
               Result.success(CreateProblemResponse.fromJson({...result.data})));
+    } on DioError catch (error) {
+      return Result.failure(Error.getApiError(error));
+    }
+  }
+
+  Future<Result<String>> deleteProblem(
+      DeleteProblemRequest deleteProblemRequest) async {
+    try {
+      return await client
+          .delete('/api/problems/${deleteProblemRequest.id}')
+          .then((result) => const Result.success(''));
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'problem.dart';
+part of 'problem_api.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -60,4 +60,30 @@ Map<String, dynamic> _$_$_CreateProblemResponseDataToJson(
         _$_CreateProblemResponseData instance) =>
     <String, dynamic>{
       'problem': instance.problem,
+    };
+
+_$_DeleteProblemRequest _$_$_DeleteProblemRequestFromJson(
+    Map<String, dynamic> json) {
+  return _$_DeleteProblemRequest(
+    id: json['id'] as String,
+  );
+}
+
+Map<String, dynamic> _$_$_DeleteProblemRequestToJson(
+        _$_DeleteProblemRequest instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+    };
+
+_$_DeleteProblemResponse _$_$_DeleteProblemResponseFromJson(
+    Map<String, dynamic> json) {
+  return _$_DeleteProblemResponse(
+    code: json['code'] as int,
+  );
+}
+
+Map<String, dynamic> _$_$_DeleteProblemResponseToJson(
+        _$_DeleteProblemResponse instance) =>
+    <String, dynamic>{
+      'code': instance.code,
     };

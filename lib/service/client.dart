@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:ictsc_sachiko/model/answer/create_answer_request.dart';
 import 'package:ictsc_sachiko/model/answer/create_answer_response.dart';
-import 'package:ictsc_sachiko/model/problem/delete_problem_request.dart';
 import 'package:ictsc_sachiko/model/problem/find_all_problem_response.dart';
 import 'package:ictsc_sachiko/model/problem/find_problem_request.dart';
 import 'package:ictsc_sachiko/model/problem/find_problem_response.dart';
@@ -52,17 +51,6 @@ class Client {
               data: updateProblemRequest.toJson())
           .then((result) =>
               Result.success(UpdateProblemResponse.fromJson({...result.data})));
-    } on DioError catch (error) {
-      return Result.failure(Error.getApiError(error));
-    }
-  }
-
-  Future<Result<String>> deleteProblem(
-      DeleteProblemRequest deleteProblemRequest) async {
-    try {
-      return await dio
-          .delete('/api/problems/${deleteProblemRequest.id}')
-          .then((result) => const Result.success(''));
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }

@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'problem.dart';
+part of 'problem_api.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -732,4 +732,327 @@ abstract class _CreateProblemResponseData implements CreateProblemResponseData {
   @JsonKey(ignore: true)
   _$CreateProblemResponseDataCopyWith<_CreateProblemResponseData>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+DeleteProblemRequest _$DeleteProblemRequestFromJson(Map<String, dynamic> json) {
+  return _DeleteProblemRequest.fromJson(json);
+}
+
+/// @nodoc
+class _$DeleteProblemRequestTearOff {
+  const _$DeleteProblemRequestTearOff();
+
+  _DeleteProblemRequest call({required String id}) {
+    return _DeleteProblemRequest(
+      id: id,
+    );
+  }
+
+  DeleteProblemRequest fromJson(Map<String, Object> json) {
+    return DeleteProblemRequest.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $DeleteProblemRequest = _$DeleteProblemRequestTearOff();
+
+/// @nodoc
+mixin _$DeleteProblemRequest {
+  String get id => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DeleteProblemRequestCopyWith<DeleteProblemRequest> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DeleteProblemRequestCopyWith<$Res> {
+  factory $DeleteProblemRequestCopyWith(DeleteProblemRequest value,
+          $Res Function(DeleteProblemRequest) then) =
+      _$DeleteProblemRequestCopyWithImpl<$Res>;
+  $Res call({String id});
+}
+
+/// @nodoc
+class _$DeleteProblemRequestCopyWithImpl<$Res>
+    implements $DeleteProblemRequestCopyWith<$Res> {
+  _$DeleteProblemRequestCopyWithImpl(this._value, this._then);
+
+  final DeleteProblemRequest _value;
+  // ignore: unused_field
+  final $Res Function(DeleteProblemRequest) _then;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$DeleteProblemRequestCopyWith<$Res>
+    implements $DeleteProblemRequestCopyWith<$Res> {
+  factory _$DeleteProblemRequestCopyWith(_DeleteProblemRequest value,
+          $Res Function(_DeleteProblemRequest) then) =
+      __$DeleteProblemRequestCopyWithImpl<$Res>;
+  @override
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$DeleteProblemRequestCopyWithImpl<$Res>
+    extends _$DeleteProblemRequestCopyWithImpl<$Res>
+    implements _$DeleteProblemRequestCopyWith<$Res> {
+  __$DeleteProblemRequestCopyWithImpl(
+      _DeleteProblemRequest _value, $Res Function(_DeleteProblemRequest) _then)
+      : super(_value, (v) => _then(v as _DeleteProblemRequest));
+
+  @override
+  _DeleteProblemRequest get _value => super._value as _DeleteProblemRequest;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+  }) {
+    return _then(_DeleteProblemRequest(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_DeleteProblemRequest
+    with DiagnosticableTreeMixin
+    implements _DeleteProblemRequest {
+  const _$_DeleteProblemRequest({required this.id});
+
+  factory _$_DeleteProblemRequest.fromJson(Map<String, dynamic> json) =>
+      _$_$_DeleteProblemRequestFromJson(json);
+
+  @override
+  final String id;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'DeleteProblemRequest(id: $id)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'DeleteProblemRequest'))
+      ..add(DiagnosticsProperty('id', id));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _DeleteProblemRequest &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
+
+  @JsonKey(ignore: true)
+  @override
+  _$DeleteProblemRequestCopyWith<_DeleteProblemRequest> get copyWith =>
+      __$DeleteProblemRequestCopyWithImpl<_DeleteProblemRequest>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_DeleteProblemRequestToJson(this);
+  }
+}
+
+abstract class _DeleteProblemRequest implements DeleteProblemRequest {
+  const factory _DeleteProblemRequest({required String id}) =
+      _$_DeleteProblemRequest;
+
+  factory _DeleteProblemRequest.fromJson(Map<String, dynamic> json) =
+      _$_DeleteProblemRequest.fromJson;
+
+  @override
+  String get id => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$DeleteProblemRequestCopyWith<_DeleteProblemRequest> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+DeleteProblemResponse _$DeleteProblemResponseFromJson(
+    Map<String, dynamic> json) {
+  return _DeleteProblemResponse.fromJson(json);
+}
+
+/// @nodoc
+class _$DeleteProblemResponseTearOff {
+  const _$DeleteProblemResponseTearOff();
+
+  _DeleteProblemResponse call({required int code}) {
+    return _DeleteProblemResponse(
+      code: code,
+    );
+  }
+
+  DeleteProblemResponse fromJson(Map<String, Object> json) {
+    return DeleteProblemResponse.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $DeleteProblemResponse = _$DeleteProblemResponseTearOff();
+
+/// @nodoc
+mixin _$DeleteProblemResponse {
+  int get code => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DeleteProblemResponseCopyWith<DeleteProblemResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DeleteProblemResponseCopyWith<$Res> {
+  factory $DeleteProblemResponseCopyWith(DeleteProblemResponse value,
+          $Res Function(DeleteProblemResponse) then) =
+      _$DeleteProblemResponseCopyWithImpl<$Res>;
+  $Res call({int code});
+}
+
+/// @nodoc
+class _$DeleteProblemResponseCopyWithImpl<$Res>
+    implements $DeleteProblemResponseCopyWith<$Res> {
+  _$DeleteProblemResponseCopyWithImpl(this._value, this._then);
+
+  final DeleteProblemResponse _value;
+  // ignore: unused_field
+  final $Res Function(DeleteProblemResponse) _then;
+
+  @override
+  $Res call({
+    Object? code = freezed,
+  }) {
+    return _then(_value.copyWith(
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$DeleteProblemResponseCopyWith<$Res>
+    implements $DeleteProblemResponseCopyWith<$Res> {
+  factory _$DeleteProblemResponseCopyWith(_DeleteProblemResponse value,
+          $Res Function(_DeleteProblemResponse) then) =
+      __$DeleteProblemResponseCopyWithImpl<$Res>;
+  @override
+  $Res call({int code});
+}
+
+/// @nodoc
+class __$DeleteProblemResponseCopyWithImpl<$Res>
+    extends _$DeleteProblemResponseCopyWithImpl<$Res>
+    implements _$DeleteProblemResponseCopyWith<$Res> {
+  __$DeleteProblemResponseCopyWithImpl(_DeleteProblemResponse _value,
+      $Res Function(_DeleteProblemResponse) _then)
+      : super(_value, (v) => _then(v as _DeleteProblemResponse));
+
+  @override
+  _DeleteProblemResponse get _value => super._value as _DeleteProblemResponse;
+
+  @override
+  $Res call({
+    Object? code = freezed,
+  }) {
+    return _then(_DeleteProblemResponse(
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_DeleteProblemResponse
+    with DiagnosticableTreeMixin
+    implements _DeleteProblemResponse {
+  const _$_DeleteProblemResponse({required this.code});
+
+  factory _$_DeleteProblemResponse.fromJson(Map<String, dynamic> json) =>
+      _$_$_DeleteProblemResponseFromJson(json);
+
+  @override
+  final int code;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'DeleteProblemResponse(code: $code)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'DeleteProblemResponse'))
+      ..add(DiagnosticsProperty('code', code));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _DeleteProblemResponse &&
+            (identical(other.code, code) ||
+                const DeepCollectionEquality().equals(other.code, code)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(code);
+
+  @JsonKey(ignore: true)
+  @override
+  _$DeleteProblemResponseCopyWith<_DeleteProblemResponse> get copyWith =>
+      __$DeleteProblemResponseCopyWithImpl<_DeleteProblemResponse>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_DeleteProblemResponseToJson(this);
+  }
+}
+
+abstract class _DeleteProblemResponse implements DeleteProblemResponse {
+  const factory _DeleteProblemResponse({required int code}) =
+      _$_DeleteProblemResponse;
+
+  factory _DeleteProblemResponse.fromJson(Map<String, dynamic> json) =
+      _$_DeleteProblemResponse.fromJson;
+
+  @override
+  int get code => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$DeleteProblemResponseCopyWith<_DeleteProblemResponse> get copyWith =>
+      throw _privateConstructorUsedError;
 }
