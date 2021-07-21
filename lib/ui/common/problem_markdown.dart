@@ -36,17 +36,30 @@ class ProblemMarkdown extends StatelessWidget {
             ),
           );
         },
+        // block: (_) {
+        //   print(_.textContent);
+        //   print(_.textContent.split('\n'));
+        //   return SelectableText(_.textContent);
+        // },
       ),
       styleConfig: StyleConfig(
-        titleConfig: TitleConfig(
-          titleWrapper: (_) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 24.0),
-              child: _,
-            );
-          }
-        )
-      ),
+          titleConfig: TitleConfig(
+            titleWrapper: (_) {
+              return Padding(
+                padding: const EdgeInsets.only(top: 24.0),
+                child: _,
+              );
+            },
+          ),
+          // TODO
+          codeConfig: CodeConfig(
+            codeStyle: Theme.of(context).textTheme.caption,
+            decoration:  BoxDecoration(
+              color: Colors.blueGrey.shade50,
+              borderRadius: BorderRadius.circular(4),
+            ),
+            padding: const EdgeInsets.only(top: 1, bottom: 1, left: 6, right: 4),
+          )),
     );
   }
 }
