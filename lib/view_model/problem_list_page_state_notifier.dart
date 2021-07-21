@@ -3,7 +3,6 @@ import 'package:ictsc_sachiko/model/problem.dart';
 import 'package:ictsc_sachiko/model/problem_list_page_state.dart';
 import 'package:ictsc_sachiko/service/model/problem_api.dart';
 import 'package:ictsc_sachiko/service/problem_api.dart';
-import 'package:ictsc_sachiko/view_model/common/client_provider.dart';
 import 'package:state_notifier/state_notifier.dart';
 
 final problemListProvider = StateNotifierProvider.autoDispose<
@@ -29,8 +28,7 @@ class ProblemListPageStateNotifier extends StateNotifier<ProblemListPageState>
     state = state.copyWith(isLoading: true);
 
     await ref
-        .read(clientProvider)
-        .state
+        .read(problemProvider)
         .findAllProblem()
         .then((result) => result.when(
               success: (response) {

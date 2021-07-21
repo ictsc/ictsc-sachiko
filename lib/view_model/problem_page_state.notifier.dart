@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/model/answer/create_answer_request.dart';
-import 'package:ictsc_sachiko/model/problem/find_problem_request.dart';
 import 'package:ictsc_sachiko/model/problem_page_state.dart';
+import 'package:ictsc_sachiko/service/model/problem_api.dart';
+import 'package:ictsc_sachiko/service/problem_api.dart';
 import 'package:state_notifier/state_notifier.dart';
 
 import 'common/client_provider.dart';
@@ -23,8 +24,7 @@ class ProblemPageStateNotifier extends StateNotifier<ProblemPageState>
     state = state.copyWith(isLoading: true);
 
     await ref
-        .read(clientProvider)
-        .state
+        .read(problemProvider)
         .findByIdProblem(FindProblemRequest(id: id))
         .then((result) => result.when(
               success: (response) {

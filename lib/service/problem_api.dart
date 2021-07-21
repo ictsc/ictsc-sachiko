@@ -38,4 +38,41 @@ class ProblemAPI {
       return Result.failure(Error.getApiError(error));
     }
   }
+  /// 問題一覧を取得する
+  Future<Result<FindAllProblemResponse>> findAllProblem() async {
+    try {
+      return await client
+          .get(
+        '/api/problems',
+      )
+          .then((result) => Result.success(
+          FindAllProblemResponse.fromJson({...result.data})));
+    } on DioError catch (error) {
+      return Result.failure(Error.getApiError(error));
+    }
+  }
+
+  Future<Result<FindProblemResponse>> findByIdProblem(
+      FindProblemRequest findProblemRequest) async {
+    try {
+      return await client.get('/api/problems/${findProblemRequest.id}').then(
+              (result) =>
+              Result.success(FindProblemResponse.fromJson({...result.data})));
+    } on DioError catch (error) {
+      return Result.failure(Error.getApiError(error));
+    }
+  }
+
+  Future<Result<UpdateProblemResponse>> updateProblem(
+      UpdateProblemRequest updateProblemRequest) async {
+    try {
+      return await client
+          .put('/api/problems/${updateProblemRequest.id}',
+          data: updateProblemRequest.toJson())
+          .then((result) =>
+          Result.success(UpdateProblemResponse.fromJson({...result.data})));
+    } on DioError catch (error) {
+      return Result.failure(Error.getApiError(error));
+    }
+  }
 }
