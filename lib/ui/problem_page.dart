@@ -137,7 +137,10 @@ class ProblemPage extends HookWidget {
                             ),
                           ),
                           const Gap(36),
-                          AnswerEditor(notifier.bodyController),
+                          AnswerEditor(
+                            controller: notifier.bodyController,
+                            problemId: id,
+                          ),
                           const Gap(1280),
                         ],
                       ),
@@ -151,12 +154,14 @@ class ProblemPage extends HookWidget {
 
 class AnswerEditor extends HookWidget {
   final TextEditingController controller;
+  final String problemId;
 
-  const AnswerEditor(this.controller);
+  const AnswerEditor({required this.controller, required this.problemId});
 
   @override
   Widget build(BuildContext context) {
     final isPreview = useState(false);
+    final notifier = useProvider(problemPageStateProvider.notifier);
 
     return SizedBox(
         width: 1024,
@@ -167,12 +172,9 @@ class AnswerEditor extends HookWidget {
             const Gap(12),
             Center(
               child: Text('回答フォーム',
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline5
-                      ?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  )),
+                  style: Theme.of(context).textTheme.headline5?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      )),
             ),
             const Gap(32),
             Container(
@@ -223,7 +225,7 @@ class AnswerEditor extends HookWidget {
             ),
             const Gap(8),
             ElevatedButton(
-                onPressed: () {},
+                onPressed: notifier.onPostAnswer(problemId),
                 child: const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text(
