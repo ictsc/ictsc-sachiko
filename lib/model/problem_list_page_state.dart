@@ -10,6 +10,7 @@ class ProblemListPageState with _$ProblemListPageState {
   const factory ProblemListPageState({
     @Default(false) bool isLoading,
     @Default([]) List<Problem> problems,
+    Problem? problem,
   }) = _ProblemListPageState;
 
  factory ProblemListPageState.fromJson(Map<String, dynamic> json) => _$ProblemListPageStateFromJson(json);

@@ -1,4 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:ictsc_sachiko/model/problem.dart';
 import 'package:ictsc_sachiko/model/problem/delete_problem_request.dart';
 import 'package:ictsc_sachiko/model/problem_list_page_state.dart';
 import 'package:ictsc_sachiko/view_model/common/client_provider.dart';
@@ -17,6 +18,10 @@ class ProblemListPageStateNotifier extends StateNotifier<ProblemListPageState>
   }
 
   final ProviderReference ref;
+
+  Future<void> onSelectProblem(Problem problem) async {
+    state = state.copyWith(problem: problem);
+  }
 
   /// 問題一覧を取得する
   Future<void> fetchProblems() async {

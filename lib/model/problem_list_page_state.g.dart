@@ -14,6 +14,9 @@ _$_ProblemListPageState _$_$_ProblemListPageStateFromJson(
             ?.map((e) => Problem.fromJson(e as Map<String, dynamic>))
             .toList() ??
         [],
+    problem: json['problem'] == null
+        ? null
+        : Problem.fromJson(json['problem'] as Map<String, dynamic>),
   );
 }
 
@@ -22,4 +25,5 @@ Map<String, dynamic> _$_$_ProblemListPageStateToJson(
     <String, dynamic>{
       'is_loading': instance.isLoading,
       'problems': instance.problems,
+      'problem': instance.problem,
     };
