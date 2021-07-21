@@ -1,12 +1,11 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/model/problem_create_page_state.dart';
 import 'package:ictsc_sachiko/ui/common/editor_header.dart';
+import 'package:ictsc_sachiko/ui/common/problem_markdown.dart';
 import 'package:ictsc_sachiko/view_model/create_problem_page_state_notifier.dart';
-import 'package:markdown/markdown.dart' as md;
 
 final createProblemProvider = StateNotifierProvider.autoDispose<
     CreateProblemPageStateNotifier, ProblemCreatePageState>(
@@ -51,7 +50,7 @@ class CreateProblemPage extends HookWidget {
         body: SingleChildScrollView(
           child: Center(
             child: SizedBox(
-              width: 1024,
+              width: 1180,
               child: Form(
                 key: formKey,
                 child: Column(
@@ -168,24 +167,15 @@ class ProblemEditor extends HookWidget {
       return SizedBox(
         width: double.infinity,
         child: Padding(
-          padding: const EdgeInsets.only(top: 8.0, right: 4.0),
-          child: MarkdownBody(
-            data: editorTextController.text,
-            selectable: true,
-            extensionSet: md.ExtensionSet(
-              md.ExtensionSet.gitHubFlavored.blockSyntaxes,
-              [
-                md.EmojiSyntax(),
-                ...md.ExtensionSet.gitHubFlavored.inlineSyntaxes
-              ],
-            ),
-          ),
-        ),
+            padding: const EdgeInsets.only(top: 8.0, right: 4.0),
+            child: ProblemMarkdown(
+              data: editorTextController.text,
+            )),
       );
     }
 
     return TextFormField(
-      textCapitalization: TextCapitalization.sentences,
+      // textCapitalization: TextCapitalization.sentences,
       minLines: 9,
       maxLines: null,
       controller: editorTextController,
@@ -193,7 +183,9 @@ class ProblemEditor extends HookWidget {
         hintText: 'Problem Content...',
         border: InputBorder.none,
       ),
-      style: Theme.of(context).textTheme.bodyText2,
+      style: Theme.of(context)
+          .textTheme
+          .bodyText2
     );
   }
 }
