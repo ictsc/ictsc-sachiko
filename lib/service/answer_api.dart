@@ -1,23 +1,25 @@
 import 'package:dio/dio.dart';
-import 'package:ictsc_sachiko/model/answer/create_answer_request.dart';
-import 'package:ictsc_sachiko/model/answer/create_answer_response.dart';
-import 'package:ictsc_sachiko/service/base/model/error.dart';
-import 'package:ictsc_sachiko/service/base/model/result.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class Client {
-  final Dio dio;
-  final String baseUrl;
+import 'base/client.dart';
+import 'base/model/error.dart';
+import 'base/model/result.dart';
+import 'model/answer_api.dart';
 
-  Client(this.dio, this.baseUrl) {
-    dio.options.baseUrl = baseUrl;
-    dio.interceptors.add(LogInterceptor(responseBody: true));
+final answerProvider = Provider((ref) => AnswerAPI(ref.read));
+
+class AnswerAPI {
+  late final Dio client;
+
+  AnswerAPI(Reader reader) {
+    client = reader(clientProvider);
   }
 
   /// 問題のフォームを送り、問題を作成する
   Future<Result<CreateAnswerResponse>> createAnswer(
       CreateAnswerRequest createAnswerRequest) async {
     try {
-      return await dio
+      return await client
           .post(
             '/api/problems/${createAnswerRequest.problemId}/answers',
             data: createAnswerRequest,
