@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'create_problem_request.dart';
+part of 'problem.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -31,4 +31,33 @@ Map<String, dynamic> _$_$_CreateProblemRequestToJson(
       'point': instance.point,
       'solved_criterion': instance.solvedCriterion,
       'previous_problem_id': instance.previousProblemId,
+    };
+
+_$_CreateProblemResponse _$_$_CreateProblemResponseFromJson(
+    Map<String, dynamic> json) {
+  return _$_CreateProblemResponse(
+    code: json['code'] as int,
+    data: CreateProblemResponseData.fromJson(
+        json['data'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$_$_CreateProblemResponseToJson(
+        _$_CreateProblemResponse instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'data': instance.data,
+    };
+
+_$_CreateProblemResponseData _$_$_CreateProblemResponseDataFromJson(
+    Map<String, dynamic> json) {
+  return _$_CreateProblemResponseData(
+    problem: Problem.fromJson(json['problem'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$_$_CreateProblemResponseDataToJson(
+        _$_CreateProblemResponseData instance) =>
+    <String, dynamic>{
+      'problem': instance.problem,
     };

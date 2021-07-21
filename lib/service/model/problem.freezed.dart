@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'create_problem_request.dart';
+part of 'problem.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -359,4 +359,377 @@ abstract class _CreateProblemRequest implements CreateProblemRequest {
   @JsonKey(ignore: true)
   _$CreateProblemRequestCopyWith<_CreateProblemRequest> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+CreateProblemResponse _$CreateProblemResponseFromJson(
+    Map<String, dynamic> json) {
+  return _CreateProblemResponse.fromJson(json);
+}
+
+/// @nodoc
+class _$CreateProblemResponseTearOff {
+  const _$CreateProblemResponseTearOff();
+
+  _CreateProblemResponse call(
+      {required int code, required CreateProblemResponseData data}) {
+    return _CreateProblemResponse(
+      code: code,
+      data: data,
+    );
+  }
+
+  CreateProblemResponse fromJson(Map<String, Object> json) {
+    return CreateProblemResponse.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $CreateProblemResponse = _$CreateProblemResponseTearOff();
+
+/// @nodoc
+mixin _$CreateProblemResponse {
+  int get code => throw _privateConstructorUsedError;
+  CreateProblemResponseData get data => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CreateProblemResponseCopyWith<CreateProblemResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CreateProblemResponseCopyWith<$Res> {
+  factory $CreateProblemResponseCopyWith(CreateProblemResponse value,
+          $Res Function(CreateProblemResponse) then) =
+      _$CreateProblemResponseCopyWithImpl<$Res>;
+  $Res call({int code, CreateProblemResponseData data});
+
+  $CreateProblemResponseDataCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class _$CreateProblemResponseCopyWithImpl<$Res>
+    implements $CreateProblemResponseCopyWith<$Res> {
+  _$CreateProblemResponseCopyWithImpl(this._value, this._then);
+
+  final CreateProblemResponse _value;
+  // ignore: unused_field
+  final $Res Function(CreateProblemResponse) _then;
+
+  @override
+  $Res call({
+    Object? code = freezed,
+    Object? data = freezed,
+  }) {
+    return _then(_value.copyWith(
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as int,
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as CreateProblemResponseData,
+    ));
+  }
+
+  @override
+  $CreateProblemResponseDataCopyWith<$Res> get data {
+    return $CreateProblemResponseDataCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$CreateProblemResponseCopyWith<$Res>
+    implements $CreateProblemResponseCopyWith<$Res> {
+  factory _$CreateProblemResponseCopyWith(_CreateProblemResponse value,
+          $Res Function(_CreateProblemResponse) then) =
+      __$CreateProblemResponseCopyWithImpl<$Res>;
+  @override
+  $Res call({int code, CreateProblemResponseData data});
+
+  @override
+  $CreateProblemResponseDataCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class __$CreateProblemResponseCopyWithImpl<$Res>
+    extends _$CreateProblemResponseCopyWithImpl<$Res>
+    implements _$CreateProblemResponseCopyWith<$Res> {
+  __$CreateProblemResponseCopyWithImpl(_CreateProblemResponse _value,
+      $Res Function(_CreateProblemResponse) _then)
+      : super(_value, (v) => _then(v as _CreateProblemResponse));
+
+  @override
+  _CreateProblemResponse get _value => super._value as _CreateProblemResponse;
+
+  @override
+  $Res call({
+    Object? code = freezed,
+    Object? data = freezed,
+  }) {
+    return _then(_CreateProblemResponse(
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as int,
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as CreateProblemResponseData,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_CreateProblemResponse
+    with DiagnosticableTreeMixin
+    implements _CreateProblemResponse {
+  const _$_CreateProblemResponse({required this.code, required this.data});
+
+  factory _$_CreateProblemResponse.fromJson(Map<String, dynamic> json) =>
+      _$_$_CreateProblemResponseFromJson(json);
+
+  @override
+  final int code;
+  @override
+  final CreateProblemResponseData data;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'CreateProblemResponse(code: $code, data: $data)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'CreateProblemResponse'))
+      ..add(DiagnosticsProperty('code', code))
+      ..add(DiagnosticsProperty('data', data));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _CreateProblemResponse &&
+            (identical(other.code, code) ||
+                const DeepCollectionEquality().equals(other.code, code)) &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(code) ^
+      const DeepCollectionEquality().hash(data);
+
+  @JsonKey(ignore: true)
+  @override
+  _$CreateProblemResponseCopyWith<_CreateProblemResponse> get copyWith =>
+      __$CreateProblemResponseCopyWithImpl<_CreateProblemResponse>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_CreateProblemResponseToJson(this);
+  }
+}
+
+abstract class _CreateProblemResponse implements CreateProblemResponse {
+  const factory _CreateProblemResponse(
+      {required int code,
+      required CreateProblemResponseData data}) = _$_CreateProblemResponse;
+
+  factory _CreateProblemResponse.fromJson(Map<String, dynamic> json) =
+      _$_CreateProblemResponse.fromJson;
+
+  @override
+  int get code => throw _privateConstructorUsedError;
+  @override
+  CreateProblemResponseData get data => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$CreateProblemResponseCopyWith<_CreateProblemResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+CreateProblemResponseData _$CreateProblemResponseDataFromJson(
+    Map<String, dynamic> json) {
+  return _CreateProblemResponseData.fromJson(json);
+}
+
+/// @nodoc
+class _$CreateProblemResponseDataTearOff {
+  const _$CreateProblemResponseDataTearOff();
+
+  _CreateProblemResponseData call({required Problem problem}) {
+    return _CreateProblemResponseData(
+      problem: problem,
+    );
+  }
+
+  CreateProblemResponseData fromJson(Map<String, Object> json) {
+    return CreateProblemResponseData.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $CreateProblemResponseData = _$CreateProblemResponseDataTearOff();
+
+/// @nodoc
+mixin _$CreateProblemResponseData {
+  Problem get problem => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CreateProblemResponseDataCopyWith<CreateProblemResponseData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CreateProblemResponseDataCopyWith<$Res> {
+  factory $CreateProblemResponseDataCopyWith(CreateProblemResponseData value,
+          $Res Function(CreateProblemResponseData) then) =
+      _$CreateProblemResponseDataCopyWithImpl<$Res>;
+  $Res call({Problem problem});
+
+  $ProblemCopyWith<$Res> get problem;
+}
+
+/// @nodoc
+class _$CreateProblemResponseDataCopyWithImpl<$Res>
+    implements $CreateProblemResponseDataCopyWith<$Res> {
+  _$CreateProblemResponseDataCopyWithImpl(this._value, this._then);
+
+  final CreateProblemResponseData _value;
+  // ignore: unused_field
+  final $Res Function(CreateProblemResponseData) _then;
+
+  @override
+  $Res call({
+    Object? problem = freezed,
+  }) {
+    return _then(_value.copyWith(
+      problem: problem == freezed
+          ? _value.problem
+          : problem // ignore: cast_nullable_to_non_nullable
+              as Problem,
+    ));
+  }
+
+  @override
+  $ProblemCopyWith<$Res> get problem {
+    return $ProblemCopyWith<$Res>(_value.problem, (value) {
+      return _then(_value.copyWith(problem: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$CreateProblemResponseDataCopyWith<$Res>
+    implements $CreateProblemResponseDataCopyWith<$Res> {
+  factory _$CreateProblemResponseDataCopyWith(_CreateProblemResponseData value,
+          $Res Function(_CreateProblemResponseData) then) =
+      __$CreateProblemResponseDataCopyWithImpl<$Res>;
+  @override
+  $Res call({Problem problem});
+
+  @override
+  $ProblemCopyWith<$Res> get problem;
+}
+
+/// @nodoc
+class __$CreateProblemResponseDataCopyWithImpl<$Res>
+    extends _$CreateProblemResponseDataCopyWithImpl<$Res>
+    implements _$CreateProblemResponseDataCopyWith<$Res> {
+  __$CreateProblemResponseDataCopyWithImpl(_CreateProblemResponseData _value,
+      $Res Function(_CreateProblemResponseData) _then)
+      : super(_value, (v) => _then(v as _CreateProblemResponseData));
+
+  @override
+  _CreateProblemResponseData get _value =>
+      super._value as _CreateProblemResponseData;
+
+  @override
+  $Res call({
+    Object? problem = freezed,
+  }) {
+    return _then(_CreateProblemResponseData(
+      problem: problem == freezed
+          ? _value.problem
+          : problem // ignore: cast_nullable_to_non_nullable
+              as Problem,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_CreateProblemResponseData
+    with DiagnosticableTreeMixin
+    implements _CreateProblemResponseData {
+  const _$_CreateProblemResponseData({required this.problem});
+
+  factory _$_CreateProblemResponseData.fromJson(Map<String, dynamic> json) =>
+      _$_$_CreateProblemResponseDataFromJson(json);
+
+  @override
+  final Problem problem;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'CreateProblemResponseData(problem: $problem)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'CreateProblemResponseData'))
+      ..add(DiagnosticsProperty('problem', problem));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _CreateProblemResponseData &&
+            (identical(other.problem, problem) ||
+                const DeepCollectionEquality().equals(other.problem, problem)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(problem);
+
+  @JsonKey(ignore: true)
+  @override
+  _$CreateProblemResponseDataCopyWith<_CreateProblemResponseData>
+      get copyWith =>
+          __$CreateProblemResponseDataCopyWithImpl<_CreateProblemResponseData>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_CreateProblemResponseDataToJson(this);
+  }
+}
+
+abstract class _CreateProblemResponseData implements CreateProblemResponseData {
+  const factory _CreateProblemResponseData({required Problem problem}) =
+      _$_CreateProblemResponseData;
+
+  factory _CreateProblemResponseData.fromJson(Map<String, dynamic> json) =
+      _$_CreateProblemResponseData.fromJson;
+
+  @override
+  Problem get problem => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$CreateProblemResponseDataCopyWith<_CreateProblemResponseData>
+      get copyWith => throw _privateConstructorUsedError;
 }

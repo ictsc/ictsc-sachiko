@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:ictsc_sachiko/model/answer/create_answer_request.dart';
 import 'package:ictsc_sachiko/model/answer/create_answer_response.dart';
-import 'package:ictsc_sachiko/model/problem/create_problem_request.dart';
-import 'package:ictsc_sachiko/model/problem/create_problem_response.dart';
 import 'package:ictsc_sachiko/model/problem/delete_problem_request.dart';
 import 'package:ictsc_sachiko/model/problem/find_all_problem_response.dart';
 import 'package:ictsc_sachiko/model/problem/find_problem_request.dart';
@@ -19,19 +17,6 @@ class Client {
   Client(this.dio, this.baseUrl) {
     dio.options.baseUrl = baseUrl;
     dio.interceptors.add(LogInterceptor(responseBody: true));
-  }
-
-  /// 問題のフォームを送り、問題を作成する
-  Future<Result<CreateProblemResponse>> createProblem(
-      CreateProblemRequest createProblemRequest) async {
-    try {
-      return await dio
-          .post('/api/problems', data: createProblemRequest.toJson())
-          .then((result) =>
-              Result.success(CreateProblemResponse.fromJson({...result.data})));
-    } on DioError catch (error) {
-      return Result.failure(Error.getApiError(error));
-    }
   }
 
   /// 問題一覧を取得する
