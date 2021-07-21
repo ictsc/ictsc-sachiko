@@ -15,7 +15,7 @@ class Auth {
     client = reader(clientProvider);
   }
 
-  /// ログイン
+  /// ログイン。
   Future<Result<SignInResponse>> signIn(SignInRequest signInRequest) async {
     try {
       return await client
@@ -25,6 +25,47 @@ class Auth {
           )
           .then((result) =>
               Result.success(SignInResponse.fromJson({...result.data})));
+    } on DioError catch (error) {
+      return Result.failure(Error.getApiError(error));
+    }
+  }
+
+  /// ログアウト。
+  Future<Result<SignOutResponse>> signOut() async {
+    try {
+      return await client.delete('/api/auth/signout').then((result) =>
+          Result.success(SignOutResponse.fromJson({...result.data})));
+    } on DioError catch (error) {
+      return Result.failure(Error.getApiError(error));
+    }
+  }
+
+  /// 新規登録。
+  Future<Result<SignUpResponse>> signUp(SignUpRequest signUpRequest) async {
+    try {
+      return await client
+          .post(
+        '/api/users',
+        data: signUpRequest.toJson(),
+      )
+          .then((result) =>
+          Result.success(SignUpResponse.fromJson({...result.data})));
+    } on DioError catch (error) {
+      return Result.failure(Error.getApiError(error));
+    }
+  }
+
+  /// 自分の情報を取得する。
+  ///
+  /// ログイン済みか確認するのにも使用する。
+  Future<Result<SignInResponse>> self() async {
+    try {
+      return await client
+          .get(
+        '/api/auth/self',
+      )
+          .then((result) =>
+          Result.success(SignInResponse.fromJson({...result.data})));
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }

@@ -44,3 +44,57 @@ Map<String, dynamic> _$_$_SignInResponseDataToJson(
     <String, dynamic>{
       'user': instance.user,
     };
+
+_$_SignOutResponse _$_$_SignOutResponseFromJson(Map<String, dynamic> json) {
+  return _$_SignOutResponse(
+    code: json['code'] as int,
+  );
+}
+
+Map<String, dynamic> _$_$_SignOutResponseToJson(_$_SignOutResponse instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+    };
+
+_$_SignUpRequest _$_$_SignUpRequestFromJson(Map<String, dynamic> json) {
+  return _$_SignUpRequest(
+    name: json['name'] as String,
+    password: json['password'] as String,
+    userGroupId: json['user_group_id'] as String,
+    invitationCode: json['invitation_code'] as String,
+  );
+}
+
+Map<String, dynamic> _$_$_SignUpRequestToJson(_$_SignUpRequest instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'password': instance.password,
+      'user_group_id': instance.userGroupId,
+      'invitation_code': instance.invitationCode,
+    };
+
+_$_SignUpResponse _$_$_SignUpResponseFromJson(Map<String, dynamic> json) {
+  return _$_SignUpResponse(
+    code: json['code'] as int,
+    data: SignUpResponseData.fromJson(json['data'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$_$_SignUpResponseToJson(_$_SignUpResponse instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'data': instance.data,
+    };
+
+_$_SignUpResponseData _$_$_SignUpResponseDataFromJson(
+    Map<String, dynamic> json) {
+  return _$_SignUpResponseData(
+    user: User.fromJson(json['user'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$_$_SignUpResponseDataToJson(
+        _$_SignUpResponseData instance) =>
+    <String, dynamic>{
+      'user': instance.user,
+    };
