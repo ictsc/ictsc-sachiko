@@ -5,7 +5,7 @@ import 'package:ictsc_sachiko/model/authentication/sign_in_response.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_out_response.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_up_request.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_up_response.dart';
-import 'package:ictsc_sachiko/model/client/result.dart';
+import 'package:ictsc_sachiko/service/base/model/result.dart';
 import 'package:ictsc_sachiko/view_model/common/client_provider.dart';
 
 class AuthenticationStateNotifier extends StateNotifier<Authentication> {

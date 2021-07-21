@@ -6,8 +6,6 @@ import 'package:ictsc_sachiko/model/authentication/sign_in_response.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_out_response.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_up_request.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_up_response.dart';
-import 'package:ictsc_sachiko/model/client/error.dart';
-import 'package:ictsc_sachiko/model/client/result.dart';
 import 'package:ictsc_sachiko/model/problem/create_problem_request.dart';
 import 'package:ictsc_sachiko/model/problem/create_problem_response.dart';
 import 'package:ictsc_sachiko/model/problem/delete_problem_request.dart';
@@ -16,6 +14,8 @@ import 'package:ictsc_sachiko/model/problem/find_problem_request.dart';
 import 'package:ictsc_sachiko/model/problem/find_problem_response.dart';
 import 'package:ictsc_sachiko/model/problem/update_problem_request.dart';
 import 'package:ictsc_sachiko/model/problem/update_problem_response.dart';
+import 'package:ictsc_sachiko/service/base/model/error.dart';
+import 'package:ictsc_sachiko/service/base/model/result.dart';
 
 class Client {
   final Dio dio;
