@@ -5,6 +5,8 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/router/app_router.gr.dart';
 import 'package:ictsc_sachiko/ui/common/header.dart';
+import 'package:ictsc_sachiko/ui/common/problem_markdown.dart';
+import 'package:ictsc_sachiko/ui/problem_list_page.dart';
 import 'package:ictsc_sachiko/view_model/problem_list_page_state_notifier.dart';
 
 class ManageProblemListPage extends HookWidget {
@@ -13,9 +15,13 @@ class ManageProblemListPage extends HookWidget {
     final state = useProvider(problemListProvider);
     final notifier = useProvider(problemListProvider.notifier);
     final _scrollController = useScrollController();
+    final _previewScrollController = useScrollController();
 
     final dataRows = state.problems.map((problem) {
       return DataRow(
+        onSelectChanged: (_) {
+          notifier.onSelectProblem(problem);
+        },
         cells: <DataCell>[
           DataCell(DataText(problem.code)),
           if (problem.title.isNotEmpty)
@@ -43,7 +49,9 @@ class ManageProblemListPage extends HookWidget {
           )),
           DataCell(IconButton(
             icon: const Icon(Icons.delete),
-            onPressed: () {},
+            onPressed: () {
+              notifier.deleteProblems(problem.id);
+            },
           )),
         ],
       );
@@ -89,7 +97,9 @@ class ManageProblemListPage extends HookWidget {
               Row(
                 children: [
                   IconButton(
-                    onPressed: () {notifier.fetchProblems();},
+                    onPressed: () {
+                      notifier.fetchProblems();
+                    },
                     icon: Icon(
                       Icons.refresh,
                       color: Theme.of(context).primaryColor,
@@ -101,31 +111,70 @@ class ManageProblemListPage extends HookWidget {
             ],
           ),
           if (!state.isLoading)
-            Scrollbar(
-              isAlwaysShown: true,
-              controller: _scrollController,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                controller: _scrollController,
-                physics: const ClampingScrollPhysics(),
-                child: DataTable(
-                  columns: [
-                    const DataColumn(label: HeadingText('コード')),
-                    const DataColumn(label: HeadingText('タイトル')),
-                    const DataColumn(label: HeadingText('ID')),
-                    const DataColumn(label: HeadingText('ポイント'), numeric: true),
-                    const DataColumn(
-                        label: HeadingText('解決基準ポイント'), numeric: true),
-                    const DataColumn(label: HeadingText('問題文')),
-                    const DataColumn(label: HeadingText('更新日')),
-                    const DataColumn(label: HeadingText('作成日')),
-                    const DataColumn(label: HeadingText('編集')),
-                    const DataColumn(label: HeadingText('削除')),
-                  ],
-                  rows: dataRows,
-                  dataRowHeight: 40,
-                  headingRowHeight: 40,
-                ),
+            Expanded(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 256,
+                    child: Scrollbar(
+                      isAlwaysShown: true,
+                      controller: _scrollController,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        physics: const ClampingScrollPhysics(),
+                        controller: _scrollController,
+                        child: Scrollbar(
+                          child: SingleChildScrollView(
+                            physics: const ClampingScrollPhysics(),
+                            child: DataTable(
+                              columns: [
+                                const DataColumn(label: HeadingText('コード')),
+                                const DataColumn(label: HeadingText('タイトル')),
+                                const DataColumn(label: HeadingText('ID')),
+                                const DataColumn(
+                                    label: HeadingText('ポイント'), numeric: true),
+                                const DataColumn(
+                                    label: HeadingText('解決基準ポイント'), numeric: true),
+                                const DataColumn(label: HeadingText('問題文')),
+                                const DataColumn(label: HeadingText('更新日')),
+                                const DataColumn(label: HeadingText('作成日')),
+                                const DataColumn(label: HeadingText('編集')),
+                                const DataColumn(label: HeadingText('削除')),
+                              ],
+                              rows: dataRows,
+                              dataRowHeight: 40,
+                              headingRowHeight: 40,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const Gap(24),
+                  if (state.problem != null)
+                    Expanded(
+                      child: Scrollbar(
+                        isAlwaysShown: true,
+                        controller: _previewScrollController,
+                        child: SingleChildScrollView(
+                          physics: const ClampingScrollPhysics(),
+                          controller: _previewScrollController,
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: Center(
+                              child: SizedBox(
+                                width: 1024,
+                                child: ProblemCard(
+                                  child: ProblemMarkdown(data: state.problem?.body ?? ''),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  const Gap(24),
+                ],
               ),
             )
           else
