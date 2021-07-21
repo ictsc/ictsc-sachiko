@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:ictsc_sachiko/model/answer/create_answer_request.dart';
+import 'package:ictsc_sachiko/model/answer/create_answer_response.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_in_request.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_in_response.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_out_response.dart';
@@ -135,6 +137,22 @@ class Client {
       return await dio
           .delete('/api/problems/${deleteProblemRequest.id}')
           .then((result) => const Result.success(''));
+    } on DioError catch (error) {
+      return Result.failure(Error.getApiError(error));
+    }
+  }
+
+  /// 問題のフォームを送り、問題を作成する
+  Future<Result<CreateAnswerResponse>> createAnswer(
+      CreateAnswerRequest createAnswerRequest) async {
+    try {
+      return await dio
+          .post(
+            '/api/problems/${createAnswerRequest.problemId}/answers',
+            data: createAnswerRequest,
+          )
+          .then((result) =>
+              Result.success(CreateAnswerResponse.fromJson({...result.data})));
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }

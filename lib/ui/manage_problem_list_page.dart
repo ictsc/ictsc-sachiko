@@ -5,7 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/router/app_router.gr.dart';
 import 'package:ictsc_sachiko/ui/common/header.dart';
-import 'package:ictsc_sachiko/ui/common/problem_markdown.dart';
+import 'package:ictsc_sachiko/ui/common/markdown_preview.dart';
 import 'package:ictsc_sachiko/ui/problem_list_page.dart';
 import 'package:ictsc_sachiko/view_model/problem_list_page_state_notifier.dart';
 
@@ -165,7 +165,7 @@ class ManageProblemListPage extends HookWidget {
                               child: SizedBox(
                                 width: 1024,
                                 child: ProblemCard(
-                                  child: ProblemMarkdown(data: state.problem?.body ?? ''),
+                                  child: MarkdownPreview(data: state.problem?.body ?? ''),
                                 ),
                               ),
                             ),
