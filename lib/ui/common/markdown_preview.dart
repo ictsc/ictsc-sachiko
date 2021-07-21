@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:markdown_widget/config/widget_config.dart';
 import 'package:markdown_widget/markdown_widget.dart';
 
-class ProblemMarkdown extends StatelessWidget {
+class MarkdownPreview extends StatelessWidget {
   final String data;
 
-  const ProblemMarkdown({Key? key, required this.data}) : super(key: key);
+  const MarkdownPreview({Key? key, required this.data}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

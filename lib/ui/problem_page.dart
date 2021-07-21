@@ -4,7 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/ui/common/header.dart';
-import 'package:ictsc_sachiko/ui/common/problem_markdown.dart';
+import 'package:ictsc_sachiko/ui/common/markdown_preview.dart';
 import 'package:ictsc_sachiko/ui/problem_list_page.dart';
 import 'package:ictsc_sachiko/view_model/problem_page_state.notifier.dart';
 
@@ -130,7 +130,7 @@ class ProblemPage extends HookWidget {
                                     ),
                                   ),
                                   const Gap(12),
-                                  ProblemMarkdown(data: state.problem?.body ?? '',),
+                                  MarkdownPreview(data: state.problem?.body ?? '',),
                                 ],
                               ),
                             ),

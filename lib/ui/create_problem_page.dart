@@ -4,7 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/model/problem_create_page_state.dart';
 import 'package:ictsc_sachiko/ui/common/editor_header.dart';
-import 'package:ictsc_sachiko/ui/common/problem_markdown.dart';
+import 'package:ictsc_sachiko/ui/common/markdown_editor.dart';
 import 'package:ictsc_sachiko/view_model/create_problem_page_state_notifier.dart';
 
 final createProblemProvider = StateNotifierProvider.autoDispose<
@@ -20,7 +20,7 @@ class CreateProblemPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    useProvider(createProblemProvider);
+    final state = useProvider(createProblemProvider);
     final notifier = useProvider(createProblemProvider.notifier);
 
     useEffect(() {
@@ -130,7 +130,10 @@ class CreateProblemPage extends HookWidget {
                                         bottom: 48,
                                         left: 32,
                                         right: 32),
-                                    child: ProblemEditor())),
+                                    child: MarkdownEditor(
+                                      controller: notifier.bodyController,
+                                      isPreview: state.isPreview,
+                                    ))),
                           ),
                           const Padding(padding: EdgeInsets.only(left: 16.0)),
                           SizedBox(
@@ -151,42 +154,6 @@ class CreateProblemPage extends HookWidget {
             ),
           ),
         ));
-  }
-}
-
-/// エディターの部分
-class ProblemEditor extends HookWidget {
-  @override
-  Widget build(BuildContext context) {
-    final provider = useProvider(createProblemProvider);
-
-    final editorTextController =
-        useProvider(createProblemProvider.notifier).bodyController;
-
-    if (provider.isPreview) {
-      return SizedBox(
-        width: double.infinity,
-        child: Padding(
-            padding: const EdgeInsets.only(top: 8.0, right: 4.0),
-            child: ProblemMarkdown(
-              data: editorTextController.text,
-            )),
-      );
-    }
-
-    return TextFormField(
-      // textCapitalization: TextCapitalization.sentences,
-      minLines: 9,
-      maxLines: null,
-      controller: editorTextController,
-      decoration: const InputDecoration(
-        hintText: 'Problem Content...',
-        border: InputBorder.none,
-      ),
-      style: Theme.of(context)
-          .textTheme
-          .bodyText2
-    );
   }
 }
 
