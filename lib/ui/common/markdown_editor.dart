@@ -7,8 +7,9 @@ class MarkdownEditor extends StatelessWidget {
   final TextEditingController controller;
   final bool isPreview;
   final String? hintText;
+  final bool isBorder;
 
-  const MarkdownEditor({required this.controller, required this.isPreview, this.hintText,});
+  const MarkdownEditor({required this.controller, required this.isPreview, this.hintText, this.isBorder = false,});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class MarkdownEditor extends StatelessWidget {
         controller: controller,
         decoration: InputDecoration(
           hintText: hintText,
-          border: InputBorder.none,
+          border: !isBorder ? InputBorder.none : null,
         ),
         style: Theme.of(context).textTheme.bodyText2);
   }

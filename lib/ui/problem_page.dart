@@ -1,3 +1,4 @@
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -137,13 +138,9 @@ class ProblemPage extends HookWidget {
                             ),
                           ),
                           const Gap(36),
-                          SizedBox(
-                              width: 1024,
-                              child: ProblemCard(
-                                  child: MarkdownEditor(
-                                      controller: TextEditingController(),
-                                      isPreview: false))),
-                          const Gap(36),
+                          AnswerEditor(
+                              notifier.bodyController),
+                          const Gap(1280),
                         ],
                       ),
                     ),
@@ -151,5 +148,65 @@ class ProblemPage extends HookWidget {
                 : const CircularProgressIndicator()),
       ),
     );
+  }
+}
+
+class AnswerEditor extends HookWidget {
+  final TextEditingController controller;
+
+  const AnswerEditor(this.controller);
+
+  @override
+  Widget build(BuildContext context) {
+    final isPreview = useState(false);
+
+    return SizedBox(
+        width: 1024,
+        child: ProblemCard(
+            child: Column(
+          children: [
+            Row(
+              children: [
+                // Gap(4),
+                ElevatedButton(
+                  onPressed: isPreview.value
+                      ? () {
+                          isPreview.value = false;
+                        }
+                      : null,
+                  child: const Text(
+                    'Markdown',
+                  ),
+                ),
+                const Gap(4),
+                ElevatedButton(
+                  onPressed: !isPreview.value
+                      ? () {
+                          isPreview.value = true;
+                        }
+                      : null,
+                  child: const Text('Preview'),
+                )
+              ],
+            ),
+            const Gap(24),
+            MarkdownEditor(
+              controller: controller,
+              isPreview: isPreview.value,
+              isBorder: true,
+              hintText: '''
+お世話になっております。○○です。
+
+この問題ではxxxxxが原因でトラブルが発生したと考えられました。
+そのため、以下のように設定を変更し、○○が正しく動くことを確認いたしました。
+確認のほどよろしくお願いします。
+
+## 手順
+
+### 1. /etc/hoge/hoo.bar の編集
+                                          ''',
+            ),
+          ],
+        )));
   }
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/model/problem/find_problem_request.dart';
 import 'package:ictsc_sachiko/model/problem_page_state.dart';
@@ -15,6 +16,8 @@ class ProblemPageStateNotifier extends StateNotifier<ProblemPageState>
   ProblemPageStateNotifier(ProblemPageState state, this.ref) : super(state);
 
   final ProviderReference ref;
+
+  final bodyController = TextEditingController();
 
   Future<void> fetchProblem(String id) async {
     state = state.copyWith(isLoading: true);
