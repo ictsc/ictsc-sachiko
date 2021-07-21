@@ -43,7 +43,9 @@ class ManageProblemListPage extends HookWidget {
           )),
           DataCell(IconButton(
             icon: const Icon(Icons.delete),
-            onPressed: () {},
+            onPressed: () {
+              notifier.deleteProblems(problem.id);
+            },
           )),
         ],
       );
@@ -89,7 +91,9 @@ class ManageProblemListPage extends HookWidget {
               Row(
                 children: [
                   IconButton(
-                    onPressed: () {notifier.fetchProblems();},
+                    onPressed: () {
+                      notifier.fetchProblems();
+                    },
                     icon: Icon(
                       Icons.refresh,
                       color: Theme.of(context).primaryColor,
