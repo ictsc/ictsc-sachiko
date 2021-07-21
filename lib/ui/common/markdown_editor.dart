@@ -6,8 +6,9 @@ import 'package:ictsc_sachiko/ui/common/markdown_preview.dart';
 class MarkdownEditor extends StatelessWidget {
   final TextEditingController controller;
   final bool isPreview;
+  final String? hintText;
 
-  const MarkdownEditor({required this.controller, required this.isPreview,});
+  const MarkdownEditor({required this.controller, required this.isPreview, this.hintText,});
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +28,8 @@ class MarkdownEditor extends StatelessWidget {
         minLines: 9,
         maxLines: null,
         controller: controller,
-        decoration: const InputDecoration(
-          hintText: 'Problem Content...',
+        decoration: InputDecoration(
+          hintText: hintText,
           border: InputBorder.none,
         ),
         style: Theme.of(context).textTheme.bodyText2);

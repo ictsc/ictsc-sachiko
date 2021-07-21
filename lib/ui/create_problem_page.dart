@@ -133,6 +133,7 @@ class CreateProblemPage extends HookWidget {
                                     child: MarkdownEditor(
                                       controller: notifier.bodyController,
                                       isPreview: state.isPreview,
+                                      hintText: 'Problem Content...',
                                     ))),
                           ),
                           const Padding(padding: EdgeInsets.only(left: 16.0)),
