@@ -1,5 +1,4 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ictsc_sachiko/model/authentication/authentication.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_in_request.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_in_response.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_out_response.dart';
@@ -7,9 +6,10 @@ import 'package:ictsc_sachiko/model/authentication/sign_up_request.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_up_response.dart';
 import 'package:ictsc_sachiko/service/base/model/result.dart';
 import 'package:ictsc_sachiko/view_model/common/client_provider.dart';
+import 'package:ictsc_sachiko/view_model/common/model/auth_state.dart';
 
-class AuthenticationStateNotifier extends StateNotifier<Authentication> {
-  AuthenticationStateNotifier(Authentication state, this.ref) : super(state);
+class AuthStateNotifier extends StateNotifier<AuthState> {
+  AuthStateNotifier(AuthState state, this.ref) : super(state);
 
   final ProviderReference ref;
 
@@ -74,7 +74,6 @@ class AuthenticationStateNotifier extends StateNotifier<Authentication> {
   }
 }
 
-final auth = StateNotifierProvider<AuthenticationStateNotifier,
-    Authentication>(
-  (refs) => AuthenticationStateNotifier(const Authentication(), refs),
+final authStateProvider = StateNotifierProvider<AuthStateNotifier, AuthState>(
+  (refs) => AuthStateNotifier(const AuthState(), refs),
 );

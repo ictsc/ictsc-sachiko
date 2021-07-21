@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/model/authentication/sign_up_request.dart';
 import 'package:ictsc_sachiko/model/sign_up_form_state.dart';
-import 'package:ictsc_sachiko/view_model/common/authentication_state_notifier.dart';
+import 'package:ictsc_sachiko/view_model/common/auth_state_notifier.dart';
 import 'package:state_notifier/state_notifier.dart';
 
 class SignUpPageStateNotifier extends StateNotifier<SignUpFormState>
@@ -39,7 +39,7 @@ class SignUpPageStateNotifier extends StateNotifier<SignUpFormState>
       formKey.currentState?.save();
 
       ref
-          .read(auth.notifier)
+          .read(authStateProvider.notifier)
           .signUp(SignUpRequest(
               name: nameController.text,
               password: passwordController.text,
