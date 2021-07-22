@@ -10,9 +10,9 @@ import 'package:flutter/material.dart' as _i2;
 import '../ui/create_problem_page.dart' as _i12;
 import '../ui/home_page.dart' as _i5;
 import '../ui/manage_problem_list_page.dart' as _i13;
-import '../ui/my_page.dart' as _i9;
 import '../ui/problem_list_page.dart' as _i10;
 import '../ui/problem_page.dart' as _i11;
+import '../ui/profile_page.dart' as _i9;
 import '../ui/sign_in_page.dart' as _i7;
 import '../ui/sign_up_page.dart' as _i8;
 import 'app_router.dart' as _i6;
@@ -56,10 +56,10 @@ class AppRouter extends _i1.RootStackRouter {
         transitionsBuilder: _i6.fadeIn,
         opaque: true,
         barrierDismissible: false),
-    MyRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+    ProfileRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i9.MyPage();
+          return _i9.ProfilePage();
         },
         transitionsBuilder: _i6.fadeIn,
         opaque: true,
@@ -110,7 +110,8 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(HomeRoute.name, path: '/'),
         _i1.RouteConfig(SignInRoute.name, path: '/login'),
         _i1.RouteConfig(SignUpRoute.name, path: '/signup'),
-        _i1.RouteConfig(MyRoute.name, path: '/mypage', guards: [authGuard]),
+        _i1.RouteConfig(ProfileRoute.name,
+            path: '/profile', guards: [authGuard]),
         _i1.RouteConfig(ProblemListRoute.name,
             path: '/problems', guards: [authGuard]),
         _i1.RouteConfig(ProblemRoute.name,
@@ -142,10 +143,10 @@ class SignUpRoute extends _i1.PageRouteInfo {
   static const String name = 'SignUpRoute';
 }
 
-class MyRoute extends _i1.PageRouteInfo {
-  const MyRoute() : super(name, path: '/mypage');
+class ProfileRoute extends _i1.PageRouteInfo {
+  const ProfileRoute() : super(name, path: '/profile');
 
-  static const String name = 'MyRoute';
+  static const String name = 'ProfileRoute';
 }
 
 class ProblemListRoute extends _i1.PageRouteInfo {

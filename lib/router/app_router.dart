@@ -5,9 +5,9 @@ import 'package:ictsc_sachiko/router/guard/auth_route_guard.dart';
 import 'package:ictsc_sachiko/ui/create_problem_page.dart';
 import 'package:ictsc_sachiko/ui/home_page.dart';
 import 'package:ictsc_sachiko/ui/manage_problem_list_page.dart';
-import 'package:ictsc_sachiko/ui/my_page.dart';
 import 'package:ictsc_sachiko/ui/problem_list_page.dart';
 import 'package:ictsc_sachiko/ui/problem_page.dart';
+import 'package:ictsc_sachiko/ui/profile_page.dart';
 import 'package:ictsc_sachiko/ui/sign_in_page.dart';
 import 'package:ictsc_sachiko/ui/sign_up_page.dart';
 
@@ -37,9 +37,9 @@ Widget fadeIn(BuildContext context, Animation<double> animation,
       transitionsBuilder: fadeIn,
     ),
     CustomRoute(
-      path: '/mypage',
+      path: '/profile',
       guards: [AuthGuard],
-      page: MyPage,
+      page: ProfilePage,
       transitionsBuilder: fadeIn,
     ),
     CustomRoute(
