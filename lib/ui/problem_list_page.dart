@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ictsc_sachiko/model/problem.dart';
+import 'package:ictsc_sachiko/domain/problem.dart';
 import 'package:ictsc_sachiko/ui/common/header.dart';
 import 'package:ictsc_sachiko/view_model/problem_list_page_state_notifier.dart';
 import 'package:responsive_grid/responsive_grid.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ictsc_sachiko/model/user_group.dart';
+import 'package:ictsc_sachiko/domain/user_group.dart';
 
 part 'user.freezed.dart';
 part 'user.g.dart';

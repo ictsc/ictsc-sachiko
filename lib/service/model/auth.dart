@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ictsc_sachiko/model/user.dart';
+import 'package:ictsc_sachiko/domain/user.dart';
 
 part 'auth.freezed.dart';
 part 'auth.g.dart';

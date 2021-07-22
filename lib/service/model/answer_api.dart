@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ictsc_sachiko/model/answer.dart';
+import 'package:ictsc_sachiko/domain/answer.dart';
 
 part 'answer_api.freezed.dart';
 part 'answer_api.g.dart';
