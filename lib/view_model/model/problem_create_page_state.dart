@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ictsc_sachiko/model/problem.dart';
-import 'package:ictsc_sachiko/model/user.dart';
+import 'package:ictsc_sachiko/domain/problem.dart';
+import 'package:ictsc_sachiko/domain/user.dart';
 
 part 'problem_create_page_state.freezed.dart';
 part 'problem_create_page_state.g.dart';

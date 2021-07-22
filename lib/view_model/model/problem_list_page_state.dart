@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ictsc_sachiko/model/problem.dart';
+import 'package:ictsc_sachiko/domain/problem.dart';
 
 part 'problem_list_page_state.freezed.dart';
 part 'problem_list_page_state.g.dart';

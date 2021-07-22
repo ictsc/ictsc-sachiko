@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ictsc_sachiko/model/sign_in_form_state.dart';
+import 'package:ictsc_sachiko/view_model/model/sign_in_form_state.dart';
 import 'package:ictsc_sachiko/view_model/sign_in_form_state_notifier.dart';
 
 import 'common/header.dart';

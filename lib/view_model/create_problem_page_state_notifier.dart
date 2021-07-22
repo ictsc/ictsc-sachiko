@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ictsc_sachiko/model/problem_create_page_state.dart';
 import 'package:ictsc_sachiko/service/model/problem_api.dart';
 import 'package:ictsc_sachiko/service/problem_api.dart';
 import 'package:ictsc_sachiko/view_model/common/auth_state_notifier.dart';
+import 'package:ictsc_sachiko/view_model/model/problem_create_page_state.dart';
 import 'package:state_notifier/state_notifier.dart';
 
 class CreateProblemPageStateNotifier

@@ -12,8 +12,6 @@ class App extends HookWidget {
   final _appRouter =
       AppRouter(authGuard: AuthGuard(), adminGuard: AdminGuard());
 
-  //, adminGuard: AdminGuard()
-
   @override
   Widget build(BuildContext context) {
     useProvider(authStateProvider);

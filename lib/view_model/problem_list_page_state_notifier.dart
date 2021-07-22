@@ -1,8 +1,8 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ictsc_sachiko/model/problem.dart';
-import 'package:ictsc_sachiko/model/problem_list_page_state.dart';
+import 'package:ictsc_sachiko/domain/problem.dart';
 import 'package:ictsc_sachiko/service/model/problem_api.dart';
 import 'package:ictsc_sachiko/service/problem_api.dart';
+import 'package:ictsc_sachiko/view_model/model/problem_list_page_state.dart';
 import 'package:state_notifier/state_notifier.dart';
 
 final problemListProvider = StateNotifierProvider.autoDispose<

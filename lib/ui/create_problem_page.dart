@@ -2,10 +2,10 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ictsc_sachiko/model/problem_create_page_state.dart';
 import 'package:ictsc_sachiko/ui/common/editor_header.dart';
 import 'package:ictsc_sachiko/ui/common/markdown_editor.dart';
 import 'package:ictsc_sachiko/view_model/create_problem_page_state_notifier.dart';
+import 'package:ictsc_sachiko/view_model/model/problem_create_page_state.dart';
 
 final createProblemProvider = StateNotifierProvider.autoDispose<
     CreateProblemPageStateNotifier, ProblemCreatePageState>(
