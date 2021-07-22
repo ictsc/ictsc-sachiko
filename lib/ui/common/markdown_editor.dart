@@ -23,8 +23,17 @@ class MarkdownEditor extends StatelessWidget {
         width: double.infinity,
         child: Padding(
             padding: const EdgeInsets.only(top: 8.0, right: 4.0),
-            child: MarkdownPreview(
-              data: controller.text,
+            child: Column(
+              children: [
+                MarkdownPreview(
+                  data: controller.text,
+                ),
+                if (isBorder)
+                  Container(
+                    height: 1,
+                    color: Theme.of(context).dividerColor,
+                  ),
+              ],
             )),
       );
     }
