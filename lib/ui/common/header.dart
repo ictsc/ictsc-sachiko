@@ -36,7 +36,7 @@ class Header extends HookWidget implements PreferredSizeWidget {
           PopupMenuButton(
             onSelected: (value) {
               if (value == 'mypage') {
-                context.router.pushNamed('/mypage');
+                context.router.pushNamed('/profile');
               }
 
               if (value == 'logout') {
