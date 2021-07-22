@@ -1,5 +1,8 @@
+import 'package:flash/flash.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:markdown_widget/config/widget_config.dart';
 import 'package:markdown_widget/markdown_widget.dart';
 
@@ -15,25 +18,12 @@ class MarkdownPreview extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       data: data,
       widgetConfig: WidgetConfig(
-        p: (_) {
-          return SelectableText(_.textContent);
+        p: (element) {
+          return SelectableText(element.textContent);
         },
-        pre: (_) {
-          return Container(
-            decoration: BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.circular(4),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: SelectableText(
-                _.textContent.trimRight(),
-                style: Theme.of(context)
-                    .textTheme
-                    .caption
-                    ?.copyWith(color: Colors.white),
-              ),
-            ),
+        pre: (element) {
+          return Pre(
+            text: element.textContent.trimRight(),
           );
         },
         // block: (_) {
@@ -54,12 +44,63 @@ class MarkdownPreview extends StatelessWidget {
           // TODO
           codeConfig: CodeConfig(
             codeStyle: Theme.of(context).textTheme.caption,
-            decoration:  BoxDecoration(
+            decoration: BoxDecoration(
               color: Colors.blueGrey.shade50,
               borderRadius: BorderRadius.circular(4),
             ),
-            padding: const EdgeInsets.only(top: 1, bottom: 1, left: 6, right: 4),
+            padding:
+                const EdgeInsets.only(top: 1, bottom: 1, left: 6, right: 4),
           )),
+    );
+  }
+}
+
+class Pre extends HookWidget {
+  final String text;
+
+  const Pre({required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO 長いとスクロールするようにする
+
+    return Stack(
+      alignment: Alignment.topRight,
+      children: [
+        Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Colors.black,
+            borderRadius: BorderRadius.circular(4),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: SelectableText(
+              text,
+              style: Theme.of(context)
+                  .textTheme
+                  .caption
+                  ?.copyWith(color: Colors.white),
+            ),
+          ),
+        ),
+        IconButton(
+            onPressed: () async {
+              final data = ClipboardData(text: text);
+              await Clipboard.setData(data);
+              context.showFlashBar(
+                content: const Text('コピーしました',),
+                duration: const Duration(seconds: 3),
+                backgroundColor: Theme.of(context).primaryColor,
+              );
+            },
+            tooltip: 'クリップボードにコピー',
+            icon: const Icon(
+              Icons.content_copy_outlined,
+              size: 20,
+              color: Colors.white,
+            )),
+      ],
     );
   }
 }

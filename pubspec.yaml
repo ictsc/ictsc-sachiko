@@ -44,6 +44,7 @@ dependencies:
   gap: ^2.0.0
   responsive_grid: ^2.0.0
   markdown_widget: ^1.2.6-nullsafety
+  flash: ^2.0.1
 
 
 dev_dependencies:
