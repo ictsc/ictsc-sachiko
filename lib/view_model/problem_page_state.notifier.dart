@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ictsc_sachiko/model/problem_page_state.dart';
 import 'package:ictsc_sachiko/service/answer_api.dart';
 import 'package:ictsc_sachiko/service/model/answer_api.dart';
 import 'package:ictsc_sachiko/service/model/problem_api.dart';
 import 'package:ictsc_sachiko/service/problem_api.dart';
+import 'package:ictsc_sachiko/view_model/model/problem_page_state.dart';
 import 'package:state_notifier/state_notifier.dart';
 
 final problemPageStateProvider = StateNotifierProvider.autoDispose<

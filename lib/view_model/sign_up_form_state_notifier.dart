@@ -2,9 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ictsc_sachiko/model/sign_up_form_state.dart';
 import 'package:ictsc_sachiko/service/model/auth.dart';
 import 'package:ictsc_sachiko/view_model/common/auth_state_notifier.dart';
+import 'package:ictsc_sachiko/view_model/model/sign_up_form_state.dart';
 import 'package:state_notifier/state_notifier.dart';
 
 class SignUpPageStateNotifier extends StateNotifier<SignUpFormState>
