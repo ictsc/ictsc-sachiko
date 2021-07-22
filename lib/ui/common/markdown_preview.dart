@@ -13,6 +13,17 @@ class MarkdownPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (data.isEmpty) {
+      return SizedBox(
+        height: 96,
+        child: Center(
+            child: Text(
+          '本文がありません',
+          style: TextStyle(color: Theme.of(context).textTheme.caption?.color),
+        )),
+      );
+    }
+
     return MarkdownWidget(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -89,7 +100,9 @@ class Pre extends HookWidget {
               final data = ClipboardData(text: text);
               await Clipboard.setData(data);
               context.showFlashBar(
-                content: const Text('コピーしました',),
+                content: const Text(
+                  'コピーしました',
+                ),
                 duration: const Duration(seconds: 3),
                 backgroundColor: Theme.of(context).primaryColor,
               );
