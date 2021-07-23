@@ -109,7 +109,7 @@ class Header extends HookWidget implements PreferredSizeWidget {
                     ),
                     Switch(
                       activeColor: Theme.of(context).primaryColor,
-                      value: app.isDark ?? false,
+                      value: app.isDark ?? WidgetsBinding.instance?.window.platformBrightness == Brightness.dark,
                       onChanged: (value) {
                         notifier.onSetIsPreviewButton(isPreview: value);
                         Navigator.pop(context, '');

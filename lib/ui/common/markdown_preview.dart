@@ -24,13 +24,9 @@ class MarkdownPreview extends HookWidget {
         height: 96,
         child: Center(
             child: Text(
-              '本文がありません',
-              style: TextStyle(color: Theme
-                  .of(context)
-                  .textTheme
-                  .caption
-                  ?.color),
-            )),
+          '本文がありません',
+          style: TextStyle(color: Theme.of(context).textTheme.caption?.color),
+        )),
       );
     }
 
@@ -54,8 +50,8 @@ class MarkdownPreview extends HookWidget {
         // },
       ),
       styleConfig: StyleConfig(
-          markdownTheme: isDark ? MarkdownTheme.darkTheme : MarkdownTheme
-              .lightTheme,
+          markdownTheme:
+              isDark ? MarkdownTheme.darkTheme : MarkdownTheme.lightTheme,
           titleConfig: TitleConfig(
             titleWrapper: (_) {
               return Padding(
@@ -66,19 +62,17 @@ class MarkdownPreview extends HookWidget {
           ),
           // TODO
           codeConfig: CodeConfig(
-              codeStyle: Theme
-                  .of(context)
-                  .textTheme
-                  .caption?.copyWith(color: Theme.of(context).textTheme.bodyText2?.color),
-      decoration: BoxDecoration(
-        color: Theme
-            .of(context)
-            .dividerColor.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(4),
-      ),
-      padding:
-      const EdgeInsets.only(top: 1, bottom: 1, left: 6, right: 4),
-    )),
+            codeStyle: Theme.of(context)
+                .textTheme
+                .caption
+                ?.copyWith(color: Theme.of(context).textTheme.bodyText2?.color),
+            decoration: BoxDecoration(
+              color: Theme.of(context).dividerColor.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(4),
+            ),
+            padding:
+                const EdgeInsets.only(top: 1, bottom: 1, left: 6, right: 4),
+          )),
     );
   }
 }
@@ -105,8 +99,7 @@ class Pre extends HookWidget {
             padding: const EdgeInsets.all(20.0),
             child: SelectableText(
               text,
-              style: Theme
-                  .of(context)
+              style: Theme.of(context)
                   .textTheme
                   .caption
                   ?.copyWith(color: Colors.white),
@@ -118,13 +111,15 @@ class Pre extends HookWidget {
               final data = ClipboardData(text: text);
               await Clipboard.setData(data);
               context.showFlashBar(
-                content: const Text(
+                content: Text(
                   'コピーしました',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText2
+                      ?.copyWith(color: Colors.white),
                 ),
                 duration: const Duration(seconds: 3),
-                backgroundColor: Theme
-                    .of(context)
-                    .primaryColor,
+                backgroundColor: Theme.of(context).primaryColor,
               );
             },
             tooltip: 'クリップボードにコピー',
