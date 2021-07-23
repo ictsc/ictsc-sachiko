@@ -17,7 +17,8 @@ class MarkdownPreview extends HookWidget {
   Widget build(BuildContext context) {
     final app = useProvider(appStateProvider);
 
-    final isDark = app.isDark ?? false;
+    final isDark = app.isDark ??
+        WidgetsBinding.instance?.window.platformBrightness == Brightness.dark;
 
     if (data.isEmpty) {
       return SizedBox(
