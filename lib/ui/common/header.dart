@@ -107,10 +107,14 @@ class Header extends HookWidget implements PreferredSizeWidget {
                               color:
                                   Theme.of(context).textTheme.bodyText2!.color),
                     ),
-                    Switch(value: app.isDark ?? false, onChanged: (value) {
-                      notifier.onSetIsPreviewButton(isPreview: value);
-                      Navigator.pop(context, '');
-                    }),
+                    Switch(
+                      activeColor: Theme.of(context).primaryColor,
+                      value: app.isDark ?? false,
+                      onChanged: (value) {
+                        notifier.onSetIsPreviewButton(isPreview: value);
+                        Navigator.pop(context, '');
+                      },
+                    ),
                     Text(
                       'ダーク',
                       style: Theme.of(context)
