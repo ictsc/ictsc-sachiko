@@ -39,12 +39,16 @@ class CreateProblemPage extends HookWidget {
         floatingActionButton: Container(
           margin: const EdgeInsets.only(bottom: 16, right: 16),
           child: FloatingActionButton.extended(
+            backgroundColor: Theme.of(context).primaryColor,
             onPressed: notifier.onSaveButton(
               context: context,
               key: formKey,
               id: problemId == 'new' ? null : problemId,
             ),
-            label: const Text('保存する'),
+            label: const Text(
+              '保存する',
+              style: TextStyle(color: Colors.white),
+            ),
           ),
         ),
         body: SingleChildScrollView(
@@ -179,6 +183,7 @@ class ProblemCreateSideMenu extends HookWidget {
               style: Theme.of(context).textTheme.subtitle2,
             ),
             Switch(
+              activeColor: Theme.of(context).primaryColor,
               value: useProvider(createProblemProvider).isPreview,
               onChanged: (value) =>
                   notifier.onSetIsPreviewButton(isPreview: value),
