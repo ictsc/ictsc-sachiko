@@ -150,7 +150,6 @@ class ManageProblemListPage extends HookWidget {
                       ),
                     ),
                   ),
-                  const Gap(24),
                   if (state.problem != null)
                     Expanded(
                       child: Scrollbar(
@@ -164,8 +163,13 @@ class ManageProblemListPage extends HookWidget {
                             child: Center(
                               child: SizedBox(
                                 width: 1024,
-                                child: ProblemCard(
-                                  child: MarkdownPreview(data: state.problem?.body ?? ''),
+                                child: Column(
+                                  children: [
+                                    const Gap(24),
+                                    ProblemCard(
+                                      child: MarkdownPreview(data: state.problem?.body ?? ''),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),

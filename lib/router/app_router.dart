@@ -4,6 +4,7 @@ import 'package:ictsc_sachiko/router/guard/admin_route_guard.dart';
 import 'package:ictsc_sachiko/router/guard/auth_route_guard.dart';
 import 'package:ictsc_sachiko/ui/create_problem_page.dart';
 import 'package:ictsc_sachiko/ui/home_page.dart';
+import 'package:ictsc_sachiko/ui/manage_page.dart';
 import 'package:ictsc_sachiko/ui/manage_problem_list_page.dart';
 import 'package:ictsc_sachiko/ui/problem_list_page.dart';
 import 'package:ictsc_sachiko/ui/problem_page.dart';
@@ -52,6 +53,12 @@ Widget fadeIn(BuildContext context, Animation<double> animation,
       path: '/problems/:id',
       guards: [AuthGuard],
       page: ProblemPage,
+      transitionsBuilder: fadeIn,
+    ),
+    CustomRoute(
+      path: '/manage',
+      guards: [AdminGuard],
+      page: ManagePage,
       transitionsBuilder: fadeIn,
     ),
     CustomRoute(

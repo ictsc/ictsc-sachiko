@@ -108,7 +108,8 @@ class Header extends HookWidget implements PreferredSizeWidget {
       // 戻るボタンを削除
       automaticallyImplyLeading: false,
       leading: GestureDetector(
-        onTap: () => context.router.pushAndPopUntil(const HomeRoute(), predicate: (route) => route.isFirst),
+        onTap: () => context.router.pushAndPopUntil(const HomeRoute(),
+            predicate: (route) => route.isFirst),
         child: SizedBox(
           height: 72,
           child: Padding(
@@ -122,6 +123,16 @@ class Header extends HookWidget implements PreferredSizeWidget {
       ),
       leadingWidth: 150,
       actions: [
+        if (user?.userGroup?.isFullAccess ?? false)
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: TextButton(
+              onPressed: () {
+                AutoRouter.of(context).pushNamed('/manage');
+              },
+              child: Text('管理者ページ', style: TextStyle(color: Theme.of(context).cardColor),),
+            ),
+          ),
         Padding(
             padding: const EdgeInsets.only(
                 top: 8.0, bottom: 8.0, left: 8.0, right: 16.0),
