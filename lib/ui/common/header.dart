@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -43,8 +44,10 @@ class Header extends HookWidget implements PreferredSizeWidget {
               }
 
               if (value == 'logout') {
-                // TODO ログアウトの処理
-                context.read(authStateProvider.notifier).signOut();
+                context
+                    .read(authStateProvider.notifier)
+                    .signOut()
+                    .whenComplete(() => AutoRouter.of(context).pushNamed('/'));
               }
             },
             itemBuilder: (BuildContext context) => [
@@ -85,21 +88,13 @@ class Header extends HookWidget implements PreferredSizeWidget {
                 ),
               ),
               PopupMenuItem(
-                value: 'logout',
-                height: 36,
-                child: Text(
-                  'ログアウト',
-                  style: Theme.of(context).primaryTextTheme.bodyText2!.copyWith(
-                      color: Theme.of(context).textTheme.bodyText2!.color),
-                ),
-              ),
-              PopupMenuItem(
                 enabled: false,
                 height: 36,
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'ライト',
+                      'ダークモード',
                       style: Theme.of(context)
                           .primaryTextTheme
                           .bodyText2!
@@ -109,14 +104,29 @@ class Header extends HookWidget implements PreferredSizeWidget {
                     ),
                     Switch(
                       activeColor: Theme.of(context).primaryColor,
-                      value: app.isDark ?? WidgetsBinding.instance?.window.platformBrightness == Brightness.dark,
+                      value: app.isDark ??
+                          WidgetsBinding.instance?.window.platformBrightness ==
+                              Brightness.dark,
                       onChanged: (value) {
                         notifier.onSetIsPreviewButton(isPreview: value);
                         Navigator.pop(context, '');
                       },
                     ),
+                  ],
+                ),
+              ),
+              const PopupMenuItem(
+                enabled: false,
+                height: 8,
+                child: Divider(),
+              ),
+              PopupMenuItem(
+                value: 'logout',
+                height: 36,
+                child: Column(
+                  children: [
                     Text(
-                      'ダーク',
+                      'ログアウト',
                       style: Theme.of(context)
                           .primaryTextTheme
                           .bodyText2!
