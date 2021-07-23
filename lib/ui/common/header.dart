@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/router/app_router.gr.dart';
+import 'package:ictsc_sachiko/view_model/common/app_state_notifier.dart';
 import 'package:ictsc_sachiko/view_model/common/auth_state_notifier.dart';
 
 /// アプリ全体で使われるヘッダー
@@ -15,6 +16,8 @@ class Header extends HookWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final authState = useProvider(authStateProvider);
+    final app = useProvider(appStateProvider);
+    final notifier = useProvider(appStateProvider.notifier);
 
     final user = authState.user;
 
@@ -89,7 +92,37 @@ class Header extends HookWidget implements PreferredSizeWidget {
                   style: Theme.of(context).primaryTextTheme.bodyText2!.copyWith(
                       color: Theme.of(context).textTheme.bodyText2!.color),
                 ),
-              )
+              ),
+              PopupMenuItem(
+                enabled: false,
+                height: 36,
+                child: Row(
+                  children: [
+                    Text(
+                      'ライト',
+                      style: Theme.of(context)
+                          .primaryTextTheme
+                          .bodyText2!
+                          .copyWith(
+                              color:
+                                  Theme.of(context).textTheme.bodyText2!.color),
+                    ),
+                    Switch(value: app.isDark ?? false, onChanged: (value) {
+                      notifier.onSetIsPreviewButton(isPreview: value);
+                      Navigator.pop(context, '');
+                    }),
+                    Text(
+                      'ダーク',
+                      style: Theme.of(context)
+                          .primaryTextTheme
+                          .bodyText2!
+                          .copyWith(
+                              color:
+                                  Theme.of(context).textTheme.bodyText2!.color),
+                    ),
+                  ],
+                ),
+              ),
             ],
             offset: const Offset(0, 48),
             child: Center(
@@ -130,7 +163,10 @@ class Header extends HookWidget implements PreferredSizeWidget {
               onPressed: () {
                 AutoRouter.of(context).pushNamed('/manage');
               },
-              child: Text('管理者ページ', style: TextStyle(color: Theme.of(context).cardColor),),
+              child: const Text(
+                '管理者ページ',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ),
         Padding(
