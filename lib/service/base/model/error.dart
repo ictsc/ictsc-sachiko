@@ -6,7 +6,9 @@ part 'error.freezed.dart';
 part 'error.g.dart';
 
 @freezed
-abstract class Error with _$Error {
+class Error with _$Error {
+  const factory Error.unauthorisedRequest() = _UnauthorisedRequest;
+
   const factory Error.unexpectedError() = _UnexpectedError;
 
   const Error._();
@@ -25,7 +27,14 @@ abstract class Error with _$Error {
               // TODO: Handle this case.
               break;
             case DioErrorType.response:
-              // TODO: Handle this case.
+              final statusCode = error.response?.statusCode;
+              if (statusCode == null) {
+                return const Error.unexpectedError();
+              }
+
+              if (statusCode == 401) {
+                return const Error.unauthorisedRequest();
+              }
               break;
             case DioErrorType.cancel:
               // TODO: Handle this case.
@@ -50,8 +59,10 @@ abstract class Error with _$Error {
     }
   }
 
-  String get errorMessage =>
-      when(unexpectedError: () => 'エラーが発生しました。しばらくしてからもう一度お試し下さい。');
+  String get errorMessage => when(
+        unexpectedError: () => 'エラーが発生しました。しばらくしてからもう一度お試し下さい。',
+        unauthorisedRequest: () => 'メールアドレスまたはパスワードが違います。',
+      );
 
   factory Error.fromJson(Map<String, dynamic> json) => _$ErrorFromJson(json);
 }
