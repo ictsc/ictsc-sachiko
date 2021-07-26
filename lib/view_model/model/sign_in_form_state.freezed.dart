@@ -20,10 +20,14 @@ SignInFormState _$SignInFormStateFromJson(Map<String, dynamic> json) {
 class _$SignInFormStateTearOff {
   const _$SignInFormStateTearOff();
 
-  _SignInFormState call({String? errorMessage, bool isLoading = false}) {
+  _SignInFormState call(
+      {String? errorMessage,
+      bool isLoading = false,
+      bool isObscurePassword = false}) {
     return _SignInFormState(
       errorMessage: errorMessage,
       isLoading: isLoading,
+      isObscurePassword: isObscurePassword,
     );
   }
 
@@ -39,6 +43,7 @@ const $SignInFormState = _$SignInFormStateTearOff();
 mixin _$SignInFormState {
   String? get errorMessage => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  bool get isObscurePassword => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +56,7 @@ abstract class $SignInFormStateCopyWith<$Res> {
   factory $SignInFormStateCopyWith(
           SignInFormState value, $Res Function(SignInFormState) then) =
       _$SignInFormStateCopyWithImpl<$Res>;
-  $Res call({String? errorMessage, bool isLoading});
+  $Res call({String? errorMessage, bool isLoading, bool isObscurePassword});
 }
 
 /// @nodoc
@@ -67,6 +72,7 @@ class _$SignInFormStateCopyWithImpl<$Res>
   $Res call({
     Object? errorMessage = freezed,
     Object? isLoading = freezed,
+    Object? isObscurePassword = freezed,
   }) {
     return _then(_value.copyWith(
       errorMessage: errorMessage == freezed
@@ -76,6 +82,10 @@ class _$SignInFormStateCopyWithImpl<$Res>
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isObscurePassword: isObscurePassword == freezed
+          ? _value.isObscurePassword
+          : isObscurePassword // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -88,7 +98,7 @@ abstract class _$SignInFormStateCopyWith<$Res>
           _SignInFormState value, $Res Function(_SignInFormState) then) =
       __$SignInFormStateCopyWithImpl<$Res>;
   @override
-  $Res call({String? errorMessage, bool isLoading});
+  $Res call({String? errorMessage, bool isLoading, bool isObscurePassword});
 }
 
 /// @nodoc
@@ -106,6 +116,7 @@ class __$SignInFormStateCopyWithImpl<$Res>
   $Res call({
     Object? errorMessage = freezed,
     Object? isLoading = freezed,
+    Object? isObscurePassword = freezed,
   }) {
     return _then(_SignInFormState(
       errorMessage: errorMessage == freezed
@@ -116,6 +127,10 @@ class __$SignInFormStateCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      isObscurePassword: isObscurePassword == freezed
+          ? _value.isObscurePassword
+          : isObscurePassword // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -125,7 +140,10 @@ class __$SignInFormStateCopyWithImpl<$Res>
 class _$_SignInFormState
     with DiagnosticableTreeMixin
     implements _SignInFormState {
-  const _$_SignInFormState({this.errorMessage, this.isLoading = false});
+  const _$_SignInFormState(
+      {this.errorMessage,
+      this.isLoading = false,
+      this.isObscurePassword = false});
 
   factory _$_SignInFormState.fromJson(Map<String, dynamic> json) =>
       _$_$_SignInFormStateFromJson(json);
@@ -135,10 +153,13 @@ class _$_SignInFormState
   @JsonKey(defaultValue: false)
   @override
   final bool isLoading;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool isObscurePassword;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignInFormState(errorMessage: $errorMessage, isLoading: $isLoading)';
+    return 'SignInFormState(errorMessage: $errorMessage, isLoading: $isLoading, isObscurePassword: $isObscurePassword)';
   }
 
   @override
@@ -147,7 +168,8 @@ class _$_SignInFormState
     properties
       ..add(DiagnosticsProperty('type', 'SignInFormState'))
       ..add(DiagnosticsProperty('errorMessage', errorMessage))
-      ..add(DiagnosticsProperty('isLoading', isLoading));
+      ..add(DiagnosticsProperty('isLoading', isLoading))
+      ..add(DiagnosticsProperty('isObscurePassword', isObscurePassword));
   }
 
   @override
@@ -159,14 +181,18 @@ class _$_SignInFormState
                     .equals(other.errorMessage, errorMessage)) &&
             (identical(other.isLoading, isLoading) ||
                 const DeepCollectionEquality()
-                    .equals(other.isLoading, isLoading)));
+                    .equals(other.isLoading, isLoading)) &&
+            (identical(other.isObscurePassword, isObscurePassword) ||
+                const DeepCollectionEquality()
+                    .equals(other.isObscurePassword, isObscurePassword)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(errorMessage) ^
-      const DeepCollectionEquality().hash(isLoading);
+      const DeepCollectionEquality().hash(isLoading) ^
+      const DeepCollectionEquality().hash(isObscurePassword);
 
   @JsonKey(ignore: true)
   @override
@@ -180,8 +206,10 @@ class _$_SignInFormState
 }
 
 abstract class _SignInFormState implements SignInFormState {
-  const factory _SignInFormState({String? errorMessage, bool isLoading}) =
-      _$_SignInFormState;
+  const factory _SignInFormState(
+      {String? errorMessage,
+      bool isLoading,
+      bool isObscurePassword}) = _$_SignInFormState;
 
   factory _SignInFormState.fromJson(Map<String, dynamic> json) =
       _$_SignInFormState.fromJson;
@@ -190,6 +218,8 @@ abstract class _SignInFormState implements SignInFormState {
   String? get errorMessage => throw _privateConstructorUsedError;
   @override
   bool get isLoading => throw _privateConstructorUsedError;
+  @override
+  bool get isObscurePassword => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$SignInFormStateCopyWith<_SignInFormState> get copyWith =>

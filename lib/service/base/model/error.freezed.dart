@@ -13,12 +13,24 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Error _$ErrorFromJson(Map<String, dynamic> json) {
-  return _UnexpectedError.fromJson(json);
+  switch (json['runtimeType'] as String) {
+    case 'unauthorisedRequest':
+      return _UnauthorisedRequest.fromJson(json);
+    case 'unexpectedError':
+      return _UnexpectedError.fromJson(json);
+
+    default:
+      throw FallThroughError();
+  }
 }
 
 /// @nodoc
 class _$ErrorTearOff {
   const _$ErrorTearOff();
+
+  _UnauthorisedRequest unauthorisedRequest() {
+    return const _UnauthorisedRequest();
+  }
 
   _UnexpectedError unexpectedError() {
     return const _UnexpectedError();
@@ -36,22 +48,26 @@ const $Error = _$ErrorTearOff();
 mixin _$Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() unauthorisedRequest,
     required TResult Function() unexpectedError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unauthorisedRequest,
     TResult Function()? unexpectedError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_UnauthorisedRequest value) unauthorisedRequest,
     required TResult Function(_UnexpectedError value) unexpectedError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UnauthorisedRequest value)? unauthorisedRequest,
     TResult Function(_UnexpectedError value)? unexpectedError,
     required TResult orElse(),
   }) =>
@@ -72,6 +88,111 @@ class _$ErrorCopyWithImpl<$Res> implements $ErrorCopyWith<$Res> {
   final Error _value;
   // ignore: unused_field
   final $Res Function(Error) _then;
+}
+
+/// @nodoc
+abstract class _$UnauthorisedRequestCopyWith<$Res> {
+  factory _$UnauthorisedRequestCopyWith(_UnauthorisedRequest value,
+          $Res Function(_UnauthorisedRequest) then) =
+      __$UnauthorisedRequestCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$UnauthorisedRequestCopyWithImpl<$Res> extends _$ErrorCopyWithImpl<$Res>
+    implements _$UnauthorisedRequestCopyWith<$Res> {
+  __$UnauthorisedRequestCopyWithImpl(
+      _UnauthorisedRequest _value, $Res Function(_UnauthorisedRequest) _then)
+      : super(_value, (v) => _then(v as _UnauthorisedRequest));
+
+  @override
+  _UnauthorisedRequest get _value => super._value as _UnauthorisedRequest;
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_UnauthorisedRequest extends _UnauthorisedRequest
+    with DiagnosticableTreeMixin {
+  const _$_UnauthorisedRequest() : super._();
+
+  factory _$_UnauthorisedRequest.fromJson(Map<String, dynamic> json) =>
+      _$_$_UnauthorisedRequestFromJson(json);
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'Error.unauthorisedRequest()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'Error.unauthorisedRequest'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _UnauthorisedRequest);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unauthorisedRequest,
+    required TResult Function() unexpectedError,
+  }) {
+    return unauthorisedRequest();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unauthorisedRequest,
+    TResult Function()? unexpectedError,
+    required TResult orElse(),
+  }) {
+    if (unauthorisedRequest != null) {
+      return unauthorisedRequest();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UnauthorisedRequest value) unauthorisedRequest,
+    required TResult Function(_UnexpectedError value) unexpectedError,
+  }) {
+    return unauthorisedRequest(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UnauthorisedRequest value)? unauthorisedRequest,
+    TResult Function(_UnexpectedError value)? unexpectedError,
+    required TResult orElse(),
+  }) {
+    if (unauthorisedRequest != null) {
+      return unauthorisedRequest(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_UnauthorisedRequestToJson(this)
+      ..['runtimeType'] = 'unauthorisedRequest';
+  }
+}
+
+abstract class _UnauthorisedRequest extends Error {
+  const factory _UnauthorisedRequest() = _$_UnauthorisedRequest;
+  const _UnauthorisedRequest._() : super._();
+
+  factory _UnauthorisedRequest.fromJson(Map<String, dynamic> json) =
+      _$_UnauthorisedRequest.fromJson;
 }
 
 /// @nodoc
@@ -122,6 +243,7 @@ class _$_UnexpectedError extends _UnexpectedError with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() unauthorisedRequest,
     required TResult Function() unexpectedError,
   }) {
     return unexpectedError();
@@ -130,6 +252,7 @@ class _$_UnexpectedError extends _UnexpectedError with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unauthorisedRequest,
     TResult Function()? unexpectedError,
     required TResult orElse(),
   }) {
@@ -142,6 +265,7 @@ class _$_UnexpectedError extends _UnexpectedError with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_UnauthorisedRequest value) unauthorisedRequest,
     required TResult Function(_UnexpectedError value) unexpectedError,
   }) {
     return unexpectedError(this);
@@ -150,6 +274,7 @@ class _$_UnexpectedError extends _UnexpectedError with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UnauthorisedRequest value)? unauthorisedRequest,
     TResult Function(_UnexpectedError value)? unexpectedError,
     required TResult orElse(),
   }) {
@@ -161,7 +286,8 @@ class _$_UnexpectedError extends _UnexpectedError with DiagnosticableTreeMixin {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_UnexpectedErrorToJson(this);
+    return _$_$_UnexpectedErrorToJson(this)
+      ..['runtimeType'] = 'unexpectedError';
   }
 }
 

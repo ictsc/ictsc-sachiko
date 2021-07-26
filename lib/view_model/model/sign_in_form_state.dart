@@ -9,6 +9,7 @@ class SignInFormState with _$SignInFormState {
   const factory SignInFormState({
     String? errorMessage,
     @Default(false) bool isLoading,
+    @Default(false) bool isObscurePassword,
   }) = _SignInFormState;
 
   factory SignInFormState.fromJson(Map<String, dynamic> json) =>
