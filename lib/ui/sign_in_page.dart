@@ -14,7 +14,7 @@ class SignInPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    useProvider(loginForm);
+    final state = useProvider(loginForm);
 
     final provider = context.read(loginForm.notifier);
 
@@ -64,8 +64,11 @@ class SignInPage extends HookWidget {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
-                          obscureText: true,
-                          decoration: const InputDecoration(labelText: 'パスワード'),
+                          obscureText: state.isObscurePassword,
+                          decoration: InputDecoration(
+                              labelText: 'パスワード',
+                              suffixIcon:
+                                  provider.suffixObscurePasswordIconButton),
                           controller: provider.passwordController,
                         ),
                       ),

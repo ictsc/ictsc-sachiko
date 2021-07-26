@@ -21,6 +21,20 @@ class SignInPageStateNotifier extends StateNotifier<SignInFormState>
     return state.errorMessage ?? '';
   }
 
+  IconButton get suffixObscurePasswordIconButton {
+    return IconButton(
+      onPressed: onObscurePasswordButton(),
+      icon: state.isObscurePassword
+          ? const Icon(Icons.visibility_off, size: 18)
+          : const Icon(Icons.visibility, size: 18),
+    );
+  }
+
+  /// パスワード表示のボタン
+  Function() onObscurePasswordButton() => () {
+        state = state.copyWith(isObscurePassword: !state.isObscurePassword);
+      };
+
   /// フォームをセーブしログインを送信する、失敗ならエラーメッセージを更新する。
   Function()? onTapSignInButton(BuildContext context) {
     if (state.isLoading) {
