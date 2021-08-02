@@ -64,7 +64,7 @@ class SignInPage extends HookWidget {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
-                          obscureText: state.isObscurePassword,
+                          obscureText: !state.isObscurePassword,
                           decoration: InputDecoration(
                               labelText: 'パスワード',
                               suffixIcon:

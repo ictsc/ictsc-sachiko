@@ -24,7 +24,7 @@ class SignInPageStateNotifier extends StateNotifier<SignInFormState>
   IconButton get suffixObscurePasswordIconButton {
     return IconButton(
       onPressed: onObscurePasswordButton(),
-      icon: state.isObscurePassword
+      icon: !state.isObscurePassword
           ? const Icon(Icons.visibility_off, size: 18)
           : const Icon(Icons.visibility, size: 18),
     );
