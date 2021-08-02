@@ -45,6 +45,7 @@ dependencies:
   responsive_grid: ^2.0.0
   markdown_widget: ^1.2.6-nullsafety
   flash: ^2.0.1
+  file_picker: ^3.0.4
 
 
 dev_dependencies:

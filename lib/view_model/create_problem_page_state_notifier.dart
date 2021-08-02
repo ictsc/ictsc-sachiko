@@ -1,6 +1,9 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:ictsc_sachiko/service/base/client.dart';
 import 'package:ictsc_sachiko/service/model/problem_api.dart';
 import 'package:ictsc_sachiko/service/problem_api.dart';
 import 'package:ictsc_sachiko/view_model/common/auth_state_notifier.dart';
@@ -31,7 +34,9 @@ class CreateProblemPageStateNotifier
 
   /// 保存処理の関数を返す
   void Function()? onSaveButton(
-  {required BuildContext context, required GlobalKey<FormState> key, String? id}) {
+      {required BuildContext context,
+      required GlobalKey<FormState> key,
+      String? id}) {
     if (state.isLoading) {
       return null;
     }
@@ -57,13 +62,12 @@ class CreateProblemPageStateNotifier
         ref
             .read(problemProvider)
             .createProblem(createProblemRequest)
-            .then((response) =>
-            response.when(
-              success: (_) {
-                context.router.pushNamed('/manage/problems');
-              },
-              failure: (_) {},
-            ))
+            .then((response) => response.when(
+                  success: (_) {
+                    context.router.pushNamed('/manage/problems');
+                  },
+                  failure: (_) {},
+                ))
             .whenComplete(() => state = state.copyWith(isLoading: false));
       };
     }
@@ -88,13 +92,12 @@ class CreateProblemPageStateNotifier
       ref
           .read(problemProvider)
           .updateProblem(updateProblemRequest)
-          .then((response) =>
-          response.when(
-            success: (_) {
-              context.router.pushNamed('/manage/problems');
-            },
-            failure: (_) {},
-          ))
+          .then((response) => response.when(
+                success: (_) {
+                  context.router.pushNamed('/manage/problems');
+                },
+                failure: (_) {},
+              ))
           .whenComplete(() => state = state.copyWith(isLoading: false));
     };
   }
@@ -122,4 +125,30 @@ class CreateProblemPageStateNotifier
             ));
   }
 
+  Function() onFileUpload() => () async {
+        final picked = await FilePicker.platform.pickFiles(
+          type: FileType.custom,
+          allowedExtensions: ['jpg', 'png'],
+        );
+
+        final file = picked?.files.first;
+
+        if (file == null) return;
+        if (file.bytes is! List<int>) return;
+
+        final form =
+            FormData.fromMap({'file': MultipartFile.fromBytes(file.bytes!)});
+
+        ref.read(clientProvider).post(
+              '/api/attachments',
+              options: Options(
+                headers: {
+                  Headers.acceptHeader: ''
+                }
+              ),
+              data: form,
+            ).then((value) {
+              print(value);
+        });
+      };
 }
