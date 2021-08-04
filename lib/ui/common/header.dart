@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/router/app_router.gr.dart';
 import 'package:ictsc_sachiko/view_model/common/app_state_notifier.dart';
@@ -157,18 +158,49 @@ class Header extends HookWidget implements PreferredSizeWidget {
       leading: GestureDetector(
         onTap: () => context.router.pushAndPopUntil(const HomeRoute(),
             predicate: (route) => route.isFirst),
-        child: SizedBox(
-          height: 72,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SvgPicture.asset(
-              './dummy-logo-white.svg',
-              semanticsLabel: 'ictsc logo',
+        child: Row(
+          children: [
+            SizedBox(
+              height: 72,
+              width: 150,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SvgPicture.asset(
+                  './dummy-logo-white.svg',
+                  semanticsLabel: 'ictsc logo',
+                ),
+              ),
             ),
-          ),
+            const Gap(24),
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: TextButton(
+                onPressed: () {
+                  AutoRouter.of(context).pushNamed('/');
+                },
+                child: const Text(
+                  'トップ',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+            if (user != null)
+              Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: TextButton(
+                  onPressed: () {
+                    AutoRouter.of(context).pushNamed('/problems');
+                  },
+                  child: const Text(
+                    '問題',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+          ],
         ),
       ),
-      leadingWidth: 150,
+      leadingWidth: 300,
       actions: [
         if (user?.userGroup?.isFullAccess ?? false)
           Padding(
