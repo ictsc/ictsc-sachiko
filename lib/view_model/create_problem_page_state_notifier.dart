@@ -129,6 +129,7 @@ class CreateProblemPageStateNotifier
         final picked = await FilePicker.platform.pickFiles(
           type: FileType.custom,
           allowedExtensions: ['jpg', 'png'],
+          withData: true
         );
 
         final file = picked?.files.first;
@@ -136,19 +137,19 @@ class CreateProblemPageStateNotifier
         if (file == null) return;
         if (file.bytes is! List<int>) return;
 
-        final form =
-            FormData.fromMap({'file': MultipartFile.fromBytes(file.bytes!)});
+        final form = FormData.fromMap({
+          'file': MultipartFile.fromBytes(file.bytes!),
+        });
 
-        ref.read(clientProvider).post(
+        ref
+            .read(clientProvider)
+            .post(
               '/api/attachments',
-              options: Options(
-                headers: {
-                  Headers.acceptHeader: ''
-                }
-              ),
+              // options: Options(headers: {Headers.acceptHeader: ''}),
               data: form,
-            ).then((value) {
-              print(value);
+            )
+            .then((value) {
+          print(value);
         });
       };
 }
