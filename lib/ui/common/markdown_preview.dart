@@ -37,6 +37,7 @@ class MarkdownPreview extends HookWidget {
       physics: const NeverScrollableScrollPhysics(),
       data: data,
       widgetConfig: WidgetConfig(
+        // TODO ここでパースすると他の要素が使えなくなる
         // p: (element) {
         //   element.
         //
@@ -58,15 +59,13 @@ class MarkdownPreview extends HookWidget {
       styleConfig: StyleConfig(
         markdownTheme:
             isDark ? MarkdownTheme.darkTheme : MarkdownTheme.lightTheme,
-        pConfig: PConfig(
-          onLinkTap: (url) {
-            if (url != null) {
-              launch(url);
-            }
+        pConfig: PConfig(onLinkTap: (url) {
+          if (url != null) {
+            launch(url);
           }
-        ),
+        }),
 
-        // h1
+        // h1などのタイトル
         titleConfig: TitleConfig(
           titleWrapper: (_) {
             return Padding(
@@ -75,7 +74,8 @@ class MarkdownPreview extends HookWidget {
             );
           },
         ),
-        // TODO
+
+        // インラインコード
         codeConfig: CodeConfig(
           codeStyle: Theme.of(context)
               .textTheme
