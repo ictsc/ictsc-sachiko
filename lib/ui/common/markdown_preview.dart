@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/view_model/common/app_state_notifier.dart';
 import 'package:markdown_widget/config/widget_config.dart';
 import 'package:markdown_widget/markdown_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MarkdownPreview extends HookWidget {
   final String data;
@@ -36,9 +37,14 @@ class MarkdownPreview extends HookWidget {
       physics: const NeverScrollableScrollPhysics(),
       data: data,
       widgetConfig: WidgetConfig(
-        p: (element) {
-          return SelectableText(element.textContent);
-        },
+        // TODO ここでパースすると他の要素が使えなくなる
+        // p: (element) {
+        //   element.
+        //
+        //     // print(node.toString());
+        //   });
+        //   return SelectableText(element.textContent);
+        // },
         pre: (element) {
           return Pre(
             text: element.textContent.trimRight(),
@@ -51,29 +57,37 @@ class MarkdownPreview extends HookWidget {
         // },
       ),
       styleConfig: StyleConfig(
-          markdownTheme:
-              isDark ? MarkdownTheme.darkTheme : MarkdownTheme.lightTheme,
-          titleConfig: TitleConfig(
-            titleWrapper: (_) {
-              return Padding(
-                padding: const EdgeInsets.only(top: 24.0),
-                child: _,
-              );
-            },
+        markdownTheme:
+            isDark ? MarkdownTheme.darkTheme : MarkdownTheme.lightTheme,
+        pConfig: PConfig(onLinkTap: (url) {
+          if (url != null) {
+            launch(url);
+          }
+        }),
+
+        // h1などのタイトル
+        titleConfig: TitleConfig(
+          titleWrapper: (_) {
+            return Padding(
+              padding: const EdgeInsets.only(top: 24.0),
+              child: _,
+            );
+          },
+        ),
+
+        // インラインコード
+        codeConfig: CodeConfig(
+          codeStyle: Theme.of(context)
+              .textTheme
+              .caption
+              ?.copyWith(color: Theme.of(context).textTheme.bodyText2?.color),
+          decoration: BoxDecoration(
+            color: Theme.of(context).dividerColor.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(4),
           ),
-          // TODO
-          codeConfig: CodeConfig(
-            codeStyle: Theme.of(context)
-                .textTheme
-                .caption
-                ?.copyWith(color: Theme.of(context).textTheme.bodyText2?.color),
-            decoration: BoxDecoration(
-              color: Theme.of(context).dividerColor.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(4),
-            ),
-            padding:
-                const EdgeInsets.only(top: 1, bottom: 1, left: 6, right: 4),
-          )),
+          padding: const EdgeInsets.only(top: 3, bottom: 1, left: 6, right: 4),
+        ),
+      ),
     );
   }
 }
