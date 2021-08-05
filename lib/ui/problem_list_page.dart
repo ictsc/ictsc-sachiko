@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/domain/problem.dart';
 import 'package:ictsc_sachiko/ui/common/header.dart';
+import 'package:ictsc_sachiko/ui/common/markdown_preview.dart';
 import 'package:ictsc_sachiko/view_model/problem_list_page_state_notifier.dart';
 import 'package:responsive_grid/responsive_grid.dart';
 
@@ -32,6 +33,11 @@ class ProblemListPage extends HookWidget {
             ),
           ),
         )));
+
+    // 環境変数から取得
+    final notesContent = const bool.hasEnvironment('NOTES_CONTENTS')
+        ? const String.fromEnvironment('NOTES_CONTENTS').replaceAll('\\n', '\n')
+        : '';
 
     return Scaffold(
         appBar: Header(appBar: AppBar()),
@@ -66,21 +72,8 @@ class ProblemListPage extends HookWidget {
                                   '解答時の注意点',
                                   style: titleTextStyle,
                                 ),
-                                Column(
-                                  children: [
-                                    const Gap(16),
-                                    const Text(
-                                        '・採点は協議終了後に行われます。・採点は協議終了後に行われます。・採点は協議終了後に行われます。・採点は協議終了後に行われます。'),
-                                    const Text(
-                                        '・採点は協議終了後に行われます。・採点は協議終了後に行われます。・採点は協議終了後に行われます。・採点は協議終了後に行われます。'),
-                                    const Text(
-                                        '・採点は協議終了後に行われます。・採点は協議終了後に行われます。・採点は協議終了後に行われます。・採点は協議終了後に行われます。'),
-                                    const Text(
-                                        '・採点は協議終了後に行われます。・採点は協議終了後に行われます。・採点は協議終了後に行われます。・採点は協議終了後に行われます。'),
-                                    const Text(
-                                        '・採点は協議終了後に行われます。・採点は協議終了後に行われます。・採点は協議終了後に行われます。・採点は協議終了後に行われます。'),
-                                  ],
-                                )
+                                const Gap(8),
+                                MarkdownPreview(data: notesContent),
                               ],
                             ),
                           ),
@@ -89,11 +82,6 @@ class ProblemListPage extends HookWidget {
                       ...problems,
                     ],
                   )
-                  // Wrap(
-                  //   children: [
-                  //     ...problems,
-                  //   ],
-                  // )
                 ],
               ),
             ),
@@ -166,61 +154,6 @@ class ProblemLink extends StatelessWidget {
         ),
       ),
     );
-
-    // return SizedBox(
-    //   height: 96,
-    //   child: Card(
-    //       elevation: 0,
-    //       child: InkWell(
-    //         onTap: () {},
-    //         hoverColor: Theme.of(context).secondaryHeaderColor,
-    //         // 選択時の色を変更
-    //         customBorder: RoundedRectangleBorder(
-    //           borderRadius: BorderRadius.circular(4),
-    //         ),
-    //         child: Row(
-    //           children: [
-    //             Container(
-    //               width: 8,
-    //               height: double.infinity,
-    //               decoration: BoxDecoration(
-    //                   color: Theme.of(context).primaryColor,
-    //                   borderRadius: const BorderRadius.only(
-    //                     bottomLeft: Radius.circular(4.0),
-    //                     topLeft: Radius.circular(4.0),
-    //                   )),
-    //             ),
-    //             const Gap(8),
-    //             Column(
-    //               // mainAxisAlignment: MainAxisAlignment.center,
-    //               crossAxisAlignment: CrossAxisAlignment.start,
-    //               children: [
-    //                 const Gap(16),
-    //                 Text(
-    //                   '100pt',
-    //                   style: Theme.of(context)
-    //                       .textTheme
-    //                       .caption
-    //                       ?.copyWith(fontWeight: FontWeight.bold),
-    //                 ),
-    //                 const Gap(8),
-    //                 Row(
-    //                   children: [
-    //                     Text(
-    //                       problem.title.isEmpty ? 'Untitled' : problem.title,
-    //                       style: Theme.of(context).textTheme.subtitle1,
-    //                       overflow: TextOverflow.ellipsis,
-    //                       textAlign: TextAlign.left,
-    //                     ),
-    //                   ],
-    //                 )
-    //               ],
-    //             ),
-    //             const Gap(8),
-    //           ],
-    //         ),
-    //       )),
-    // );
   }
 }
 
