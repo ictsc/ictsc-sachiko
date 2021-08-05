@@ -166,42 +166,42 @@ class Header extends HookWidget implements PreferredSizeWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SvgPicture.asset(
-                  './dummy-logo-white.svg',
+                  './ictsc-logo-white.svg',
                   semanticsLabel: 'ictsc logo',
                 ),
               ),
             ),
             const Gap(24),
-            Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: TextButton(
-                onPressed: () {
-                  AutoRouter.of(context).pushNamed('/');
-                },
-                child: const Text(
-                  'トップ',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-            ),
-            if (user != null)
-              Padding(
-                padding: const EdgeInsets.only(right: 8.0),
-                child: TextButton(
-                  onPressed: () {
-                    AutoRouter.of(context).pushNamed('/problems');
-                  },
-                  child: const Text(
-                    '問題',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
           ],
         ),
       ),
       leadingWidth: 350,
       actions: [
+        Padding(
+          padding: const EdgeInsets.only(right: 8.0),
+          child: TextButton(
+            onPressed: () {
+              AutoRouter.of(context).pushNamed('/');
+            },
+            child: const Text(
+              'トップ',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ),
+        if (user != null)
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: TextButton(
+              onPressed: () {
+                AutoRouter.of(context).pushNamed('/problems');
+              },
+              child: const Text(
+                '問題',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ),
         if (user?.userGroup?.isFullAccess ?? false)
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
@@ -210,7 +210,7 @@ class Header extends HookWidget implements PreferredSizeWidget {
                 AutoRouter.of(context).pushNamed('/manage');
               },
               child: const Text(
-                '管理者ページ',
+                '管理',
                 style: TextStyle(color: Colors.white),
               ),
             ),
