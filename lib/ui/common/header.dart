@@ -200,7 +200,7 @@ class Header extends HookWidget implements PreferredSizeWidget {
           ],
         ),
       ),
-      leadingWidth: 300,
+      leadingWidth: 350,
       actions: [
         if (user?.userGroup?.isFullAccess ?? false)
           Padding(
