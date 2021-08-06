@@ -19,8 +19,14 @@ class ProblemListPageStateNotifier extends StateNotifier<ProblemListPageState>
 
   final ProviderReference ref;
 
-  Future<void> onSelectProblem(Problem problem) async {
-    state = state.copyWith(problem: problem);
+  Future<void> onSelectProblem(String? problemId) async {
+
+    if (problemId == null) return;
+
+    // IDと一致している問題を探す
+    final Problem? findedProblem =
+        state.problems.firstWhereOrNull((element) => problemId == element.id);
+    state = state.copyWith(problem: findedProblem);
   }
 
   /// 問題一覧を取得する
@@ -33,6 +39,8 @@ class ProblemListPageStateNotifier extends StateNotifier<ProblemListPageState>
         .then((result) => result.when(
               success: (response) {
                 state = state.copyWith(problems: response.data.problems);
+
+                onSelectProblem(state.problem?.id);
               },
               failure: (_) {},
             ))
@@ -48,10 +56,20 @@ class ProblemListPageStateNotifier extends StateNotifier<ProblemListPageState>
         .deleteProblem(DeleteProblemRequest(id: id))
         .then((result) => result.when(
               success: (_) {
+                // 最新を取得
                 fetchProblems();
               },
               failure: (_) {},
             ))
         .whenComplete(() => state = state.copyWith(isLoading: false));
+  }
+}
+
+extension FirstWhereOrNullExtension<E> on Iterable<E> {
+  E? firstWhereOrNull(bool Function(E) test) {
+    for (final E element in this) {
+      if (test(element)) return element;
+    }
+    return null;
   }
 }

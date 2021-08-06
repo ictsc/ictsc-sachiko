@@ -5,6 +5,7 @@ import 'package:ictsc_sachiko/service/model/problem_api.dart';
 import 'package:ictsc_sachiko/service/problem_api.dart';
 import 'package:ictsc_sachiko/view_model/common/auth_state_notifier.dart';
 import 'package:ictsc_sachiko/view_model/model/problem_create_page_state.dart';
+import 'package:ictsc_sachiko/view_model/problem_list_page_state_notifier.dart';
 import 'package:state_notifier/state_notifier.dart';
 
 class CreateProblemPageStateNotifier
@@ -31,7 +32,9 @@ class CreateProblemPageStateNotifier
 
   /// 保存処理の関数を返す
   void Function()? onSaveButton(
-  {required BuildContext context, required GlobalKey<FormState> key, String? id}) {
+      {required BuildContext context,
+      required GlobalKey<FormState> key,
+      String? id}) {
     if (state.isLoading) {
       return null;
     }
@@ -57,13 +60,12 @@ class CreateProblemPageStateNotifier
         ref
             .read(problemProvider)
             .createProblem(createProblemRequest)
-            .then((response) =>
-            response.when(
-              success: (_) {
-                context.router.pushNamed('/manage/problems');
-              },
-              failure: (_) {},
-            ))
+            .then((response) => response.when(
+                  success: (_) {
+                    context.router.pushNamed('/manage/problems');
+                  },
+                  failure: (_) {},
+                ))
             .whenComplete(() => state = state.copyWith(isLoading: false));
       };
     }
@@ -88,13 +90,13 @@ class CreateProblemPageStateNotifier
       ref
           .read(problemProvider)
           .updateProblem(updateProblemRequest)
-          .then((response) =>
-          response.when(
-            success: (_) {
-              context.router.pushNamed('/manage/problems');
-            },
-            failure: (_) {},
-          ))
+          .then((response) => response.when(
+                success: (_) async {
+                  await ref.read(problemListProvider.notifier).fetchProblems();
+                  context.router.pushNamed('/manage/problems');
+                },
+                failure: (_) {},
+              ))
           .whenComplete(() => state = state.copyWith(isLoading: false));
     };
   }
@@ -121,5 +123,4 @@ class CreateProblemPageStateNotifier
               failure: (_) {},
             ));
   }
-
 }

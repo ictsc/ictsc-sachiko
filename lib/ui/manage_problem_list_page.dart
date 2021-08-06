@@ -20,7 +20,7 @@ class ManageProblemListPage extends HookWidget {
     final dataRows = state.problems.map((problem) {
       return DataRow(
         onSelectChanged: (_) {
-          notifier.onSelectProblem(problem);
+          notifier.onSelectProblem(problem.id);
         },
         cells: <DataCell>[
           DataCell(DataText(problem.code)),
