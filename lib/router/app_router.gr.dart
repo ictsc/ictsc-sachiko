@@ -38,6 +38,7 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i5.HomePage();
         },
+        maintainState: false,
         transitionsBuilder: _i6.fadeIn,
         opaque: true,
         barrierDismissible: false),
@@ -46,6 +47,7 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i7.SignInPage();
         },
+        maintainState: false,
         transitionsBuilder: _i6.fadeIn,
         opaque: true,
         barrierDismissible: false),
@@ -54,6 +56,7 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i8.SignUpPage();
         },
+        maintainState: false,
         transitionsBuilder: _i6.fadeIn,
         opaque: true,
         barrierDismissible: false),
@@ -62,6 +65,7 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i9.ProfilePage();
         },
+        maintainState: false,
         transitionsBuilder: _i6.fadeIn,
         opaque: true,
         barrierDismissible: false),
@@ -70,6 +74,7 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i10.ProblemListPage();
         },
+        maintainState: false,
         transitionsBuilder: _i6.fadeIn,
         opaque: true,
         barrierDismissible: false),
@@ -81,6 +86,7 @@ class AppRouter extends _i1.RootStackRouter {
               orElse: () => ProblemRouteArgs(id: pathParams.getString('id')));
           return _i11.ProblemPage(id: args.id);
         },
+        maintainState: false,
         transitionsBuilder: _i6.fadeIn,
         opaque: true,
         barrierDismissible: false),
@@ -89,6 +95,7 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i12.ManagePage();
         },
+        maintainState: false,
         transitionsBuilder: _i6.fadeIn,
         opaque: true,
         barrierDismissible: false),
@@ -101,6 +108,7 @@ class AppRouter extends _i1.RootStackRouter {
                   problemId: pathParams.optString('problemId')));
           return _i13.CreateProblemPage(problemId: args.problemId);
         },
+        maintainState: false,
         transitionsBuilder: _i6.fadeIn,
         opaque: true,
         barrierDismissible: false),
@@ -109,6 +117,7 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return _i14.ManageProblemListPage();
         },
+        maintainState: false,
         transitionsBuilder: _i6.fadeIn,
         opaque: true,
         barrierDismissible: false)
