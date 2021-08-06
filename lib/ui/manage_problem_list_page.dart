@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:ictsc_sachiko/domain/problem.dart';
 import 'package:ictsc_sachiko/router/app_router.gr.dart';
 import 'package:ictsc_sachiko/ui/common/header.dart';
 import 'package:ictsc_sachiko/ui/common/markdown_preview.dart';
@@ -20,7 +21,7 @@ class ManageProblemListPage extends HookWidget {
     final dataRows = state.problems.map((problem) {
       return DataRow(
         onSelectChanged: (_) {
-          notifier.onSelectProblem(problem);
+          notifier.onSelectProblem(problem.id);
         },
         cells: <DataCell>[
           DataCell(DataText(problem.code)),
@@ -50,7 +51,18 @@ class ManageProblemListPage extends HookWidget {
           DataCell(IconButton(
             icon: const Icon(Icons.delete),
             onPressed: () {
-              notifier.deleteProblems(problem.id);
+              /// 問題削除のダイアログ
+              showDialog(
+                  context: context,
+                  builder: (_) {
+                    return Center(
+                      child: SizedBox(
+                          width: 512,
+                          child: CancelDialog(
+                            problem: problem,
+                          )),
+                    );
+                  });
             },
           )),
         ],
@@ -134,7 +146,8 @@ class ManageProblemListPage extends HookWidget {
                                 const DataColumn(
                                     label: HeadingText('ポイント'), numeric: true),
                                 const DataColumn(
-                                    label: HeadingText('解決基準ポイント'), numeric: true),
+                                    label: HeadingText('解決基準ポイント'),
+                                    numeric: true),
                                 const DataColumn(label: HeadingText('問題文')),
                                 const DataColumn(label: HeadingText('更新日')),
                                 const DataColumn(label: HeadingText('作成日')),
@@ -167,7 +180,8 @@ class ManageProblemListPage extends HookWidget {
                                   children: [
                                     const Gap(24),
                                     ProblemCard(
-                                      child: MarkdownPreview(data: state.problem?.body ?? ''),
+                                      child: MarkdownPreview(
+                                          data: state.problem?.body ?? ''),
                                     ),
                                   ],
                                 ),
@@ -224,6 +238,83 @@ class DataText extends StatelessWidget {
       style: Theme.of(context).textTheme.caption,
       overflow: textOverflow,
       maxLines: maxLines,
+    );
+  }
+}
+
+class CancelDialog extends HookWidget {
+  final Problem problem;
+
+  const CancelDialog({required this.problem});
+
+  @override
+  Widget build(BuildContext context) {
+    final notifier = useProvider(problemListProvider.notifier);
+
+    final text = useState('');
+
+    final textStyle = Theme.of(context).textTheme.bodyText2;
+
+    return ProblemCard(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: const Icon(Icons.cancel_outlined),
+              ),
+            ],
+          ),
+          const Gap(16),
+          SelectableText.rich(
+            TextSpan(
+              text: 'この操作は元には戻せません。この操作を行うと ',
+              style: textStyle,
+              children: [
+                TextSpan(text: problem.title, style: textStyle?.copyWith(fontWeight: FontWeight.bold)),
+                TextSpan(
+                  text: ' の問題文、回答などがすべて削除されます。',
+                  style: textStyle,
+                ),
+              ],
+            ),
+          ),
+          const Gap(16),
+          SelectableText.rich(
+            TextSpan(
+              text: ' ',
+              style: textStyle,
+              children: [
+                TextSpan(text: problem.title, style: textStyle?.copyWith(fontWeight: FontWeight.bold)),
+                TextSpan(
+                  text: ' と入力して確認して下さい',
+                  style: textStyle,
+                ),
+              ],
+            ),
+          ),
+          TextFormField(
+            onChanged: (value) {
+              text.value = value;
+            },
+          ),
+          const Gap(16),
+          ElevatedButton(
+              onPressed: problem.title == text.value
+                  ? () async {
+                      notifier.deleteProblems(problem.id);
+                      Navigator.pop(context);
+                    }
+                  : null,
+              child: const Center(child: Text('確認して削除する。')))
+        ],
+      ),
     );
   }
 }
