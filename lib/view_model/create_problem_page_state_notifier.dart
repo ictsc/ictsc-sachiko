@@ -61,7 +61,10 @@ class CreateProblemPageStateNotifier
             .read(problemProvider)
             .createProblem(createProblemRequest)
             .then((response) => response.when(
-                  success: (_) {
+                  success: (_) async {
+                    // 問題一覧で表示している問題文を更新。
+                    await ref.read(problemListProvider.notifier).fetchProblems();
+
                     context.router.pushNamed('/manage/problems');
                   },
                   failure: (_) {},
@@ -92,6 +95,7 @@ class CreateProblemPageStateNotifier
           .updateProblem(updateProblemRequest)
           .then((response) => response.when(
                 success: (_) async {
+                  // 問題一覧で表示している問題文を更新。
                   await ref.read(problemListProvider.notifier).fetchProblems();
                   context.router.pushNamed('/manage/problems');
                 },

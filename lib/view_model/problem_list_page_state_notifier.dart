@@ -20,7 +20,6 @@ class ProblemListPageStateNotifier extends StateNotifier<ProblemListPageState>
   final ProviderReference ref;
 
   Future<void> onSelectProblem(String? problemId) async {
-
     if (problemId == null) return;
 
     // IDと一致している問題を探す
