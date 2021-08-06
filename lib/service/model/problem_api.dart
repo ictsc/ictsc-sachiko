@@ -81,7 +81,8 @@ class FindAllProblemResponseData with _$FindAllProblemResponseData {
     required List<Problem> problems,
   }) = _FindAllProblemResponseData;
 
- factory FindAllProblemResponseData.fromJson(Map<String, dynamic> json) => _$FindAllProblemResponseDataFromJson(json);
+  factory FindAllProblemResponseData.fromJson(Map<String, dynamic> json) =>
+      _$FindAllProblemResponseDataFromJson(json);
 }
 
 @freezed
@@ -90,7 +91,8 @@ class FindProblemRequest with _$FindProblemRequest {
     required String id,
   }) = _FindProblemRequest;
 
-  factory FindProblemRequest.fromJson(Map<String, dynamic> json) => _$FindProblemRequestFromJson(json);
+  factory FindProblemRequest.fromJson(Map<String, dynamic> json) =>
+      _$FindProblemRequestFromJson(json);
 }
 
 @freezed
@@ -110,7 +112,8 @@ class FindProblemResponseData with _$FindProblemResponseData {
     required Problem problem,
   }) = _FindProblemResponseData;
 
- factory FindProblemResponseData.fromJson(Map<String, dynamic> json) => _$FindProblemResponseDataFromJson(json);
+  factory FindProblemResponseData.fromJson(Map<String, dynamic> json) =>
+      _$FindProblemResponseDataFromJson(json);
 }
 
 @freezed
@@ -146,5 +149,32 @@ class UpdateProblemResponseData with _$UpdateProblemResponseData {
     required Problem problem,
   }) = _UpdateProblemResponseData;
 
- factory UpdateProblemResponseData.fromJson(Map<String, dynamic> json) => _$UpdateProblemResponseDataFromJson(json);
+  factory UpdateProblemResponseData.fromJson(Map<String, dynamic> json) =>
+      _$UpdateProblemResponseDataFromJson(json);
+}
+
+/// ファイルアップロードのレスポンス用。
+@freezed
+class FileUploadResponse with _$FileUploadResponse {
+  const factory FileUploadResponse({
+    required int id,
+    required FileUploadResponseData data,
+  }) = _FileUploadResponse;
+
+  factory FileUploadResponse.fromJson(Map<String, dynamic> json) =>
+      _$FileUploadResponseFromJson(json);
+}
+
+/// @nodoc
+@freezed
+class FileUploadResponseData with _$FileUploadResponseData {
+  const factory FileUploadResponseData({
+    required String id,
+    required DateTime updatedAt,
+    required DateTime createdAt,
+    @JsonKey(name: 'UserID') required String userId,
+  }) = _FileUploadResponseData;
+
+  factory FileUploadResponseData.fromJson(Map<String, dynamic> json) =>
+      _$FileUploadResponseDataFromJson(json);
 }

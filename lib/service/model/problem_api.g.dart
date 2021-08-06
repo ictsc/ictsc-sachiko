@@ -214,3 +214,37 @@ Map<String, dynamic> _$_$_UpdateProblemResponseDataToJson(
     <String, dynamic>{
       'problem': instance.problem,
     };
+
+_$_FileUploadResponse _$_$_FileUploadResponseFromJson(
+    Map<String, dynamic> json) {
+  return _$_FileUploadResponse(
+    id: json['id'] as int,
+    data: FileUploadResponseData.fromJson(json['data'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$_$_FileUploadResponseToJson(
+        _$_FileUploadResponse instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'data': instance.data,
+    };
+
+_$_FileUploadResponseData _$_$_FileUploadResponseDataFromJson(
+    Map<String, dynamic> json) {
+  return _$_FileUploadResponseData(
+    id: json['id'] as String,
+    updatedAt: DateTime.parse(json['updated_at'] as String),
+    createdAt: DateTime.parse(json['created_at'] as String),
+    userId: json['UserID'] as String,
+  );
+}
+
+Map<String, dynamic> _$_$_FileUploadResponseDataToJson(
+        _$_FileUploadResponseData instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'updated_at': instance.updatedAt.toIso8601String(),
+      'created_at': instance.createdAt.toIso8601String(),
+      'UserID': instance.userId,
+    };

@@ -2646,3 +2646,446 @@ abstract class _UpdateProblemResponseData implements UpdateProblemResponseData {
   _$UpdateProblemResponseDataCopyWith<_UpdateProblemResponseData>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+FileUploadResponse _$FileUploadResponseFromJson(Map<String, dynamic> json) {
+  return _FileUploadResponse.fromJson(json);
+}
+
+/// @nodoc
+class _$FileUploadResponseTearOff {
+  const _$FileUploadResponseTearOff();
+
+  _FileUploadResponse call(
+      {required int id, required FileUploadResponseData data}) {
+    return _FileUploadResponse(
+      id: id,
+      data: data,
+    );
+  }
+
+  FileUploadResponse fromJson(Map<String, Object> json) {
+    return FileUploadResponse.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $FileUploadResponse = _$FileUploadResponseTearOff();
+
+/// @nodoc
+mixin _$FileUploadResponse {
+  int get id => throw _privateConstructorUsedError;
+  FileUploadResponseData get data => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $FileUploadResponseCopyWith<FileUploadResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $FileUploadResponseCopyWith<$Res> {
+  factory $FileUploadResponseCopyWith(
+          FileUploadResponse value, $Res Function(FileUploadResponse) then) =
+      _$FileUploadResponseCopyWithImpl<$Res>;
+  $Res call({int id, FileUploadResponseData data});
+
+  $FileUploadResponseDataCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class _$FileUploadResponseCopyWithImpl<$Res>
+    implements $FileUploadResponseCopyWith<$Res> {
+  _$FileUploadResponseCopyWithImpl(this._value, this._then);
+
+  final FileUploadResponse _value;
+  // ignore: unused_field
+  final $Res Function(FileUploadResponse) _then;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? data = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as FileUploadResponseData,
+    ));
+  }
+
+  @override
+  $FileUploadResponseDataCopyWith<$Res> get data {
+    return $FileUploadResponseDataCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$FileUploadResponseCopyWith<$Res>
+    implements $FileUploadResponseCopyWith<$Res> {
+  factory _$FileUploadResponseCopyWith(
+          _FileUploadResponse value, $Res Function(_FileUploadResponse) then) =
+      __$FileUploadResponseCopyWithImpl<$Res>;
+  @override
+  $Res call({int id, FileUploadResponseData data});
+
+  @override
+  $FileUploadResponseDataCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class __$FileUploadResponseCopyWithImpl<$Res>
+    extends _$FileUploadResponseCopyWithImpl<$Res>
+    implements _$FileUploadResponseCopyWith<$Res> {
+  __$FileUploadResponseCopyWithImpl(
+      _FileUploadResponse _value, $Res Function(_FileUploadResponse) _then)
+      : super(_value, (v) => _then(v as _FileUploadResponse));
+
+  @override
+  _FileUploadResponse get _value => super._value as _FileUploadResponse;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? data = freezed,
+  }) {
+    return _then(_FileUploadResponse(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as FileUploadResponseData,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_FileUploadResponse
+    with DiagnosticableTreeMixin
+    implements _FileUploadResponse {
+  const _$_FileUploadResponse({required this.id, required this.data});
+
+  factory _$_FileUploadResponse.fromJson(Map<String, dynamic> json) =>
+      _$_$_FileUploadResponseFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final FileUploadResponseData data;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'FileUploadResponse(id: $id, data: $data)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'FileUploadResponse'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('data', data));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _FileUploadResponse &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(data);
+
+  @JsonKey(ignore: true)
+  @override
+  _$FileUploadResponseCopyWith<_FileUploadResponse> get copyWith =>
+      __$FileUploadResponseCopyWithImpl<_FileUploadResponse>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_FileUploadResponseToJson(this);
+  }
+}
+
+abstract class _FileUploadResponse implements FileUploadResponse {
+  const factory _FileUploadResponse(
+      {required int id,
+      required FileUploadResponseData data}) = _$_FileUploadResponse;
+
+  factory _FileUploadResponse.fromJson(Map<String, dynamic> json) =
+      _$_FileUploadResponse.fromJson;
+
+  @override
+  int get id => throw _privateConstructorUsedError;
+  @override
+  FileUploadResponseData get data => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$FileUploadResponseCopyWith<_FileUploadResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+FileUploadResponseData _$FileUploadResponseDataFromJson(
+    Map<String, dynamic> json) {
+  return _FileUploadResponseData.fromJson(json);
+}
+
+/// @nodoc
+class _$FileUploadResponseDataTearOff {
+  const _$FileUploadResponseDataTearOff();
+
+  _FileUploadResponseData call(
+      {required String id,
+      required DateTime updatedAt,
+      required DateTime createdAt,
+      @JsonKey(name: 'UserID') required String userId}) {
+    return _FileUploadResponseData(
+      id: id,
+      updatedAt: updatedAt,
+      createdAt: createdAt,
+      userId: userId,
+    );
+  }
+
+  FileUploadResponseData fromJson(Map<String, Object> json) {
+    return FileUploadResponseData.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $FileUploadResponseData = _$FileUploadResponseDataTearOff();
+
+/// @nodoc
+mixin _$FileUploadResponseData {
+  String get id => throw _privateConstructorUsedError;
+  DateTime get updatedAt => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UserID')
+  String get userId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $FileUploadResponseDataCopyWith<FileUploadResponseData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $FileUploadResponseDataCopyWith<$Res> {
+  factory $FileUploadResponseDataCopyWith(FileUploadResponseData value,
+          $Res Function(FileUploadResponseData) then) =
+      _$FileUploadResponseDataCopyWithImpl<$Res>;
+  $Res call(
+      {String id,
+      DateTime updatedAt,
+      DateTime createdAt,
+      @JsonKey(name: 'UserID') String userId});
+}
+
+/// @nodoc
+class _$FileUploadResponseDataCopyWithImpl<$Res>
+    implements $FileUploadResponseDataCopyWith<$Res> {
+  _$FileUploadResponseDataCopyWithImpl(this._value, this._then);
+
+  final FileUploadResponseData _value;
+  // ignore: unused_field
+  final $Res Function(FileUploadResponseData) _then;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? updatedAt = freezed,
+    Object? createdAt = freezed,
+    Object? userId = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      updatedAt: updatedAt == freezed
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$FileUploadResponseDataCopyWith<$Res>
+    implements $FileUploadResponseDataCopyWith<$Res> {
+  factory _$FileUploadResponseDataCopyWith(_FileUploadResponseData value,
+          $Res Function(_FileUploadResponseData) then) =
+      __$FileUploadResponseDataCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String id,
+      DateTime updatedAt,
+      DateTime createdAt,
+      @JsonKey(name: 'UserID') String userId});
+}
+
+/// @nodoc
+class __$FileUploadResponseDataCopyWithImpl<$Res>
+    extends _$FileUploadResponseDataCopyWithImpl<$Res>
+    implements _$FileUploadResponseDataCopyWith<$Res> {
+  __$FileUploadResponseDataCopyWithImpl(_FileUploadResponseData _value,
+      $Res Function(_FileUploadResponseData) _then)
+      : super(_value, (v) => _then(v as _FileUploadResponseData));
+
+  @override
+  _FileUploadResponseData get _value => super._value as _FileUploadResponseData;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? updatedAt = freezed,
+    Object? createdAt = freezed,
+    Object? userId = freezed,
+  }) {
+    return _then(_FileUploadResponseData(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      updatedAt: updatedAt == freezed
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_FileUploadResponseData
+    with DiagnosticableTreeMixin
+    implements _FileUploadResponseData {
+  const _$_FileUploadResponseData(
+      {required this.id,
+      required this.updatedAt,
+      required this.createdAt,
+      @JsonKey(name: 'UserID') required this.userId});
+
+  factory _$_FileUploadResponseData.fromJson(Map<String, dynamic> json) =>
+      _$_$_FileUploadResponseDataFromJson(json);
+
+  @override
+  final String id;
+  @override
+  final DateTime updatedAt;
+  @override
+  final DateTime createdAt;
+  @override
+  @JsonKey(name: 'UserID')
+  final String userId;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'FileUploadResponseData(id: $id, updatedAt: $updatedAt, createdAt: $createdAt, userId: $userId)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'FileUploadResponseData'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('updatedAt', updatedAt))
+      ..add(DiagnosticsProperty('createdAt', createdAt))
+      ..add(DiagnosticsProperty('userId', userId));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _FileUploadResponseData &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.updatedAt, updatedAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.updatedAt, updatedAt)) &&
+            (identical(other.createdAt, createdAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdAt, createdAt)) &&
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(updatedAt) ^
+      const DeepCollectionEquality().hash(createdAt) ^
+      const DeepCollectionEquality().hash(userId);
+
+  @JsonKey(ignore: true)
+  @override
+  _$FileUploadResponseDataCopyWith<_FileUploadResponseData> get copyWith =>
+      __$FileUploadResponseDataCopyWithImpl<_FileUploadResponseData>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_FileUploadResponseDataToJson(this);
+  }
+}
+
+abstract class _FileUploadResponseData implements FileUploadResponseData {
+  const factory _FileUploadResponseData(
+          {required String id,
+          required DateTime updatedAt,
+          required DateTime createdAt,
+          @JsonKey(name: 'UserID') required String userId}) =
+      _$_FileUploadResponseData;
+
+  factory _FileUploadResponseData.fromJson(Map<String, dynamic> json) =
+      _$_FileUploadResponseData.fromJson;
+
+  @override
+  String get id => throw _privateConstructorUsedError;
+  @override
+  DateTime get updatedAt => throw _privateConstructorUsedError;
+  @override
+  DateTime get createdAt => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'UserID')
+  String get userId => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$FileUploadResponseDataCopyWith<_FileUploadResponseData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
