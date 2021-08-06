@@ -137,9 +137,55 @@ class ProblemPage extends HookWidget {
                             ),
                           ),
                           const Gap(36),
-                          AnswerEditor(
-                            controller: notifier.bodyController,
-                            problemId: id,
+                          SizedBox(
+                            width: 1024,
+                            child: ProblemCard(
+                              child: Column(
+                                children: [
+                                  const Gap(12),
+                                  Center(
+                                    child: Text('回答フォーム',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline5
+                                            ?.copyWith(
+                                              fontWeight: FontWeight.bold,
+                                            )),
+                                  ),
+                                  const Gap(32),
+                                  Container(
+                                    color: Theme.of(context).dividerColor,
+                                    height: 1,
+                                  ),
+                                  const Gap(16),
+                                  AnswerEditor(
+                                    controller: notifier.bodyController,
+                                    submitButton: ElevatedButton(
+                                        onPressed: notifier.onPostAnswer(id),
+                                        child: const Padding(
+                                          padding: EdgeInsets.all(8.0),
+                                          child: Text(
+                                            '提出する',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        )),
+                                    hintText: '''
+お世話になっております。チーム○○です。
+
+この問題ではxxxxxが原因でトラブルが発生したと考えられました。
+そのため、以下のように設定を変更し、○○が正しく動くことを確認いたしました。
+確認のほどよろしくお願いします。
+
+### 手順
+
+1. /etc/hoge/hoo.bar の編集
+                                  ''',
+                                    minLines: 9,
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                           const Gap(1280),
                         ],
@@ -154,86 +200,60 @@ class ProblemPage extends HookWidget {
 
 class AnswerEditor extends HookWidget {
   final TextEditingController controller;
-  final String problemId;
+  final ElevatedButton? submitButton;
+  final String? hintText;
+  final int? minLines;
 
-  const AnswerEditor({required this.controller, required this.problemId});
+  const AnswerEditor({
+    this.submitButton,
+    this.hintText,
+    this.minLines,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
     final isPreview = useState(false);
     final notifier = useProvider(problemPageStateProvider.notifier);
 
-    return SizedBox(
-        width: 1024,
-        child: ProblemCard(
-            child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Row(
           children: [
-            const Gap(12),
-            Center(
-              child: Text('回答フォーム',
-                  style: Theme.of(context).textTheme.headline5?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      )),
-            ),
-            const Gap(32),
-            Container(
-              color: Theme.of(context).dividerColor,
-              height: 1,
-            ),
-            const Gap(16),
-            Row(
-              children: [
-                // Gap(4),
-                ElevatedButton(
-                  onPressed: isPreview.value
-                      ? () {
-                          isPreview.value = false;
-                        }
-                      : null,
-                  child: const Text(
-                    'Markdown',
-                  ),
-                ),
-                const Gap(4),
-                ElevatedButton(
-                  onPressed: !isPreview.value
-                      ? () {
-                          isPreview.value = true;
-                        }
-                      : null,
-                  child: const Text('Preview'),
-                )
-              ],
-            ),
-            const Gap(24),
-            MarkdownEditor(
-              controller: controller,
-              isPreview: isPreview.value,
-              isBorder: true,
-              hintText: '''
-お世話になっております。○○です。
-
-この問題ではxxxxxが原因でトラブルが発生したと考えられました。
-そのため、以下のように設定を変更し、○○が正しく動くことを確認いたしました。
-確認のほどよろしくお願いします。
-
-## 手順
-
-### 1. /etc/hoge/hoo.bar の編集
-                                          ''',
-            ),
-            const Gap(8),
+            // Gap(4),
             ElevatedButton(
-                onPressed: notifier.onPostAnswer(problemId),
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    '提出する',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ))
+              onPressed: isPreview.value
+                  ? () {
+                      isPreview.value = false;
+                    }
+                  : null,
+              child: const Text(
+                'Markdown',
+              ),
+            ),
+            const Gap(4),
+            ElevatedButton(
+              onPressed: !isPreview.value
+                  ? () {
+                      isPreview.value = true;
+                    }
+                  : null,
+              child: const Text('Preview'),
+            )
           ],
-        )));
+        ),
+        const Gap(24),
+        MarkdownEditor(
+          controller: controller,
+          isPreview: isPreview.value,
+          minLines: minLines,
+          isBorder: true,
+          hintText: hintText,
+        ),
+        const Gap(8),
+        submitButton ?? Container(),
+      ],
+    );
   }
 }

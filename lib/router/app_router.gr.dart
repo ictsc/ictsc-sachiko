@@ -10,6 +10,7 @@ import 'package:flutter/material.dart' as _i2;
 import '../ui/create_problem_page.dart' as _i13;
 import '../ui/home_page.dart' as _i5;
 import '../ui/manage_page.dart' as _i12;
+import '../ui/manage_problem_answer_list_page.dart' as _i15;
 import '../ui/manage_problem_list_page.dart' as _i14;
 import '../ui/problem_list_page.dart' as _i10;
 import '../ui/problem_page.dart' as _i11;
@@ -111,6 +112,19 @@ class AppRouter extends _i1.RootStackRouter {
         },
         transitionsBuilder: _i6.fadeIn,
         opaque: true,
+        barrierDismissible: false),
+    ManageProblemAnswerListRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final pathParams = data.pathParams;
+          final args = data.argsAs<ManageProblemAnswerListRouteArgs>(
+              orElse: () => ManageProblemAnswerListRouteArgs(
+                  problemId: pathParams.getString('problemId')));
+          return _i15.ManageProblemAnswerListPage(args.problemId);
+        },
+        maintainState: false,
+        transitionsBuilder: _i6.fadeIn,
+        opaque: true,
         barrierDismissible: false)
   };
 
@@ -128,9 +142,11 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(ManageRoute.name,
             path: '/manage', guards: [adminGuard]),
         _i1.RouteConfig(CreateProblemRoute.name,
-            path: '/manage/problems/edit/:problemId', guards: [adminGuard]),
+            path: '/manage/problems/:problemId/edit', guards: [adminGuard]),
         _i1.RouteConfig(ManageProblemListRoute.name,
             path: '/manage/problems', guards: [adminGuard]),
+        _i1.RouteConfig(ManageProblemAnswerListRoute.name,
+            path: '/manage/problems/:problemId/answers', guards: [adminGuard]),
         _i1.RouteConfig('*#redirect',
             path: '*', redirectTo: '/', fullMatch: true)
       ];
@@ -191,7 +207,7 @@ class ManageRoute extends _i1.PageRouteInfo {
 class CreateProblemRoute extends _i1.PageRouteInfo<CreateProblemRouteArgs> {
   CreateProblemRoute({String? problemId})
       : super(name,
-            path: '/manage/problems/edit/:problemId',
+            path: '/manage/problems/:problemId/edit',
             args: CreateProblemRouteArgs(problemId: problemId),
             rawPathParams: {'problemId': problemId});
 
@@ -208,4 +224,21 @@ class ManageProblemListRoute extends _i1.PageRouteInfo {
   const ManageProblemListRoute() : super(name, path: '/manage/problems');
 
   static const String name = 'ManageProblemListRoute';
+}
+
+class ManageProblemAnswerListRoute
+    extends _i1.PageRouteInfo<ManageProblemAnswerListRouteArgs> {
+  ManageProblemAnswerListRoute({required String problemId})
+      : super(name,
+            path: '/manage/problems/:problemId/answers',
+            args: ManageProblemAnswerListRouteArgs(problemId: problemId),
+            rawPathParams: {'problemId': problemId});
+
+  static const String name = 'ManageProblemAnswerListRoute';
+}
+
+class ManageProblemAnswerListRouteArgs {
+  const ManageProblemAnswerListRouteArgs({required this.problemId});
+
+  final String problemId;
 }
