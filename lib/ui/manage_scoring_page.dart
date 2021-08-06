@@ -3,17 +3,19 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:ictsc_sachiko/ui/common/header.dart';
 
+@Deprecated('')
 class ManageScoringPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final dataRows = [
-      DataRow(cells: [
+      const DataRow(cells: [
         DataCell(Icon(
           Icons.check,
           color: Colors.green,
         )),
         DataCell(Text('2018-01-27 06:54:33')),
-        DataCell(Text('問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文')),
+        DataCell(
+            Text('問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文')),
         DataCell(Text('Aチーム')),
         DataCell(Text('0')),
         // DataCell(SizedBox(

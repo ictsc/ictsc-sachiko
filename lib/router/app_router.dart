@@ -6,7 +6,6 @@ import 'package:ictsc_sachiko/ui/create_problem_page.dart';
 import 'package:ictsc_sachiko/ui/home_page.dart';
 import 'package:ictsc_sachiko/ui/manage_page.dart';
 import 'package:ictsc_sachiko/ui/manage_problem_list_page.dart';
-import 'package:ictsc_sachiko/ui/manage_scoring_page.dart';
 import 'package:ictsc_sachiko/ui/problem_list_page.dart';
 import 'package:ictsc_sachiko/ui/problem_page.dart';
 import 'package:ictsc_sachiko/ui/profile_page.dart';
@@ -62,12 +61,13 @@ Widget fadeIn(BuildContext context, Animation<double> animation,
       page: ManagePage,
       transitionsBuilder: fadeIn,
     ),
-    CustomRoute(
-      path: '/manage/scoring',
-      guards: [AdminGuard],
-      page: ManageScoringPage,
-      transitionsBuilder: fadeIn,
-    ),
+    // TODO 問題管理に統合した
+    // CustomRoute(
+    //   path: '/manage/scoring',
+    //   guards: [AdminGuard],
+    //   page: ManageScoringPage,
+    //   transitionsBuilder: fadeIn,
+    // ),
     CustomRoute(
       path: '/manage/problems/edit/:problemId',
       guards: [AdminGuard],
