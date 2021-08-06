@@ -54,7 +54,7 @@ class ManageProblemAnswerListPage extends HookWidget {
                           '満点 100 pt',
                           style: captionTextStyle,
                         ),
-                        Gap(8),
+                        const Gap(8),
                         SelectableText(
                           '採点基準 100 pt',
                           style: captionTextStyle,
@@ -116,8 +116,7 @@ class ManageProblemAnswerListPage extends HookWidget {
                               padding: EdgeInsets.all(8.0),
                               child: Text(
                                 '採点する',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold),
+                                style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                             )),
                       ),

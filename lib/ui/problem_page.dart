@@ -214,7 +214,6 @@ class AnswerEditor extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final isPreview = useState(false);
-    final notifier = useProvider(problemPageStateProvider.notifier);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
