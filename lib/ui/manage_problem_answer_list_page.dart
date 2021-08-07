@@ -27,44 +27,44 @@ class ManageProblemAnswerListPage extends HookWidget {
         ?.copyWith(color: Theme.of(context).textTheme.caption?.color);
 
     return Scaffold(
-        appBar: Header(
-          appBar: AppBar(),
-        ),
-        body: ListView.builder(
-          shrinkWrap: true,
-          physics: const ClampingScrollPhysics(),
-          itemCount: 1,
-          itemBuilder: (_, i) => Center(
-            child: SizedBox(
-              width: 1024,
-              child: Column(
-                children: [
-                  const Gap(40),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 4.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        SelectableText(
-                          '回答一覧： Untitled',
-                          style: titleTextStyle,
-                        ),
-                        const Gap(8),
-                        SelectableText(
-                          '満点 100 pt',
-                          style: captionTextStyle,
-                        ),
-                        const Gap(8),
-                        SelectableText(
-                          '採点基準 100 pt',
-                          style: captionTextStyle,
-                        ),
-                      ],
-                    ),
+      appBar: Header(
+        appBar: AppBar(),
+      ),
+      body: ListView.builder(
+        shrinkWrap: true,
+        physics: const ClampingScrollPhysics(),
+        itemCount: 1,
+        itemBuilder: (_, i) => Center(
+          child: SizedBox(
+            width: 1024,
+            child: Column(
+              children: [
+                const Gap(40),
+                Padding(
+                  padding: const EdgeInsets.only(left: 4.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      SelectableText(
+                        '採点： Untitled',
+                        style: titleTextStyle,
+                      ),
+                      const Gap(8),
+                      SelectableText(
+                        '満点 100 pt',
+                        style: captionTextStyle,
+                      ),
+                      const Gap(8),
+                      SelectableText(
+                        '採点基準 100 pt',
+                        style: captionTextStyle,
+                      ),
+                    ],
                   ),
-                  const Gap(40),
-                  ProblemCard(
-                      child: Column(
+                ),
+                const Gap(40),
+                ProblemCard(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
@@ -121,11 +121,13 @@ class ManageProblemAnswerListPage extends HookWidget {
                             )),
                       ),
                     ],
-                  )),
-                ],
-              ),
+                  ),
+                ),
+              ],
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
