@@ -1089,3 +1089,609 @@ abstract class _FindAllAnswerResponseData implements FindAllAnswerResponseData {
   _$FindAllAnswerResponseDataCopyWith<_FindAllAnswerResponseData>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+UpdateAnswerRequest _$UpdateAnswerRequestFromJson(Map<String, dynamic> json) {
+  return _UpdateAnswerRequest.fromJson(json);
+}
+
+/// @nodoc
+class _$UpdateAnswerRequestTearOff {
+  const _$UpdateAnswerRequestTearOff();
+
+  _UpdateAnswerRequest call(
+      {required String problemId,
+      required String answerId,
+      required int point,
+      required String body}) {
+    return _UpdateAnswerRequest(
+      problemId: problemId,
+      answerId: answerId,
+      point: point,
+      body: body,
+    );
+  }
+
+  UpdateAnswerRequest fromJson(Map<String, Object> json) {
+    return UpdateAnswerRequest.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $UpdateAnswerRequest = _$UpdateAnswerRequestTearOff();
+
+/// @nodoc
+mixin _$UpdateAnswerRequest {
+  String get problemId => throw _privateConstructorUsedError;
+  String get answerId => throw _privateConstructorUsedError;
+  int get point => throw _privateConstructorUsedError;
+  String get body => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UpdateAnswerRequestCopyWith<UpdateAnswerRequest> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UpdateAnswerRequestCopyWith<$Res> {
+  factory $UpdateAnswerRequestCopyWith(
+          UpdateAnswerRequest value, $Res Function(UpdateAnswerRequest) then) =
+      _$UpdateAnswerRequestCopyWithImpl<$Res>;
+  $Res call({String problemId, String answerId, int point, String body});
+}
+
+/// @nodoc
+class _$UpdateAnswerRequestCopyWithImpl<$Res>
+    implements $UpdateAnswerRequestCopyWith<$Res> {
+  _$UpdateAnswerRequestCopyWithImpl(this._value, this._then);
+
+  final UpdateAnswerRequest _value;
+  // ignore: unused_field
+  final $Res Function(UpdateAnswerRequest) _then;
+
+  @override
+  $Res call({
+    Object? problemId = freezed,
+    Object? answerId = freezed,
+    Object? point = freezed,
+    Object? body = freezed,
+  }) {
+    return _then(_value.copyWith(
+      problemId: problemId == freezed
+          ? _value.problemId
+          : problemId // ignore: cast_nullable_to_non_nullable
+              as String,
+      answerId: answerId == freezed
+          ? _value.answerId
+          : answerId // ignore: cast_nullable_to_non_nullable
+              as String,
+      point: point == freezed
+          ? _value.point
+          : point // ignore: cast_nullable_to_non_nullable
+              as int,
+      body: body == freezed
+          ? _value.body
+          : body // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$UpdateAnswerRequestCopyWith<$Res>
+    implements $UpdateAnswerRequestCopyWith<$Res> {
+  factory _$UpdateAnswerRequestCopyWith(_UpdateAnswerRequest value,
+          $Res Function(_UpdateAnswerRequest) then) =
+      __$UpdateAnswerRequestCopyWithImpl<$Res>;
+  @override
+  $Res call({String problemId, String answerId, int point, String body});
+}
+
+/// @nodoc
+class __$UpdateAnswerRequestCopyWithImpl<$Res>
+    extends _$UpdateAnswerRequestCopyWithImpl<$Res>
+    implements _$UpdateAnswerRequestCopyWith<$Res> {
+  __$UpdateAnswerRequestCopyWithImpl(
+      _UpdateAnswerRequest _value, $Res Function(_UpdateAnswerRequest) _then)
+      : super(_value, (v) => _then(v as _UpdateAnswerRequest));
+
+  @override
+  _UpdateAnswerRequest get _value => super._value as _UpdateAnswerRequest;
+
+  @override
+  $Res call({
+    Object? problemId = freezed,
+    Object? answerId = freezed,
+    Object? point = freezed,
+    Object? body = freezed,
+  }) {
+    return _then(_UpdateAnswerRequest(
+      problemId: problemId == freezed
+          ? _value.problemId
+          : problemId // ignore: cast_nullable_to_non_nullable
+              as String,
+      answerId: answerId == freezed
+          ? _value.answerId
+          : answerId // ignore: cast_nullable_to_non_nullable
+              as String,
+      point: point == freezed
+          ? _value.point
+          : point // ignore: cast_nullable_to_non_nullable
+              as int,
+      body: body == freezed
+          ? _value.body
+          : body // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_UpdateAnswerRequest
+    with DiagnosticableTreeMixin
+    implements _UpdateAnswerRequest {
+  const _$_UpdateAnswerRequest(
+      {required this.problemId,
+      required this.answerId,
+      required this.point,
+      required this.body});
+
+  factory _$_UpdateAnswerRequest.fromJson(Map<String, dynamic> json) =>
+      _$_$_UpdateAnswerRequestFromJson(json);
+
+  @override
+  final String problemId;
+  @override
+  final String answerId;
+  @override
+  final int point;
+  @override
+  final String body;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'UpdateAnswerRequest(problemId: $problemId, answerId: $answerId, point: $point, body: $body)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'UpdateAnswerRequest'))
+      ..add(DiagnosticsProperty('problemId', problemId))
+      ..add(DiagnosticsProperty('answerId', answerId))
+      ..add(DiagnosticsProperty('point', point))
+      ..add(DiagnosticsProperty('body', body));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _UpdateAnswerRequest &&
+            (identical(other.problemId, problemId) ||
+                const DeepCollectionEquality()
+                    .equals(other.problemId, problemId)) &&
+            (identical(other.answerId, answerId) ||
+                const DeepCollectionEquality()
+                    .equals(other.answerId, answerId)) &&
+            (identical(other.point, point) ||
+                const DeepCollectionEquality().equals(other.point, point)) &&
+            (identical(other.body, body) ||
+                const DeepCollectionEquality().equals(other.body, body)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(problemId) ^
+      const DeepCollectionEquality().hash(answerId) ^
+      const DeepCollectionEquality().hash(point) ^
+      const DeepCollectionEquality().hash(body);
+
+  @JsonKey(ignore: true)
+  @override
+  _$UpdateAnswerRequestCopyWith<_UpdateAnswerRequest> get copyWith =>
+      __$UpdateAnswerRequestCopyWithImpl<_UpdateAnswerRequest>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_UpdateAnswerRequestToJson(this);
+  }
+}
+
+abstract class _UpdateAnswerRequest implements UpdateAnswerRequest {
+  const factory _UpdateAnswerRequest(
+      {required String problemId,
+      required String answerId,
+      required int point,
+      required String body}) = _$_UpdateAnswerRequest;
+
+  factory _UpdateAnswerRequest.fromJson(Map<String, dynamic> json) =
+      _$_UpdateAnswerRequest.fromJson;
+
+  @override
+  String get problemId => throw _privateConstructorUsedError;
+  @override
+  String get answerId => throw _privateConstructorUsedError;
+  @override
+  int get point => throw _privateConstructorUsedError;
+  @override
+  String get body => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$UpdateAnswerRequestCopyWith<_UpdateAnswerRequest> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+UpdateAnswerResponse _$UpdateAnswerResponseFromJson(Map<String, dynamic> json) {
+  return _UpdateAnswerResponse.fromJson(json);
+}
+
+/// @nodoc
+class _$UpdateAnswerResponseTearOff {
+  const _$UpdateAnswerResponseTearOff();
+
+  _UpdateAnswerResponse call(
+      {required int code, required UpdateAnswerResponse data}) {
+    return _UpdateAnswerResponse(
+      code: code,
+      data: data,
+    );
+  }
+
+  UpdateAnswerResponse fromJson(Map<String, Object> json) {
+    return UpdateAnswerResponse.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $UpdateAnswerResponse = _$UpdateAnswerResponseTearOff();
+
+/// @nodoc
+mixin _$UpdateAnswerResponse {
+  int get code => throw _privateConstructorUsedError;
+  UpdateAnswerResponse get data => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UpdateAnswerResponseCopyWith<UpdateAnswerResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UpdateAnswerResponseCopyWith<$Res> {
+  factory $UpdateAnswerResponseCopyWith(UpdateAnswerResponse value,
+          $Res Function(UpdateAnswerResponse) then) =
+      _$UpdateAnswerResponseCopyWithImpl<$Res>;
+  $Res call({int code, UpdateAnswerResponse data});
+
+  $UpdateAnswerResponseCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class _$UpdateAnswerResponseCopyWithImpl<$Res>
+    implements $UpdateAnswerResponseCopyWith<$Res> {
+  _$UpdateAnswerResponseCopyWithImpl(this._value, this._then);
+
+  final UpdateAnswerResponse _value;
+  // ignore: unused_field
+  final $Res Function(UpdateAnswerResponse) _then;
+
+  @override
+  $Res call({
+    Object? code = freezed,
+    Object? data = freezed,
+  }) {
+    return _then(_value.copyWith(
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as int,
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as UpdateAnswerResponse,
+    ));
+  }
+
+  @override
+  $UpdateAnswerResponseCopyWith<$Res> get data {
+    return $UpdateAnswerResponseCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$UpdateAnswerResponseCopyWith<$Res>
+    implements $UpdateAnswerResponseCopyWith<$Res> {
+  factory _$UpdateAnswerResponseCopyWith(_UpdateAnswerResponse value,
+          $Res Function(_UpdateAnswerResponse) then) =
+      __$UpdateAnswerResponseCopyWithImpl<$Res>;
+  @override
+  $Res call({int code, UpdateAnswerResponse data});
+
+  @override
+  $UpdateAnswerResponseCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class __$UpdateAnswerResponseCopyWithImpl<$Res>
+    extends _$UpdateAnswerResponseCopyWithImpl<$Res>
+    implements _$UpdateAnswerResponseCopyWith<$Res> {
+  __$UpdateAnswerResponseCopyWithImpl(
+      _UpdateAnswerResponse _value, $Res Function(_UpdateAnswerResponse) _then)
+      : super(_value, (v) => _then(v as _UpdateAnswerResponse));
+
+  @override
+  _UpdateAnswerResponse get _value => super._value as _UpdateAnswerResponse;
+
+  @override
+  $Res call({
+    Object? code = freezed,
+    Object? data = freezed,
+  }) {
+    return _then(_UpdateAnswerResponse(
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as int,
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as UpdateAnswerResponse,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_UpdateAnswerResponse
+    with DiagnosticableTreeMixin
+    implements _UpdateAnswerResponse {
+  const _$_UpdateAnswerResponse({required this.code, required this.data});
+
+  factory _$_UpdateAnswerResponse.fromJson(Map<String, dynamic> json) =>
+      _$_$_UpdateAnswerResponseFromJson(json);
+
+  @override
+  final int code;
+  @override
+  final UpdateAnswerResponse data;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'UpdateAnswerResponse(code: $code, data: $data)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'UpdateAnswerResponse'))
+      ..add(DiagnosticsProperty('code', code))
+      ..add(DiagnosticsProperty('data', data));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _UpdateAnswerResponse &&
+            (identical(other.code, code) ||
+                const DeepCollectionEquality().equals(other.code, code)) &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(code) ^
+      const DeepCollectionEquality().hash(data);
+
+  @JsonKey(ignore: true)
+  @override
+  _$UpdateAnswerResponseCopyWith<_UpdateAnswerResponse> get copyWith =>
+      __$UpdateAnswerResponseCopyWithImpl<_UpdateAnswerResponse>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_UpdateAnswerResponseToJson(this);
+  }
+}
+
+abstract class _UpdateAnswerResponse implements UpdateAnswerResponse {
+  const factory _UpdateAnswerResponse(
+      {required int code,
+      required UpdateAnswerResponse data}) = _$_UpdateAnswerResponse;
+
+  factory _UpdateAnswerResponse.fromJson(Map<String, dynamic> json) =
+      _$_UpdateAnswerResponse.fromJson;
+
+  @override
+  int get code => throw _privateConstructorUsedError;
+  @override
+  UpdateAnswerResponse get data => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$UpdateAnswerResponseCopyWith<_UpdateAnswerResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+UpdateAnswerResponseData _$UpdateAnswerResponseDataFromJson(
+    Map<String, dynamic> json) {
+  return _UpdateAnswerResponseData.fromJson(json);
+}
+
+/// @nodoc
+class _$UpdateAnswerResponseDataTearOff {
+  const _$UpdateAnswerResponseDataTearOff();
+
+  _UpdateAnswerResponseData call({required Answer answer}) {
+    return _UpdateAnswerResponseData(
+      answer: answer,
+    );
+  }
+
+  UpdateAnswerResponseData fromJson(Map<String, Object> json) {
+    return UpdateAnswerResponseData.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $UpdateAnswerResponseData = _$UpdateAnswerResponseDataTearOff();
+
+/// @nodoc
+mixin _$UpdateAnswerResponseData {
+  Answer get answer => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UpdateAnswerResponseDataCopyWith<UpdateAnswerResponseData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UpdateAnswerResponseDataCopyWith<$Res> {
+  factory $UpdateAnswerResponseDataCopyWith(UpdateAnswerResponseData value,
+          $Res Function(UpdateAnswerResponseData) then) =
+      _$UpdateAnswerResponseDataCopyWithImpl<$Res>;
+  $Res call({Answer answer});
+
+  $AnswerCopyWith<$Res> get answer;
+}
+
+/// @nodoc
+class _$UpdateAnswerResponseDataCopyWithImpl<$Res>
+    implements $UpdateAnswerResponseDataCopyWith<$Res> {
+  _$UpdateAnswerResponseDataCopyWithImpl(this._value, this._then);
+
+  final UpdateAnswerResponseData _value;
+  // ignore: unused_field
+  final $Res Function(UpdateAnswerResponseData) _then;
+
+  @override
+  $Res call({
+    Object? answer = freezed,
+  }) {
+    return _then(_value.copyWith(
+      answer: answer == freezed
+          ? _value.answer
+          : answer // ignore: cast_nullable_to_non_nullable
+              as Answer,
+    ));
+  }
+
+  @override
+  $AnswerCopyWith<$Res> get answer {
+    return $AnswerCopyWith<$Res>(_value.answer, (value) {
+      return _then(_value.copyWith(answer: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$UpdateAnswerResponseDataCopyWith<$Res>
+    implements $UpdateAnswerResponseDataCopyWith<$Res> {
+  factory _$UpdateAnswerResponseDataCopyWith(_UpdateAnswerResponseData value,
+          $Res Function(_UpdateAnswerResponseData) then) =
+      __$UpdateAnswerResponseDataCopyWithImpl<$Res>;
+  @override
+  $Res call({Answer answer});
+
+  @override
+  $AnswerCopyWith<$Res> get answer;
+}
+
+/// @nodoc
+class __$UpdateAnswerResponseDataCopyWithImpl<$Res>
+    extends _$UpdateAnswerResponseDataCopyWithImpl<$Res>
+    implements _$UpdateAnswerResponseDataCopyWith<$Res> {
+  __$UpdateAnswerResponseDataCopyWithImpl(_UpdateAnswerResponseData _value,
+      $Res Function(_UpdateAnswerResponseData) _then)
+      : super(_value, (v) => _then(v as _UpdateAnswerResponseData));
+
+  @override
+  _UpdateAnswerResponseData get _value =>
+      super._value as _UpdateAnswerResponseData;
+
+  @override
+  $Res call({
+    Object? answer = freezed,
+  }) {
+    return _then(_UpdateAnswerResponseData(
+      answer: answer == freezed
+          ? _value.answer
+          : answer // ignore: cast_nullable_to_non_nullable
+              as Answer,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_UpdateAnswerResponseData
+    with DiagnosticableTreeMixin
+    implements _UpdateAnswerResponseData {
+  const _$_UpdateAnswerResponseData({required this.answer});
+
+  factory _$_UpdateAnswerResponseData.fromJson(Map<String, dynamic> json) =>
+      _$_$_UpdateAnswerResponseDataFromJson(json);
+
+  @override
+  final Answer answer;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'UpdateAnswerResponseData(answer: $answer)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'UpdateAnswerResponseData'))
+      ..add(DiagnosticsProperty('answer', answer));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _UpdateAnswerResponseData &&
+            (identical(other.answer, answer) ||
+                const DeepCollectionEquality().equals(other.answer, answer)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(answer);
+
+  @JsonKey(ignore: true)
+  @override
+  _$UpdateAnswerResponseDataCopyWith<_UpdateAnswerResponseData> get copyWith =>
+      __$UpdateAnswerResponseDataCopyWithImpl<_UpdateAnswerResponseData>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_UpdateAnswerResponseDataToJson(this);
+  }
+}
+
+abstract class _UpdateAnswerResponseData implements UpdateAnswerResponseData {
+  const factory _UpdateAnswerResponseData({required Answer answer}) =
+      _$_UpdateAnswerResponseData;
+
+  factory _UpdateAnswerResponseData.fromJson(Map<String, dynamic> json) =
+      _$_UpdateAnswerResponseData.fromJson;
+
+  @override
+  Answer get answer => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$UpdateAnswerResponseDataCopyWith<_UpdateAnswerResponseData> get copyWith =>
+      throw _privateConstructorUsedError;
+}

@@ -45,4 +45,20 @@ class AnswerAPI {
       return Result.failure(Error.getApiError(error));
     }
   }
+
+  /// 問題ごとの回答を採点する。
+  Future<Result<UpdateAnswerResponse>> updateAnswer(
+      UpdateAnswerRequest updateAnswerRequest) async {
+    try {
+      return await client
+          .patch(
+            '/api/problems/${updateAnswerRequest.problemId}/answers/${updateAnswerRequest.answerId}',
+        // TODO データを挿入
+          )
+          .then((result) =>
+              Result.success(UpdateAnswerResponse.fromJson({...result.data})));
+    } on DioError catch (error) {
+      return Result.failure(Error.getApiError(error));
+    }
+  }
 }

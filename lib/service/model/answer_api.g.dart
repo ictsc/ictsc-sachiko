@@ -93,3 +93,50 @@ Map<String, dynamic> _$_$_FindAllAnswerResponseDataToJson(
     <String, dynamic>{
       'answers': instance.answers,
     };
+
+_$_UpdateAnswerRequest _$_$_UpdateAnswerRequestFromJson(
+    Map<String, dynamic> json) {
+  return _$_UpdateAnswerRequest(
+    problemId: json['problem_id'] as String,
+    answerId: json['answer_id'] as String,
+    point: json['point'] as int,
+    body: json['body'] as String,
+  );
+}
+
+Map<String, dynamic> _$_$_UpdateAnswerRequestToJson(
+        _$_UpdateAnswerRequest instance) =>
+    <String, dynamic>{
+      'problem_id': instance.problemId,
+      'answer_id': instance.answerId,
+      'point': instance.point,
+      'body': instance.body,
+    };
+
+_$_UpdateAnswerResponse _$_$_UpdateAnswerResponseFromJson(
+    Map<String, dynamic> json) {
+  return _$_UpdateAnswerResponse(
+    code: json['code'] as int,
+    data: UpdateAnswerResponse.fromJson(json['data'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$_$_UpdateAnswerResponseToJson(
+        _$_UpdateAnswerResponse instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'data': instance.data,
+    };
+
+_$_UpdateAnswerResponseData _$_$_UpdateAnswerResponseDataFromJson(
+    Map<String, dynamic> json) {
+  return _$_UpdateAnswerResponseData(
+    answer: Answer.fromJson(json['answer'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$_$_UpdateAnswerResponseDataToJson(
+        _$_UpdateAnswerResponseData instance) =>
+    <String, dynamic>{
+      'answer': instance.answer,
+    };
