@@ -25,11 +25,41 @@ class CreateAnswerResponse with _$CreateAnswerResponse {
   factory CreateAnswerResponse.fromJson(Map<String, dynamic> json) => _$CreateAnswerResponseFromJson(json);
 }
 
+/// @nodoc
 @freezed
 class CreateAnswerResponseData with _$CreateAnswerResponseData {
   const factory CreateAnswerResponseData({
     required Answer answer,
   }) = _CreateAnswerResponseData;
 
- factory CreateAnswerResponseData.fromJson(Map<String, dynamic> json) => _$CreateAnswerResponseDataFromJson(json);
+  factory CreateAnswerResponseData.fromJson(Map<String, dynamic> json) => _$CreateAnswerResponseDataFromJson(json);
+}
+
+@freezed
+class FindAllAnswerRequest with _$FindAllAnswerRequest {
+  const factory FindAllAnswerRequest({
+    required String problemId,
+  }) = _FindAllAnswerRequest;
+
+ factory FindAllAnswerRequest.fromJson(Map<String, dynamic> json) => _$FindAllAnswerRequestFromJson(json);
+}
+
+@freezed
+class FindAllAnswerResponse with _$FindAllAnswerResponse {
+  const factory FindAllAnswerResponse({
+    required int code,
+    required FindAllAnswerResponseData data,
+  }) = _FindAllAnswerResponse;
+
+ factory FindAllAnswerResponse.fromJson(Map<String, dynamic> json) => _$FindAllAnswerResponseFromJson(json);
+}
+
+/// @nodoc
+@freezed
+class FindAllAnswerResponseData with _$FindAllAnswerResponseData {
+  const factory FindAllAnswerResponseData({
+    required List<Answer> answers,
+  }) = _FindAllAnswerResponseData;
+
+ factory FindAllAnswerResponseData.fromJson(Map<String, dynamic> json) => _$FindAllAnswerResponseDataFromJson(json);
 }

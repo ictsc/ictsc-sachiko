@@ -566,3 +566,526 @@ abstract class _CreateAnswerResponseData implements CreateAnswerResponseData {
   _$CreateAnswerResponseDataCopyWith<_CreateAnswerResponseData> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+FindAllAnswerRequest _$FindAllAnswerRequestFromJson(Map<String, dynamic> json) {
+  return _FindAllAnswerRequest.fromJson(json);
+}
+
+/// @nodoc
+class _$FindAllAnswerRequestTearOff {
+  const _$FindAllAnswerRequestTearOff();
+
+  _FindAllAnswerRequest call({required String problemId}) {
+    return _FindAllAnswerRequest(
+      problemId: problemId,
+    );
+  }
+
+  FindAllAnswerRequest fromJson(Map<String, Object> json) {
+    return FindAllAnswerRequest.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $FindAllAnswerRequest = _$FindAllAnswerRequestTearOff();
+
+/// @nodoc
+mixin _$FindAllAnswerRequest {
+  String get problemId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $FindAllAnswerRequestCopyWith<FindAllAnswerRequest> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $FindAllAnswerRequestCopyWith<$Res> {
+  factory $FindAllAnswerRequestCopyWith(FindAllAnswerRequest value,
+          $Res Function(FindAllAnswerRequest) then) =
+      _$FindAllAnswerRequestCopyWithImpl<$Res>;
+  $Res call({String problemId});
+}
+
+/// @nodoc
+class _$FindAllAnswerRequestCopyWithImpl<$Res>
+    implements $FindAllAnswerRequestCopyWith<$Res> {
+  _$FindAllAnswerRequestCopyWithImpl(this._value, this._then);
+
+  final FindAllAnswerRequest _value;
+  // ignore: unused_field
+  final $Res Function(FindAllAnswerRequest) _then;
+
+  @override
+  $Res call({
+    Object? problemId = freezed,
+  }) {
+    return _then(_value.copyWith(
+      problemId: problemId == freezed
+          ? _value.problemId
+          : problemId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$FindAllAnswerRequestCopyWith<$Res>
+    implements $FindAllAnswerRequestCopyWith<$Res> {
+  factory _$FindAllAnswerRequestCopyWith(_FindAllAnswerRequest value,
+          $Res Function(_FindAllAnswerRequest) then) =
+      __$FindAllAnswerRequestCopyWithImpl<$Res>;
+  @override
+  $Res call({String problemId});
+}
+
+/// @nodoc
+class __$FindAllAnswerRequestCopyWithImpl<$Res>
+    extends _$FindAllAnswerRequestCopyWithImpl<$Res>
+    implements _$FindAllAnswerRequestCopyWith<$Res> {
+  __$FindAllAnswerRequestCopyWithImpl(
+      _FindAllAnswerRequest _value, $Res Function(_FindAllAnswerRequest) _then)
+      : super(_value, (v) => _then(v as _FindAllAnswerRequest));
+
+  @override
+  _FindAllAnswerRequest get _value => super._value as _FindAllAnswerRequest;
+
+  @override
+  $Res call({
+    Object? problemId = freezed,
+  }) {
+    return _then(_FindAllAnswerRequest(
+      problemId: problemId == freezed
+          ? _value.problemId
+          : problemId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_FindAllAnswerRequest
+    with DiagnosticableTreeMixin
+    implements _FindAllAnswerRequest {
+  const _$_FindAllAnswerRequest({required this.problemId});
+
+  factory _$_FindAllAnswerRequest.fromJson(Map<String, dynamic> json) =>
+      _$_$_FindAllAnswerRequestFromJson(json);
+
+  @override
+  final String problemId;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'FindAllAnswerRequest(problemId: $problemId)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'FindAllAnswerRequest'))
+      ..add(DiagnosticsProperty('problemId', problemId));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _FindAllAnswerRequest &&
+            (identical(other.problemId, problemId) ||
+                const DeepCollectionEquality()
+                    .equals(other.problemId, problemId)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(problemId);
+
+  @JsonKey(ignore: true)
+  @override
+  _$FindAllAnswerRequestCopyWith<_FindAllAnswerRequest> get copyWith =>
+      __$FindAllAnswerRequestCopyWithImpl<_FindAllAnswerRequest>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_FindAllAnswerRequestToJson(this);
+  }
+}
+
+abstract class _FindAllAnswerRequest implements FindAllAnswerRequest {
+  const factory _FindAllAnswerRequest({required String problemId}) =
+      _$_FindAllAnswerRequest;
+
+  factory _FindAllAnswerRequest.fromJson(Map<String, dynamic> json) =
+      _$_FindAllAnswerRequest.fromJson;
+
+  @override
+  String get problemId => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$FindAllAnswerRequestCopyWith<_FindAllAnswerRequest> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+FindAllAnswerResponse _$FindAllAnswerResponseFromJson(
+    Map<String, dynamic> json) {
+  return _FindAllAnswerResponse.fromJson(json);
+}
+
+/// @nodoc
+class _$FindAllAnswerResponseTearOff {
+  const _$FindAllAnswerResponseTearOff();
+
+  _FindAllAnswerResponse call(
+      {required int code, required FindAllAnswerResponseData data}) {
+    return _FindAllAnswerResponse(
+      code: code,
+      data: data,
+    );
+  }
+
+  FindAllAnswerResponse fromJson(Map<String, Object> json) {
+    return FindAllAnswerResponse.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $FindAllAnswerResponse = _$FindAllAnswerResponseTearOff();
+
+/// @nodoc
+mixin _$FindAllAnswerResponse {
+  int get code => throw _privateConstructorUsedError;
+  FindAllAnswerResponseData get data => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $FindAllAnswerResponseCopyWith<FindAllAnswerResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $FindAllAnswerResponseCopyWith<$Res> {
+  factory $FindAllAnswerResponseCopyWith(FindAllAnswerResponse value,
+          $Res Function(FindAllAnswerResponse) then) =
+      _$FindAllAnswerResponseCopyWithImpl<$Res>;
+  $Res call({int code, FindAllAnswerResponseData data});
+
+  $FindAllAnswerResponseDataCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class _$FindAllAnswerResponseCopyWithImpl<$Res>
+    implements $FindAllAnswerResponseCopyWith<$Res> {
+  _$FindAllAnswerResponseCopyWithImpl(this._value, this._then);
+
+  final FindAllAnswerResponse _value;
+  // ignore: unused_field
+  final $Res Function(FindAllAnswerResponse) _then;
+
+  @override
+  $Res call({
+    Object? code = freezed,
+    Object? data = freezed,
+  }) {
+    return _then(_value.copyWith(
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as int,
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as FindAllAnswerResponseData,
+    ));
+  }
+
+  @override
+  $FindAllAnswerResponseDataCopyWith<$Res> get data {
+    return $FindAllAnswerResponseDataCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$FindAllAnswerResponseCopyWith<$Res>
+    implements $FindAllAnswerResponseCopyWith<$Res> {
+  factory _$FindAllAnswerResponseCopyWith(_FindAllAnswerResponse value,
+          $Res Function(_FindAllAnswerResponse) then) =
+      __$FindAllAnswerResponseCopyWithImpl<$Res>;
+  @override
+  $Res call({int code, FindAllAnswerResponseData data});
+
+  @override
+  $FindAllAnswerResponseDataCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class __$FindAllAnswerResponseCopyWithImpl<$Res>
+    extends _$FindAllAnswerResponseCopyWithImpl<$Res>
+    implements _$FindAllAnswerResponseCopyWith<$Res> {
+  __$FindAllAnswerResponseCopyWithImpl(_FindAllAnswerResponse _value,
+      $Res Function(_FindAllAnswerResponse) _then)
+      : super(_value, (v) => _then(v as _FindAllAnswerResponse));
+
+  @override
+  _FindAllAnswerResponse get _value => super._value as _FindAllAnswerResponse;
+
+  @override
+  $Res call({
+    Object? code = freezed,
+    Object? data = freezed,
+  }) {
+    return _then(_FindAllAnswerResponse(
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as int,
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as FindAllAnswerResponseData,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_FindAllAnswerResponse
+    with DiagnosticableTreeMixin
+    implements _FindAllAnswerResponse {
+  const _$_FindAllAnswerResponse({required this.code, required this.data});
+
+  factory _$_FindAllAnswerResponse.fromJson(Map<String, dynamic> json) =>
+      _$_$_FindAllAnswerResponseFromJson(json);
+
+  @override
+  final int code;
+  @override
+  final FindAllAnswerResponseData data;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'FindAllAnswerResponse(code: $code, data: $data)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'FindAllAnswerResponse'))
+      ..add(DiagnosticsProperty('code', code))
+      ..add(DiagnosticsProperty('data', data));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _FindAllAnswerResponse &&
+            (identical(other.code, code) ||
+                const DeepCollectionEquality().equals(other.code, code)) &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(code) ^
+      const DeepCollectionEquality().hash(data);
+
+  @JsonKey(ignore: true)
+  @override
+  _$FindAllAnswerResponseCopyWith<_FindAllAnswerResponse> get copyWith =>
+      __$FindAllAnswerResponseCopyWithImpl<_FindAllAnswerResponse>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_FindAllAnswerResponseToJson(this);
+  }
+}
+
+abstract class _FindAllAnswerResponse implements FindAllAnswerResponse {
+  const factory _FindAllAnswerResponse(
+      {required int code,
+      required FindAllAnswerResponseData data}) = _$_FindAllAnswerResponse;
+
+  factory _FindAllAnswerResponse.fromJson(Map<String, dynamic> json) =
+      _$_FindAllAnswerResponse.fromJson;
+
+  @override
+  int get code => throw _privateConstructorUsedError;
+  @override
+  FindAllAnswerResponseData get data => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$FindAllAnswerResponseCopyWith<_FindAllAnswerResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+FindAllAnswerResponseData _$FindAllAnswerResponseDataFromJson(
+    Map<String, dynamic> json) {
+  return _FindAllAnswerResponseData.fromJson(json);
+}
+
+/// @nodoc
+class _$FindAllAnswerResponseDataTearOff {
+  const _$FindAllAnswerResponseDataTearOff();
+
+  _FindAllAnswerResponseData call({required List<Answer> answers}) {
+    return _FindAllAnswerResponseData(
+      answers: answers,
+    );
+  }
+
+  FindAllAnswerResponseData fromJson(Map<String, Object> json) {
+    return FindAllAnswerResponseData.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $FindAllAnswerResponseData = _$FindAllAnswerResponseDataTearOff();
+
+/// @nodoc
+mixin _$FindAllAnswerResponseData {
+  List<Answer> get answers => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $FindAllAnswerResponseDataCopyWith<FindAllAnswerResponseData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $FindAllAnswerResponseDataCopyWith<$Res> {
+  factory $FindAllAnswerResponseDataCopyWith(FindAllAnswerResponseData value,
+          $Res Function(FindAllAnswerResponseData) then) =
+      _$FindAllAnswerResponseDataCopyWithImpl<$Res>;
+  $Res call({List<Answer> answers});
+}
+
+/// @nodoc
+class _$FindAllAnswerResponseDataCopyWithImpl<$Res>
+    implements $FindAllAnswerResponseDataCopyWith<$Res> {
+  _$FindAllAnswerResponseDataCopyWithImpl(this._value, this._then);
+
+  final FindAllAnswerResponseData _value;
+  // ignore: unused_field
+  final $Res Function(FindAllAnswerResponseData) _then;
+
+  @override
+  $Res call({
+    Object? answers = freezed,
+  }) {
+    return _then(_value.copyWith(
+      answers: answers == freezed
+          ? _value.answers
+          : answers // ignore: cast_nullable_to_non_nullable
+              as List<Answer>,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$FindAllAnswerResponseDataCopyWith<$Res>
+    implements $FindAllAnswerResponseDataCopyWith<$Res> {
+  factory _$FindAllAnswerResponseDataCopyWith(_FindAllAnswerResponseData value,
+          $Res Function(_FindAllAnswerResponseData) then) =
+      __$FindAllAnswerResponseDataCopyWithImpl<$Res>;
+  @override
+  $Res call({List<Answer> answers});
+}
+
+/// @nodoc
+class __$FindAllAnswerResponseDataCopyWithImpl<$Res>
+    extends _$FindAllAnswerResponseDataCopyWithImpl<$Res>
+    implements _$FindAllAnswerResponseDataCopyWith<$Res> {
+  __$FindAllAnswerResponseDataCopyWithImpl(_FindAllAnswerResponseData _value,
+      $Res Function(_FindAllAnswerResponseData) _then)
+      : super(_value, (v) => _then(v as _FindAllAnswerResponseData));
+
+  @override
+  _FindAllAnswerResponseData get _value =>
+      super._value as _FindAllAnswerResponseData;
+
+  @override
+  $Res call({
+    Object? answers = freezed,
+  }) {
+    return _then(_FindAllAnswerResponseData(
+      answers: answers == freezed
+          ? _value.answers
+          : answers // ignore: cast_nullable_to_non_nullable
+              as List<Answer>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_FindAllAnswerResponseData
+    with DiagnosticableTreeMixin
+    implements _FindAllAnswerResponseData {
+  const _$_FindAllAnswerResponseData({required this.answers});
+
+  factory _$_FindAllAnswerResponseData.fromJson(Map<String, dynamic> json) =>
+      _$_$_FindAllAnswerResponseDataFromJson(json);
+
+  @override
+  final List<Answer> answers;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'FindAllAnswerResponseData(answers: $answers)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'FindAllAnswerResponseData'))
+      ..add(DiagnosticsProperty('answers', answers));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _FindAllAnswerResponseData &&
+            (identical(other.answers, answers) ||
+                const DeepCollectionEquality().equals(other.answers, answers)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(answers);
+
+  @JsonKey(ignore: true)
+  @override
+  _$FindAllAnswerResponseDataCopyWith<_FindAllAnswerResponseData>
+      get copyWith =>
+          __$FindAllAnswerResponseDataCopyWithImpl<_FindAllAnswerResponseData>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_FindAllAnswerResponseDataToJson(this);
+  }
+}
+
+abstract class _FindAllAnswerResponseData implements FindAllAnswerResponseData {
+  const factory _FindAllAnswerResponseData({required List<Answer> answers}) =
+      _$_FindAllAnswerResponseData;
+
+  factory _FindAllAnswerResponseData.fromJson(Map<String, dynamic> json) =
+      _$_FindAllAnswerResponseData.fromJson;
+
+  @override
+  List<Answer> get answers => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$FindAllAnswerResponseDataCopyWith<_FindAllAnswerResponseData>
+      get copyWith => throw _privateConstructorUsedError;
+}

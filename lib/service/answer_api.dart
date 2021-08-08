@@ -15,7 +15,7 @@ class AnswerAPI {
     client = reader(clientProvider);
   }
 
-  /// 問題のフォームを送り、問題を作成する
+  /// 回答のフォームを送り、回答を作成する。
   Future<Result<CreateAnswerResponse>> createAnswer(
       CreateAnswerRequest createAnswerRequest) async {
     try {
@@ -26,6 +26,21 @@ class AnswerAPI {
           )
           .then((result) =>
               Result.success(CreateAnswerResponse.fromJson({...result.data})));
+    } on DioError catch (error) {
+      return Result.failure(Error.getApiError(error));
+    }
+  }
+
+  /// 問題ごとの回答一覧を取得する。
+  Future<Result<FindAllAnswerResponse>> getByProblemAllAnswer(
+      FindAllAnswerRequest findAllAnswerRequest) async {
+    try {
+      return await client
+          .get(
+            '/api/problems/${findAllAnswerRequest.problemId}/answers',
+          )
+          .then((result) =>
+              Result.success(FindAllAnswerResponse.fromJson({...result.data})));
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }

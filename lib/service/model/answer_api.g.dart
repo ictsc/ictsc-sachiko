@@ -49,3 +49,47 @@ Map<String, dynamic> _$_$_CreateAnswerResponseDataToJson(
     <String, dynamic>{
       'answer': instance.answer,
     };
+
+_$_FindAllAnswerRequest _$_$_FindAllAnswerRequestFromJson(
+    Map<String, dynamic> json) {
+  return _$_FindAllAnswerRequest(
+    problemId: json['problem_id'] as String,
+  );
+}
+
+Map<String, dynamic> _$_$_FindAllAnswerRequestToJson(
+        _$_FindAllAnswerRequest instance) =>
+    <String, dynamic>{
+      'problem_id': instance.problemId,
+    };
+
+_$_FindAllAnswerResponse _$_$_FindAllAnswerResponseFromJson(
+    Map<String, dynamic> json) {
+  return _$_FindAllAnswerResponse(
+    code: json['code'] as int,
+    data: FindAllAnswerResponseData.fromJson(
+        json['data'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$_$_FindAllAnswerResponseToJson(
+        _$_FindAllAnswerResponse instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'data': instance.data,
+    };
+
+_$_FindAllAnswerResponseData _$_$_FindAllAnswerResponseDataFromJson(
+    Map<String, dynamic> json) {
+  return _$_FindAllAnswerResponseData(
+    answers: (json['answers'] as List<dynamic>)
+        .map((e) => Answer.fromJson(e as Map<String, dynamic>))
+        .toList(),
+  );
+}
+
+Map<String, dynamic> _$_$_FindAllAnswerResponseDataToJson(
+        _$_FindAllAnswerResponseData instance) =>
+    <String, dynamic>{
+      'answers': instance.answers,
+    };

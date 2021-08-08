@@ -9,6 +9,7 @@ class Answer with _$Answer {
   const factory Answer({
     required String id,
     required int point,
+    required String body,
     required String group,
     required String problemId,
     required DateTime updatedAt,
