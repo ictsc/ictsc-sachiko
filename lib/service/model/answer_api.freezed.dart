@@ -1101,8 +1101,8 @@ class _$UpdateAnswerRequestTearOff {
   _UpdateAnswerRequest call(
       {required String problemId,
       required String answerId,
-      required int point,
-      required String body}) {
+      required int? point,
+      required String? body}) {
     return _UpdateAnswerRequest(
       problemId: problemId,
       answerId: answerId,
@@ -1123,8 +1123,8 @@ const $UpdateAnswerRequest = _$UpdateAnswerRequestTearOff();
 mixin _$UpdateAnswerRequest {
   String get problemId => throw _privateConstructorUsedError;
   String get answerId => throw _privateConstructorUsedError;
-  int get point => throw _privateConstructorUsedError;
-  String get body => throw _privateConstructorUsedError;
+  int? get point => throw _privateConstructorUsedError;
+  String? get body => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1137,7 +1137,7 @@ abstract class $UpdateAnswerRequestCopyWith<$Res> {
   factory $UpdateAnswerRequestCopyWith(
           UpdateAnswerRequest value, $Res Function(UpdateAnswerRequest) then) =
       _$UpdateAnswerRequestCopyWithImpl<$Res>;
-  $Res call({String problemId, String answerId, int point, String body});
+  $Res call({String problemId, String answerId, int? point, String? body});
 }
 
 /// @nodoc
@@ -1168,11 +1168,11 @@ class _$UpdateAnswerRequestCopyWithImpl<$Res>
       point: point == freezed
           ? _value.point
           : point // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       body: body == freezed
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -1184,7 +1184,7 @@ abstract class _$UpdateAnswerRequestCopyWith<$Res>
           $Res Function(_UpdateAnswerRequest) then) =
       __$UpdateAnswerRequestCopyWithImpl<$Res>;
   @override
-  $Res call({String problemId, String answerId, int point, String body});
+  $Res call({String problemId, String answerId, int? point, String? body});
 }
 
 /// @nodoc
@@ -1217,11 +1217,11 @@ class __$UpdateAnswerRequestCopyWithImpl<$Res>
       point: point == freezed
           ? _value.point
           : point // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       body: body == freezed
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -1245,9 +1245,9 @@ class _$_UpdateAnswerRequest
   @override
   final String answerId;
   @override
-  final int point;
+  final int? point;
   @override
-  final String body;
+  final String? body;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -1305,8 +1305,8 @@ abstract class _UpdateAnswerRequest implements UpdateAnswerRequest {
   const factory _UpdateAnswerRequest(
       {required String problemId,
       required String answerId,
-      required int point,
-      required String body}) = _$_UpdateAnswerRequest;
+      required int? point,
+      required String? body}) = _$_UpdateAnswerRequest;
 
   factory _UpdateAnswerRequest.fromJson(Map<String, dynamic> json) =
       _$_UpdateAnswerRequest.fromJson;
@@ -1316,9 +1316,9 @@ abstract class _UpdateAnswerRequest implements UpdateAnswerRequest {
   @override
   String get answerId => throw _privateConstructorUsedError;
   @override
-  int get point => throw _privateConstructorUsedError;
+  int? get point => throw _privateConstructorUsedError;
   @override
-  String get body => throw _privateConstructorUsedError;
+  String? get body => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UpdateAnswerRequestCopyWith<_UpdateAnswerRequest> get copyWith =>

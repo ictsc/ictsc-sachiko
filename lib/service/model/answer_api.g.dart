@@ -99,8 +99,8 @@ _$_UpdateAnswerRequest _$_$_UpdateAnswerRequestFromJson(
   return _$_UpdateAnswerRequest(
     problemId: json['problem_id'] as String,
     answerId: json['answer_id'] as String,
-    point: json['point'] as int,
-    body: json['body'] as String,
+    point: json['point'] as int?,
+    body: json['body'] as String?,
   );
 }
 

@@ -75,8 +75,8 @@ class UpdateAnswerRequest with _$UpdateAnswerRequest {
   const factory UpdateAnswerRequest({
     required String problemId,
     required String answerId,
-    required int point,
-    required String body,
+    required int? point,
+    required String? body,
   }) = _UpdateAnswerRequest;
 
   factory UpdateAnswerRequest.fromJson(Map<String, dynamic> json) =>
