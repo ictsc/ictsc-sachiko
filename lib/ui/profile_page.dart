@@ -23,7 +23,6 @@ class ProfilePage extends HookWidget {
           child: Center(
             child: Column(children: [
               const Gap(40),
-              // TODO タイトル？
               SizedBox(
                 width: 1024,
                 child: ProblemCard(
