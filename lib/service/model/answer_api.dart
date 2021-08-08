@@ -87,11 +87,10 @@ class UpdateAnswerRequest with _$UpdateAnswerRequest {
 class UpdateAnswerResponse with _$UpdateAnswerResponse {
   const factory UpdateAnswerResponse({
     required int code,
-    required UpdateAnswerResponse data,
+    required UpdateAnswerResponseData data,
   }) = _UpdateAnswerResponse;
 
-  factory UpdateAnswerResponse.fromJson(Map<String, dynamic> json) =>
-      _$UpdateAnswerResponseFromJson(json);
+ factory UpdateAnswerResponse.fromJson(Map<String, dynamic> json) => _$UpdateAnswerResponseFromJson(json);
 }
 
 /// @nodoc

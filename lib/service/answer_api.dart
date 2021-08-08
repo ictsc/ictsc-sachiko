@@ -50,13 +50,17 @@ class AnswerAPI {
   Future<Result<UpdateAnswerResponse>> updateAnswer(
       UpdateAnswerRequest updateAnswerRequest) async {
     try {
+      final data = updateAnswerRequest.toJson();
+      data.remove('problem_id');
+
       return await client
           .patch(
             '/api/problems/${updateAnswerRequest.problemId}/answers/${updateAnswerRequest.answerId}',
-        // TODO データを挿入
+            data: data,
           )
-          .then((result) =>
-              Result.success(UpdateAnswerResponse.fromJson({...result.data})));
+          .then((result) => Result.success(
+                UpdateAnswerResponse.fromJson({...result.data}),
+              ));
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }

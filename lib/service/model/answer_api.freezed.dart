@@ -1334,7 +1334,7 @@ class _$UpdateAnswerResponseTearOff {
   const _$UpdateAnswerResponseTearOff();
 
   _UpdateAnswerResponse call(
-      {required int code, required UpdateAnswerResponse data}) {
+      {required int code, required UpdateAnswerResponseData data}) {
     return _UpdateAnswerResponse(
       code: code,
       data: data,
@@ -1352,7 +1352,7 @@ const $UpdateAnswerResponse = _$UpdateAnswerResponseTearOff();
 /// @nodoc
 mixin _$UpdateAnswerResponse {
   int get code => throw _privateConstructorUsedError;
-  UpdateAnswerResponse get data => throw _privateConstructorUsedError;
+  UpdateAnswerResponseData get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1365,9 +1365,9 @@ abstract class $UpdateAnswerResponseCopyWith<$Res> {
   factory $UpdateAnswerResponseCopyWith(UpdateAnswerResponse value,
           $Res Function(UpdateAnswerResponse) then) =
       _$UpdateAnswerResponseCopyWithImpl<$Res>;
-  $Res call({int code, UpdateAnswerResponse data});
+  $Res call({int code, UpdateAnswerResponseData data});
 
-  $UpdateAnswerResponseCopyWith<$Res> get data;
+  $UpdateAnswerResponseDataCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -1392,13 +1392,13 @@ class _$UpdateAnswerResponseCopyWithImpl<$Res>
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as UpdateAnswerResponse,
+              as UpdateAnswerResponseData,
     ));
   }
 
   @override
-  $UpdateAnswerResponseCopyWith<$Res> get data {
-    return $UpdateAnswerResponseCopyWith<$Res>(_value.data, (value) {
+  $UpdateAnswerResponseDataCopyWith<$Res> get data {
+    return $UpdateAnswerResponseDataCopyWith<$Res>(_value.data, (value) {
       return _then(_value.copyWith(data: value));
     });
   }
@@ -1411,10 +1411,10 @@ abstract class _$UpdateAnswerResponseCopyWith<$Res>
           $Res Function(_UpdateAnswerResponse) then) =
       __$UpdateAnswerResponseCopyWithImpl<$Res>;
   @override
-  $Res call({int code, UpdateAnswerResponse data});
+  $Res call({int code, UpdateAnswerResponseData data});
 
   @override
-  $UpdateAnswerResponseCopyWith<$Res> get data;
+  $UpdateAnswerResponseDataCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -1441,7 +1441,7 @@ class __$UpdateAnswerResponseCopyWithImpl<$Res>
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as UpdateAnswerResponse,
+              as UpdateAnswerResponseData,
     ));
   }
 }
@@ -1459,7 +1459,7 @@ class _$_UpdateAnswerResponse
   @override
   final int code;
   @override
-  final UpdateAnswerResponse data;
+  final UpdateAnswerResponseData data;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -1506,7 +1506,7 @@ class _$_UpdateAnswerResponse
 abstract class _UpdateAnswerResponse implements UpdateAnswerResponse {
   const factory _UpdateAnswerResponse(
       {required int code,
-      required UpdateAnswerResponse data}) = _$_UpdateAnswerResponse;
+      required UpdateAnswerResponseData data}) = _$_UpdateAnswerResponse;
 
   factory _UpdateAnswerResponse.fromJson(Map<String, dynamic> json) =
       _$_UpdateAnswerResponse.fromJson;
@@ -1514,7 +1514,7 @@ abstract class _UpdateAnswerResponse implements UpdateAnswerResponse {
   @override
   int get code => throw _privateConstructorUsedError;
   @override
-  UpdateAnswerResponse get data => throw _privateConstructorUsedError;
+  UpdateAnswerResponseData get data => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UpdateAnswerResponseCopyWith<_UpdateAnswerResponse> get copyWith =>

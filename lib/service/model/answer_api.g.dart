@@ -117,7 +117,8 @@ _$_UpdateAnswerResponse _$_$_UpdateAnswerResponseFromJson(
     Map<String, dynamic> json) {
   return _$_UpdateAnswerResponse(
     code: json['code'] as int,
-    data: UpdateAnswerResponse.fromJson(json['data'] as Map<String, dynamic>),
+    data:
+        UpdateAnswerResponseData.fromJson(json['data'] as Map<String, dynamic>),
   );
 }
 

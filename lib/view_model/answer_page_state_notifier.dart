@@ -40,11 +40,23 @@ class AnswerListPageStateNotifier extends StateNotifier<AnswerPageState>
         .read(problemProvider)
         .findByIdProblem(FindProblemRequest(id: problemId))
         .then((result) => result.when(
-      success: (response) {
-        state = state.copyWith(problem: response.data.problem);
-      },
-      failure: (_) {},
-    ))
+              success: (response) {
+                state = state.copyWith(problem: response.data.problem);
+              },
+              failure: (_) {},
+            ))
         .whenComplete(() => state = state.copyWith(isLoading: false));
+  }
+
+  Future<void> onTapAnswerSave(UpdateAnswerRequest updateAnswerRequest) async {
+    await ref
+        .read(answerProvider)
+        .updateAnswer(updateAnswerRequest)
+        .then((value) => value.when(
+              success: (_) {
+                // TODO トースト
+              },
+              failure: (_) {},
+            ));
   }
 }

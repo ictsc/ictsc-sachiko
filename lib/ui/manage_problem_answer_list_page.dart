@@ -4,9 +4,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/domain/answer.dart';
+import 'package:ictsc_sachiko/service/model/answer_api.dart';
 import 'package:ictsc_sachiko/ui/common/markdown_preview.dart';
 import 'package:ictsc_sachiko/ui/problem_list_page.dart';
-import 'package:ictsc_sachiko/ui/problem_page.dart';
 import 'package:ictsc_sachiko/view_model/answer_page_state_notifier.dart';
 
 import 'common/header.dart';
@@ -106,6 +106,12 @@ class AnswerCard extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final notifier = useProvider(answerListProvider.notifier);
+
+    final pointTextController = useTextEditingController(
+      text: answer.point.toString(),
+    );
+
     return ProblemCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,24 +140,30 @@ class AnswerCard extends HookWidget {
           SizedBox(
             width: 128,
             child: TextField(
+              controller: pointTextController,
+              key: ValueKey(answer.id),
               decoration: InputDecoration(
                   labelText: 'ポイント',
                   labelStyle: Theme.of(context).textTheme.caption),
             ),
           ),
           const Gap(16),
-          AnswerEditor(
-            minLines: 3,
-            controller: TextEditingController(),
-            submitButton: ElevatedButton(
-                onPressed: () {},
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    '採点する',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                )),
+          ElevatedButton(
+            onPressed: () {
+              notifier.onTapAnswerSave(UpdateAnswerRequest(
+                problemId: answer.problemId,
+                answerId: answer.id,
+                point: int.tryParse(pointTextController.text) ?? 0,
+                body: answer.body,
+              ));
+            },
+            child: const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                '採点する',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
           ),
         ],
       ),
