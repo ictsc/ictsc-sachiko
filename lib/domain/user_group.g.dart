@@ -7,14 +7,23 @@ part of 'user_group.dart';
 // **************************************************************************
 
 _$_UserGroup _$_$_UserGroupFromJson(Map<String, dynamic> json) {
-  return _$_UserGroup(
-    id: json['id'] as String,
-    name: json['name'] as String,
-    organization: json['organization'] as String,
-    createdAt: DateTime.parse(json['created_at'] as String),
-    updatedAt: DateTime.parse(json['updated_at'] as String),
-    isFullAccess: json['is_full_access'] as bool,
-  );
+  return $checkedNew(r'_$_UserGroup', json, () {
+    final val = _$_UserGroup(
+      id: $checkedConvert(json, 'id', (v) => v as String),
+      name: $checkedConvert(json, 'name', (v) => v as String),
+      organization: $checkedConvert(json, 'organization', (v) => v as String),
+      createdAt: $checkedConvert(
+          json, 'created_at', (v) => DateTime.parse(v as String)),
+      updatedAt: $checkedConvert(
+          json, 'updated_at', (v) => DateTime.parse(v as String)),
+      isFullAccess: $checkedConvert(json, 'is_full_access', (v) => v as bool),
+    );
+    return val;
+  }, fieldKeyMap: const {
+    'createdAt': 'created_at',
+    'updatedAt': 'updated_at',
+    'isFullAccess': 'is_full_access'
+  });
 }
 
 Map<String, dynamic> _$_$_UserGroupToJson(_$_UserGroup instance) =>

@@ -7,11 +7,21 @@ part of 'sign_in_form_state.dart';
 // **************************************************************************
 
 _$_SignInFormState _$_$_SignInFormStateFromJson(Map<String, dynamic> json) {
-  return _$_SignInFormState(
-    errorMessage: json['error_message'] as String?,
-    isLoading: json['is_loading'] as bool? ?? false,
-    isObscurePassword: json['is_obscure_password'] as bool? ?? false,
-  );
+  return $checkedNew(r'_$_SignInFormState', json, () {
+    final val = _$_SignInFormState(
+      errorMessage: $checkedConvert(json, 'error_message', (v) => v as String?),
+      isLoading:
+          $checkedConvert(json, 'is_loading', (v) => v as bool?) ?? false,
+      isObscurePassword:
+          $checkedConvert(json, 'is_obscure_password', (v) => v as bool?) ??
+              false,
+    );
+    return val;
+  }, fieldKeyMap: const {
+    'errorMessage': 'error_message',
+    'isLoading': 'is_loading',
+    'isObscurePassword': 'is_obscure_password'
+  });
 }
 
 Map<String, dynamic> _$_$_SignInFormStateToJson(_$_SignInFormState instance) =>

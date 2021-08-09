@@ -7,10 +7,13 @@ part of 'auth.dart';
 // **************************************************************************
 
 _$_SignInRequest _$_$_SignInRequestFromJson(Map<String, dynamic> json) {
-  return _$_SignInRequest(
-    name: json['name'] as String,
-    password: json['password'] as String,
-  );
+  return $checkedNew(r'_$_SignInRequest', json, () {
+    final val = _$_SignInRequest(
+      name: $checkedConvert(json, 'name', (v) => v as String),
+      password: $checkedConvert(json, 'password', (v) => v as String),
+    );
+    return val;
+  });
 }
 
 Map<String, dynamic> _$_$_SignInRequestToJson(_$_SignInRequest instance) =>
@@ -20,10 +23,14 @@ Map<String, dynamic> _$_$_SignInRequestToJson(_$_SignInRequest instance) =>
     };
 
 _$_SignInResponse _$_$_SignInResponseFromJson(Map<String, dynamic> json) {
-  return _$_SignInResponse(
-    code: json['code'] as int,
-    data: SignInResponseData.fromJson(json['data'] as Map<String, dynamic>),
-  );
+  return $checkedNew(r'_$_SignInResponse', json, () {
+    final val = _$_SignInResponse(
+      code: $checkedConvert(json, 'code', (v) => v as int),
+      data: $checkedConvert(json, 'data',
+          (v) => SignInResponseData.fromJson(v as Map<String, dynamic>)),
+    );
+    return val;
+  });
 }
 
 Map<String, dynamic> _$_$_SignInResponseToJson(_$_SignInResponse instance) =>
@@ -34,9 +41,13 @@ Map<String, dynamic> _$_$_SignInResponseToJson(_$_SignInResponse instance) =>
 
 _$_SignInResponseData _$_$_SignInResponseDataFromJson(
     Map<String, dynamic> json) {
-  return _$_SignInResponseData(
-    user: User.fromJson(json['user'] as Map<String, dynamic>),
-  );
+  return $checkedNew(r'_$_SignInResponseData', json, () {
+    final val = _$_SignInResponseData(
+      user: $checkedConvert(
+          json, 'user', (v) => User.fromJson(v as Map<String, dynamic>)),
+    );
+    return val;
+  });
 }
 
 Map<String, dynamic> _$_$_SignInResponseDataToJson(
@@ -46,9 +57,12 @@ Map<String, dynamic> _$_$_SignInResponseDataToJson(
     };
 
 _$_SignOutResponse _$_$_SignOutResponseFromJson(Map<String, dynamic> json) {
-  return _$_SignOutResponse(
-    code: json['code'] as int,
-  );
+  return $checkedNew(r'_$_SignOutResponse', json, () {
+    final val = _$_SignOutResponse(
+      code: $checkedConvert(json, 'code', (v) => v as int),
+    );
+    return val;
+  });
 }
 
 Map<String, dynamic> _$_$_SignOutResponseToJson(_$_SignOutResponse instance) =>
@@ -57,12 +71,19 @@ Map<String, dynamic> _$_$_SignOutResponseToJson(_$_SignOutResponse instance) =>
     };
 
 _$_SignUpRequest _$_$_SignUpRequestFromJson(Map<String, dynamic> json) {
-  return _$_SignUpRequest(
-    name: json['name'] as String,
-    password: json['password'] as String,
-    userGroupId: json['user_group_id'] as String,
-    invitationCode: json['invitation_code'] as String,
-  );
+  return $checkedNew(r'_$_SignUpRequest', json, () {
+    final val = _$_SignUpRequest(
+      name: $checkedConvert(json, 'name', (v) => v as String),
+      password: $checkedConvert(json, 'password', (v) => v as String),
+      userGroupId: $checkedConvert(json, 'user_group_id', (v) => v as String),
+      invitationCode:
+          $checkedConvert(json, 'invitation_code', (v) => v as String),
+    );
+    return val;
+  }, fieldKeyMap: const {
+    'userGroupId': 'user_group_id',
+    'invitationCode': 'invitation_code'
+  });
 }
 
 Map<String, dynamic> _$_$_SignUpRequestToJson(_$_SignUpRequest instance) =>
@@ -74,10 +95,14 @@ Map<String, dynamic> _$_$_SignUpRequestToJson(_$_SignUpRequest instance) =>
     };
 
 _$_SignUpResponse _$_$_SignUpResponseFromJson(Map<String, dynamic> json) {
-  return _$_SignUpResponse(
-    code: json['code'] as int,
-    data: SignUpResponseData.fromJson(json['data'] as Map<String, dynamic>),
-  );
+  return $checkedNew(r'_$_SignUpResponse', json, () {
+    final val = _$_SignUpResponse(
+      code: $checkedConvert(json, 'code', (v) => v as int),
+      data: $checkedConvert(json, 'data',
+          (v) => SignUpResponseData.fromJson(v as Map<String, dynamic>)),
+    );
+    return val;
+  });
 }
 
 Map<String, dynamic> _$_$_SignUpResponseToJson(_$_SignUpResponse instance) =>
@@ -88,9 +113,13 @@ Map<String, dynamic> _$_$_SignUpResponseToJson(_$_SignUpResponse instance) =>
 
 _$_SignUpResponseData _$_$_SignUpResponseDataFromJson(
     Map<String, dynamic> json) {
-  return _$_SignUpResponseData(
-    user: User.fromJson(json['user'] as Map<String, dynamic>),
-  );
+  return $checkedNew(r'_$_SignUpResponseData', json, () {
+    final val = _$_SignUpResponseData(
+      user: $checkedConvert(
+          json, 'user', (v) => User.fromJson(v as Map<String, dynamic>)),
+    );
+    return val;
+  });
 }
 
 Map<String, dynamic> _$_$_SignUpResponseDataToJson(

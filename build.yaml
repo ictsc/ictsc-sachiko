@@ -15,3 +15,4 @@ targets:
       json_serializable:
         options:
           field_rename: snake
+          checked: true

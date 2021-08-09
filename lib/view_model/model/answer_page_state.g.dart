@@ -7,16 +7,25 @@ part of 'answer_page_state.dart';
 // **************************************************************************
 
 _$_AnswerPageState _$_$_AnswerPageStateFromJson(Map<String, dynamic> json) {
-  return _$_AnswerPageState(
-    isLoading: json['is_loading'] as bool? ?? false,
-    problem: json['problem'] == null
-        ? null
-        : Problem.fromJson(json['problem'] as Map<String, dynamic>),
-    answers: (json['answers'] as List<dynamic>?)
-            ?.map((e) => Answer.fromJson(e as Map<String, dynamic>))
-            .toList() ??
-        [],
-  );
+  return $checkedNew(r'_$_AnswerPageState', json, () {
+    final val = _$_AnswerPageState(
+      isLoading:
+          $checkedConvert(json, 'is_loading', (v) => v as bool?) ?? false,
+      problem: $checkedConvert(
+          json,
+          'problem',
+          (v) =>
+              v == null ? null : Problem.fromJson(v as Map<String, dynamic>)),
+      answers: $checkedConvert(
+              json,
+              'answers',
+              (v) => (v as List<dynamic>?)
+                  ?.map((e) => Answer.fromJson(e as Map<String, dynamic>))
+                  .toList()) ??
+          [],
+    );
+    return val;
+  }, fieldKeyMap: const {'isLoading': 'is_loading'});
 }
 
 Map<String, dynamic> _$_$_AnswerPageStateToJson(_$_AnswerPageState instance) =>

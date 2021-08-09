@@ -7,18 +7,31 @@ part of 'problem.dart';
 // **************************************************************************
 
 _$_Problem _$_$_ProblemFromJson(Map<String, dynamic> json) {
-  return _$_Problem(
-    id: json['id'] as String? ?? '',
-    code: json['code'] as String,
-    authorId: json['author_id'] as String,
-    title: json['title'] as String? ?? '',
-    body: json['body'] as String? ?? '',
-    point: json['point'] as int? ?? 0,
-    solvedCriterion: json['solved_criterion'] as int? ?? 0,
-    previousProblemId: json['previous_problem_id'] as String?,
-    updatedAt: DateTime.parse(json['updated_at'] as String),
-    createdAt: DateTime.parse(json['created_at'] as String),
-  );
+  return $checkedNew(r'_$_Problem', json, () {
+    final val = _$_Problem(
+      id: $checkedConvert(json, 'id', (v) => v as String?) ?? '',
+      code: $checkedConvert(json, 'code', (v) => v as String),
+      authorId: $checkedConvert(json, 'author_id', (v) => v as String),
+      title: $checkedConvert(json, 'title', (v) => v as String?) ?? '',
+      body: $checkedConvert(json, 'body', (v) => v as String?) ?? '',
+      point: $checkedConvert(json, 'point', (v) => v as int?) ?? 0,
+      solvedCriterion:
+          $checkedConvert(json, 'solved_criterion', (v) => v as int?) ?? 0,
+      previousProblemId:
+          $checkedConvert(json, 'previous_problem_id', (v) => v as String?),
+      updatedAt: $checkedConvert(
+          json, 'updated_at', (v) => DateTime.parse(v as String)),
+      createdAt: $checkedConvert(
+          json, 'created_at', (v) => DateTime.parse(v as String)),
+    );
+    return val;
+  }, fieldKeyMap: const {
+    'authorId': 'author_id',
+    'solvedCriterion': 'solved_criterion',
+    'previousProblemId': 'previous_problem_id',
+    'updatedAt': 'updated_at',
+    'createdAt': 'created_at'
+  });
 }
 
 Map<String, dynamic> _$_$_ProblemToJson(_$_Problem instance) =>

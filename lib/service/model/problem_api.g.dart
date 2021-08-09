@@ -8,16 +8,25 @@ part of 'problem_api.dart';
 
 _$_CreateProblemRequest _$_$_CreateProblemRequestFromJson(
     Map<String, dynamic> json) {
-  return _$_CreateProblemRequest(
-    id: json['id'] as String? ?? '',
-    code: json['code'] as String,
-    authorId: json['author_id'] as String,
-    title: json['title'] as String? ?? '',
-    body: json['body'] as String? ?? '',
-    point: json['point'] as int? ?? 0,
-    solvedCriterion: json['solved_criterion'] as int? ?? 0,
-    previousProblemId: json['previous_problem_id'] as String?,
-  );
+  return $checkedNew(r'_$_CreateProblemRequest', json, () {
+    final val = _$_CreateProblemRequest(
+      id: $checkedConvert(json, 'id', (v) => v as String?) ?? '',
+      code: $checkedConvert(json, 'code', (v) => v as String),
+      authorId: $checkedConvert(json, 'author_id', (v) => v as String),
+      title: $checkedConvert(json, 'title', (v) => v as String?) ?? '',
+      body: $checkedConvert(json, 'body', (v) => v as String?) ?? '',
+      point: $checkedConvert(json, 'point', (v) => v as int?) ?? 0,
+      solvedCriterion:
+          $checkedConvert(json, 'solved_criterion', (v) => v as int?) ?? 0,
+      previousProblemId:
+          $checkedConvert(json, 'previous_problem_id', (v) => v as String?),
+    );
+    return val;
+  }, fieldKeyMap: const {
+    'authorId': 'author_id',
+    'solvedCriterion': 'solved_criterion',
+    'previousProblemId': 'previous_problem_id'
+  });
 }
 
 Map<String, dynamic> _$_$_CreateProblemRequestToJson(
@@ -35,11 +44,14 @@ Map<String, dynamic> _$_$_CreateProblemRequestToJson(
 
 _$_CreateProblemResponse _$_$_CreateProblemResponseFromJson(
     Map<String, dynamic> json) {
-  return _$_CreateProblemResponse(
-    code: json['code'] as int,
-    data: CreateProblemResponseData.fromJson(
-        json['data'] as Map<String, dynamic>),
-  );
+  return $checkedNew(r'_$_CreateProblemResponse', json, () {
+    final val = _$_CreateProblemResponse(
+      code: $checkedConvert(json, 'code', (v) => v as int),
+      data: $checkedConvert(json, 'data',
+          (v) => CreateProblemResponseData.fromJson(v as Map<String, dynamic>)),
+    );
+    return val;
+  });
 }
 
 Map<String, dynamic> _$_$_CreateProblemResponseToJson(
@@ -51,9 +63,13 @@ Map<String, dynamic> _$_$_CreateProblemResponseToJson(
 
 _$_CreateProblemResponseData _$_$_CreateProblemResponseDataFromJson(
     Map<String, dynamic> json) {
-  return _$_CreateProblemResponseData(
-    problem: Problem.fromJson(json['problem'] as Map<String, dynamic>),
-  );
+  return $checkedNew(r'_$_CreateProblemResponseData', json, () {
+    final val = _$_CreateProblemResponseData(
+      problem: $checkedConvert(
+          json, 'problem', (v) => Problem.fromJson(v as Map<String, dynamic>)),
+    );
+    return val;
+  });
 }
 
 Map<String, dynamic> _$_$_CreateProblemResponseDataToJson(
@@ -64,9 +80,12 @@ Map<String, dynamic> _$_$_CreateProblemResponseDataToJson(
 
 _$_DeleteProblemRequest _$_$_DeleteProblemRequestFromJson(
     Map<String, dynamic> json) {
-  return _$_DeleteProblemRequest(
-    id: json['id'] as String,
-  );
+  return $checkedNew(r'_$_DeleteProblemRequest', json, () {
+    final val = _$_DeleteProblemRequest(
+      id: $checkedConvert(json, 'id', (v) => v as String),
+    );
+    return val;
+  });
 }
 
 Map<String, dynamic> _$_$_DeleteProblemRequestToJson(
@@ -77,9 +96,12 @@ Map<String, dynamic> _$_$_DeleteProblemRequestToJson(
 
 _$_DeleteProblemResponse _$_$_DeleteProblemResponseFromJson(
     Map<String, dynamic> json) {
-  return _$_DeleteProblemResponse(
-    code: json['code'] as int,
-  );
+  return $checkedNew(r'_$_DeleteProblemResponse', json, () {
+    final val = _$_DeleteProblemResponse(
+      code: $checkedConvert(json, 'code', (v) => v as int),
+    );
+    return val;
+  });
 }
 
 Map<String, dynamic> _$_$_DeleteProblemResponseToJson(
@@ -90,11 +112,17 @@ Map<String, dynamic> _$_$_DeleteProblemResponseToJson(
 
 _$_FindAllProblemResponse _$_$_FindAllProblemResponseFromJson(
     Map<String, dynamic> json) {
-  return _$_FindAllProblemResponse(
-    code: json['code'] as int,
-    data: FindAllProblemResponseData.fromJson(
-        json['data'] as Map<String, dynamic>),
-  );
+  return $checkedNew(r'_$_FindAllProblemResponse', json, () {
+    final val = _$_FindAllProblemResponse(
+      code: $checkedConvert(json, 'code', (v) => v as int),
+      data: $checkedConvert(
+          json,
+          'data',
+          (v) =>
+              FindAllProblemResponseData.fromJson(v as Map<String, dynamic>)),
+    );
+    return val;
+  });
 }
 
 Map<String, dynamic> _$_$_FindAllProblemResponseToJson(
@@ -106,11 +134,17 @@ Map<String, dynamic> _$_$_FindAllProblemResponseToJson(
 
 _$_FindAllProblemResponseData _$_$_FindAllProblemResponseDataFromJson(
     Map<String, dynamic> json) {
-  return _$_FindAllProblemResponseData(
-    problems: (json['problems'] as List<dynamic>)
-        .map((e) => Problem.fromJson(e as Map<String, dynamic>))
-        .toList(),
-  );
+  return $checkedNew(r'_$_FindAllProblemResponseData', json, () {
+    final val = _$_FindAllProblemResponseData(
+      problems: $checkedConvert(
+          json,
+          'problems',
+          (v) => (v as List<dynamic>)
+              .map((e) => Problem.fromJson(e as Map<String, dynamic>))
+              .toList()),
+    );
+    return val;
+  });
 }
 
 Map<String, dynamic> _$_$_FindAllProblemResponseDataToJson(
@@ -121,9 +155,12 @@ Map<String, dynamic> _$_$_FindAllProblemResponseDataToJson(
 
 _$_FindProblemRequest _$_$_FindProblemRequestFromJson(
     Map<String, dynamic> json) {
-  return _$_FindProblemRequest(
-    id: json['id'] as String,
-  );
+  return $checkedNew(r'_$_FindProblemRequest', json, () {
+    final val = _$_FindProblemRequest(
+      id: $checkedConvert(json, 'id', (v) => v as String),
+    );
+    return val;
+  });
 }
 
 Map<String, dynamic> _$_$_FindProblemRequestToJson(
@@ -134,11 +171,14 @@ Map<String, dynamic> _$_$_FindProblemRequestToJson(
 
 _$_FindProblemResponse _$_$_FindProblemResponseFromJson(
     Map<String, dynamic> json) {
-  return _$_FindProblemResponse(
-    code: json['code'] as int,
-    data:
-        FindProblemResponseData.fromJson(json['data'] as Map<String, dynamic>),
-  );
+  return $checkedNew(r'_$_FindProblemResponse', json, () {
+    final val = _$_FindProblemResponse(
+      code: $checkedConvert(json, 'code', (v) => v as int),
+      data: $checkedConvert(json, 'data',
+          (v) => FindProblemResponseData.fromJson(v as Map<String, dynamic>)),
+    );
+    return val;
+  });
 }
 
 Map<String, dynamic> _$_$_FindProblemResponseToJson(
@@ -150,9 +190,13 @@ Map<String, dynamic> _$_$_FindProblemResponseToJson(
 
 _$_FindProblemResponseData _$_$_FindProblemResponseDataFromJson(
     Map<String, dynamic> json) {
-  return _$_FindProblemResponseData(
-    problem: Problem.fromJson(json['problem'] as Map<String, dynamic>),
-  );
+  return $checkedNew(r'_$_FindProblemResponseData', json, () {
+    final val = _$_FindProblemResponseData(
+      problem: $checkedConvert(
+          json, 'problem', (v) => Problem.fromJson(v as Map<String, dynamic>)),
+    );
+    return val;
+  });
 }
 
 Map<String, dynamic> _$_$_FindProblemResponseDataToJson(
@@ -163,15 +207,24 @@ Map<String, dynamic> _$_$_FindProblemResponseDataToJson(
 
 _$_UpdateProblemRequest _$_$_UpdateProblemRequestFromJson(
     Map<String, dynamic> json) {
-  return _$_UpdateProblemRequest(
-    id: json['id'] as String,
-    authorId: json['author_id'] as String,
-    title: json['title'] as String? ?? '',
-    body: json['body'] as String? ?? '',
-    point: json['point'] as int? ?? 0,
-    solvedCriterion: json['solved_criterion'] as int? ?? 0,
-    previousProblemId: json['previous_problem_id'] as String?,
-  );
+  return $checkedNew(r'_$_UpdateProblemRequest', json, () {
+    final val = _$_UpdateProblemRequest(
+      id: $checkedConvert(json, 'id', (v) => v as String),
+      authorId: $checkedConvert(json, 'author_id', (v) => v as String),
+      title: $checkedConvert(json, 'title', (v) => v as String?) ?? '',
+      body: $checkedConvert(json, 'body', (v) => v as String?) ?? '',
+      point: $checkedConvert(json, 'point', (v) => v as int?) ?? 0,
+      solvedCriterion:
+          $checkedConvert(json, 'solved_criterion', (v) => v as int?) ?? 0,
+      previousProblemId:
+          $checkedConvert(json, 'previous_problem_id', (v) => v as String?),
+    );
+    return val;
+  }, fieldKeyMap: const {
+    'authorId': 'author_id',
+    'solvedCriterion': 'solved_criterion',
+    'previousProblemId': 'previous_problem_id'
+  });
 }
 
 Map<String, dynamic> _$_$_UpdateProblemRequestToJson(
@@ -188,11 +241,14 @@ Map<String, dynamic> _$_$_UpdateProblemRequestToJson(
 
 _$_UpdateProblemResponse _$_$_UpdateProblemResponseFromJson(
     Map<String, dynamic> json) {
-  return _$_UpdateProblemResponse(
-    code: json['code'] as int,
-    data: UpdateProblemResponseData.fromJson(
-        json['data'] as Map<String, dynamic>),
-  );
+  return $checkedNew(r'_$_UpdateProblemResponse', json, () {
+    final val = _$_UpdateProblemResponse(
+      code: $checkedConvert(json, 'code', (v) => v as int),
+      data: $checkedConvert(json, 'data',
+          (v) => UpdateProblemResponseData.fromJson(v as Map<String, dynamic>)),
+    );
+    return val;
+  });
 }
 
 Map<String, dynamic> _$_$_UpdateProblemResponseToJson(
@@ -204,9 +260,13 @@ Map<String, dynamic> _$_$_UpdateProblemResponseToJson(
 
 _$_UpdateProblemResponseData _$_$_UpdateProblemResponseDataFromJson(
     Map<String, dynamic> json) {
-  return _$_UpdateProblemResponseData(
-    problem: Problem.fromJson(json['problem'] as Map<String, dynamic>),
-  );
+  return $checkedNew(r'_$_UpdateProblemResponseData', json, () {
+    final val = _$_UpdateProblemResponseData(
+      problem: $checkedConvert(
+          json, 'problem', (v) => Problem.fromJson(v as Map<String, dynamic>)),
+    );
+    return val;
+  });
 }
 
 Map<String, dynamic> _$_$_UpdateProblemResponseDataToJson(

@@ -7,18 +7,32 @@ part of 'user.dart';
 // **************************************************************************
 
 _$_User _$_$_UserFromJson(Map<String, dynamic> json) {
-  return _$_User(
-    id: json['id'] as String,
-    name: json['name'] as String,
-    displayName: json['display_name'] as String,
-    userGroupId: json['user_group_id'] as String,
-    createdAt: DateTime.parse(json['created_at'] as String),
-    updatedAt: DateTime.parse(json['updated_at'] as String),
-    userGroup: json['user_group'] == null
-        ? null
-        : UserGroup.fromJson(json['user_group'] as Map<String, dynamic>),
-    isReadOnly: json['is_read_only'] as bool,
-  );
+  return $checkedNew(r'_$_User', json, () {
+    final val = _$_User(
+      id: $checkedConvert(json, 'id', (v) => v as String),
+      name: $checkedConvert(json, 'name', (v) => v as String),
+      displayName: $checkedConvert(json, 'display_name', (v) => v as String),
+      userGroupId: $checkedConvert(json, 'user_group_id', (v) => v as String),
+      createdAt: $checkedConvert(
+          json, 'created_at', (v) => DateTime.parse(v as String)),
+      updatedAt: $checkedConvert(
+          json, 'updated_at', (v) => DateTime.parse(v as String)),
+      userGroup: $checkedConvert(
+          json,
+          'user_group',
+          (v) =>
+              v == null ? null : UserGroup.fromJson(v as Map<String, dynamic>)),
+      isReadOnly: $checkedConvert(json, 'is_read_only', (v) => v as bool),
+    );
+    return val;
+  }, fieldKeyMap: const {
+    'displayName': 'display_name',
+    'userGroupId': 'user_group_id',
+    'createdAt': 'created_at',
+    'updatedAt': 'updated_at',
+    'userGroup': 'user_group',
+    'isReadOnly': 'is_read_only'
+  });
 }
 
 Map<String, dynamic> _$_$_UserToJson(_$_User instance) => <String, dynamic>{

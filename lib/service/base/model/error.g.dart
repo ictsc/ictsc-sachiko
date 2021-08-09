@@ -8,7 +8,10 @@ part of 'error.dart';
 
 _$_UnauthorisedRequest _$_$_UnauthorisedRequestFromJson(
     Map<String, dynamic> json) {
-  return _$_UnauthorisedRequest();
+  return $checkedNew(r'_$_UnauthorisedRequest', json, () {
+    final val = _$_UnauthorisedRequest();
+    return val;
+  });
 }
 
 Map<String, dynamic> _$_$_UnauthorisedRequestToJson(
@@ -16,7 +19,10 @@ Map<String, dynamic> _$_$_UnauthorisedRequestToJson(
     <String, dynamic>{};
 
 _$_UnexpectedError _$_$_UnexpectedErrorFromJson(Map<String, dynamic> json) {
-  return _$_UnexpectedError();
+  return $checkedNew(r'_$_UnexpectedError', json, () {
+    final val = _$_UnexpectedError();
+    return val;
+  });
 }
 
 Map<String, dynamic> _$_$_UnexpectedErrorToJson(_$_UnexpectedError instance) =>
