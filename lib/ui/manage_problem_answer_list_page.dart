@@ -109,7 +109,7 @@ class AnswerCard extends HookWidget {
     final notifier = useProvider(answerListProvider.notifier);
 
     final pointTextController = useTextEditingController(
-      text: answer.point.toString(),
+      text: answer.point?.toString(),
     );
 
     return ProblemCard(
