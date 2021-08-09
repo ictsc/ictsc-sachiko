@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flash/flash.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/service/base/client.dart';
 import 'package:ictsc_sachiko/service/model/problem_api.dart';
@@ -125,31 +127,42 @@ class CreateProblemPageStateNotifier
             ));
   }
 
-  Function() onFileUpload() => () async {
+  Function() onFileUpload(BuildContext context) => () async {
         final picked = await FilePicker.platform.pickFiles(
-          type: FileType.custom,
-          allowedExtensions: ['jpg', 'png'],
-          withData: true
-        );
+            type: FileType.custom,
+            allowedExtensions: ['jpg', 'png'],
+            withData: true);
 
         final file = picked?.files.first;
 
         if (file == null) return;
-        if (file.bytes is! List<int>) return;
 
         final form = FormData.fromMap({
-          'file': MultipartFile.fromBytes(file.bytes!),
+          'file': MultipartFile.fromBytes(file.bytes!, filename: 'file'),
         });
 
         ref
             .read(clientProvider)
             .post(
               '/api/attachments',
-              // options: Options(headers: {Headers.acceptHeader: ''}),
               data: form,
             )
-            .then((value) {
-          print(value);
+            .then((_) {
+          // TODO 修正が必要
+          // final data = ClipboardData(text: '');
+          // await Clipboard.setData(data);
+
+          context.showFlashBar(
+            content: Text(
+              'コピーしました',
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText2
+                  ?.copyWith(color: Colors.white),
+            ),
+            duration: const Duration(seconds: 3),
+            backgroundColor: Theme.of(context).primaryColor,
+          );
         });
       };
 }

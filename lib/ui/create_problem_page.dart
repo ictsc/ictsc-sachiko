@@ -192,7 +192,7 @@ class ProblemCreateSideMenu extends HookWidget {
           ],
         ),
         IconButton(
-          onPressed: notifier.onFileUpload(),
+          onPressed: notifier.onFileUpload(context),
           icon: const Icon(Icons.photo),
           tooltip: '画像をアップロードする。',
         ),

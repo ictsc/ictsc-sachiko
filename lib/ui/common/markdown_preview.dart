@@ -39,11 +39,11 @@ class MarkdownPreview extends HookWidget {
         p: (element) {
           return SelectableText(element.textContent);
         },
-        pre: (element) {
-          return Pre(
-            text: element.textContent.trimRight(),
-          );
-        },
+        // pre: (element) {
+        //   return Pre(
+        //     text: element.textContent.trimRight(),
+        //   );
+        // },
         // block: (_) {
         //   print(_.textContent);
         //   print(_.textContent.split('\n'));
@@ -51,6 +51,10 @@ class MarkdownPreview extends HookWidget {
         // },
       ),
       styleConfig: StyleConfig(
+          imgBuilder: (String url, attributes) {
+            print(url);
+            return Image.network(url);
+          },
           markdownTheme:
               isDark ? MarkdownTheme.darkTheme : MarkdownTheme.lightTheme,
           titleConfig: TitleConfig(
