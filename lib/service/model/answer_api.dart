@@ -8,6 +8,7 @@ part 'answer_api.g.dart';
 @freezed
 class CreateAnswerRequest with _$CreateAnswerRequest {
   const factory CreateAnswerRequest({
+    required String userGroupId,
     required String problemId,
     required String body,
   }) = _CreateAnswerRequest;

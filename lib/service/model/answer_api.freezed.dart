@@ -20,8 +20,12 @@ CreateAnswerRequest _$CreateAnswerRequestFromJson(Map<String, dynamic> json) {
 class _$CreateAnswerRequestTearOff {
   const _$CreateAnswerRequestTearOff();
 
-  _CreateAnswerRequest call({required String problemId, required String body}) {
+  _CreateAnswerRequest call(
+      {required String userGroupId,
+      required String problemId,
+      required String body}) {
     return _CreateAnswerRequest(
+      userGroupId: userGroupId,
       problemId: problemId,
       body: body,
     );
@@ -37,6 +41,7 @@ const $CreateAnswerRequest = _$CreateAnswerRequestTearOff();
 
 /// @nodoc
 mixin _$CreateAnswerRequest {
+  String get userGroupId => throw _privateConstructorUsedError;
   String get problemId => throw _privateConstructorUsedError;
   String get body => throw _privateConstructorUsedError;
 
@@ -51,7 +56,7 @@ abstract class $CreateAnswerRequestCopyWith<$Res> {
   factory $CreateAnswerRequestCopyWith(
           CreateAnswerRequest value, $Res Function(CreateAnswerRequest) then) =
       _$CreateAnswerRequestCopyWithImpl<$Res>;
-  $Res call({String problemId, String body});
+  $Res call({String userGroupId, String problemId, String body});
 }
 
 /// @nodoc
@@ -65,10 +70,15 @@ class _$CreateAnswerRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? userGroupId = freezed,
     Object? problemId = freezed,
     Object? body = freezed,
   }) {
     return _then(_value.copyWith(
+      userGroupId: userGroupId == freezed
+          ? _value.userGroupId
+          : userGroupId // ignore: cast_nullable_to_non_nullable
+              as String,
       problemId: problemId == freezed
           ? _value.problemId
           : problemId // ignore: cast_nullable_to_non_nullable
@@ -88,7 +98,7 @@ abstract class _$CreateAnswerRequestCopyWith<$Res>
           $Res Function(_CreateAnswerRequest) then) =
       __$CreateAnswerRequestCopyWithImpl<$Res>;
   @override
-  $Res call({String problemId, String body});
+  $Res call({String userGroupId, String problemId, String body});
 }
 
 /// @nodoc
@@ -104,10 +114,15 @@ class __$CreateAnswerRequestCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? userGroupId = freezed,
     Object? problemId = freezed,
     Object? body = freezed,
   }) {
     return _then(_CreateAnswerRequest(
+      userGroupId: userGroupId == freezed
+          ? _value.userGroupId
+          : userGroupId // ignore: cast_nullable_to_non_nullable
+              as String,
       problemId: problemId == freezed
           ? _value.problemId
           : problemId // ignore: cast_nullable_to_non_nullable
@@ -125,11 +140,14 @@ class __$CreateAnswerRequestCopyWithImpl<$Res>
 class _$_CreateAnswerRequest
     with DiagnosticableTreeMixin
     implements _CreateAnswerRequest {
-  const _$_CreateAnswerRequest({required this.problemId, required this.body});
+  const _$_CreateAnswerRequest(
+      {required this.userGroupId, required this.problemId, required this.body});
 
   factory _$_CreateAnswerRequest.fromJson(Map<String, dynamic> json) =>
       _$_$_CreateAnswerRequestFromJson(json);
 
+  @override
+  final String userGroupId;
   @override
   final String problemId;
   @override
@@ -137,7 +155,7 @@ class _$_CreateAnswerRequest
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CreateAnswerRequest(problemId: $problemId, body: $body)';
+    return 'CreateAnswerRequest(userGroupId: $userGroupId, problemId: $problemId, body: $body)';
   }
 
   @override
@@ -145,6 +163,7 @@ class _$_CreateAnswerRequest
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'CreateAnswerRequest'))
+      ..add(DiagnosticsProperty('userGroupId', userGroupId))
       ..add(DiagnosticsProperty('problemId', problemId))
       ..add(DiagnosticsProperty('body', body));
   }
@@ -153,6 +172,9 @@ class _$_CreateAnswerRequest
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _CreateAnswerRequest &&
+            (identical(other.userGroupId, userGroupId) ||
+                const DeepCollectionEquality()
+                    .equals(other.userGroupId, userGroupId)) &&
             (identical(other.problemId, problemId) ||
                 const DeepCollectionEquality()
                     .equals(other.problemId, problemId)) &&
@@ -163,6 +185,7 @@ class _$_CreateAnswerRequest
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(userGroupId) ^
       const DeepCollectionEquality().hash(problemId) ^
       const DeepCollectionEquality().hash(body);
 
@@ -180,12 +203,15 @@ class _$_CreateAnswerRequest
 
 abstract class _CreateAnswerRequest implements CreateAnswerRequest {
   const factory _CreateAnswerRequest(
-      {required String problemId,
+      {required String userGroupId,
+      required String problemId,
       required String body}) = _$_CreateAnswerRequest;
 
   factory _CreateAnswerRequest.fromJson(Map<String, dynamic> json) =
       _$_CreateAnswerRequest.fromJson;
 
+  @override
+  String get userGroupId => throw _privateConstructorUsedError;
   @override
   String get problemId => throw _privateConstructorUsedError;
   @override

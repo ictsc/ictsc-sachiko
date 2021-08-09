@@ -10,16 +10,21 @@ _$_CreateAnswerRequest _$_$_CreateAnswerRequestFromJson(
     Map<String, dynamic> json) {
   return $checkedNew(r'_$_CreateAnswerRequest', json, () {
     final val = _$_CreateAnswerRequest(
+      userGroupId: $checkedConvert(json, 'user_group_id', (v) => v as String),
       problemId: $checkedConvert(json, 'problem_id', (v) => v as String),
       body: $checkedConvert(json, 'body', (v) => v as String),
     );
     return val;
-  }, fieldKeyMap: const {'problemId': 'problem_id'});
+  }, fieldKeyMap: const {
+    'userGroupId': 'user_group_id',
+    'problemId': 'problem_id'
+  });
 }
 
 Map<String, dynamic> _$_$_CreateAnswerRequestToJson(
         _$_CreateAnswerRequest instance) =>
     <String, dynamic>{
+      'user_group_id': instance.userGroupId,
       'problem_id': instance.problemId,
       'body': instance.body,
     };
