@@ -26,7 +26,17 @@ class AnswerListPageStateNotifier extends StateNotifier<AnswerPageState>
         .getByProblemAllAnswer(FindAllAnswerRequest(problemId: problemId))
         .then((result) => result.when(
               success: (response) {
-                state = state.copyWith(answers: response.data.answers);
+                final answers = response.data.answers;
+
+                // TODO 将来的にユーザーが任意にソートできるようにする
+                // 回答を日付順にソート
+                answers.sort((A, B) {
+                  if (A.createdAt.isAfter(B.createdAt)) return 0;
+
+                  return 1;
+                });
+
+                state = state.copyWith(answers: answers);
               },
               failure: (_) {},
             ))
