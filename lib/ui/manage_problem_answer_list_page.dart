@@ -122,7 +122,7 @@ class AnswerCard extends HookWidget {
               Row(
                 children: [
                   Text(
-                    'GroupId: ${answer.userGroupId}',
+                    'チーム名: ${answer.userGroup.name}',
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ],
