@@ -69,22 +69,42 @@ class ManageProblemAnswerListPage extends HookWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 4.0),
                         child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SelectableText(
-                              '採点： ${problem?.title}',
-                              style: titleTextStyle,
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                SelectableText(
+                                  '採点： ${problem?.title}',
+                                  style: titleTextStyle,
+                                ),
+                                const Gap(8),
+                                SelectableText(
+                                  '満点 ${problem?.point} pt',
+                                  style: captionTextStyle,
+                                ),
+                                const Gap(8),
+                                SelectableText(
+                                  '採点基準 ${problem?.solvedCriterion} pt',
+                                  style: captionTextStyle,
+                                ),
+                              ],
                             ),
-                            const Gap(8),
-                            SelectableText(
-                              '満点 ${problem?.point} pt',
-                              style: captionTextStyle,
-                            ),
-                            const Gap(8),
-                            SelectableText(
-                              '採点基準 ${problem?.solvedCriterion} pt',
-                              style: captionTextStyle,
-                            ),
+                            Row(
+                              children: [
+                                IconButton(
+                                  onPressed: () {
+                                    // TODO MVVMに移動
+                                    notifier.fetchAnswers(problemId);
+                                  },
+                                  icon: Icon(
+                                    Icons.refresh,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                ),
+                                const Gap(24)
+                              ],
+                            )
                           ],
                         ),
                       ),
