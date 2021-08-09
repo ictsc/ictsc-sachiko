@@ -99,8 +99,6 @@ class Pre extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO 長いとスクロールするようにする
-
     return Stack(
       alignment: Alignment.topRight,
       children: [

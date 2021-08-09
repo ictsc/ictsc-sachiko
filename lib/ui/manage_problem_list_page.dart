@@ -24,6 +24,14 @@ class ManageProblemListPage extends HookWidget {
           notifier.onSelectProblem(problem.id);
         },
         cells: <DataCell>[
+          DataCell(IconButton(
+            icon: const Icon(Icons.check),
+            onPressed: () {
+              AutoRouter.of(context).pushNamed(
+                '/manage/problems/${problem.id}/answers',
+              );
+            },
+          )),
           DataCell(DataText(problem.code)),
           if (problem.title.isNotEmpty)
             DataCell(DataText(problem.title))
@@ -91,7 +99,7 @@ class ManageProblemListPage extends HookWidget {
                   const Gap(48),
                   TextButton(
                       onPressed: () {
-                        context.router.pushNamed('/manage/problems/edit/new');
+                        context.router.pushNamed('/manage/problems/new/edit');
                       },
                       child: Row(
                         children: [
@@ -140,6 +148,7 @@ class ManageProblemListPage extends HookWidget {
                             physics: const ClampingScrollPhysics(),
                             child: DataTable(
                               columns: [
+                                const DataColumn(label: HeadingText('回答一覧')),
                                 const DataColumn(label: HeadingText('コード')),
                                 const DataColumn(label: HeadingText('タイトル')),
                                 const DataColumn(label: HeadingText('ID')),

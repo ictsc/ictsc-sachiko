@@ -7,12 +7,18 @@ part of 'problem_page_state.dart';
 // **************************************************************************
 
 _$_ProblemPageState _$_$_ProblemPageStateFromJson(Map<String, dynamic> json) {
-  return _$_ProblemPageState(
-    isLoading: json['is_loading'] as bool? ?? false,
-    problem: json['problem'] == null
-        ? null
-        : Problem.fromJson(json['problem'] as Map<String, dynamic>),
-  );
+  return $checkedNew(r'_$_ProblemPageState', json, () {
+    final val = _$_ProblemPageState(
+      isLoading:
+          $checkedConvert(json, 'is_loading', (v) => v as bool?) ?? false,
+      problem: $checkedConvert(
+          json,
+          'problem',
+          (v) =>
+              v == null ? null : Problem.fromJson(v as Map<String, dynamic>)),
+    );
+    return val;
+  }, fieldKeyMap: const {'isLoading': 'is_loading'});
 }
 
 Map<String, dynamic> _$_$_ProblemPageStateToJson(

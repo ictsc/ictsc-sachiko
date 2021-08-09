@@ -7,12 +7,15 @@ part of 'auth_state.dart';
 // **************************************************************************
 
 _$_AuthState _$_$_AuthStateFromJson(Map<String, dynamic> json) {
-  return _$_AuthState(
-    isLoginChecked: json['is_login_checked'] as bool? ?? false,
-    user: json['user'] == null
-        ? null
-        : User.fromJson(json['user'] as Map<String, dynamic>),
-  );
+  return $checkedNew(r'_$_AuthState', json, () {
+    final val = _$_AuthState(
+      isLoginChecked:
+          $checkedConvert(json, 'is_login_checked', (v) => v as bool?) ?? false,
+      user: $checkedConvert(json, 'user',
+          (v) => v == null ? null : User.fromJson(v as Map<String, dynamic>)),
+    );
+    return val;
+  }, fieldKeyMap: const {'isLoginChecked': 'is_login_checked'});
 }
 
 Map<String, dynamic> _$_$_AuthStateToJson(_$_AuthState instance) =>

@@ -8,11 +8,13 @@ class MarkdownEditor extends StatelessWidget {
   final bool isPreview;
   final String? hintText;
   final bool isBorder;
+  final int? minLines;
 
   const MarkdownEditor({
     required this.controller,
     required this.isPreview,
     this.hintText,
+    this.minLines,
     this.isBorder = false,
   });
 
@@ -40,7 +42,7 @@ class MarkdownEditor extends StatelessWidget {
 
     return TextFormField(
         // textCapitalization: TextCapitalization.sentences,
-        minLines: 9,
+        minLines: minLines,
         maxLines: null,
         controller: controller,
         decoration: InputDecoration(

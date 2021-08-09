@@ -1,38 +1,36 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'problem_list_page_state.dart';
+part of 'answer_page_state.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ProblemListPageState _$_$_ProblemListPageStateFromJson(
-    Map<String, dynamic> json) {
-  return $checkedNew(r'_$_ProblemListPageState', json, () {
-    final val = _$_ProblemListPageState(
+_$_AnswerPageState _$_$_AnswerPageStateFromJson(Map<String, dynamic> json) {
+  return $checkedNew(r'_$_AnswerPageState', json, () {
+    final val = _$_AnswerPageState(
       isLoading:
           $checkedConvert(json, 'is_loading', (v) => v as bool?) ?? false,
-      problems: $checkedConvert(
-              json,
-              'problems',
-              (v) => (v as List<dynamic>?)
-                  ?.map((e) => Problem.fromJson(e as Map<String, dynamic>))
-                  .toList()) ??
-          [],
       problem: $checkedConvert(
           json,
           'problem',
           (v) =>
               v == null ? null : Problem.fromJson(v as Map<String, dynamic>)),
+      answers: $checkedConvert(
+              json,
+              'answers',
+              (v) => (v as List<dynamic>?)
+                  ?.map((e) => Answer.fromJson(e as Map<String, dynamic>))
+                  .toList()) ??
+          [],
     );
     return val;
   }, fieldKeyMap: const {'isLoading': 'is_loading'});
 }
 
-Map<String, dynamic> _$_$_ProblemListPageStateToJson(
-        _$_ProblemListPageState instance) =>
+Map<String, dynamic> _$_$_AnswerPageStateToJson(_$_AnswerPageState instance) =>
     <String, dynamic>{
       'is_loading': instance.isLoading,
-      'problems': instance.problems,
       'problem': instance.problem,
+      'answers': instance.answers,
     };

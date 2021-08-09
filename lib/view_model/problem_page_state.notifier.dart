@@ -4,6 +4,7 @@ import 'package:ictsc_sachiko/service/answer_api.dart';
 import 'package:ictsc_sachiko/service/model/answer_api.dart';
 import 'package:ictsc_sachiko/service/model/problem_api.dart';
 import 'package:ictsc_sachiko/service/problem_api.dart';
+import 'package:ictsc_sachiko/view_model/common/auth_state_notifier.dart';
 import 'package:ictsc_sachiko/view_model/model/problem_page_state.dart';
 import 'package:state_notifier/state_notifier.dart';
 
@@ -36,10 +37,15 @@ class ProblemPageStateNotifier extends StateNotifier<ProblemPageState>
 
   /// 回答を作成する関数を返す処理
   Function() onPostAnswer(String problemId) => () async {
+    final user = ref.read(authStateProvider).user;
+
+    if (user == null) return;
+
         await ref
             .read(answerProvider)
             .createAnswer(
               CreateAnswerRequest(
+                userGroupId: user.userGroupId,
                 problemId: problemId,
                 body: bodyController.text,
               ),
