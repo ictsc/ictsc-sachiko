@@ -1,3 +1,4 @@
+import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/service/answer_api.dart';
@@ -75,6 +76,18 @@ class ProblemPageStateNotifier extends StateNotifier<ProblemPageState>
                   });
 
                   state = state.copyWith(answers: response.data.answers);
+
+                  context.showFlashBar(
+                    content: Text(
+                      '回答一覧を取得しました。',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText2
+                          ?.copyWith(color: Colors.white),
+                    ),
+                    duration: const Duration(seconds: 3),
+                    backgroundColor: Theme.of(context).primaryColor,
+                  );
                 },
                 failure: (_) {},
               ),
