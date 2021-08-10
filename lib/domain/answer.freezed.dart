@@ -25,7 +25,6 @@ class _$AnswerTearOff {
       required int? point,
       required String body,
       required String userGroupId,
-      required UserGroup userGroup,
       required String problemId,
       required DateTime updatedAt,
       required DateTime createdAt}) {
@@ -34,7 +33,6 @@ class _$AnswerTearOff {
       point: point,
       body: body,
       userGroupId: userGroupId,
-      userGroup: userGroup,
       problemId: problemId,
       updatedAt: updatedAt,
       createdAt: createdAt,
@@ -55,7 +53,6 @@ mixin _$Answer {
   int? get point => throw _privateConstructorUsedError;
   String get body => throw _privateConstructorUsedError;
   String get userGroupId => throw _privateConstructorUsedError;
-  UserGroup get userGroup => throw _privateConstructorUsedError;
   String get problemId => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
@@ -74,12 +71,9 @@ abstract class $AnswerCopyWith<$Res> {
       int? point,
       String body,
       String userGroupId,
-      UserGroup userGroup,
       String problemId,
       DateTime updatedAt,
       DateTime createdAt});
-
-  $UserGroupCopyWith<$Res> get userGroup;
 }
 
 /// @nodoc
@@ -96,7 +90,6 @@ class _$AnswerCopyWithImpl<$Res> implements $AnswerCopyWith<$Res> {
     Object? point = freezed,
     Object? body = freezed,
     Object? userGroupId = freezed,
-    Object? userGroup = freezed,
     Object? problemId = freezed,
     Object? updatedAt = freezed,
     Object? createdAt = freezed,
@@ -118,10 +111,6 @@ class _$AnswerCopyWithImpl<$Res> implements $AnswerCopyWith<$Res> {
           ? _value.userGroupId
           : userGroupId // ignore: cast_nullable_to_non_nullable
               as String,
-      userGroup: userGroup == freezed
-          ? _value.userGroup
-          : userGroup // ignore: cast_nullable_to_non_nullable
-              as UserGroup,
       problemId: problemId == freezed
           ? _value.problemId
           : problemId // ignore: cast_nullable_to_non_nullable
@@ -136,13 +125,6 @@ class _$AnswerCopyWithImpl<$Res> implements $AnswerCopyWith<$Res> {
               as DateTime,
     ));
   }
-
-  @override
-  $UserGroupCopyWith<$Res> get userGroup {
-    return $UserGroupCopyWith<$Res>(_value.userGroup, (value) {
-      return _then(_value.copyWith(userGroup: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -155,13 +137,9 @@ abstract class _$AnswerCopyWith<$Res> implements $AnswerCopyWith<$Res> {
       int? point,
       String body,
       String userGroupId,
-      UserGroup userGroup,
       String problemId,
       DateTime updatedAt,
       DateTime createdAt});
-
-  @override
-  $UserGroupCopyWith<$Res> get userGroup;
 }
 
 /// @nodoc
@@ -179,7 +157,6 @@ class __$AnswerCopyWithImpl<$Res> extends _$AnswerCopyWithImpl<$Res>
     Object? point = freezed,
     Object? body = freezed,
     Object? userGroupId = freezed,
-    Object? userGroup = freezed,
     Object? problemId = freezed,
     Object? updatedAt = freezed,
     Object? createdAt = freezed,
@@ -201,10 +178,6 @@ class __$AnswerCopyWithImpl<$Res> extends _$AnswerCopyWithImpl<$Res>
           ? _value.userGroupId
           : userGroupId // ignore: cast_nullable_to_non_nullable
               as String,
-      userGroup: userGroup == freezed
-          ? _value.userGroup
-          : userGroup // ignore: cast_nullable_to_non_nullable
-              as UserGroup,
       problemId: problemId == freezed
           ? _value.problemId
           : problemId // ignore: cast_nullable_to_non_nullable
@@ -229,7 +202,6 @@ class _$_Answer with DiagnosticableTreeMixin implements _Answer {
       required this.point,
       required this.body,
       required this.userGroupId,
-      required this.userGroup,
       required this.problemId,
       required this.updatedAt,
       required this.createdAt});
@@ -246,8 +218,6 @@ class _$_Answer with DiagnosticableTreeMixin implements _Answer {
   @override
   final String userGroupId;
   @override
-  final UserGroup userGroup;
-  @override
   final String problemId;
   @override
   final DateTime updatedAt;
@@ -256,7 +226,7 @@ class _$_Answer with DiagnosticableTreeMixin implements _Answer {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Answer(id: $id, point: $point, body: $body, userGroupId: $userGroupId, userGroup: $userGroup, problemId: $problemId, updatedAt: $updatedAt, createdAt: $createdAt)';
+    return 'Answer(id: $id, point: $point, body: $body, userGroupId: $userGroupId, problemId: $problemId, updatedAt: $updatedAt, createdAt: $createdAt)';
   }
 
   @override
@@ -268,7 +238,6 @@ class _$_Answer with DiagnosticableTreeMixin implements _Answer {
       ..add(DiagnosticsProperty('point', point))
       ..add(DiagnosticsProperty('body', body))
       ..add(DiagnosticsProperty('userGroupId', userGroupId))
-      ..add(DiagnosticsProperty('userGroup', userGroup))
       ..add(DiagnosticsProperty('problemId', problemId))
       ..add(DiagnosticsProperty('updatedAt', updatedAt))
       ..add(DiagnosticsProperty('createdAt', createdAt));
@@ -287,9 +256,6 @@ class _$_Answer with DiagnosticableTreeMixin implements _Answer {
             (identical(other.userGroupId, userGroupId) ||
                 const DeepCollectionEquality()
                     .equals(other.userGroupId, userGroupId)) &&
-            (identical(other.userGroup, userGroup) ||
-                const DeepCollectionEquality()
-                    .equals(other.userGroup, userGroup)) &&
             (identical(other.problemId, problemId) ||
                 const DeepCollectionEquality()
                     .equals(other.problemId, problemId)) &&
@@ -308,7 +274,6 @@ class _$_Answer with DiagnosticableTreeMixin implements _Answer {
       const DeepCollectionEquality().hash(point) ^
       const DeepCollectionEquality().hash(body) ^
       const DeepCollectionEquality().hash(userGroupId) ^
-      const DeepCollectionEquality().hash(userGroup) ^
       const DeepCollectionEquality().hash(problemId) ^
       const DeepCollectionEquality().hash(updatedAt) ^
       const DeepCollectionEquality().hash(createdAt);
@@ -330,7 +295,6 @@ abstract class _Answer implements Answer {
       required int? point,
       required String body,
       required String userGroupId,
-      required UserGroup userGroup,
       required String problemId,
       required DateTime updatedAt,
       required DateTime createdAt}) = _$_Answer;
@@ -345,8 +309,6 @@ abstract class _Answer implements Answer {
   String get body => throw _privateConstructorUsedError;
   @override
   String get userGroupId => throw _privateConstructorUsedError;
-  @override
-  UserGroup get userGroup => throw _privateConstructorUsedError;
   @override
   String get problemId => throw _privateConstructorUsedError;
   @override

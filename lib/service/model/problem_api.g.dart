@@ -277,10 +277,14 @@ Map<String, dynamic> _$_$_UpdateProblemResponseDataToJson(
 
 _$_FileUploadResponse _$_$_FileUploadResponseFromJson(
     Map<String, dynamic> json) {
-  return _$_FileUploadResponse(
-    id: json['id'] as int,
-    data: FileUploadResponseData.fromJson(json['data'] as Map<String, dynamic>),
-  );
+  return $checkedNew(r'_$_FileUploadResponse', json, () {
+    final val = _$_FileUploadResponse(
+      id: $checkedConvert(json, 'id', (v) => v as int),
+      data: $checkedConvert(json, 'data',
+          (v) => FileUploadResponseData.fromJson(v as Map<String, dynamic>)),
+    );
+    return val;
+  });
 }
 
 Map<String, dynamic> _$_$_FileUploadResponseToJson(
@@ -292,12 +296,21 @@ Map<String, dynamic> _$_$_FileUploadResponseToJson(
 
 _$_FileUploadResponseData _$_$_FileUploadResponseDataFromJson(
     Map<String, dynamic> json) {
-  return _$_FileUploadResponseData(
-    id: json['id'] as String,
-    updatedAt: DateTime.parse(json['updated_at'] as String),
-    createdAt: DateTime.parse(json['created_at'] as String),
-    userId: json['UserID'] as String,
-  );
+  return $checkedNew(r'_$_FileUploadResponseData', json, () {
+    final val = _$_FileUploadResponseData(
+      id: $checkedConvert(json, 'id', (v) => v as String),
+      updatedAt: $checkedConvert(
+          json, 'updated_at', (v) => DateTime.parse(v as String)),
+      createdAt: $checkedConvert(
+          json, 'created_at', (v) => DateTime.parse(v as String)),
+      userId: $checkedConvert(json, 'UserID', (v) => v as String),
+    );
+    return val;
+  }, fieldKeyMap: const {
+    'updatedAt': 'updated_at',
+    'createdAt': 'created_at',
+    'userId': 'UserID'
+  });
 }
 
 Map<String, dynamic> _$_$_FileUploadResponseDataToJson(

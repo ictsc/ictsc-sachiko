@@ -7,10 +7,13 @@ part of 'user_api.dart';
 // **************************************************************************
 
 _$_UpdateUserRequest _$_$_UpdateUserRequestFromJson(Map<String, dynamic> json) {
-  return _$_UpdateUserRequest(
-    id: json['id'] as String,
-    displayName: json['display_name'] as String?,
-  );
+  return $checkedNew(r'_$_UpdateUserRequest', json, () {
+    final val = _$_UpdateUserRequest(
+      id: $checkedConvert(json, 'id', (v) => v as String),
+      displayName: $checkedConvert(json, 'display_name', (v) => v as String?),
+    );
+    return val;
+  }, fieldKeyMap: const {'displayName': 'display_name'});
 }
 
 Map<String, dynamic> _$_$_UpdateUserRequestToJson(
@@ -22,10 +25,14 @@ Map<String, dynamic> _$_$_UpdateUserRequestToJson(
 
 _$_UpdateUserResponse _$_$_UpdateUserResponseFromJson(
     Map<String, dynamic> json) {
-  return _$_UpdateUserResponse(
-    code: json['code'] as int,
-    data: UpdateUserResponseData.fromJson(json['data'] as Map<String, dynamic>),
-  );
+  return $checkedNew(r'_$_UpdateUserResponse', json, () {
+    final val = _$_UpdateUserResponse(
+      code: $checkedConvert(json, 'code', (v) => v as int),
+      data: $checkedConvert(json, 'data',
+          (v) => UpdateUserResponseData.fromJson(v as Map<String, dynamic>)),
+    );
+    return val;
+  });
 }
 
 Map<String, dynamic> _$_$_UpdateUserResponseToJson(
@@ -37,9 +44,13 @@ Map<String, dynamic> _$_$_UpdateUserResponseToJson(
 
 _$_UpdateUserResponseData _$_$_UpdateUserResponseDataFromJson(
     Map<String, dynamic> json) {
-  return _$_UpdateUserResponseData(
-    user: User.fromJson(json['user'] as Map<String, dynamic>),
-  );
+  return $checkedNew(r'_$_UpdateUserResponseData', json, () {
+    final val = _$_UpdateUserResponseData(
+      user: $checkedConvert(
+          json, 'user', (v) => User.fromJson(v as Map<String, dynamic>)),
+    );
+    return val;
+  });
 }
 
 Map<String, dynamic> _$_$_UpdateUserResponseDataToJson(
