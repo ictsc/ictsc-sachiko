@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:ictsc_sachiko/service/base/client.dart';
 import 'package:ictsc_sachiko/service/model/problem_api.dart';
 import 'package:ictsc_sachiko/service/problem_api.dart';
 import 'package:ictsc_sachiko/view_model/common/auth_state_notifier.dart';
@@ -127,4 +129,43 @@ class CreateProblemPageStateNotifier
               failure: (_) {},
             ));
   }
+
+  Function() onFileUpload(BuildContext context) => () async {
+        final picked = await FilePicker.platform.pickFiles(
+            type: FileType.custom,
+            allowedExtensions: ['jpg', 'png'],
+            withData: true);
+
+        final file = picked?.files.first;
+
+        if (file == null) return;
+
+        final form = FormData.fromMap({
+          'file': MultipartFile.fromBytes(file.bytes!, filename: 'file'),
+        });
+
+        ref
+            .read(clientProvider)
+            .post(
+              '/api/attachments',
+              data: form,
+            )
+            .then((_) {
+          // TODO 修正が必要
+          // final data = ClipboardData(text: '');
+          // await Clipboard.setData(data);
+
+          context.showFlashBar(
+            content: Text(
+              'コピーしました',
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText2
+                  ?.copyWith(color: Colors.white),
+            ),
+            duration: const Duration(seconds: 3),
+            backgroundColor: Theme.of(context).primaryColor,
+          );
+        });
+      };
 }

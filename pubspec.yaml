@@ -46,6 +46,7 @@ dependencies:
   markdown_widget: ^1.2.6-nullsafety
   flash: ^2.0.1
   url_launcher: ^6.0.9
+  file_picker: ^3.0.4
 
 
 dev_dependencies:
