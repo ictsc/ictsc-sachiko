@@ -4,6 +4,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flash/flash.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/service/base/client.dart';
 import 'package:ictsc_sachiko/service/model/problem_api.dart';
@@ -155,14 +156,13 @@ class CreateProblemPageStateNotifier
               '/api/attachments',
               data: form,
             )
-            .then((_) {
-          // TODO 修正が必要
-          // final data = ClipboardData(text: '');
-          // await Clipboard.setData(data);
+            .then((result) async {
+          bodyController.text +=
+              '![](${dotenv.env['API_URL']}/api/attachments/${result.data['data']['id']})';
 
           context.showFlashBar(
             content: Text(
-              'コピーしました',
+              'ファイルアップロードに成功しました。',
               style: Theme.of(context)
                   .textTheme
                   .bodyText2
