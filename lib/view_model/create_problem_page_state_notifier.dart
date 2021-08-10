@@ -4,7 +4,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flash/flash.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/service/base/client.dart';
 import 'package:ictsc_sachiko/service/model/problem_api.dart';
@@ -157,8 +156,12 @@ class CreateProblemPageStateNotifier
               data: form,
             )
             .then((result) async {
+          const url = bool.hasEnvironment('APP_URL')
+              ? String.fromEnvironment('APP_URL')
+              : 'http://localhost:8080';
+
           bodyController.text +=
-              '![](${dotenv.env['API_URL']}/api/attachments/${result.data['data']['id']})';
+              '![]($url/api/attachments/${result.data['data']['id']})';
 
           context.showFlashBar(
             content: Text(

@@ -1,6 +1,5 @@
 import 'dart:io' as io;
 
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 Future<void> main() async {
@@ -8,7 +7,7 @@ Future<void> main() async {
   io.HttpOverrides.global = null;
 
   // 環境変数のロード
-  await dotenv.load();
+  // await dotenv.load();
 
   // Client getTestClient() {
   //   final path = dotenv.env['API_URL'].toString();
