@@ -136,7 +136,7 @@ class ProblemPage extends HookWidget {
                               ),
                             ),
                           ),
-                          const Gap(36),
+                          const Gap(80),
                           SizedBox(
                             width: 1024,
                             child: ProblemCard(
@@ -159,6 +159,18 @@ class ProblemPage extends HookWidget {
                                   ),
                                   const Gap(16),
                                   AnswerEditor(
+                                    actions: [
+                                      TextButton(
+                                        onPressed: notifier.onFetchAnswers(context ,state.problem?.id ?? ''),
+                                        child: Row(
+                                          children: [
+                                            const Text('提出を確認'),
+                                            const Gap(8),
+                                            const Icon(Icons.launch),
+                                          ],
+                                        ),
+                                      )
+                                    ],
                                     controller: notifier.bodyController,
                                     submitButton: ElevatedButton(
                                         onPressed: notifier.onPostAnswer(id),
@@ -187,6 +199,7 @@ class ProblemPage extends HookWidget {
                               ),
                             ),
                           ),
+                          // エディターとプレビューを切り替えたときに上に移動しないための余白
                           const Gap(1280),
                         ],
                       ),
@@ -202,12 +215,14 @@ class AnswerEditor extends HookWidget {
   final TextEditingController controller;
   final ElevatedButton? submitButton;
   final String? hintText;
+  final List<Widget>? actions;
   final int? minLines;
 
   const AnswerEditor({
     this.submitButton,
     this.hintText,
     this.minLines,
+    this.actions,
     required this.controller,
   });
 
@@ -219,26 +234,34 @@ class AnswerEditor extends HookWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // Gap(4),
-            ElevatedButton(
-              onPressed: isPreview.value
-                  ? () {
-                      isPreview.value = false;
-                    }
-                  : null,
-              child: const Text(
-                'Markdown',
-              ),
+            Row(
+              children: [
+                // Gap(4),
+                ElevatedButton(
+                  onPressed: isPreview.value
+                      ? () {
+                          isPreview.value = false;
+                        }
+                      : null,
+                  child: const Text(
+                    'Markdown',
+                  ),
+                ),
+                const Gap(4),
+                ElevatedButton(
+                  onPressed: !isPreview.value
+                      ? () {
+                          isPreview.value = true;
+                        }
+                      : null,
+                  child: const Text('Preview'),
+                )
+              ],
             ),
-            const Gap(4),
-            ElevatedButton(
-              onPressed: !isPreview.value
-                  ? () {
-                      isPreview.value = true;
-                    }
-                  : null,
-              child: const Text('Preview'),
+            Row(
+              children: [...?actions],
             )
           ],
         ),

@@ -16,6 +16,13 @@ _$_ProblemPageState _$_$_ProblemPageStateFromJson(Map<String, dynamic> json) {
           'problem',
           (v) =>
               v == null ? null : Problem.fromJson(v as Map<String, dynamic>)),
+      answers: $checkedConvert(
+              json,
+              'answers',
+              (v) => (v as List<dynamic>?)
+                  ?.map((e) => Answer.fromJson(e as Map<String, dynamic>))
+                  .toList()) ??
+          [],
     );
     return val;
   }, fieldKeyMap: const {'isLoading': 'is_loading'});
@@ -26,4 +33,5 @@ Map<String, dynamic> _$_$_ProblemPageStateToJson(
     <String, dynamic>{
       'is_loading': instance.isLoading,
       'problem': instance.problem,
+      'answers': instance.answers,
     };
