@@ -1,4 +1,7 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:flash/flash.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -65,7 +68,9 @@ class CreateProblemPageStateNotifier
             .then((response) => response.when(
                   success: (_) async {
                     // 問題一覧で表示している問題文を更新。
-                    await ref.read(problemListProvider.notifier).fetchProblems();
+                    await ref
+                        .read(problemListProvider.notifier)
+                        .fetchProblems();
 
                     context.router.pushNamed('/manage/problems');
                   },
