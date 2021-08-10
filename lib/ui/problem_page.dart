@@ -84,7 +84,7 @@ class ProblemPage extends HookWidget {
                                 Column(
                                   children: [
                                     SelectableText(
-                                      '${state.problem?.point} pt',
+                                      '${state.problem?.point} pt  問題コード ${state.problem?.code}',
                                       style: captionTextStyle,
                                     ),
                                   ],
@@ -105,7 +105,7 @@ class ProblemPage extends HookWidget {
                                         Icons.info_outline_rounded,
                                         size: 18,
                                       ),
-                                      const Gap(2),
+                                      const Gap(8),
                                       Text(
                                         '問題文',
                                         style: captionTextStyle,
