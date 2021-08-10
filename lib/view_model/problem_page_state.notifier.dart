@@ -4,8 +4,6 @@ import 'package:ictsc_sachiko/service/answer_api.dart';
 import 'package:ictsc_sachiko/service/model/answer_api.dart';
 import 'package:ictsc_sachiko/service/model/problem_api.dart';
 import 'package:ictsc_sachiko/service/problem_api.dart';
-import 'package:ictsc_sachiko/ui/common/markdown_preview.dart';
-import 'package:ictsc_sachiko/ui/problem_list_page.dart';
 import 'package:ictsc_sachiko/view_model/common/auth_state_notifier.dart';
 import 'package:ictsc_sachiko/view_model/model/problem_page_state.dart';
 import 'package:state_notifier/state_notifier.dart';
@@ -67,34 +65,16 @@ class ProblemPageStateNotifier extends StateNotifier<ProblemPageState>
             .then(
               (result) => result.when(
                 success: (response) {
-                  state = state.copyWith(answers: response.data.answers);
+                  final answers = response.data.answers;
 
-                  showDialog(
-                      context: context,
-                      builder: (_) {
-                        return Align(
-                          child: ListView.builder(
-                              shrinkWrap: true,
-                              physics: const ClampingScrollPhysics(),
-                              itemCount: 1,
-                              itemBuilder: (_, i) => Center(
-                                    child: SizedBox(
-                                        width: 1024,
-                                        child: Row(
-                                          children: [
-                                            ProblemCard(
-                                              child: SizedBox(
-                                                width: 982,
-                                                child: MarkdownPreview(
-                                                  data: '# 回答です',
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        )),
-                                  )),
-                        );
-                      });
+                  // 日付順にソート
+                  answers.sort((A, B) {
+                    if (A.createdAt.isAfter(B.createdAt)) return 0;
+
+                    return 1;
+                  });
+
+                  state = state.copyWith(answers: response.data.answers);
                 },
                 failure: (_) {},
               ),

@@ -33,6 +33,39 @@ class ProblemPage extends HookWidget {
         .bodyText2
         ?.copyWith(color: Theme.of(context).textTheme.caption?.color);
 
+    /*
+     * 回答の処理
+     */
+    final List<Widget> answerWidgets = [];
+
+    state.answers.asMap().forEach((key, value) {
+      answerWidgets.add(const Gap(20));
+
+      answerWidgets.add(
+        SizedBox(
+          width: 1024,
+          child: Column(
+            children: [
+              ProblemCard(
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [SelectableText(value.createdAt.toString())],
+                    ),
+                    const Gap(16),
+                    MarkdownPreview(
+                      data: value.body,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    });
+
     return Scaffold(
       appBar: Header(
         appBar: AppBar(),
@@ -161,12 +194,13 @@ class ProblemPage extends HookWidget {
                                   AnswerEditor(
                                     actions: [
                                       TextButton(
-                                        onPressed: notifier.onFetchAnswers(context ,state.problem?.id ?? ''),
+                                        onPressed: notifier.onFetchAnswers(
+                                            context, state.problem?.id ?? ''),
                                         child: Row(
                                           children: [
-                                            const Text('提出を確認'),
+                                            const Text('提出を取得'),
                                             const Gap(8),
-                                            const Icon(Icons.launch),
+                                            const Icon(Icons.download),
                                           ],
                                         ),
                                       )
@@ -199,6 +233,7 @@ class ProblemPage extends HookWidget {
                               ),
                             ),
                           ),
+                          ...answerWidgets,
                           // エディターとプレビューを切り替えたときに上に移動しないための余白
                           const Gap(1280),
                         ],
