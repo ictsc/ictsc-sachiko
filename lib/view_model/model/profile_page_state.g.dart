@@ -7,9 +7,12 @@ part of 'profile_page_state.dart';
 // **************************************************************************
 
 _$_ProfilePageState _$_$_ProfilePageStateFromJson(Map<String, dynamic> json) {
-  return _$_ProfilePageState(
-    isLoading: json['is_loading'] ?? false,
-  );
+  return $checkedNew(r'_$_ProfilePageState', json, () {
+    final val = _$_ProfilePageState(
+      isLoading: $checkedConvert(json, 'is_loading', (v) => v) ?? false,
+    );
+    return val;
+  }, fieldKeyMap: const {'isLoading': 'is_loading'});
 }
 
 Map<String, dynamic> _$_$_ProfilePageStateToJson(
