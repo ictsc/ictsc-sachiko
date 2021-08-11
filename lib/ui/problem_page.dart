@@ -183,7 +183,7 @@ class ProblemPage extends HookWidget {
                                             context, state.problem?.id ?? ''),
                                         child: Row(
                                           children: [
-                                            const Text('チームの提出を取得'),
+                                            const Text('この問題の提出を取得'),
                                             const Gap(8),
                                             const Icon(Icons.download),
                                           ],
