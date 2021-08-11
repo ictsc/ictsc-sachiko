@@ -11,6 +11,7 @@ part 'problem_page_state.g.dart';
 class ProblemPageState with _$ProblemPageState {
   const factory ProblemPageState({
     @Default(false) bool isLoading,
+    @Default(false) bool isFetchLoading,
     Problem? problem,
     @Default([]) List<Answer> answers,
   }) = _ProblemPageState;

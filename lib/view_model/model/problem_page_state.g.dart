@@ -11,6 +11,8 @@ _$_ProblemPageState _$_$_ProblemPageStateFromJson(Map<String, dynamic> json) {
     final val = _$_ProblemPageState(
       isLoading:
           $checkedConvert(json, 'is_loading', (v) => v as bool?) ?? false,
+      isFetchLoading:
+          $checkedConvert(json, 'is_fetch_loading', (v) => v as bool?) ?? false,
       problem: $checkedConvert(
           json,
           'problem',
@@ -25,13 +27,17 @@ _$_ProblemPageState _$_$_ProblemPageStateFromJson(Map<String, dynamic> json) {
           [],
     );
     return val;
-  }, fieldKeyMap: const {'isLoading': 'is_loading'});
+  }, fieldKeyMap: const {
+    'isLoading': 'is_loading',
+    'isFetchLoading': 'is_fetch_loading'
+  });
 }
 
 Map<String, dynamic> _$_$_ProblemPageStateToJson(
         _$_ProblemPageState instance) =>
     <String, dynamic>{
       'is_loading': instance.isLoading,
+      'is_fetch_loading': instance.isFetchLoading,
       'problem': instance.problem,
       'answers': instance.answers,
     };

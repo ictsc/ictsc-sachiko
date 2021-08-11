@@ -180,7 +180,7 @@ class ProblemPage extends HookWidget {
                                             context, state.problem?.id ?? ''),
                                         child: Row(
                                           children: [
-                                            const Text('提出を取得'),
+                                            const Text('チームの提出を取得'),
                                             const Gap(8),
                                             const Icon(Icons.download),
                                           ],
