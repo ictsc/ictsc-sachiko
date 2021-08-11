@@ -37,7 +37,7 @@ class ProblemPageStateNotifier extends StateNotifier<ProblemPageState>
   }
 
   /// 回答を作成する関数を返す処理
-  Function()? onPostAnswer(String problemId) {
+  Function()? onPostAnswer(BuildContext context, String problemId) {
     if (state.isFetchLoading) return null;
 
     final user = ref.read(authStateProvider).user;
@@ -57,7 +57,17 @@ class ProblemPageStateNotifier extends StateNotifier<ProblemPageState>
           )
           .then((result) => result.when(
                 success: (response) {
-                  // TODO 投稿完了のメッセージを表示
+                  context.showFlashBar(
+                    content: Text(
+                      '回答を受け付けました。',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText2
+                          ?.copyWith(color: Colors.white),
+                    ),
+                    duration: const Duration(seconds: 3),
+                    backgroundColor: Theme.of(context).primaryColor,
+                  );
                 },
                 failure: (_) {},
               ))

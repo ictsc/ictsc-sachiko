@@ -44,7 +44,10 @@ class ProblemPage extends HookWidget {
       answerWidgets.add(const Gap(20));
 
       answerWidgets.add(
-        AnswerCard(answer: value, isShowPoint: true,),
+        AnswerCard(
+          answer: value,
+          isShowPoint: true,
+        ),
       );
     });
 
@@ -189,7 +192,8 @@ class ProblemPage extends HookWidget {
                                     ],
                                     controller: notifier.bodyController,
                                     submitButton: ElevatedButton(
-                                        onPressed: notifier.onPostAnswer(id),
+                                        onPressed:
+                                            notifier.onPostAnswer(context, id),
                                         child: const Padding(
                                           padding: EdgeInsets.all(8.0),
                                           child: Text(
@@ -218,7 +222,7 @@ class ProblemPage extends HookWidget {
                           SizedBox(
                             width: 1024,
                             child: Column(
-                               children: answerWidgets,
+                              children: answerWidgets,
                             ),
                           ),
                           // エディターとプレビューを切り替えたときに上に移動しないための余白
