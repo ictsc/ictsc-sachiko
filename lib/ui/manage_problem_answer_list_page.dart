@@ -41,9 +41,13 @@ class ManageProblemAnswerListPage extends HookWidget {
 
     final List<Widget> answers = [];
 
-    state.answers.asMap().forEach((i, e) {
+    state.answers.asMap().forEach((i, answer) {
       answers.add(AnswerCard(
-        answer: e,
+        answer: answer,
+        controller: useTextEditingController(
+          text: answer.point?.toString(),
+        ),
+        isShowEditor: true,
       ));
       answers.add(const Gap(40));
     });
@@ -121,16 +125,19 @@ class ManageProblemAnswerListPage extends HookWidget {
 
 class AnswerCard extends HookWidget {
   final Answer answer;
+  final TextEditingController? controller;
+  final bool isShowEditor;
+  final bool isShowPoint;
 
-  const AnswerCard({required this.answer});
+  const AnswerCard(
+      {required this.answer,
+      this.controller,
+      this.isShowEditor = false,
+      this.isShowPoint = false});
 
   @override
   Widget build(BuildContext context) {
     final notifier = useProvider(answerListProvider.notifier);
-
-    final pointTextController = useTextEditingController(
-      text: answer.point?.toString(),
-    );
 
     return ProblemCard(
       child: Column(
@@ -141,10 +148,37 @@ class AnswerCard extends HookWidget {
             children: [
               Row(
                 children: [
-                  Text(
-                    'userGroupId: ${answer.userGroupId}',
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
+                  if (answer.point != null)
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.check,
+                          color: Colors.green,
+                        ),
+                        const Gap(16),
+                      ],
+                    ),
+                  /*
+                   * チーム名の表示
+                   *
+                   * ポイントが表示されている状態 = 自信のチームの回答なため、
+                   * ポイントが表示されている際は表示を行わない
+                   */
+                  if (!isShowPoint)
+                    SelectableText(
+                      'userGroupId: ${answer.userGroupId}',
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  /*
+                   * 得点の表示
+                   *
+                   * エディターが表示されているときは表示しないようになっている。
+                   */
+                  if (!isShowEditor)
+                    SelectableText(
+                      answer.point != null ? '${answer.point} pt' : '未済点',
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
                 ],
               ),
               Text('${answer.createdAt}'),
@@ -152,39 +186,45 @@ class AnswerCard extends HookWidget {
           ),
           const Gap(16),
           MarkdownPreview(data: answer.body),
-          const Gap(32),
-          Container(
-            color: Theme.of(context).dividerColor,
-            height: 1,
-          ),
-          SizedBox(
-            width: 128,
-            child: TextField(
-              controller: pointTextController,
-              key: ValueKey(answer.id),
-              decoration: InputDecoration(
-                  labelText: 'ポイント',
-                  labelStyle: Theme.of(context).textTheme.caption),
+          if (isShowEditor)
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Gap(32),
+                Container(
+                  color: Theme.of(context).dividerColor,
+                  height: 1,
+                ),
+                SizedBox(
+                  width: 128,
+                  child: TextField(
+                    controller: controller,
+                    key: ValueKey(answer.id),
+                    decoration: InputDecoration(
+                        labelText: 'ポイント',
+                        labelStyle: Theme.of(context).textTheme.caption),
+                  ),
+                ),
+                const Gap(16),
+                ElevatedButton(
+                  onPressed: () {
+                    notifier.onTapAnswerSave(UpdateAnswerRequest(
+                      problemId: answer.problemId,
+                      answerId: answer.id,
+                      point: int.tryParse(controller?.text ?? '') ?? 0,
+                      body: answer.body,
+                    ));
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      '採点する',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-          const Gap(16),
-          ElevatedButton(
-            onPressed: () {
-              notifier.onTapAnswerSave(UpdateAnswerRequest(
-                problemId: answer.problemId,
-                answerId: answer.id,
-                point: int.tryParse(pointTextController.text) ?? 0,
-                body: answer.body,
-              ));
-            },
-            child: const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                '採点する',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
         ],
       ),
     );

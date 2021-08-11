@@ -9,6 +9,8 @@ import 'package:ictsc_sachiko/ui/common/markdown_preview.dart';
 import 'package:ictsc_sachiko/ui/problem_list_page.dart';
 import 'package:ictsc_sachiko/view_model/problem_page_state.notifier.dart';
 
+import 'manage_problem_answer_list_page.dart';
+
 class ProblemPage extends HookWidget {
   final String id;
 
@@ -42,27 +44,7 @@ class ProblemPage extends HookWidget {
       answerWidgets.add(const Gap(20));
 
       answerWidgets.add(
-        SizedBox(
-          width: 1024,
-          child: Column(
-            children: [
-              ProblemCard(
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [SelectableText(value.createdAt.toString())],
-                    ),
-                    const Gap(16),
-                    MarkdownPreview(
-                      data: value.body,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
+        AnswerCard(answer: value, isShowPoint: true,),
       );
     });
 
@@ -233,7 +215,12 @@ class ProblemPage extends HookWidget {
                               ),
                             ),
                           ),
-                          ...answerWidgets,
+                          SizedBox(
+                            width: 1024,
+                            child: Column(
+                               children: answerWidgets,
+                            ),
+                          ),
                           // エディターとプレビューを切り替えたときに上に移動しないための余白
                           const Gap(1280),
                         ],
