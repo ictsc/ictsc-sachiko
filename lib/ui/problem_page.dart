@@ -9,6 +9,8 @@ import 'package:ictsc_sachiko/ui/common/markdown_preview.dart';
 import 'package:ictsc_sachiko/ui/problem_list_page.dart';
 import 'package:ictsc_sachiko/view_model/problem_page_state.notifier.dart';
 
+import 'manage_problem_answer_list_page.dart';
+
 class ProblemPage extends HookWidget {
   final String id;
 
@@ -32,6 +34,22 @@ class ProblemPage extends HookWidget {
         .textTheme
         .bodyText2
         ?.copyWith(color: Theme.of(context).textTheme.caption?.color);
+
+    /*
+     * 回答の処理
+     */
+    final List<Widget> answerWidgets = [];
+
+    state.answers.asMap().forEach((key, value) {
+      answerWidgets.add(const Gap(20));
+
+      answerWidgets.add(
+        AnswerCard(
+          answer: value,
+          isShowPoint: true,
+        ),
+      );
+    });
 
     return Scaffold(
       appBar: Header(
@@ -136,7 +154,7 @@ class ProblemPage extends HookWidget {
                               ),
                             ),
                           ),
-                          const Gap(36),
+                          const Gap(80),
                           SizedBox(
                             width: 1024,
                             child: ProblemCard(
@@ -159,9 +177,23 @@ class ProblemPage extends HookWidget {
                                   ),
                                   const Gap(16),
                                   AnswerEditor(
+                                    actions: [
+                                      TextButton(
+                                        onPressed: notifier.onFetchAnswers(
+                                            context, state.problem?.id ?? ''),
+                                        child: Row(
+                                          children: [
+                                            const Text('この問題の提出を取得'),
+                                            const Gap(8),
+                                            const Icon(Icons.download),
+                                          ],
+                                        ),
+                                      )
+                                    ],
                                     controller: notifier.bodyController,
                                     submitButton: ElevatedButton(
-                                        onPressed: notifier.onPostAnswer(id),
+                                        onPressed:
+                                            notifier.onPostAnswer(context, id),
                                         child: const Padding(
                                           padding: EdgeInsets.all(8.0),
                                           child: Text(
@@ -187,6 +219,13 @@ class ProblemPage extends HookWidget {
                               ),
                             ),
                           ),
+                          SizedBox(
+                            width: 1024,
+                            child: Column(
+                              children: answerWidgets,
+                            ),
+                          ),
+                          // エディターとプレビューを切り替えたときに上に移動しないための余白
                           const Gap(1280),
                         ],
                       ),
@@ -202,12 +241,14 @@ class AnswerEditor extends HookWidget {
   final TextEditingController controller;
   final ElevatedButton? submitButton;
   final String? hintText;
+  final List<Widget>? actions;
   final int? minLines;
 
   const AnswerEditor({
     this.submitButton,
     this.hintText,
     this.minLines,
+    this.actions,
     required this.controller,
   });
 
@@ -219,26 +260,34 @@ class AnswerEditor extends HookWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // Gap(4),
-            ElevatedButton(
-              onPressed: isPreview.value
-                  ? () {
-                      isPreview.value = false;
-                    }
-                  : null,
-              child: const Text(
-                'Markdown',
-              ),
+            Row(
+              children: [
+                // Gap(4),
+                ElevatedButton(
+                  onPressed: isPreview.value
+                      ? () {
+                          isPreview.value = false;
+                        }
+                      : null,
+                  child: const Text(
+                    'Markdown',
+                  ),
+                ),
+                const Gap(4),
+                ElevatedButton(
+                  onPressed: !isPreview.value
+                      ? () {
+                          isPreview.value = true;
+                        }
+                      : null,
+                  child: const Text('Preview'),
+                )
+              ],
             ),
-            const Gap(4),
-            ElevatedButton(
-              onPressed: !isPreview.value
-                  ? () {
-                      isPreview.value = true;
-                    }
-                  : null,
-              child: const Text('Preview'),
+            Row(
+              children: [...?actions],
             )
           ],
         ),

@@ -20,10 +20,16 @@ ProblemPageState _$ProblemPageStateFromJson(Map<String, dynamic> json) {
 class _$ProblemPageStateTearOff {
   const _$ProblemPageStateTearOff();
 
-  _ProblemPageState call({bool isLoading = false, Problem? problem}) {
+  _ProblemPageState call(
+      {bool isLoading = false,
+      bool isFetchLoading = false,
+      Problem? problem,
+      List<Answer> answers = const []}) {
     return _ProblemPageState(
       isLoading: isLoading,
+      isFetchLoading: isFetchLoading,
       problem: problem,
+      answers: answers,
     );
   }
 
@@ -38,7 +44,9 @@ const $ProblemPageState = _$ProblemPageStateTearOff();
 /// @nodoc
 mixin _$ProblemPageState {
   bool get isLoading => throw _privateConstructorUsedError;
+  bool get isFetchLoading => throw _privateConstructorUsedError;
   Problem? get problem => throw _privateConstructorUsedError;
+  List<Answer> get answers => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +59,11 @@ abstract class $ProblemPageStateCopyWith<$Res> {
   factory $ProblemPageStateCopyWith(
           ProblemPageState value, $Res Function(ProblemPageState) then) =
       _$ProblemPageStateCopyWithImpl<$Res>;
-  $Res call({bool isLoading, Problem? problem});
+  $Res call(
+      {bool isLoading,
+      bool isFetchLoading,
+      Problem? problem,
+      List<Answer> answers});
 
   $ProblemCopyWith<$Res>? get problem;
 }
@@ -68,17 +80,27 @@ class _$ProblemPageStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = freezed,
+    Object? isFetchLoading = freezed,
     Object? problem = freezed,
+    Object? answers = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      isFetchLoading: isFetchLoading == freezed
+          ? _value.isFetchLoading
+          : isFetchLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       problem: problem == freezed
           ? _value.problem
           : problem // ignore: cast_nullable_to_non_nullable
               as Problem?,
+      answers: answers == freezed
+          ? _value.answers
+          : answers // ignore: cast_nullable_to_non_nullable
+              as List<Answer>,
     ));
   }
 
@@ -101,7 +123,11 @@ abstract class _$ProblemPageStateCopyWith<$Res>
           _ProblemPageState value, $Res Function(_ProblemPageState) then) =
       __$ProblemPageStateCopyWithImpl<$Res>;
   @override
-  $Res call({bool isLoading, Problem? problem});
+  $Res call(
+      {bool isLoading,
+      bool isFetchLoading,
+      Problem? problem,
+      List<Answer> answers});
 
   @override
   $ProblemCopyWith<$Res>? get problem;
@@ -121,17 +147,27 @@ class __$ProblemPageStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = freezed,
+    Object? isFetchLoading = freezed,
     Object? problem = freezed,
+    Object? answers = freezed,
   }) {
     return _then(_ProblemPageState(
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      isFetchLoading: isFetchLoading == freezed
+          ? _value.isFetchLoading
+          : isFetchLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       problem: problem == freezed
           ? _value.problem
           : problem // ignore: cast_nullable_to_non_nullable
               as Problem?,
+      answers: answers == freezed
+          ? _value.answers
+          : answers // ignore: cast_nullable_to_non_nullable
+              as List<Answer>,
     ));
   }
 }
@@ -141,7 +177,11 @@ class __$ProblemPageStateCopyWithImpl<$Res>
 class _$_ProblemPageState
     with DiagnosticableTreeMixin
     implements _ProblemPageState {
-  const _$_ProblemPageState({this.isLoading = false, this.problem});
+  const _$_ProblemPageState(
+      {this.isLoading = false,
+      this.isFetchLoading = false,
+      this.problem,
+      this.answers = const []});
 
   factory _$_ProblemPageState.fromJson(Map<String, dynamic> json) =>
       _$_$_ProblemPageStateFromJson(json);
@@ -149,12 +189,18 @@ class _$_ProblemPageState
   @JsonKey(defaultValue: false)
   @override
   final bool isLoading;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool isFetchLoading;
   @override
   final Problem? problem;
+  @JsonKey(defaultValue: const [])
+  @override
+  final List<Answer> answers;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ProblemPageState(isLoading: $isLoading, problem: $problem)';
+    return 'ProblemPageState(isLoading: $isLoading, isFetchLoading: $isFetchLoading, problem: $problem, answers: $answers)';
   }
 
   @override
@@ -163,7 +209,9 @@ class _$_ProblemPageState
     properties
       ..add(DiagnosticsProperty('type', 'ProblemPageState'))
       ..add(DiagnosticsProperty('isLoading', isLoading))
-      ..add(DiagnosticsProperty('problem', problem));
+      ..add(DiagnosticsProperty('isFetchLoading', isFetchLoading))
+      ..add(DiagnosticsProperty('problem', problem))
+      ..add(DiagnosticsProperty('answers', answers));
   }
 
   @override
@@ -173,15 +221,23 @@ class _$_ProblemPageState
             (identical(other.isLoading, isLoading) ||
                 const DeepCollectionEquality()
                     .equals(other.isLoading, isLoading)) &&
+            (identical(other.isFetchLoading, isFetchLoading) ||
+                const DeepCollectionEquality()
+                    .equals(other.isFetchLoading, isFetchLoading)) &&
             (identical(other.problem, problem) ||
-                const DeepCollectionEquality().equals(other.problem, problem)));
+                const DeepCollectionEquality()
+                    .equals(other.problem, problem)) &&
+            (identical(other.answers, answers) ||
+                const DeepCollectionEquality().equals(other.answers, answers)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(isLoading) ^
-      const DeepCollectionEquality().hash(problem);
+      const DeepCollectionEquality().hash(isFetchLoading) ^
+      const DeepCollectionEquality().hash(problem) ^
+      const DeepCollectionEquality().hash(answers);
 
   @JsonKey(ignore: true)
   @override
@@ -195,8 +251,11 @@ class _$_ProblemPageState
 }
 
 abstract class _ProblemPageState implements ProblemPageState {
-  const factory _ProblemPageState({bool isLoading, Problem? problem}) =
-      _$_ProblemPageState;
+  const factory _ProblemPageState(
+      {bool isLoading,
+      bool isFetchLoading,
+      Problem? problem,
+      List<Answer> answers}) = _$_ProblemPageState;
 
   factory _ProblemPageState.fromJson(Map<String, dynamic> json) =
       _$_ProblemPageState.fromJson;
@@ -204,7 +263,11 @@ abstract class _ProblemPageState implements ProblemPageState {
   @override
   bool get isLoading => throw _privateConstructorUsedError;
   @override
+  bool get isFetchLoading => throw _privateConstructorUsedError;
+  @override
   Problem? get problem => throw _privateConstructorUsedError;
+  @override
+  List<Answer> get answers => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ProblemPageStateCopyWith<_ProblemPageState> get copyWith =>
