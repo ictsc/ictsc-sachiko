@@ -35,7 +35,9 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
             // ログアウト成功
             state = state.copyWith(user: null);
           },
-          failure: (_) {});
+          failure: (_) {
+            state = state.copyWith(user: null);
+          });
 
       return result;
     });
