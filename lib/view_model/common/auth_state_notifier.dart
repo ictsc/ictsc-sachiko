@@ -1,4 +1,7 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:ictsc_sachiko/router/app_router.gr.dart';
 import 'package:ictsc_sachiko/service/auth.dart';
 import 'package:ictsc_sachiko/service/base/model/result.dart';
 import 'package:ictsc_sachiko/service/model/auth.dart';
@@ -26,16 +29,13 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
     });
   }
 
-  Future<Result<SignOutResponse>> signOut() async {
+  /// ログアウトの処理。
+  Future<Result<SignOutResponse>> signOut(BuildContext context) async {
     final client = ref.read(authProvider);
 
     return client.signOut().then((result) {
-      result.when(
-          success: (_) {
-            // ログアウト成功
-            state = state.copyWith(user: null);
-          },
-          failure: (_) {});
+      state = state.copyWith(user: null);
+      AutoRouter.of(context).push(const SignInRoute());
 
       return result;
     });

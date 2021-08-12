@@ -45,10 +45,7 @@ class Header extends HookWidget implements PreferredSizeWidget {
               }
 
               if (value == 'logout') {
-                context
-                    .read(authStateProvider.notifier)
-                    .signOut()
-                    .whenComplete(() => AutoRouter.of(context).pushNamed('/'));
+                context.read(authStateProvider.notifier).signOut(context);
               }
             },
             itemBuilder: (BuildContext context) => [
