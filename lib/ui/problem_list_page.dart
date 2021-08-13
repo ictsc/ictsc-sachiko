@@ -114,7 +114,7 @@ class ProblemLink extends StatelessWidget {
       height: 212,
       width: 262,
       child: Link(
-        uri: Uri.parse('/problems/${problem.id}'),
+        uri: Uri.parse('/#/problems/${problem.id}'),
         builder: (_, __) =>
         InkWell(
           customBorder: RoundedRectangleBorder(
