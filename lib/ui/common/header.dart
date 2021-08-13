@@ -8,6 +8,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/router/app_router.gr.dart';
 import 'package:ictsc_sachiko/view_model/common/app_state_notifier.dart';
 import 'package:ictsc_sachiko/view_model/common/auth_state_notifier.dart';
+import 'package:url_launcher/link.dart';
 
 /// アプリ全体で使われるヘッダー
 class Header extends HookWidget implements PreferredSizeWidget {
@@ -25,13 +26,16 @@ class Header extends HookWidget implements PreferredSizeWidget {
 
     Widget toLoginLinkButton() {
       if (user == null) {
-        return TextButton(
-          onPressed: () {
-            context.router.pushNamed('/login');
-          },
-          child: Text(
-            'ログイン',
-            style: Theme.of(context).primaryTextTheme.bodyText1,
+        return Link(
+          uri: Uri.parse('/#/login'),
+          builder: (_, __) => TextButton(
+            onPressed: () {
+              context.router.pushNamed('/login');
+            },
+            child: Text(
+              'ログイン',
+              style: Theme.of(context).primaryTextTheme.bodyText1,
+            ),
           ),
         );
       }
@@ -79,10 +83,17 @@ class Header extends HookWidget implements PreferredSizeWidget {
               PopupMenuItem(
                 value: 'mypage',
                 height: 36,
-                child: Text(
-                  'マイページ',
-                  style: Theme.of(context).primaryTextTheme.bodyText2!.copyWith(
-                      color: Theme.of(context).textTheme.bodyText2!.color),
+                child: Link(
+                  uri: Uri.parse('/#/profile'),
+                  builder: (_, __) => Text(
+                    'マイページ',
+                    style: Theme.of(context)
+                        .primaryTextTheme
+                        .bodyText2!
+                        .copyWith(
+                            color:
+                                Theme.of(context).textTheme.bodyText2!.color),
+                  ),
                 ),
               ),
               PopupMenuItem(
@@ -176,39 +187,48 @@ class Header extends HookWidget implements PreferredSizeWidget {
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 8.0),
-          child: TextButton(
-            onPressed: () {
-              AutoRouter.of(context).pushNamed('/');
-            },
-            child: const Text(
-              'トップ',
-              style: TextStyle(color: Colors.white),
+          child: Link(
+            uri: Uri.parse('/#/'),
+            builder: (_, __) => TextButton(
+              onPressed: () {
+                AutoRouter.of(context).pushNamed('/');
+              },
+              child: const Text(
+                'トップ',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ),
         ),
         if (user != null)
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
-            child: TextButton(
-              onPressed: () {
-                AutoRouter.of(context).pushNamed('/problems');
-              },
-              child: const Text(
-                '問題',
-                style: TextStyle(color: Colors.white),
+            child: Link(
+              uri: Uri.parse('/#/problems'),
+              builder: (_, __) => TextButton(
+                onPressed: () {
+                  AutoRouter.of(context).pushNamed('/problems');
+                },
+                child: const Text(
+                  '問題',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ),
           ),
         if (user?.userGroup?.isFullAccess ?? false)
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
-            child: TextButton(
-              onPressed: () {
-                AutoRouter.of(context).pushNamed('/manage');
-              },
-              child: const Text(
-                '管理',
-                style: TextStyle(color: Colors.white),
+            child: Link(
+              uri: Uri.parse('/#/manage'),
+              builder: (_, __) => TextButton(
+                onPressed: () {
+                  AutoRouter.of(context).pushNamed('/manage');
+                },
+                child: const Text(
+                  '管理',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ),
           ),
