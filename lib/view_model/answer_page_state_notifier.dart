@@ -1,4 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:ictsc_sachiko/domain/answer.dart';
 import 'package:ictsc_sachiko/service/answer_api.dart';
 import 'package:ictsc_sachiko/service/model/answer_api.dart';
 import 'package:ictsc_sachiko/service/model/problem_api.dart';
@@ -26,15 +27,10 @@ class AnswerListPageStateNotifier extends StateNotifier<AnswerPageState>
         .getByProblemAllAnswer(FindAllAnswerRequest(problemId: problemId))
         .then((result) => result.when(
               success: (response) {
-                final answers = response.data.answers;
+                var answers = response.data.answers;
 
-                // TODO 将来的にユーザーが任意にソートできるようにする
                 // 回答を日付順にソート
-                answers.sort((A, B) {
-                  if (A.createdAt.isAfter(B.createdAt)) return 0;
-
-                  return 1;
-                });
+                answers = sortAnswers(answers);
 
                 state = state.copyWith(answers: answers);
               },
@@ -42,6 +38,38 @@ class AnswerListPageStateNotifier extends StateNotifier<AnswerPageState>
             ))
         .whenComplete(() => state = state.copyWith(isLoading: false));
   }
+
+  List<Answer> sortAnswers(List<Answer> answers) {
+    answers.sort((A, B) {
+      if (A.createdAt.isAfter(B.createdAt)) {
+        if (state.isLatest) {
+          return 0;
+        }
+
+        return 1;
+      }
+
+      if (state.isLatest) {
+        return 1;
+      }
+
+      return 0;
+    });
+
+    return answers;
+  }
+
+  Function(Object? object) onChangedLatestSort() => (Object? object) {
+        if (object is bool) {
+          state = state.copyWith(
+            isLatest: object,
+          );
+
+          state = state.copyWith(
+            answers: sortAnswers(state.answers),
+          );
+        }
+      };
 
   Future<void> fetchProblem(String problemId) async {
     state = state.copyWith(isLoading: true);

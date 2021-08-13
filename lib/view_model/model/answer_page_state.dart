@@ -12,6 +12,7 @@ class AnswerPageState with _$AnswerPageState {
     @Default(false) bool isLoading,
     Problem? problem,
     @Default([]) List<Answer> answers,
+    @Default(true) bool isLatest,
   }) = _AnswerPageState;
 
  factory AnswerPageState.fromJson(Map<String, dynamic> json) => _$AnswerPageStateFromJson(json);

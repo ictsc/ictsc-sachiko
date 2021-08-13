@@ -94,8 +94,26 @@ class ManageProblemAnswerListPage extends HookWidget {
                                 ),
                               ],
                             ),
+                            /*
+                             * Actions
+                             */
                             Row(
                               children: [
+                                DropdownButton(
+                                  value: state.isLatest,
+                                  items: [
+                                    const DropdownMenuItem(
+                                      value: true,
+                                      child: Text('最新順'),
+                                    ),
+                                    const DropdownMenuItem(
+                                      value: false,
+                                      child: Text('古い順'),
+                                    ),
+                                  ],
+                                  onChanged: notifier.onChangedLatestSort(),
+                                ),
+                                const Gap(16),
                                 IconButton(
                                   onPressed: () {
                                     // TODO MVVMに移動
@@ -129,11 +147,15 @@ class AnswerCard extends HookWidget {
   final bool isShowEditor;
   final bool isShowPoint;
 
-  const AnswerCard(
+  AnswerCard(
       {required this.answer,
       this.controller,
       this.isShowEditor = false,
-      this.isShowPoint = false});
+      this.isShowPoint = false}) {
+    if (controller != null) {
+      controller!.text = answer.point?.toString() ?? '';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -199,7 +221,7 @@ class AnswerCard extends HookWidget {
                   width: 128,
                   child: TextField(
                     controller: controller,
-                    key: ValueKey(answer.id),
+                    key: Key(answer.id),
                     decoration: InputDecoration(
                         labelText: 'ポイント',
                         labelStyle: Theme.of(context).textTheme.caption),
