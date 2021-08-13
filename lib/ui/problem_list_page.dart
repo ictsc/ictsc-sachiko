@@ -8,6 +8,7 @@ import 'package:ictsc_sachiko/ui/common/header.dart';
 import 'package:ictsc_sachiko/ui/common/markdown_preview.dart';
 import 'package:ictsc_sachiko/view_model/problem_list_page_state_notifier.dart';
 import 'package:responsive_grid/responsive_grid.dart';
+import 'package:url_launcher/link.dart';
 
 class ProblemListPage extends HookWidget {
   @override
@@ -112,44 +113,49 @@ class ProblemLink extends StatelessWidget {
     return SizedBox(
       height: 212,
       width: 262,
-      child: InkWell(
-        customBorder: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        onTap: () {
-          AutoRouter.of(context).pushNamed('/problems/${problem.id}');
-        },
-        child: ProblemCard(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text.rich(TextSpan(
-                text: '$index ',
-                style: titleTextStyle?.copyWith(
-                    color: Theme.of(context).primaryColor),
-                children: [
-                  TextSpan(
-                      text:
-                          problem.title.isNotEmpty ? problem.title : 'Untitled',
-                      style: titleTextStyle),
-                ],
-              )),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: double.infinity,
-                    child: Text(
-                      '${problem.point} pt',
-                      style: pointTextStyle,
-                      textAlign: TextAlign.end,
+      child: Link(
+          // AutoRouter.of(context).pushNamed('/problems/${problem.id}');
+        uri: Uri.parse('/#/problems/${problem.id}'),
+        builder: (_, __) =>
+        InkWell(
+          customBorder: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          onTap: () {
+            AutoRouter.of(context).pushNamed('/problems/${problem.id}');
+          },
+          child: ProblemCard(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text.rich(TextSpan(
+                  text: '$index ',
+                  style: titleTextStyle?.copyWith(
+                      color: Theme.of(context).primaryColor),
+                  children: [
+                    TextSpan(
+                        text:
+                            problem.title.isNotEmpty ? problem.title : 'Untitled',
+                        style: titleTextStyle),
+                  ],
+                )),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: double.infinity,
+                      child: Text(
+                        '${problem.point} pt',
+                        style: pointTextStyle,
+                        textAlign: TextAlign.end,
+                      ),
                     ),
-                  ),
-                  Text('問題文へ →', style: linkTextStyle),
-                ],
-              )
-            ],
+                    Text('問題文へ →', style: linkTextStyle),
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
