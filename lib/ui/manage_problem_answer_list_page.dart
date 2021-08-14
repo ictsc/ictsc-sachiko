@@ -79,7 +79,7 @@ class ManageProblemAnswerListPage extends HookWidget {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 SelectableText(
-                                  '採点： ${problem?.title}',
+                                  problem?.title ?? 'Untitled',
                                   style: titleTextStyle,
                                 ),
                                 const Gap(8),
@@ -128,6 +128,12 @@ class ManageProblemAnswerListPage extends HookWidget {
                               ],
                             )
                           ],
+                        ),
+                      ),
+                      const Gap(40),
+                      ProblemCard(
+                        child: MarkdownPreview(
+                          data: state.problem?.body ?? '',
                         ),
                       ),
                       const Gap(40),
