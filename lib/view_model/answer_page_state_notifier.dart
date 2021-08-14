@@ -86,6 +86,7 @@ class AnswerListPageStateNotifier extends StateNotifier<AnswerPageState>
         .whenComplete(() => state = state.copyWith(isLoading: false));
   }
 
+  // 採点ボタンを押した時の処理
   Future<void> onTapAnswerSave(UpdateAnswerRequest updateAnswerRequest) async {
     await ref
         .read(answerProvider)
@@ -93,6 +94,9 @@ class AnswerListPageStateNotifier extends StateNotifier<AnswerPageState>
         .then((value) => value.when(
               success: (_) {
                 // TODO トースト
+
+
+                fetchAnswers(updateAnswerRequest.problemId);
               },
               failure: (_) {},
             ));
