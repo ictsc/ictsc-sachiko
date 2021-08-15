@@ -262,7 +262,7 @@ class AnswerCard extends HookWidget {
                 const Gap(16),
                 ElevatedButton(
                   onPressed: () {
-                    notifier.onTapAnswerSave(UpdateAnswerRequest(
+                    notifier.onTapAnswerSave(context, UpdateAnswerRequest(
                       problemId: answer.problemId,
                       answerId: answer.id,
                       point: int.tryParse(controller?.text ?? '') ?? 0,

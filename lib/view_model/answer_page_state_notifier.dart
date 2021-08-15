@@ -1,3 +1,6 @@
+import 'package:flash/flash.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/domain/answer.dart';
 import 'package:ictsc_sachiko/service/answer_api.dart';
@@ -84,16 +87,16 @@ class AnswerListPageStateNotifier extends StateNotifier<AnswerPageState>
       };
 
   Function(Object? object) onChangedAnswerFilter() => (Object? object) {
-    if (object is int) {
-      state = state.copyWith(
-        answerFilterState: object,
-      );
+        if (object is int) {
+          state = state.copyWith(
+            answerFilterState: object,
+          );
 
-      state = state.copyWith(
-        answers: sortAnswers(state.answers),
-      );
-    }
-  };
+          state = state.copyWith(
+            answers: sortAnswers(state.answers),
+          );
+        }
+      };
 
   Future<void> fetchProblem(String problemId) async {
     state = state.copyWith(isLoading: true);
@@ -110,17 +113,40 @@ class AnswerListPageStateNotifier extends StateNotifier<AnswerPageState>
         .whenComplete(() => state = state.copyWith(isLoading: false));
   }
 
-  // 採点ボタンを押した時の処理
-  Future<void> onTapAnswerSave(UpdateAnswerRequest updateAnswerRequest) async {
+  /// 採点ボタンを押した時の処理
+  ///
+  /// アンサーを配列から発見し返されたアンサーで更新する。
+  Future<void> onTapAnswerSave(
+      BuildContext context, UpdateAnswerRequest updateAnswerRequest) async {
     await ref
         .read(answerProvider)
         .updateAnswer(updateAnswerRequest)
         .then((value) => value.when(
-              success: (_) {
-                // TODO トースト
+              success: (result) {
+                // アンサーのコピーを作成。
+                final answers = state.answers;
 
+                // IDと一致するアンサーを見つけて位置を取得
+                final index = state.answers.indexWhere(
+                    (element) => element.id == updateAnswerRequest.answerId);
 
-                fetchAnswers(updateAnswerRequest.problemId);
+                // 更新
+                answers[index] = result.data.answer;
+
+                state = state.copyWith(answers: answers);
+
+                // ポップアップ
+                context.showFlashBar(
+                  content: Text(
+                    '採点しました。',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2
+                        ?.copyWith(color: Colors.white),
+                  ),
+                  duration: const Duration(seconds: 3),
+                  backgroundColor: Theme.of(context).primaryColor,
+                );
               },
               failure: (_) {},
             ));
