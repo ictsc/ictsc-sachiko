@@ -42,14 +42,21 @@ class ManageProblemAnswerListPage extends HookWidget {
     final List<Widget> answers = [];
 
     state.answers.asMap().forEach((i, answer) {
-      answers.add(AnswerCard(
-        answer: answer,
-        controller: useTextEditingController(
-          text: answer.point?.toString(),
+      answers.add(Visibility(
+        visible: notifier.answerFilter(answer),
+        child: Column(
+          children: [
+            AnswerCard(
+              answer: answer,
+              controller: TextEditingController(
+                text: answer.point?.toString(),
+              ),
+              isShowEditor: true,
+            ),
+            const Gap(40)
+          ],
         ),
-        isShowEditor: true,
       ));
-      answers.add(const Gap(40));
     });
 
     final problem = state.problem;
@@ -79,7 +86,7 @@ class ManageProblemAnswerListPage extends HookWidget {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 SelectableText(
-                                  '採点： ${problem?.title}',
+                                  problem?.title ?? 'Untitled',
                                   style: titleTextStyle,
                                 ),
                                 const Gap(8),
@@ -94,8 +101,45 @@ class ManageProblemAnswerListPage extends HookWidget {
                                 ),
                               ],
                             ),
+                            /*
+                             * Actions
+                             */
                             Row(
                               children: [
+                                DropdownButton(
+                                  value: state.answerFilterState,
+                                  items: [
+                                    const DropdownMenuItem(
+                                      value: 0,
+                                      child: Text('採点'),
+                                    ),
+                                    const DropdownMenuItem(
+                                      value: 1,
+                                      child: Text('採点：済'),
+                                    ),
+                                    const DropdownMenuItem(
+                                      value: 2,
+                                      child: Text('採点：未'),
+                                    ),
+                                  ],
+                                  onChanged: notifier.onChangedAnswerFilter(),
+                                ),
+                                const Gap(16),
+                                DropdownButton(
+                                  value: state.isLatest,
+                                  items: [
+                                    const DropdownMenuItem(
+                                      value: true,
+                                      child: Text('新着順'),
+                                    ),
+                                    const DropdownMenuItem(
+                                      value: false,
+                                      child: Text('投稿順'),
+                                    ),
+                                  ],
+                                  onChanged: notifier.onChangedLatestSort(),
+                                ),
+                                const Gap(16),
                                 IconButton(
                                   onPressed: () {
                                     // TODO MVVMに移動
@@ -110,6 +154,12 @@ class ManageProblemAnswerListPage extends HookWidget {
                               ],
                             )
                           ],
+                        ),
+                      ),
+                      const Gap(40),
+                      ProblemCard(
+                        child: MarkdownPreview(
+                          data: state.problem?.body ?? '',
                         ),
                       ),
                       const Gap(40),
@@ -129,11 +179,15 @@ class AnswerCard extends HookWidget {
   final bool isShowEditor;
   final bool isShowPoint;
 
-  const AnswerCard(
+  AnswerCard(
       {required this.answer,
       this.controller,
       this.isShowEditor = false,
-      this.isShowPoint = false});
+      this.isShowPoint = false}) {
+    if (controller != null) {
+      controller!.text = answer.point?.toString() ?? '';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -199,7 +253,7 @@ class AnswerCard extends HookWidget {
                   width: 128,
                   child: TextField(
                     controller: controller,
-                    key: ValueKey(answer.id),
+                    key: Key(answer.id),
                     decoration: InputDecoration(
                         labelText: 'ポイント',
                         labelStyle: Theme.of(context).textTheme.caption),
@@ -208,7 +262,7 @@ class AnswerCard extends HookWidget {
                 const Gap(16),
                 ElevatedButton(
                   onPressed: () {
-                    notifier.onTapAnswerSave(UpdateAnswerRequest(
+                    notifier.onTapAnswerSave(context, UpdateAnswerRequest(
                       problemId: answer.problemId,
                       answerId: answer.id,
                       point: int.tryParse(controller?.text ?? '') ?? 0,

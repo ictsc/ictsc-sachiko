@@ -1,4 +1,8 @@
+import 'package:flash/flash.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:ictsc_sachiko/domain/answer.dart';
 import 'package:ictsc_sachiko/service/answer_api.dart';
 import 'package:ictsc_sachiko/service/model/answer_api.dart';
 import 'package:ictsc_sachiko/service/model/problem_api.dart';
@@ -26,15 +30,10 @@ class AnswerListPageStateNotifier extends StateNotifier<AnswerPageState>
         .getByProblemAllAnswer(FindAllAnswerRequest(problemId: problemId))
         .then((result) => result.when(
               success: (response) {
-                final answers = response.data.answers;
+                var answers = response.data.answers;
 
-                // TODO 将来的にユーザーが任意にソートできるようにする
                 // 回答を日付順にソート
-                answers.sort((A, B) {
-                  if (A.createdAt.isAfter(B.createdAt)) return 0;
-
-                  return 1;
-                });
+                answers = sortAnswers(answers);
 
                 state = state.copyWith(answers: answers);
               },
@@ -42,6 +41,62 @@ class AnswerListPageStateNotifier extends StateNotifier<AnswerPageState>
             ))
         .whenComplete(() => state = state.copyWith(isLoading: false));
   }
+
+  bool answerFilter(Answer answer) {
+    if (state.answerFilterState == 1) {
+      return answer.point != null;
+    }
+
+    if (state.answerFilterState == 2) {
+      return answer.point == null;
+    }
+
+    return true;
+  }
+
+  List<Answer> sortAnswers(List<Answer> answers) {
+    answers.sort((A, B) {
+      if (A.createdAt.isAfter(B.createdAt)) {
+        if (state.isLatest) {
+          return 0;
+        }
+
+        return 1;
+      }
+
+      if (state.isLatest) {
+        return 1;
+      }
+
+      return 0;
+    });
+
+    return answers;
+  }
+
+  Function(Object? object) onChangedLatestSort() => (Object? object) {
+        if (object is bool) {
+          state = state.copyWith(
+            isLatest: object,
+          );
+
+          state = state.copyWith(
+            answers: sortAnswers(state.answers),
+          );
+        }
+      };
+
+  Function(Object? object) onChangedAnswerFilter() => (Object? object) {
+        if (object is int) {
+          state = state.copyWith(
+            answerFilterState: object,
+          );
+
+          state = state.copyWith(
+            answers: sortAnswers(state.answers),
+          );
+        }
+      };
 
   Future<void> fetchProblem(String problemId) async {
     state = state.copyWith(isLoading: true);
@@ -58,13 +113,40 @@ class AnswerListPageStateNotifier extends StateNotifier<AnswerPageState>
         .whenComplete(() => state = state.copyWith(isLoading: false));
   }
 
-  Future<void> onTapAnswerSave(UpdateAnswerRequest updateAnswerRequest) async {
+  /// 採点ボタンを押した時の処理
+  ///
+  /// アンサーを配列から発見し返されたアンサーで更新する。
+  Future<void> onTapAnswerSave(
+      BuildContext context, UpdateAnswerRequest updateAnswerRequest) async {
     await ref
         .read(answerProvider)
         .updateAnswer(updateAnswerRequest)
         .then((value) => value.when(
-              success: (_) {
-                // TODO トースト
+              success: (result) {
+                // アンサーのコピーを作成。
+                final answers = state.answers;
+
+                // IDと一致するアンサーを見つけて位置を取得
+                final index = state.answers.indexWhere(
+                    (element) => element.id == updateAnswerRequest.answerId);
+
+                // 更新
+                answers[index] = result.data.answer;
+
+                state = state.copyWith(answers: answers);
+
+                // ポップアップ
+                context.showFlashBar(
+                  content: Text(
+                    '採点しました。',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2
+                        ?.copyWith(color: Colors.white),
+                  ),
+                  duration: const Duration(seconds: 3),
+                  backgroundColor: Theme.of(context).primaryColor,
+                );
               },
               failure: (_) {},
             ));
