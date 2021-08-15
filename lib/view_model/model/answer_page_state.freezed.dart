@@ -24,12 +24,14 @@ class _$AnswerPageStateTearOff {
       {bool isLoading = false,
       Problem? problem,
       List<Answer> answers = const [],
-      bool isLatest = true}) {
+      bool isLatest = true,
+      int answerFilterState = 0}) {
     return _AnswerPageState(
       isLoading: isLoading,
       problem: problem,
       answers: answers,
       isLatest: isLatest,
+      answerFilterState: answerFilterState,
     );
   }
 
@@ -47,6 +49,7 @@ mixin _$AnswerPageState {
   Problem? get problem => throw _privateConstructorUsedError;
   List<Answer> get answers => throw _privateConstructorUsedError;
   bool get isLatest => throw _privateConstructorUsedError;
+  int get answerFilterState => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -60,7 +63,11 @@ abstract class $AnswerPageStateCopyWith<$Res> {
           AnswerPageState value, $Res Function(AnswerPageState) then) =
       _$AnswerPageStateCopyWithImpl<$Res>;
   $Res call(
-      {bool isLoading, Problem? problem, List<Answer> answers, bool isLatest});
+      {bool isLoading,
+      Problem? problem,
+      List<Answer> answers,
+      bool isLatest,
+      int answerFilterState});
 
   $ProblemCopyWith<$Res>? get problem;
 }
@@ -80,6 +87,7 @@ class _$AnswerPageStateCopyWithImpl<$Res>
     Object? problem = freezed,
     Object? answers = freezed,
     Object? isLatest = freezed,
+    Object? answerFilterState = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: isLoading == freezed
@@ -98,6 +106,10 @@ class _$AnswerPageStateCopyWithImpl<$Res>
           ? _value.isLatest
           : isLatest // ignore: cast_nullable_to_non_nullable
               as bool,
+      answerFilterState: answerFilterState == freezed
+          ? _value.answerFilterState
+          : answerFilterState // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 
@@ -121,7 +133,11 @@ abstract class _$AnswerPageStateCopyWith<$Res>
       __$AnswerPageStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {bool isLoading, Problem? problem, List<Answer> answers, bool isLatest});
+      {bool isLoading,
+      Problem? problem,
+      List<Answer> answers,
+      bool isLatest,
+      int answerFilterState});
 
   @override
   $ProblemCopyWith<$Res>? get problem;
@@ -144,6 +160,7 @@ class __$AnswerPageStateCopyWithImpl<$Res>
     Object? problem = freezed,
     Object? answers = freezed,
     Object? isLatest = freezed,
+    Object? answerFilterState = freezed,
   }) {
     return _then(_AnswerPageState(
       isLoading: isLoading == freezed
@@ -162,6 +179,10 @@ class __$AnswerPageStateCopyWithImpl<$Res>
           ? _value.isLatest
           : isLatest // ignore: cast_nullable_to_non_nullable
               as bool,
+      answerFilterState: answerFilterState == freezed
+          ? _value.answerFilterState
+          : answerFilterState // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -175,7 +196,8 @@ class _$_AnswerPageState
       {this.isLoading = false,
       this.problem,
       this.answers = const [],
-      this.isLatest = true});
+      this.isLatest = true,
+      this.answerFilterState = 0});
 
   factory _$_AnswerPageState.fromJson(Map<String, dynamic> json) =>
       _$_$_AnswerPageStateFromJson(json);
@@ -191,10 +213,13 @@ class _$_AnswerPageState
   @JsonKey(defaultValue: true)
   @override
   final bool isLatest;
+  @JsonKey(defaultValue: 0)
+  @override
+  final int answerFilterState;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AnswerPageState(isLoading: $isLoading, problem: $problem, answers: $answers, isLatest: $isLatest)';
+    return 'AnswerPageState(isLoading: $isLoading, problem: $problem, answers: $answers, isLatest: $isLatest, answerFilterState: $answerFilterState)';
   }
 
   @override
@@ -205,7 +230,8 @@ class _$_AnswerPageState
       ..add(DiagnosticsProperty('isLoading', isLoading))
       ..add(DiagnosticsProperty('problem', problem))
       ..add(DiagnosticsProperty('answers', answers))
-      ..add(DiagnosticsProperty('isLatest', isLatest));
+      ..add(DiagnosticsProperty('isLatest', isLatest))
+      ..add(DiagnosticsProperty('answerFilterState', answerFilterState));
   }
 
   @override
@@ -223,7 +249,10 @@ class _$_AnswerPageState
                     .equals(other.answers, answers)) &&
             (identical(other.isLatest, isLatest) ||
                 const DeepCollectionEquality()
-                    .equals(other.isLatest, isLatest)));
+                    .equals(other.isLatest, isLatest)) &&
+            (identical(other.answerFilterState, answerFilterState) ||
+                const DeepCollectionEquality()
+                    .equals(other.answerFilterState, answerFilterState)));
   }
 
   @override
@@ -232,7 +261,8 @@ class _$_AnswerPageState
       const DeepCollectionEquality().hash(isLoading) ^
       const DeepCollectionEquality().hash(problem) ^
       const DeepCollectionEquality().hash(answers) ^
-      const DeepCollectionEquality().hash(isLatest);
+      const DeepCollectionEquality().hash(isLatest) ^
+      const DeepCollectionEquality().hash(answerFilterState);
 
   @JsonKey(ignore: true)
   @override
@@ -250,7 +280,8 @@ abstract class _AnswerPageState implements AnswerPageState {
       {bool isLoading,
       Problem? problem,
       List<Answer> answers,
-      bool isLatest}) = _$_AnswerPageState;
+      bool isLatest,
+      int answerFilterState}) = _$_AnswerPageState;
 
   factory _AnswerPageState.fromJson(Map<String, dynamic> json) =
       _$_AnswerPageState.fromJson;
@@ -263,6 +294,8 @@ abstract class _AnswerPageState implements AnswerPageState {
   List<Answer> get answers => throw _privateConstructorUsedError;
   @override
   bool get isLatest => throw _privateConstructorUsedError;
+  @override
+  int get answerFilterState => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AnswerPageStateCopyWith<_AnswerPageState> get copyWith =>

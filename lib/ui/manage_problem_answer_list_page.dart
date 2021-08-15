@@ -42,14 +42,21 @@ class ManageProblemAnswerListPage extends HookWidget {
     final List<Widget> answers = [];
 
     state.answers.asMap().forEach((i, answer) {
-      answers.add(AnswerCard(
-        answer: answer,
-        controller: useTextEditingController(
-          text: answer.point?.toString(),
+      answers.add(Visibility(
+        visible: notifier.answerFilter(answer),
+        child: Column(
+          children: [
+            AnswerCard(
+              answer: answer,
+              controller: TextEditingController(
+                text: answer.point?.toString(),
+              ),
+              isShowEditor: true,
+            ),
+            const Gap(40)
+          ],
         ),
-        isShowEditor: true,
       ));
-      answers.add(const Gap(40));
     });
 
     final problem = state.problem;
@@ -100,15 +107,34 @@ class ManageProblemAnswerListPage extends HookWidget {
                             Row(
                               children: [
                                 DropdownButton(
+                                  value: state.answerFilterState,
+                                  items: [
+                                    const DropdownMenuItem(
+                                      value: 0,
+                                      child: Text('採点'),
+                                    ),
+                                    const DropdownMenuItem(
+                                      value: 1,
+                                      child: Text('採点：済'),
+                                    ),
+                                    const DropdownMenuItem(
+                                      value: 2,
+                                      child: Text('採点：未'),
+                                    ),
+                                  ],
+                                  onChanged: notifier.onChangedAnswerFilter(),
+                                ),
+                                const Gap(16),
+                                DropdownButton(
                                   value: state.isLatest,
                                   items: [
                                     const DropdownMenuItem(
                                       value: true,
-                                      child: Text('最新順'),
+                                      child: Text('新着順'),
                                     ),
                                     const DropdownMenuItem(
                                       value: false,
-                                      child: Text('古い順'),
+                                      child: Text('投稿順'),
                                     ),
                                   ],
                                   onChanged: notifier.onChangedLatestSort(),

@@ -24,9 +24,15 @@ _$_AnswerPageState _$_$_AnswerPageStateFromJson(Map<String, dynamic> json) {
                   .toList()) ??
           [],
       isLatest: $checkedConvert(json, 'is_latest', (v) => v as bool?) ?? true,
+      answerFilterState:
+          $checkedConvert(json, 'answer_filter_state', (v) => v as int?) ?? 0,
     );
     return val;
-  }, fieldKeyMap: const {'isLoading': 'is_loading', 'isLatest': 'is_latest'});
+  }, fieldKeyMap: const {
+    'isLoading': 'is_loading',
+    'isLatest': 'is_latest',
+    'answerFilterState': 'answer_filter_state'
+  });
 }
 
 Map<String, dynamic> _$_$_AnswerPageStateToJson(_$_AnswerPageState instance) =>
@@ -35,4 +41,5 @@ Map<String, dynamic> _$_$_AnswerPageStateToJson(_$_AnswerPageState instance) =>
       'problem': instance.problem,
       'answers': instance.answers,
       'is_latest': instance.isLatest,
+      'answer_filter_state': instance.answerFilterState,
     };

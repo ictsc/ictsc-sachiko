@@ -39,6 +39,18 @@ class AnswerListPageStateNotifier extends StateNotifier<AnswerPageState>
         .whenComplete(() => state = state.copyWith(isLoading: false));
   }
 
+  bool answerFilter(Answer answer) {
+    if (state.answerFilterState == 1) {
+      return answer.point != null;
+    }
+
+    if (state.answerFilterState == 2) {
+      return answer.point == null;
+    }
+
+    return true;
+  }
+
   List<Answer> sortAnswers(List<Answer> answers) {
     answers.sort((A, B) {
       if (A.createdAt.isAfter(B.createdAt)) {
@@ -70,6 +82,18 @@ class AnswerListPageStateNotifier extends StateNotifier<AnswerPageState>
           );
         }
       };
+
+  Function(Object? object) onChangedAnswerFilter() => (Object? object) {
+    if (object is int) {
+      state = state.copyWith(
+        answerFilterState: object,
+      );
+
+      state = state.copyWith(
+        answers: sortAnswers(state.answers),
+      );
+    }
+  };
 
   Future<void> fetchProblem(String problemId) async {
     state = state.copyWith(isLoading: true);
