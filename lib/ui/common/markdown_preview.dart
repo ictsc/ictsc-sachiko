@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/view_model/common/app_state_notifier.dart';
 import 'package:markdown_widget/config/widget_config.dart';
@@ -59,11 +60,13 @@ class MarkdownPreview extends HookWidget {
       styleConfig: StyleConfig(
         markdownTheme:
             isDark ? MarkdownTheme.darkTheme : MarkdownTheme.lightTheme,
-        pConfig: PConfig(onLinkTap: (url) {
-          if (url != null) {
-            launch(url);
-          }
-        }),
+        pConfig: PConfig(
+          onLinkTap: (url) {
+            if (url != null) {
+              launch(url);
+            }
+          },
+        ),
 
         // h1などのタイトル
         titleConfig: TitleConfig(
@@ -86,6 +89,54 @@ class MarkdownPreview extends HookWidget {
             borderRadius: BorderRadius.circular(4),
           ),
           padding: const EdgeInsets.only(top: 3, bottom: 1, left: 6, right: 4),
+        ),
+        imgBuilder: (url, __) {
+          return Column(
+            children: [
+              const Gap(16),
+              Image.network(url),
+              const Gap(16),
+            ],
+          );
+        },
+
+        // テーブル
+        tableConfig: TableConfig(
+          wrapBuilder: (table) {
+            return Padding(
+              padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+              child: table,
+            );
+          },
+          headChildWrapper: (widget) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: widget,
+            );
+          },
+          bodyChildWrapper: (widget) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: widget,
+            );
+          },
+        ),
+        ulConfig: UlConfig(
+          dotWidget: (_, __) {
+            return Container(
+              transform: Matrix4.translationValues(0.0, -3.0, 0.0),
+              child: const Text(
+                '・',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+              ),
+            );
+          },
+          ulWrapper: (_) {
+            return Padding(
+              padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+              child: _,
+            );
+          }
         ),
       ),
     );
