@@ -58,68 +58,87 @@ class MarkdownPreview extends HookWidget {
         // },
       ),
       styleConfig: StyleConfig(
-          markdownTheme:
-              isDark ? MarkdownTheme.darkTheme : MarkdownTheme.lightTheme,
-          pConfig: PConfig(
-            onLinkTap: (url) {
-              if (url != null) {
-                launch(url);
-              }
-            },
-          ),
+        markdownTheme:
+            isDark ? MarkdownTheme.darkTheme : MarkdownTheme.lightTheme,
+        pConfig: PConfig(
+          onLinkTap: (url) {
+            if (url != null) {
+              launch(url);
+            }
+          },
+        ),
 
-          // h1などのタイトル
-          titleConfig: TitleConfig(
-            titleWrapper: (_) {
-              return Padding(
-                padding: const EdgeInsets.only(top: 24.0),
-                child: _,
-              );
-            },
-          ),
-
-          // インラインコード
-          codeConfig: CodeConfig(
-            codeStyle: Theme.of(context)
-                .textTheme
-                .caption
-                ?.copyWith(color: Theme.of(context).textTheme.bodyText2?.color),
-            decoration: BoxDecoration(
-              color: Theme.of(context).dividerColor.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(4),
-            ),
-            padding:
-                const EdgeInsets.only(top: 3, bottom: 1, left: 6, right: 4),
-          ),
-          imgBuilder: (url, __) {
-            return Column(
-              children: [
-                const Gap(16),
-                Image.network(url),
-                const Gap(16),
-              ],
+        // h1などのタイトル
+        titleConfig: TitleConfig(
+          titleWrapper: (_) {
+            return Padding(
+              padding: const EdgeInsets.only(top: 24.0),
+              child: _,
             );
           },
-          tableConfig: TableConfig(
-            wrapBuilder: (table) {
-              return Padding(
-                padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                child: table,
-              );
-            },
-            headChildWrapper: (widget) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: widget,
-              );
-            },
-            bodyChildWrapper: (widget) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: widget,
-              );
-            },
-          )),
+        ),
+
+        // インラインコード
+        codeConfig: CodeConfig(
+          codeStyle: Theme.of(context)
+              .textTheme
+              .caption
+              ?.copyWith(color: Theme.of(context).textTheme.bodyText2?.color),
+          decoration: BoxDecoration(
+            color: Theme.of(context).dividerColor.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(4),
+          ),
+          padding: const EdgeInsets.only(top: 3, bottom: 1, left: 6, right: 4),
+        ),
+        imgBuilder: (url, __) {
+          return Column(
+            children: [
+              const Gap(16),
+              Image.network(url),
+              const Gap(16),
+            ],
+          );
+        },
+
+        // テーブル
+        tableConfig: TableConfig(
+          wrapBuilder: (table) {
+            return Padding(
+              padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+              child: table,
+            );
+          },
+          headChildWrapper: (widget) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: widget,
+            );
+          },
+          bodyChildWrapper: (widget) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: widget,
+            );
+          },
+        ),
+        ulConfig: UlConfig(
+          dotWidget: (_, __) {
+            return Container(
+              transform: Matrix4.translationValues(0.0, -3.0, 0.0),
+              child: const Text(
+                '・',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+              ),
+            );
+          },
+          ulWrapper: (_) {
+            return Padding(
+              padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+              child: _,
+            );
+          }
+        ),
+      ),
     );
   }
 }
