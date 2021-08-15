@@ -60,11 +60,13 @@ class MarkdownPreview extends HookWidget {
       styleConfig: StyleConfig(
           markdownTheme:
               isDark ? MarkdownTheme.darkTheme : MarkdownTheme.lightTheme,
-          pConfig: PConfig(onLinkTap: (url) {
-            if (url != null) {
-              launch(url);
-            }
-          }),
+          pConfig: PConfig(
+            onLinkTap: (url) {
+              if (url != null) {
+                launch(url);
+              }
+            },
+          ),
 
           // h1などのタイトル
           titleConfig: TitleConfig(
@@ -97,7 +99,27 @@ class MarkdownPreview extends HookWidget {
                 const Gap(16),
               ],
             );
-          }),
+          },
+          tableConfig: TableConfig(
+            wrapBuilder: (table) {
+              return Padding(
+                padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                child: table,
+              );
+            },
+            headChildWrapper: (widget) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: widget,
+              );
+            },
+            bodyChildWrapper: (widget) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: widget,
+              );
+            },
+          )),
     );
   }
 }
