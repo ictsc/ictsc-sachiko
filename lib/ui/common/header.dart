@@ -216,6 +216,22 @@ class Header extends HookWidget implements PreferredSizeWidget {
               ),
             ),
           ),
+        if (user != null)
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: Link(
+              uri: Uri.parse('/#/users'),
+              builder: (_, __) => TextButton(
+                onPressed: () {
+                  AutoRouter.of(context).pushNamed('/users');
+                },
+                child: const Text(
+                  '参加者',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          ),
         if (user?.userGroup?.isFullAccess ?? false)
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
