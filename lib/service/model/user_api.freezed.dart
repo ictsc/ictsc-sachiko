@@ -20,10 +20,20 @@ UpdateUserRequest _$UpdateUserRequestFromJson(Map<String, dynamic> json) {
 class _$UpdateUserRequestTearOff {
   const _$UpdateUserRequestTearOff();
 
-  _UpdateUserRequest call({required String id, String? displayName}) {
+  _UpdateUserRequest call(
+      {required String id,
+      String? displayName,
+      String? twitterId,
+      String? githubId,
+      String? facebookId,
+      String? selfIntroduction}) {
     return _UpdateUserRequest(
       id: id,
       displayName: displayName,
+      twitterId: twitterId,
+      githubId: githubId,
+      facebookId: facebookId,
+      selfIntroduction: selfIntroduction,
     );
   }
 
@@ -39,6 +49,10 @@ const $UpdateUserRequest = _$UpdateUserRequestTearOff();
 mixin _$UpdateUserRequest {
   String get id => throw _privateConstructorUsedError;
   String? get displayName => throw _privateConstructorUsedError;
+  String? get twitterId => throw _privateConstructorUsedError;
+  String? get githubId => throw _privateConstructorUsedError;
+  String? get facebookId => throw _privateConstructorUsedError;
+  String? get selfIntroduction => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +65,13 @@ abstract class $UpdateUserRequestCopyWith<$Res> {
   factory $UpdateUserRequestCopyWith(
           UpdateUserRequest value, $Res Function(UpdateUserRequest) then) =
       _$UpdateUserRequestCopyWithImpl<$Res>;
-  $Res call({String id, String? displayName});
+  $Res call(
+      {String id,
+      String? displayName,
+      String? twitterId,
+      String? githubId,
+      String? facebookId,
+      String? selfIntroduction});
 }
 
 /// @nodoc
@@ -67,6 +87,10 @@ class _$UpdateUserRequestCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? displayName = freezed,
+    Object? twitterId = freezed,
+    Object? githubId = freezed,
+    Object? facebookId = freezed,
+    Object? selfIntroduction = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -76,6 +100,22 @@ class _$UpdateUserRequestCopyWithImpl<$Res>
       displayName: displayName == freezed
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      twitterId: twitterId == freezed
+          ? _value.twitterId
+          : twitterId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      githubId: githubId == freezed
+          ? _value.githubId
+          : githubId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      facebookId: facebookId == freezed
+          ? _value.facebookId
+          : facebookId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      selfIntroduction: selfIntroduction == freezed
+          ? _value.selfIntroduction
+          : selfIntroduction // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -88,7 +128,13 @@ abstract class _$UpdateUserRequestCopyWith<$Res>
           _UpdateUserRequest value, $Res Function(_UpdateUserRequest) then) =
       __$UpdateUserRequestCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String? displayName});
+  $Res call(
+      {String id,
+      String? displayName,
+      String? twitterId,
+      String? githubId,
+      String? facebookId,
+      String? selfIntroduction});
 }
 
 /// @nodoc
@@ -106,6 +152,10 @@ class __$UpdateUserRequestCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? displayName = freezed,
+    Object? twitterId = freezed,
+    Object? githubId = freezed,
+    Object? facebookId = freezed,
+    Object? selfIntroduction = freezed,
   }) {
     return _then(_UpdateUserRequest(
       id: id == freezed
@@ -116,6 +166,22 @@ class __$UpdateUserRequestCopyWithImpl<$Res>
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
               as String?,
+      twitterId: twitterId == freezed
+          ? _value.twitterId
+          : twitterId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      githubId: githubId == freezed
+          ? _value.githubId
+          : githubId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      facebookId: facebookId == freezed
+          ? _value.facebookId
+          : facebookId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      selfIntroduction: selfIntroduction == freezed
+          ? _value.selfIntroduction
+          : selfIntroduction // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -125,7 +191,13 @@ class __$UpdateUserRequestCopyWithImpl<$Res>
 class _$_UpdateUserRequest
     with DiagnosticableTreeMixin
     implements _UpdateUserRequest {
-  const _$_UpdateUserRequest({required this.id, this.displayName});
+  const _$_UpdateUserRequest(
+      {required this.id,
+      this.displayName,
+      this.twitterId,
+      this.githubId,
+      this.facebookId,
+      this.selfIntroduction});
 
   factory _$_UpdateUserRequest.fromJson(Map<String, dynamic> json) =>
       _$_$_UpdateUserRequestFromJson(json);
@@ -134,10 +206,18 @@ class _$_UpdateUserRequest
   final String id;
   @override
   final String? displayName;
+  @override
+  final String? twitterId;
+  @override
+  final String? githubId;
+  @override
+  final String? facebookId;
+  @override
+  final String? selfIntroduction;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UpdateUserRequest(id: $id, displayName: $displayName)';
+    return 'UpdateUserRequest(id: $id, displayName: $displayName, twitterId: $twitterId, githubId: $githubId, facebookId: $facebookId, selfIntroduction: $selfIntroduction)';
   }
 
   @override
@@ -146,7 +226,11 @@ class _$_UpdateUserRequest
     properties
       ..add(DiagnosticsProperty('type', 'UpdateUserRequest'))
       ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('displayName', displayName));
+      ..add(DiagnosticsProperty('displayName', displayName))
+      ..add(DiagnosticsProperty('twitterId', twitterId))
+      ..add(DiagnosticsProperty('githubId', githubId))
+      ..add(DiagnosticsProperty('facebookId', facebookId))
+      ..add(DiagnosticsProperty('selfIntroduction', selfIntroduction));
   }
 
   @override
@@ -157,14 +241,30 @@ class _$_UpdateUserRequest
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.displayName, displayName) ||
                 const DeepCollectionEquality()
-                    .equals(other.displayName, displayName)));
+                    .equals(other.displayName, displayName)) &&
+            (identical(other.twitterId, twitterId) ||
+                const DeepCollectionEquality()
+                    .equals(other.twitterId, twitterId)) &&
+            (identical(other.githubId, githubId) ||
+                const DeepCollectionEquality()
+                    .equals(other.githubId, githubId)) &&
+            (identical(other.facebookId, facebookId) ||
+                const DeepCollectionEquality()
+                    .equals(other.facebookId, facebookId)) &&
+            (identical(other.selfIntroduction, selfIntroduction) ||
+                const DeepCollectionEquality()
+                    .equals(other.selfIntroduction, selfIntroduction)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(displayName);
+      const DeepCollectionEquality().hash(displayName) ^
+      const DeepCollectionEquality().hash(twitterId) ^
+      const DeepCollectionEquality().hash(githubId) ^
+      const DeepCollectionEquality().hash(facebookId) ^
+      const DeepCollectionEquality().hash(selfIntroduction);
 
   @JsonKey(ignore: true)
   @override
@@ -178,8 +278,13 @@ class _$_UpdateUserRequest
 }
 
 abstract class _UpdateUserRequest implements UpdateUserRequest {
-  const factory _UpdateUserRequest({required String id, String? displayName}) =
-      _$_UpdateUserRequest;
+  const factory _UpdateUserRequest(
+      {required String id,
+      String? displayName,
+      String? twitterId,
+      String? githubId,
+      String? facebookId,
+      String? selfIntroduction}) = _$_UpdateUserRequest;
 
   factory _UpdateUserRequest.fromJson(Map<String, dynamic> json) =
       _$_UpdateUserRequest.fromJson;
@@ -188,6 +293,14 @@ abstract class _UpdateUserRequest implements UpdateUserRequest {
   String get id => throw _privateConstructorUsedError;
   @override
   String? get displayName => throw _privateConstructorUsedError;
+  @override
+  String? get twitterId => throw _privateConstructorUsedError;
+  @override
+  String? get githubId => throw _privateConstructorUsedError;
+  @override
+  String? get facebookId => throw _privateConstructorUsedError;
+  @override
+  String? get selfIntroduction => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UpdateUserRequestCopyWith<_UpdateUserRequest> get copyWith =>
