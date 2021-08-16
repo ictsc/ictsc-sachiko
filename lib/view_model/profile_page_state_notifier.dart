@@ -17,11 +17,20 @@ class ProfilePageStateNotifier extends StateNotifier<ProfilePageState>
     if (user == null) return;
 
     displayNameController = TextEditingController(text: user.displayName);
+
+    twitterIdController = TextEditingController(text: user.userProfile?.twitterId);
+    githubIdController = TextEditingController(text: user.userProfile?.githubId);
+    facebookIdController = TextEditingController(text: user.userProfile?.facebookId);
+    selfIntroductionController = TextEditingController(text: user.userProfile?.selfIntroduction);
   }
 
   final ProviderReference ref;
 
   late final TextEditingController displayNameController;
+  late final TextEditingController twitterIdController;
+  late final TextEditingController githubIdController;
+  late final TextEditingController facebookIdController;
+  late final TextEditingController selfIntroductionController;
 
   /// プロフィールを更新するボタンの処理。
   void Function()? onSaveButton({required BuildContext context, required GlobalKey<FormState> key}) {

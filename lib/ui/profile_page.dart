@@ -51,28 +51,72 @@ class ProfilePage extends HookWidget {
                           width: double.infinity,
                           color: Theme.of(context).dividerColor,
                         ),
-                        const Gap(24),
-                        const Text('表示名'),
-                        const Gap(4),
-                        SizedBox(
-                          width: 512,
-                          child: TextFormField(
-                            controller: profileProvider.displayNameController,
-                            decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                            ),
-                          ),
+                        const Gap(32),
+                        ProfileTextForm(
+                          label: '表示名',
+                          isRequired: true,
+                          controller: profileProvider.displayNameController,
+                          hintText: '名前（ニックネーム）',
                         ),
-                        const Gap(16),
+                        const Gap(32),
                         const Text('所属チーム'),
                         const Gap(4),
                         Text(
                           user.userGroup?.name ?? '',
                         ),
-                        const Gap(36),
+                        const Gap(32),
+                        ProfileTextForm(
+                          label: '自己紹介',
+                          hintText: '自己紹介',
+                          minLines: 3,
+                          controller: profileProvider.selfIntroductionController,
+                        ),
+                        const Gap(32),
+                        SizedBox(
+                          width: 512,
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  ProfileTextForm(
+                                    size: 242,
+                                    label: 'GitHubユーザー名',
+                                    hintText: 'ユーザー名のみを入力',
+                                    controller:
+                                        profileProvider.githubIdController,
+                                  ),
+                                  ProfileTextForm(
+                                    size: 242,
+                                    label: 'Twitterユーザー名',
+                                    hintText: '@マークなしで入力',
+                                    controller:
+                                        profileProvider.twitterIdController,
+                                  ),
+                                ],
+                              ),
+                              const Gap(32),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  ProfileTextForm(
+                                    size: 242,
+                                    label: 'Facebookユーザー名',
+                                    hintText: 'ユーザー名のみを入力',
+                                    controller:
+                                        profileProvider.facebookIdController,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Gap(32),
                         ElevatedButton(
-                            onPressed:
-                                profileProvider.onSaveButton(context: context, key: formKey),
+                            onPressed: profileProvider.onSaveButton(
+                                context: context, key: formKey),
                             child: const Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text('更新する'),
@@ -85,5 +129,58 @@ class ProfilePage extends HookWidget {
             ]),
           ),
         ));
+  }
+}
+
+class ProfileTextForm extends HookWidget {
+  final TextEditingController controller;
+  final bool isRequired;
+  final String label;
+  final String? hintText;
+  final double size;
+  final int? minLines;
+
+  const ProfileTextForm(
+      {required this.controller,
+      this.isRequired = false,
+      required this.label,
+      this.size = 512,
+      this.hintText,
+      this.minLines});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Text(
+              label,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const Gap(4),
+            if (isRequired)
+              const Text(
+                '*',
+                style: TextStyle(color: Colors.red),
+              ),
+          ],
+        ),
+        const Gap(4),
+        SizedBox(
+          width: size,
+          child: TextFormField(
+            maxLines: minLines != null ? null : 1,
+            minLines: minLines,
+            controller: controller,
+            decoration: InputDecoration(
+              hintText: hintText,
+              border: const OutlineInputBorder(),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
