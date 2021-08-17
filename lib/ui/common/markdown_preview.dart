@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/view_model/common/app_state_notifier.dart';
 import 'package:markdown_widget/config/widget_config.dart';
@@ -91,12 +90,9 @@ class MarkdownPreview extends HookWidget {
           padding: const EdgeInsets.only(top: 3, bottom: 1, left: 6, right: 4),
         ),
         imgBuilder: (url, __) {
-          return Column(
-            children: [
-              const Gap(16),
-              Image.network(url),
-              const Gap(16),
-            ],
+          return Padding(
+            padding: const EdgeInsets.only(top: 16, bottom: 16, left: 2, right: 2),
+            child: Image.network(url),
           );
         },
 
