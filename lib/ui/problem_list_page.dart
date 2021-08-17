@@ -115,8 +115,7 @@ class ProblemLink extends StatelessWidget {
       width: 262,
       child: Link(
         uri: Uri.parse('/#/problems/${problem.id}'),
-        builder: (_, __) =>
-        InkWell(
+        builder: (_, __) => InkWell(
           customBorder: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
@@ -134,8 +133,9 @@ class ProblemLink extends StatelessWidget {
                       color: Theme.of(context).primaryColor),
                   children: [
                     TextSpan(
-                        text:
-                            problem.title.isNotEmpty ? problem.title : 'Untitled',
+                        text: problem.title.isNotEmpty
+                            ? problem.title
+                            : 'Untitled',
                         style: titleTextStyle),
                   ],
                 )),
@@ -165,9 +165,15 @@ class ProblemLink extends StatelessWidget {
 class ProblemCard extends StatelessWidget {
   final Widget child;
   final Color? color;
+  final EdgeInsets edgeInsets;
 
-  const ProblemCard({Key? key, required this.child, this.color})
-      : super(key: key);
+  const ProblemCard({
+    Key? key,
+    required this.child,
+    this.color,
+    this.edgeInsets =
+        const EdgeInsets.only(left: 16, right: 16, top: 24, bottom: 24),
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -177,8 +183,7 @@ class ProblemCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: Padding(
-        padding:
-            const EdgeInsets.only(left: 16, right: 16, top: 24, bottom: 24),
+        padding: edgeInsets,
         child: child,
       ),
     );
