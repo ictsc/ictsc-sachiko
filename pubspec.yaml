@@ -46,6 +46,7 @@ dependencies:
   flash: ^2.0.1
   url_launcher: ^6.0.9
   file_picker: ^3.0.4
+  eva_icons_flutter: ^3.0.0
 
 
 dev_dependencies:
