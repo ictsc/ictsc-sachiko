@@ -10,9 +10,14 @@ class UpdateUserRequest with _$UpdateUserRequest {
   const factory UpdateUserRequest({
     required String id,
     String? displayName,
+    String? twitterId,
+    String? githubId,
+    String? facebookId,
+    String? selfIntroduction,
   }) = _UpdateUserRequest;
 
- factory UpdateUserRequest.fromJson(Map<String, dynamic> json) => _$UpdateUserRequestFromJson(json);
+  factory UpdateUserRequest.fromJson(Map<String, dynamic> json) =>
+      _$UpdateUserRequestFromJson(json);
 }
 
 @freezed
@@ -20,10 +25,10 @@ class UpdateUserResponse with _$UpdateUserResponse {
   const factory UpdateUserResponse({
     required int code,
     required UpdateUserResponseData data,
-
   }) = _UpdateUserResponse;
 
- factory UpdateUserResponse.fromJson(Map<String, dynamic> json) => _$UpdateUserResponseFromJson(json);
+  factory UpdateUserResponse.fromJson(Map<String, dynamic> json) =>
+      _$UpdateUserResponseFromJson(json);
 }
 
 @freezed
@@ -32,5 +37,6 @@ class UpdateUserResponseData with _$UpdateUserResponseData {
     required User user,
   }) = _UpdateUserResponseData;
 
- factory UpdateUserResponseData.fromJson(Map<String, dynamic> json) => _$UpdateUserResponseDataFromJson(json);
+  factory UpdateUserResponseData.fromJson(Map<String, dynamic> json) =>
+      _$UpdateUserResponseDataFromJson(json);
 }
