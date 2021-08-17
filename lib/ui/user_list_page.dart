@@ -61,22 +61,13 @@ class UserListPage extends HookWidget {
                             2: const FlexColumnWidth(6),
                           },
                           children: [
-                            // TODO FIX
+                            // TODO APIから取得するようにする
+                            userTableRow(context, auth.user!),
+                            userTableRow(context, auth.user!),
+                            userTableRow(context, auth.user!),
                             userTableRow(context, auth.user!),
                           ],
                         )
-                        // Row(
-                        //   children: [
-                        //     SizedBox(
-                        //       width: 128,
-                        //       child: Text(
-                        //         'K-shir0',
-                        //         style: Theme.of(context).textTheme.headline6,
-                        //       ),
-                        //     ),
-                        //     const Text('Admin-Team')
-                        //   ],
-                        // )
                       ],
                     ),
                   ),
@@ -103,26 +94,51 @@ class UserListPage extends HookWidget {
                 style: Theme.of(context).textTheme.headline6,
               ),
               const Gap(8),
-              Row(
-                children: [
-                  Row(
-                    children: [
-                      // Twitter
-                      const LinkIcon(
-                          icon: EvaIcons.twitter,
-                          url: 'https://twitter.com/id'),
-                      const Gap(4),
-                    ],
-                  ),
-                ],
-              ),
+              if (user.userProfile != null)
+                Row(
+                  children: [
+                    // Github
+                    if (user.userProfile!.githubId.isNotEmpty)
+                      Row(
+                        children: [
+                          // Twitter
+                          LinkIcon(
+                              icon: EvaIcons.github,
+                              url:
+                                  'https://github.com/${user.userProfile!.githubId}'),
+                        ],
+                      ),
+                    // Twitter
+                    if (user.userProfile!.twitterId.isNotEmpty)
+                      Row(
+                        children: [
+                          const Gap(8),
+                          LinkIcon(
+                              icon: EvaIcons.twitter,
+                              url:
+                                  'https://twitter.com/${user.userProfile!.twitterId}'),
+                        ],
+                      ),
+                    // Twitter
+                    if (user.userProfile!.facebookId.isNotEmpty)
+                      Row(
+                        children: [
+                          const Gap(8),
+                          LinkIcon(
+                              icon: EvaIcons.facebook,
+                              url:
+                                  'https://www.facebook.com/${user.userProfile!.facebookId}'),
+                        ],
+                      ),
+                  ],
+                ),
               const Gap(8),
             ],
           ),
         ),
         SelectableText(user.userGroup?.name ?? ''),
         SelectableText(
-          user.userGroup?.name ?? '',
+          user.userProfile?.selfIntroduction ?? '',
           maxLines: 2,
           minLines: 1,
         ),
