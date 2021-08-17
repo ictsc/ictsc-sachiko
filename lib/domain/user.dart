@@ -10,13 +10,30 @@ class User with _$User {
   const factory User({
     required String id,
     required String name,
-    @JsonKey(name: 'display_name') required String displayName,
-    @JsonKey(name: 'user_group_id') required String userGroupId,
-    @JsonKey(name: 'created_at') required DateTime createdAt,
-    @JsonKey(name: 'updated_at') required DateTime updatedAt,
-    @JsonKey(name: 'user_group') UserGroup? userGroup,
-    @JsonKey(name: 'is_read_only') required bool isReadOnly,
+    required String displayName,
+    required String userGroupId,
+    required DateTime createdAt,
+    required DateTime updatedAt,
+    UserGroup? userGroup,
+    UserProfile? userProfile,
+    required bool isReadOnly,
   }) = _User;
 
- factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+}
+
+@freezed
+class UserProfile with _$UserProfile {
+  const factory UserProfile({
+    required String id,
+    required String twitterId,
+    required String githubId,
+    required String facebookId,
+    required String selfIntroduction,
+    required DateTime createdAt,
+    required DateTime updatedAt,
+  }) = _UserProfile;
+
+  factory UserProfile.fromJson(Map<String, dynamic> json) =>
+      _$UserProfileFromJson(json);
 }

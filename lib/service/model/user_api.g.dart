@@ -11,9 +11,20 @@ _$_UpdateUserRequest _$_$_UpdateUserRequestFromJson(Map<String, dynamic> json) {
     final val = _$_UpdateUserRequest(
       id: $checkedConvert(json, 'id', (v) => v as String),
       displayName: $checkedConvert(json, 'display_name', (v) => v as String?),
+      twitterId: $checkedConvert(json, 'twitter_id', (v) => v as String?),
+      githubId: $checkedConvert(json, 'github_id', (v) => v as String?),
+      facebookId: $checkedConvert(json, 'facebook_id', (v) => v as String?),
+      selfIntroduction:
+          $checkedConvert(json, 'self_introduction', (v) => v as String?),
     );
     return val;
-  }, fieldKeyMap: const {'displayName': 'display_name'});
+  }, fieldKeyMap: const {
+    'displayName': 'display_name',
+    'twitterId': 'twitter_id',
+    'githubId': 'github_id',
+    'facebookId': 'facebook_id',
+    'selfIntroduction': 'self_introduction'
+  });
 }
 
 Map<String, dynamic> _$_$_UpdateUserRequestToJson(
@@ -21,6 +32,10 @@ Map<String, dynamic> _$_$_UpdateUserRequestToJson(
     <String, dynamic>{
       'id': instance.id,
       'display_name': instance.displayName,
+      'twitter_id': instance.twitterId,
+      'github_id': instance.githubId,
+      'facebook_id': instance.facebookId,
+      'self_introduction': instance.selfIntroduction,
     };
 
 _$_UpdateUserResponse _$_$_UpdateUserResponseFromJson(

@@ -17,16 +17,32 @@ class ProfilePageStateNotifier extends StateNotifier<ProfilePageState>
     if (user == null) return;
 
     displayNameController = TextEditingController(text: user.displayName);
+
+    twitterIdController =
+        TextEditingController(text: user.userProfile?.twitterId);
+    githubIdController =
+        TextEditingController(text: user.userProfile?.githubId);
+    facebookIdController =
+        TextEditingController(text: user.userProfile?.facebookId);
+    selfIntroductionController =
+        TextEditingController(text: user.userProfile?.selfIntroduction);
   }
 
   final ProviderReference ref;
 
   late final TextEditingController displayNameController;
+  late final TextEditingController twitterIdController;
+  late final TextEditingController githubIdController;
+  late final TextEditingController facebookIdController;
+  late final TextEditingController selfIntroductionController;
 
   /// プロフィールを更新するボタンの処理。
-  void Function()? onSaveButton({required BuildContext context, required GlobalKey<FormState> key}) {
+  void Function()? onSaveButton(
+      {required BuildContext context, required GlobalKey<FormState> key}) {
     return () {
       final user = ref.read(authStateProvider).user;
+
+      key.currentState?.save();
 
       if (user == null) return;
 
@@ -36,12 +52,19 @@ class ProfilePageStateNotifier extends StateNotifier<ProfilePageState>
             UpdateUserRequest(
               id: user.id,
               displayName: displayNameController.text,
+              twitterId: twitterIdController.text,
+              githubId: githubIdController.text,
+              facebookId: facebookIdController.text,
+              selfIntroduction: selfIntroductionController.text,
             ),
           )
           .then(
             (value) => value.when(
-              success: (_) async {
+              success: (response) async {
                 ref.read(authStateProvider.notifier).signCheck();
+
+                var authState = ref.read(authStateProvider);
+                authState = authState.copyWith(user: response.data.user);
 
                 // 更新出来ましたの処理。
                 context.showFlashBar(
