@@ -7,14 +7,15 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
-import '../ui/create_problem_page.dart' as _i14;
+import '../ui/create_problem_page.dart' as _i15;
 import '../ui/home_page.dart' as _i5;
-import '../ui/manage_page.dart' as _i13;
-import '../ui/manage_problem_answer_list_page.dart' as _i16;
-import '../ui/manage_problem_list_page.dart' as _i15;
+import '../ui/manage_page.dart' as _i14;
+import '../ui/manage_problem_answer_list_page.dart' as _i17;
+import '../ui/manage_problem_list_page.dart' as _i16;
 import '../ui/problem_list_page.dart' as _i10;
 import '../ui/problem_page.dart' as _i11;
 import '../ui/profile_page.dart' as _i9;
+import '../ui/scoreboard_page.dart' as _i13;
 import '../ui/sign_in_page.dart' as _i7;
 import '../ui/sign_up_page.dart' as _i8;
 import '../ui/user_list_page.dart' as _i12;
@@ -101,10 +102,19 @@ class AppRouter extends _i1.RootStackRouter {
         transitionsBuilder: _i6.fadeIn,
         opaque: true,
         barrierDismissible: false),
+    ScoreboardRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i13.ScoreboardPage();
+        },
+        maintainState: false,
+        transitionsBuilder: _i6.fadeIn,
+        opaque: true,
+        barrierDismissible: false),
     ManageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i13.ManagePage();
+          return _i14.ManagePage();
         },
         maintainState: false,
         transitionsBuilder: _i6.fadeIn,
@@ -117,7 +127,7 @@ class AppRouter extends _i1.RootStackRouter {
           final args = data.argsAs<CreateProblemRouteArgs>(
               orElse: () => CreateProblemRouteArgs(
                   problemId: pathParams.optString('problemId')));
-          return _i14.CreateProblemPage(problemId: args.problemId);
+          return _i15.CreateProblemPage(problemId: args.problemId);
         },
         maintainState: false,
         transitionsBuilder: _i6.fadeIn,
@@ -126,7 +136,7 @@ class AppRouter extends _i1.RootStackRouter {
     ManageProblemListRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i15.ManageProblemListPage();
+          return _i16.ManageProblemListPage();
         },
         maintainState: false,
         transitionsBuilder: _i6.fadeIn,
@@ -139,7 +149,7 @@ class AppRouter extends _i1.RootStackRouter {
           final args = data.argsAs<ManageProblemAnswerListRouteArgs>(
               orElse: () => ManageProblemAnswerListRouteArgs(
                   problemId: pathParams.getString('problemId')));
-          return _i16.ManageProblemAnswerListPage(args.problemId);
+          return _i17.ManageProblemAnswerListPage(args.problemId);
         },
         maintainState: false,
         transitionsBuilder: _i6.fadeIn,
@@ -160,6 +170,8 @@ class AppRouter extends _i1.RootStackRouter {
             path: '/problems/:id', guards: [authGuard]),
         _i1.RouteConfig(UserListRoute.name,
             path: '/users', guards: [authGuard]),
+        _i1.RouteConfig(ScoreboardRoute.name,
+            path: '/scoreboard', guards: [authGuard]),
         _i1.RouteConfig(ManageRoute.name,
             path: '/manage', guards: [adminGuard]),
         _i1.RouteConfig(CreateProblemRoute.name,
@@ -223,6 +235,12 @@ class UserListRoute extends _i1.PageRouteInfo {
   const UserListRoute() : super(name, path: '/users');
 
   static const String name = 'UserListRoute';
+}
+
+class ScoreboardRoute extends _i1.PageRouteInfo {
+  const ScoreboardRoute() : super(name, path: '/scoreboard');
+
+  static const String name = 'ScoreboardRoute';
 }
 
 class ManageRoute extends _i1.PageRouteInfo {
