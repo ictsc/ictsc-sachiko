@@ -10,7 +10,6 @@ import 'package:ictsc_sachiko/service/model/problem_api.dart';
 import 'package:ictsc_sachiko/service/problem_api.dart';
 import 'package:ictsc_sachiko/view_model/common/auth_state_notifier.dart';
 import 'package:ictsc_sachiko/view_model/model/problem_create_page_state.dart';
-import 'package:ictsc_sachiko/view_model/problem_list_page_state_notifier.dart';
 import 'package:state_notifier/state_notifier.dart';
 
 class CreateProblemPageStateNotifier
@@ -67,12 +66,7 @@ class CreateProblemPageStateNotifier
             .createProblem(createProblemRequest)
             .then((response) => response.when(
                   success: (_) async {
-                    // 問題一覧で表示している問題文を更新。
-                    await ref
-                        .read(problemListProvider.notifier)
-                        .fetchProblems();
-
-                    context.router.pushNamed('/manage/problems');
+                    AutoRouter.of(context).pushNamed('/manage/problems');
                   },
                   failure: (_) {},
                 ))
@@ -102,9 +96,7 @@ class CreateProblemPageStateNotifier
           .updateProblem(updateProblemRequest)
           .then((response) => response.when(
                 success: (_) async {
-                  // 問題一覧で表示している問題文を更新。
-                  await ref.read(problemListProvider.notifier).fetchProblems();
-                  context.router.pushNamed('/manage/problems');
+                  AutoRouter.of(context).pushNamed('/manage/problems');
                 },
                 failure: (_) {},
               ))
@@ -112,7 +104,7 @@ class CreateProblemPageStateNotifier
     };
   }
 
-  void fetchProblem(String id) {
+  void fetchProblem(BuildContext context, String id) {
     ref
         .read(problemProvider)
         .findByIdProblem(FindProblemRequest(id: id))
@@ -131,7 +123,9 @@ class CreateProblemPageStateNotifier
 
                 state = state.copyWith(problem: problem);
               },
-              failure: (_) {},
+              failure: (_) {
+                AutoRouter.of(context).pushNamed('/');
+              },
             ));
   }
 
