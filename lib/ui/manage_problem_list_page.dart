@@ -53,7 +53,9 @@ class ManageProblemListPage extends HookWidget {
           DataCell(IconButton(
             icon: const Icon(Icons.edit),
             onPressed: () {
-              context.router.push(CreateProblemRoute(problemId: problem.id));
+              AutoRouter.of(context).push(
+                CreateProblemRoute(problemId: problem.id),
+              );
             },
           )),
           DataCell(IconButton(
@@ -99,7 +101,9 @@ class ManageProblemListPage extends HookWidget {
                   const Gap(48),
                   TextButton(
                       onPressed: () {
-                        context.router.pushNamed('/manage/problems/new/edit');
+                        AutoRouter.of(context).pushNamed(
+                          '/manage/problems/new/edit',
+                        );
                       },
                       child: Row(
                         children: [
@@ -286,7 +290,9 @@ class CancelDialog extends HookWidget {
               text: 'この操作は元には戻せません。この操作を行うと ',
               style: textStyle,
               children: [
-                TextSpan(text: problem.title, style: textStyle?.copyWith(fontWeight: FontWeight.bold)),
+                TextSpan(
+                    text: problem.title,
+                    style: textStyle?.copyWith(fontWeight: FontWeight.bold)),
                 TextSpan(
                   text: ' の問題文、回答などがすべて削除されます。',
                   style: textStyle,
@@ -300,7 +306,9 @@ class CancelDialog extends HookWidget {
               text: ' ',
               style: textStyle,
               children: [
-                TextSpan(text: problem.title, style: textStyle?.copyWith(fontWeight: FontWeight.bold)),
+                TextSpan(
+                    text: problem.title,
+                    style: textStyle?.copyWith(fontWeight: FontWeight.bold)),
                 TextSpan(
                   text: ' と入力して確認して下さい',
                   style: textStyle,

@@ -66,7 +66,7 @@ class CreateProblemPageStateNotifier
             .createProblem(createProblemRequest)
             .then((response) => response.when(
                   success: (_) async {
-                    context.router.pushNamed('/manage/problems');
+                    AutoRouter.of(context).pushNamed('/manage/problems');
                   },
                   failure: (_) {},
                 ))
@@ -96,7 +96,7 @@ class CreateProblemPageStateNotifier
           .updateProblem(updateProblemRequest)
           .then((response) => response.when(
                 success: (_) async {
-                  context.router.pushNamed('/manage/problems');
+                  AutoRouter.of(context).pushNamed('/manage/problems');
                 },
                 failure: (_) {},
               ))
