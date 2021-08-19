@@ -226,7 +226,7 @@ class Header extends HookWidget implements PreferredSizeWidget {
                   AutoRouter.of(context).pushNamed('/scoreboard');
                 },
                 child: const Text(
-                  'スコアボード',
+                  '順位',
                   style: TextStyle(color: Colors.white),
                 ),
               ),
