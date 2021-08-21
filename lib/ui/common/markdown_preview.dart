@@ -3,11 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ictsc_sachiko/view_model/common/app_state_notifier.dart';
-import 'package:markdown_widget/config/widget_config.dart';
-import 'package:markdown_widget/markdown_widget.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:markdown/markdown.dart' as md;
 
 class MarkdownPreview extends HookWidget {
   final String data;
@@ -16,11 +13,6 @@ class MarkdownPreview extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final app = useProvider(appStateProvider);
-
-    final isDark = app.isDark ??
-        WidgetsBinding.instance?.window.platformBrightness == Brightness.dark;
-
     if (data.isEmpty) {
       return SizedBox(
         height: 96,
@@ -32,110 +24,202 @@ class MarkdownPreview extends HookWidget {
       );
     }
 
-    return MarkdownWidget(
+    return Markdown(
+      data: data,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      data: data,
-      widgetConfig: WidgetConfig(
-        // TODO ここでパースすると他の要素が使えなくなる
-        // p: (element) {
-        //   element.
-        //
-        //     // print(node.toString());
-        //   });
-        //   return SelectableText(element.textContent);
-        // },
-        pre: (element) {
-          return Pre(
-            text: element.textContent.trimRight(),
-          );
-        },
-        // block: (_) {
-        //   print(_.textContent);
-        //   print(_.textContent.split('\n'));
-        //   return SelectableText(_.textContent);
-        // },
-      ),
-      styleConfig: StyleConfig(
-        markdownTheme:
-            isDark ? MarkdownTheme.darkTheme : MarkdownTheme.lightTheme,
-        pConfig: PConfig(
-          onLinkTap: (url) {
-            if (url != null) {
-              launch(url);
-            }
-          },
-        ),
+      selectable: true,
+      padding: EdgeInsets.zero,
+      extensionSet: md.ExtensionSet.gitHubFlavored,
+      builders: {
+        // 'a': CustomPBuilder(),
+        // 'p': CustomPBuilder(),
+        // 'li':  CustomPBuilder(),
+        'code': CustomCodeBuilder(),
+        'pre': CustomPreBuilder(),
+        // 'h1':  CustomPBuilder(),
+        // 'h2':  CustomPBuilder(),
+        // 'h3':  CustomPBuilder(),
+        // 'h4':  CustomPBuilder(),
+        // 'h5':  CustomPBuilder(),
+        // 'h6':  CustomPBuilder(),
+        // 'em': CustomPBuilder(),
+        // 'strong': CustomPBuilder(),
+        // 'del': CustomPBuilder(),
+        // 'blockquote': CustomPBuilder(),
+        // 'img': img,
+        // 'table': p,
+        // 'th': tableHead,
+        // 'tr': tableBody,
+        // 'td': tableBody,
+      },
+    );
 
-        // h1などのタイトル
-        titleConfig: TitleConfig(
-          titleWrapper: (_) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 24.0),
-              child: _,
-            );
-          },
-        ),
+//     return MarkdownWidget(
+//       shrinkWrap: true,
+//       physics: const NeverScrollableScrollPhysics(),
+//       data: data,
+//       widgetConfig: WidgetConfig(
+//         // ここでパースすると他の要素が使えなくなる
+//         // p: (element) {
+//         //   element.
+//         //
+//         //     // print(node.toString());
+//         //   });
+//         //   return SelectableText(element.textContent);
+//         // },
+//         pre: (element) {
+//           return Pre(
+//             text: element.textContent.trimRight(),
+//           );
+//         },
+//         // block: (_) {
+//         //   print(_.textContent);
+//         //   print(_.textContent.split('\n'));
+//         //   return SelectableText(_.textContent);
+//         // },
+//       ),
+//       styleConfig: StyleConfig(
+//         markdownTheme:
+//             isDark ? MarkdownTheme.darkTheme : MarkdownTheme.lightTheme,
+//         pConfig: PConfig(
+//           onLinkTap: (url) {
+//             if (url != null) {
+//               launch(url);
+//             }
+//           },
+//         ),
+//
+//         // h1などのタイトル
+//         titleConfig: TitleConfig(
+//           titleWrapper: (_) {
+//             return Padding(
+//               padding: const EdgeInsets.only(top: 24.0),
+//               child: _,
+//             );
+//           },
+//         ),
+//
+//         // インラインコード
+//         codeConfig: CodeConfig(
+//           codeStyle: Theme.of(context)
+//               .textTheme
+//               .caption
+//               ?.copyWith(color: Theme.of(context).textTheme.bodyText2?.color),
+//           decoration: BoxDecoration(
+//             color: Theme.of(context).dividerColor.withOpacity(0.1),
+//             borderRadius: BorderRadius.circular(4),
+//           ),
+//           padding: const EdgeInsets.only(top: 1, bottom: 2, left: 6, right: 4),
+//         ),
+//         imgBuilder: (url, __) {
+//           return Padding(
+//             padding: const EdgeInsets.only(top: 16, bottom: 16, left: 2, right: 2),
+//             child: Image.network(url),
+//           );
+//         },
+//
+//         // テーブル
+//         tableConfig: TableConfig(
+//           wrapBuilder: (table) {
+//             return Padding(
+//               padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+//               child: table,
+//             );
+//           },
+//           headChildWrapper: (widget) {
+//             return Padding(
+//               padding: const EdgeInsets.all(8.0),
+//               child: widget,
+//             );
+//           },
+//           bodyChildWrapper: (widget) {
+//             return Padding(
+//               padding: const EdgeInsets.all(8.0),
+//               child: widget,
+//             );
+//           },
+//         ),
+//         ulConfig: UlConfig(
+//           dotWidget: (_, __) {
+//             return Container(
+//               transform: Matrix4.translationValues(0.0, -3.0, 0.0),
+//               child: const Text(
+//                 '・',
+//                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+//               ),
+//             );
+//           },
+//           ulWrapper: (_) {
+//             return Padding(
+//               padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+//               child: _,
+//             );
+//           }
+//         ),
+//       ),
+//     );
+  }
+}
 
-        // インラインコード
-        codeConfig: CodeConfig(
-          codeStyle: Theme.of(context)
-              .textTheme
-              .caption
-              ?.copyWith(color: Theme.of(context).textTheme.bodyText2?.color),
-          decoration: BoxDecoration(
-            color: Theme.of(context).dividerColor.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(4),
-          ),
-          padding: const EdgeInsets.only(top: 3, bottom: 1, left: 6, right: 4),
-        ),
-        imgBuilder: (url, __) {
-          return Padding(
-            padding: const EdgeInsets.only(top: 16, bottom: 16, left: 2, right: 2),
-            child: Image.network(url),
-          );
-        },
+class CenteredHeaderBuilder extends MarkdownElementBuilder {
+  @override
+  Widget visitText(md.Text text, TextStyle? preferredStyle) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        SelectableText(text.text,
+            style: preferredStyle?.copyWith(fontWeight: FontWeight.bold)),
+      ],
+    );
+  }
+}
 
-        // テーブル
-        tableConfig: TableConfig(
-          wrapBuilder: (table) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-              child: table,
-            );
-          },
-          headChildWrapper: (widget) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: widget,
-            );
-          },
-          bodyChildWrapper: (widget) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: widget,
-            );
-          },
-        ),
-        ulConfig: UlConfig(
-          dotWidget: (_, __) {
-            return Container(
-              transform: Matrix4.translationValues(0.0, -3.0, 0.0),
-              child: const Text(
-                '・',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-              ),
-            );
-          },
-          ulWrapper: (_) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
-              child: _,
-            );
-          }
-        ),
+class CustomCodeBuilder extends MarkdownElementBuilder {
+  @override
+  Widget visitText(md.Text text, TextStyle? preferredStyle) {
+    return SelectableText.rich(
+      TextSpan(text: text.text),
+      textAlign: TextAlign.start,
+    );
+
+    // return SelectableText(text.text, style: preferredStyle?.copyWith(fontWeight: FontWeight.bold));
+  }
+
+  @override
+  Widget visitElementAfter(md.Element element, TextStyle? preferredStyle) {
+    return SelectableText.rich(
+      TextSpan(
+        text: element.textContent,
+        style: const TextStyle(color: Colors.red, fontSize: 14),
       ),
     );
+  }
+}
+
+class CustomPreBuilder extends MarkdownElementBuilder {
+  @override
+  Widget visitText(md.Text text, TextStyle? preferredStyle) {
+    return Column(
+      children: [
+        const SelectableText.rich(
+          TextSpan(text: 'aaa'),
+          style: TextStyle(color: Colors.red),
+        ),
+      ],
+    );
+
+    // return SelectableText(text.text, style: preferredStyle?.copyWith(fontWeight: FontWeight.bold));
+  }
+
+  // @override
+  // void visitElementBefore(md.Element element) {
+  //   print(element.textContent);
+  // }
+
+  @override
+  Widget visitElementAfter(md.Element element, TextStyle? preferredStyle) {
+    return Pre(text: element.textContent);
   }
 }
 
