@@ -193,6 +193,7 @@ class ManageProblemListPage extends HookWidget {
                                   children: [
                                     const Gap(24),
                                     ProblemCard(
+                                      edgeInsets: const EdgeInsets.all(48.0),
                                       child: MarkdownPreview(
                                           data: state.problem?.body ?? ''),
                                     ),
