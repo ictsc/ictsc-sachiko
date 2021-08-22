@@ -187,7 +187,6 @@ class CustomHeader3Builder extends MarkdownElementBuilder {
 class CustomImageBuilder extends MarkdownElementBuilder {
   @override
   Widget visitElementAfter(md.Element element, TextStyle? preferredStyle) {
-    print(element.tag);
     return Container();
   }
 }
@@ -202,6 +201,11 @@ class CustomCodeBuilder extends MarkdownElementBuilder {
         style: const TextStyle(color: Colors.red, fontSize: 14),
       ),
     );
+  }
+
+  @override
+  Widget visitText(md.Text text, TextStyle? preferredStyle) {
+    return Container();
   }
 }
 
@@ -218,6 +222,11 @@ class CustomPreBuilder extends MarkdownElementBuilder {
   @override
   Widget visitElementAfter(md.Element element, TextStyle? preferredStyle) {
     return Pre(text: element.textContent);
+  }
+
+  @override
+  Widget visitText(md.Text text, TextStyle? preferredStyle) {
+    return Container();
   }
 }
 
@@ -312,48 +321,54 @@ class Pre extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.topRight,
+    return Column(
       children: [
-        Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.circular(4),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: SelectableText(
-              text,
-              style: Theme.of(context)
-                  .textTheme
-                  .caption
-                  ?.copyWith(color: Colors.white),
-            ),
-          ),
-        ),
-        IconButton(
-            onPressed: () async {
-              final data = ClipboardData(text: text);
-              await Clipboard.setData(data);
-              context.showFlashBar(
-                content: Text(
-                  'コピーしました',
+        const Gap(16),
+        Stack(
+          alignment: Alignment.topRight,
+          children: [
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0, bottom: 4.0),
+                child: SelectableText(
+                  text,
                   style: Theme.of(context)
                       .textTheme
-                      .bodyText2
+                      .caption
                       ?.copyWith(color: Colors.white),
                 ),
-                duration: const Duration(seconds: 3),
-                backgroundColor: Theme.of(context).primaryColor,
-              );
-            },
-            tooltip: 'クリップボードにコピー',
-            icon: const Icon(
-              Icons.content_copy_outlined,
-              size: 20,
-              color: Colors.white,
-            )),
+              ),
+            ),
+            IconButton(
+                onPressed: () async {
+                  final data = ClipboardData(text: text);
+                  await Clipboard.setData(data);
+                  context.showFlashBar(
+                    content: Text(
+                      'コピーしました',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText2
+                          ?.copyWith(color: Colors.white),
+                    ),
+                    duration: const Duration(seconds: 3),
+                    backgroundColor: Theme.of(context).primaryColor,
+                  );
+                },
+                tooltip: 'クリップボードにコピー',
+                icon: const Icon(
+                  Icons.content_copy_outlined,
+                  size: 20,
+                  color: Colors.white,
+                )),
+          ],
+        ),
+        const Gap(16),
       ],
     );
   }
