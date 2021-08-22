@@ -114,43 +114,46 @@ class ProblemPage extends HookWidget {
                           SizedBox(
                             width: 1024,
                             child: ProblemCard(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.info_outline_rounded,
-                                        size: 18,
-                                      ),
-                                      const Gap(8),
-                                      Text(
-                                        '問題文',
-                                        style: captionTextStyle,
-                                      ),
-                                    ],
-                                  ),
-                                  const Gap(12),
-                                  SizedBox(
-                                    height: 10.0,
-                                    child: Center(
-                                      child: Container(
-                                        margin:
-                                            const EdgeInsetsDirectional.only(
-                                                start: 1.0, end: 1.0),
-                                        height: 1.0,
-                                        color: Theme.of(context)
-                                            .textTheme
-                                            .caption
-                                            ?.color,
+                              child: Padding(
+                                padding: const EdgeInsets.all(24.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.info_outline_rounded,
+                                          size: 18,
+                                        ),
+                                        const Gap(8),
+                                        Text(
+                                          '問題文',
+                                          style: captionTextStyle,
+                                        ),
+                                      ],
+                                    ),
+                                    const Gap(12),
+                                    SizedBox(
+                                      height: 10.0,
+                                      child: Center(
+                                        child: Container(
+                                          margin:
+                                              const EdgeInsetsDirectional.only(
+                                                  start: 1.0, end: 1.0),
+                                          height: 1.0,
+                                          color: Theme.of(context)
+                                              .textTheme
+                                              .caption
+                                              ?.color,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  const Gap(12),
-                                  MarkdownPreview(
-                                    data: state.problem?.body ?? '',
-                                  ),
-                                ],
+                                    const Gap(12),
+                                    MarkdownPreview(
+                                      data: state.problem?.body ?? '',
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

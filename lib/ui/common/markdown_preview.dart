@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:gap/gap.dart';
 import 'package:markdown/markdown.dart' as md;
 
 class MarkdownPreview extends HookWidget {
@@ -30,7 +31,10 @@ class MarkdownPreview extends HookWidget {
       physics: const NeverScrollableScrollPhysics(),
       selectable: true,
       padding: EdgeInsets.zero,
-      extensionSet: md.ExtensionSet.gitHubFlavored,
+      extensionSet: md.ExtensionSet(
+        md.ExtensionSet.commonMark.blockSyntaxes,
+        [md.EmojiSyntax(), ...md.ExtensionSet.commonMark.inlineSyntaxes],
+      ),
       builders: {
         // 'a': CustomPBuilder(),
         // 'p': CustomPBuilder(),
@@ -38,8 +42,8 @@ class MarkdownPreview extends HookWidget {
         'code': CustomCodeBuilder(),
         'pre': CustomPreBuilder(),
         // 'h1':  CustomPBuilder(),
-        // 'h2':  CustomPBuilder(),
-        // 'h3':  CustomPBuilder(),
+        'h2': CustomHeader2Builder(),
+        'h3': CustomHeader3Builder(),
         // 'h4':  CustomPBuilder(),
         // 'h5':  CustomPBuilder(),
         // 'h6':  CustomPBuilder(),
@@ -162,30 +166,23 @@ class MarkdownPreview extends HookWidget {
   }
 }
 
-class CenteredHeaderBuilder extends MarkdownElementBuilder {
+/// H2
+class CustomHeader2Builder extends MarkdownElementBuilder {
   @override
   Widget visitText(md.Text text, TextStyle? preferredStyle) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        SelectableText(text.text,
-            style: preferredStyle?.copyWith(fontWeight: FontWeight.bold)),
-      ],
-    );
+    return H2(text: text.text);
   }
 }
 
-class CustomCodeBuilder extends MarkdownElementBuilder {
+class CustomHeader3Builder extends MarkdownElementBuilder {
   @override
   Widget visitText(md.Text text, TextStyle? preferredStyle) {
-    return SelectableText.rich(
-      TextSpan(text: text.text),
-      textAlign: TextAlign.start,
-    );
-
-    // return SelectableText(text.text, style: preferredStyle?.copyWith(fontWeight: FontWeight.bold));
+    return H3(text: text.text);
   }
+}
 
+/// Code
+class CustomCodeBuilder extends MarkdownElementBuilder {
   @override
   Widget visitElementAfter(md.Element element, TextStyle? preferredStyle) {
     return SelectableText.rich(
@@ -197,29 +194,59 @@ class CustomCodeBuilder extends MarkdownElementBuilder {
   }
 }
 
+/// Pre
 class CustomPreBuilder extends MarkdownElementBuilder {
-  @override
-  Widget visitText(md.Text text, TextStyle? preferredStyle) {
-    return Column(
-      children: [
-        const SelectableText.rich(
-          TextSpan(text: 'aaa'),
-          style: TextStyle(color: Colors.red),
-        ),
-      ],
-    );
-
-    // return SelectableText(text.text, style: preferredStyle?.copyWith(fontWeight: FontWeight.bold));
-  }
-
-  // @override
-  // void visitElementBefore(md.Element element) {
-  //   print(element.textContent);
-  // }
-
   @override
   Widget visitElementAfter(md.Element element, TextStyle? preferredStyle) {
     return Pre(text: element.textContent);
+  }
+}
+
+class H2 extends HookWidget {
+  final String text;
+
+  const H2({required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SelectableText.rich(
+          TextSpan(
+            text: text,
+            style: Theme.of(context)
+                .textTheme
+                .headline5
+                ?.copyWith(fontWeight: FontWeight.bold),
+          ),
+        ),
+        const Gap(8),
+      ],
+    );
+  }
+}
+
+class H3 extends HookWidget {
+  final String text;
+
+  const H3({required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SelectableText.rich(
+          TextSpan(
+            text: text,
+            style: Theme.of(context)
+                .textTheme
+                .headline6
+                ?.copyWith(fontWeight: FontWeight.bold),
+          ),
+        ),
+        const Gap(8),
+      ],
+    );
   }
 }
 
