@@ -31,10 +31,6 @@ class MarkdownPreview extends HookWidget {
       physics: const NeverScrollableScrollPhysics(),
       selectable: true,
       padding: EdgeInsets.zero,
-      extensionSet: md.ExtensionSet(
-        md.ExtensionSet.commonMark.blockSyntaxes,
-        [md.EmojiSyntax(), ...md.ExtensionSet.commonMark.inlineSyntaxes],
-      ),
       builders: {
         // 'a': CustomPBuilder(),
         // 'p': CustomPBuilder(),
@@ -50,7 +46,7 @@ class MarkdownPreview extends HookWidget {
         // 'em': CustomPBuilder(),
         // 'strong': CustomPBuilder(),
         // 'del': CustomPBuilder(),
-        // 'blockquote': CustomPBuilder(),
+        'blockquote': CustomBlockQuoteBuilder(),
         // 'table': p,
         // 'th': tableHead,
         // 'tr': tableBody,
@@ -209,6 +205,14 @@ class CustomCodeBuilder extends MarkdownElementBuilder {
   }
 }
 
+/// BlockQuote
+class CustomBlockQuoteBuilder extends MarkdownElementBuilder {
+  @override
+  Widget visitElementAfter(md.Element element, TextStyle? preferredStyle) {
+    return BlockQuote(text: element.textContent);
+  }
+}
+
 /// Pre
 class CustomPreBuilder extends MarkdownElementBuilder {
   @override
@@ -263,6 +267,36 @@ class H3 extends HookWidget {
                 .textTheme
                 .headline6
                 ?.copyWith(fontWeight: FontWeight.bold),
+          ),
+        ),
+        const Gap(8),
+      ],
+    );
+  }
+}
+
+class BlockQuote extends HookWidget {
+  final String text;
+
+  const BlockQuote({required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const Gap(16),
+        IntrinsicHeight(
+          child: Row(
+            children: [
+              Container(
+                width: 4,
+                color: Theme.of(context).dividerColor,
+              ),
+              Flexible(child: Padding(
+                padding: const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 8.0),
+                child: SelectableText(text, style: TextStyle(color: Theme.of(context).textTheme.caption?.color),),
+              )),
+            ],
           ),
         ),
         const Gap(8),
