@@ -51,11 +51,16 @@ class MarkdownPreview extends HookWidget {
         // 'strong': CustomPBuilder(),
         // 'del': CustomPBuilder(),
         // 'blockquote': CustomPBuilder(),
-        // 'img': img,
         // 'table': p,
         // 'th': tableHead,
         // 'tr': tableBody,
         // 'td': tableBody,
+      },
+      imageBuilder: (uri, _, __) {
+        return Padding(
+          padding: const EdgeInsets.only(top: 16, bottom: 16),
+          child: Image.network(uri.toString()),
+        );
       },
     );
 
@@ -174,10 +179,20 @@ class CustomHeader2Builder extends MarkdownElementBuilder {
   }
 }
 
+/// H3
 class CustomHeader3Builder extends MarkdownElementBuilder {
   @override
   Widget visitText(md.Text text, TextStyle? preferredStyle) {
     return H3(text: text.text);
+  }
+}
+
+/// Image
+class CustomImageBuilder extends MarkdownElementBuilder {
+  @override
+  Widget visitElementAfter(md.Element element, TextStyle? preferredStyle) {
+    print(element.tag);
+    return Container();
   }
 }
 
@@ -202,6 +217,10 @@ class CustomPreBuilder extends MarkdownElementBuilder {
   }
 }
 
+/*
+ * Core
+ */
+
 class H2 extends HookWidget {
   final String text;
 
@@ -211,6 +230,7 @@ class H2 extends HookWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const Gap(32),
         SelectableText.rich(
           TextSpan(
             text: text,
@@ -235,6 +255,7 @@ class H3 extends HookWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const Gap(16),
         SelectableText.rich(
           TextSpan(
             text: text,
