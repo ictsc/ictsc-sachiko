@@ -30,6 +30,10 @@ class SignInPageStateNotifier extends StateNotifier<SignInFormState>
     );
   }
 
+  Null Function(String? text) passwordValidator() => (String? text) {
+    // TODO ここでチェック
+  };
+
   /// パスワード表示のボタン
   Function() onObscurePasswordButton() => () {
         state = state.copyWith(isObscurePassword: !state.isObscurePassword);

@@ -70,6 +70,8 @@ class SignInPage extends HookWidget {
                               suffixIcon:
                                   provider.suffixObscurePasswordIconButton),
                           controller: provider.passwordController,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: provider.passwordValidator(),
                         ),
                       ),
                       Padding(
