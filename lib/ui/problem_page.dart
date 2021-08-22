@@ -114,6 +114,7 @@ class ProblemPage extends HookWidget {
                           SizedBox(
                             width: 1024,
                             child: ProblemCard(
+                              edgeInsets: const EdgeInsets.all(48.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
