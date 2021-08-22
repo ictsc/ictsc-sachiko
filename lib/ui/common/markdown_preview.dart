@@ -6,6 +6,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:gap/gap.dart';
 import 'package:markdown/markdown.dart' as md;
+import 'package:url_launcher/url_launcher.dart';
 
 class MarkdownPreview extends HookWidget {
   final String data;
@@ -37,7 +38,7 @@ class MarkdownPreview extends HookWidget {
         // 'li':  CustomPBuilder(),
         'code': CustomCodeBuilder(),
         'pre': CustomPreBuilder(),
-        // 'h1':  CustomPBuilder(),
+        'h1': CustomHeader1Builder(),
         'h2': CustomHeader2Builder(),
         'h3': CustomHeader3Builder(),
         // 'h4':  CustomPBuilder(),
@@ -57,6 +58,9 @@ class MarkdownPreview extends HookWidget {
           padding: const EdgeInsets.only(top: 16, bottom: 16),
           child: Image.network(uri.toString()),
         );
+      },
+      onTapLink: (url, _, __) {
+        launch(url);
       },
     );
 
@@ -167,6 +171,14 @@ class MarkdownPreview extends HookWidget {
   }
 }
 
+/// H1
+class CustomHeader1Builder extends MarkdownElementBuilder {
+  @override
+  Widget visitText(md.Text text, TextStyle? preferredStyle) {
+    return H1(text: text.text);
+  }
+}
+
 /// H2
 class CustomHeader2Builder extends MarkdownElementBuilder {
   @override
@@ -198,7 +210,7 @@ class CustomCodeBuilder extends MarkdownElementBuilder {
     return SelectableText.rich(
       TextSpan(
         text: element.textContent,
-        style: const TextStyle(color: Colors.red, fontSize: 14),
+        style: const TextStyle(color: Colors.red, fontSize: 16, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -233,6 +245,33 @@ class CustomPreBuilder extends MarkdownElementBuilder {
 /*
  * Core
  */
+
+class H1 extends HookWidget {
+  final String text;
+
+  const H1({required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Gap(16),
+        SelectableText.rich(
+          TextSpan(
+            text: text,
+            style: Theme.of(context)
+                .textTheme
+                .headline5
+                ?.copyWith(fontWeight: FontWeight.bold),
+          ),
+        ),
+        Container(height: 1, color: Theme.of(context).dividerColor,),
+        const Gap(8),
+      ],
+    );
+  }
+}
 
 class H2 extends HookWidget {
   final String text;
