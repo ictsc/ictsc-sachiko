@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/ui/problem_list_page.dart';
+import 'package:ictsc_sachiko/view_model/scoreboard_page_state_notifier.dart';
 
 import 'common/header.dart';
 
 class ScoreboardPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
+    useProvider(scoreboardProvider);
+
     return Scaffold(
       appBar: Header(appBar: AppBar()),
       body: ListView.builder(
