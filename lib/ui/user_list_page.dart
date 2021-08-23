@@ -3,16 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ictsc_sachiko/domain/user.dart';
+import 'package:ictsc_sachiko/service/model/user_api.dart';
 import 'package:ictsc_sachiko/ui/common/header.dart';
 import 'package:ictsc_sachiko/ui/problem_list_page.dart';
-import 'package:ictsc_sachiko/view_model/common/auth_state_notifier.dart';
+import 'package:ictsc_sachiko/view_model/user_list_page_state_notifier.dart';
+import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UserListPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final auth = useProvider(authStateProvider);
+    final userGroupState = useProvider(userListPageProvider);
+
+    final List<TableRow> members = [];
+
+    userGroupState.userGroups.asMap().forEach((key, value) => value.members
+        .asMap()
+        .forEach((key, value) => members.add(userTableRow(context, value))));
 
     return Scaffold(
       appBar: Header(appBar: AppBar()),
@@ -60,14 +67,8 @@ class UserListPage extends HookWidget {
                             1: const FlexColumnWidth(2),
                             2: const FlexColumnWidth(6),
                           },
-                          children: [
-                            // TODO APIから取得するようにする
-                            userTableRow(context, auth.user!),
-                            userTableRow(context, auth.user!),
-                            userTableRow(context, auth.user!),
-                            userTableRow(context, auth.user!),
-                          ],
-                        )
+                          children: members,
+                        ),
                       ],
                     ),
                   ),
@@ -80,67 +81,73 @@ class UserListPage extends HookWidget {
     );
   }
 
-  TableRow userTableRow(BuildContext context, User user) {
+  TableRow userTableRow(BuildContext context, Member member) {
     return TableRow(
       children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Gap(8),
               SelectableText(
-                user.displayName,
+                member.displayName.length >= 14
+                    ? member.displayName.replaceRange(14, null, '...')
+                    : member.displayName,
                 style: Theme.of(context).textTheme.headline6,
               ),
               const Gap(8),
-              if (user.userProfile != null)
+              if (member.profile != null)
                 Row(
                   children: [
                     // Github
-                    if (user.userProfile!.githubId.isNotEmpty)
+                    if (member.profile!.githubId.isNotEmpty)
                       Row(
                         children: [
                           // Twitter
                           LinkIcon(
                               icon: EvaIcons.github,
                               url:
-                                  'https://github.com/${user.userProfile!.githubId}'),
+                                  'https://github.com/${member.profile!.githubId}'),
                         ],
                       ),
                     // Twitter
-                    if (user.userProfile!.twitterId.isNotEmpty)
+                    if (member.profile!.twitterId.isNotEmpty)
                       Row(
                         children: [
                           const Gap(8),
                           LinkIcon(
                               icon: EvaIcons.twitter,
                               url:
-                                  'https://twitter.com/${user.userProfile!.twitterId}'),
+                                  'https://twitter.com/${member.profile!.twitterId}'),
                         ],
                       ),
                     // Twitter
-                    if (user.userProfile!.facebookId.isNotEmpty)
+                    if (member.profile!.facebookId.isNotEmpty)
                       Row(
                         children: [
                           const Gap(8),
                           LinkIcon(
                               icon: EvaIcons.facebook,
                               url:
-                                  'https://www.facebook.com/${user.userProfile!.facebookId}'),
+                                  'https://www.facebook.com/${member.profile!.facebookId}'),
                         ],
                       ),
                   ],
                 ),
-              const Gap(8),
             ],
           ),
         ),
-        SelectableText(user.userGroup?.name ?? ''),
         SelectableText(
-          user.userProfile?.selfIntroduction ?? '',
-          maxLines: 2,
-          minLines: 1,
+          member.displayName.length >= 22
+              ? member.displayName.replaceRange(22, null, '...')
+              : member.displayName,
+        ),
+        SelectableText(
+          (member.profile?.selfIntroduction ?? '').length >= 64
+              ? member.profile!.selfIntroduction.replaceRange(64, null, '...')
+              : member.profile!.selfIntroduction,
         ),
       ],
     );
@@ -160,12 +167,20 @@ class LinkIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO リンク
-    return InkWell(
-      onTap: () => launch(url),
-      child: Icon(
-        icon,
-        color: Theme.of(context).textTheme.caption?.color,
-      ),
+    return Column(
+      children: [
+        Link(
+          uri: Uri.parse(url),
+          builder: (_, __) => InkWell(
+            onTap: () => launch(url),
+            child: Icon(
+              icon,
+              color: Theme.of(context).textTheme.caption?.color,
+            ),
+          ),
+        ),
+        const Gap(8),
+      ],
     );
   }
 }

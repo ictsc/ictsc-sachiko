@@ -675,3 +675,586 @@ abstract class _UpdateUserResponseData implements UpdateUserResponseData {
   _$UpdateUserResponseDataCopyWith<_UpdateUserResponseData> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+GetUserGroupResponse _$GetUserGroupResponseFromJson(Map<String, dynamic> json) {
+  return _GetUserGroupResponse.fromJson(json);
+}
+
+/// @nodoc
+class _$GetUserGroupResponseTearOff {
+  const _$GetUserGroupResponseTearOff();
+
+  _GetUserGroupResponse call(
+      {required int code, List<UserGroupDetail> data = const []}) {
+    return _GetUserGroupResponse(
+      code: code,
+      data: data,
+    );
+  }
+
+  GetUserGroupResponse fromJson(Map<String, Object> json) {
+    return GetUserGroupResponse.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $GetUserGroupResponse = _$GetUserGroupResponseTearOff();
+
+/// @nodoc
+mixin _$GetUserGroupResponse {
+  int get code => throw _privateConstructorUsedError;
+  List<UserGroupDetail> get data => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GetUserGroupResponseCopyWith<GetUserGroupResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetUserGroupResponseCopyWith<$Res> {
+  factory $GetUserGroupResponseCopyWith(GetUserGroupResponse value,
+          $Res Function(GetUserGroupResponse) then) =
+      _$GetUserGroupResponseCopyWithImpl<$Res>;
+  $Res call({int code, List<UserGroupDetail> data});
+}
+
+/// @nodoc
+class _$GetUserGroupResponseCopyWithImpl<$Res>
+    implements $GetUserGroupResponseCopyWith<$Res> {
+  _$GetUserGroupResponseCopyWithImpl(this._value, this._then);
+
+  final GetUserGroupResponse _value;
+  // ignore: unused_field
+  final $Res Function(GetUserGroupResponse) _then;
+
+  @override
+  $Res call({
+    Object? code = freezed,
+    Object? data = freezed,
+  }) {
+    return _then(_value.copyWith(
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as int,
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<UserGroupDetail>,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$GetUserGroupResponseCopyWith<$Res>
+    implements $GetUserGroupResponseCopyWith<$Res> {
+  factory _$GetUserGroupResponseCopyWith(_GetUserGroupResponse value,
+          $Res Function(_GetUserGroupResponse) then) =
+      __$GetUserGroupResponseCopyWithImpl<$Res>;
+  @override
+  $Res call({int code, List<UserGroupDetail> data});
+}
+
+/// @nodoc
+class __$GetUserGroupResponseCopyWithImpl<$Res>
+    extends _$GetUserGroupResponseCopyWithImpl<$Res>
+    implements _$GetUserGroupResponseCopyWith<$Res> {
+  __$GetUserGroupResponseCopyWithImpl(
+      _GetUserGroupResponse _value, $Res Function(_GetUserGroupResponse) _then)
+      : super(_value, (v) => _then(v as _GetUserGroupResponse));
+
+  @override
+  _GetUserGroupResponse get _value => super._value as _GetUserGroupResponse;
+
+  @override
+  $Res call({
+    Object? code = freezed,
+    Object? data = freezed,
+  }) {
+    return _then(_GetUserGroupResponse(
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as int,
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<UserGroupDetail>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_GetUserGroupResponse
+    with DiagnosticableTreeMixin
+    implements _GetUserGroupResponse {
+  const _$_GetUserGroupResponse({required this.code, this.data = const []});
+
+  factory _$_GetUserGroupResponse.fromJson(Map<String, dynamic> json) =>
+      _$_$_GetUserGroupResponseFromJson(json);
+
+  @override
+  final int code;
+  @JsonKey(defaultValue: const [])
+  @override
+  final List<UserGroupDetail> data;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'GetUserGroupResponse(code: $code, data: $data)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'GetUserGroupResponse'))
+      ..add(DiagnosticsProperty('code', code))
+      ..add(DiagnosticsProperty('data', data));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetUserGroupResponse &&
+            (identical(other.code, code) ||
+                const DeepCollectionEquality().equals(other.code, code)) &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(code) ^
+      const DeepCollectionEquality().hash(data);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetUserGroupResponseCopyWith<_GetUserGroupResponse> get copyWith =>
+      __$GetUserGroupResponseCopyWithImpl<_GetUserGroupResponse>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_GetUserGroupResponseToJson(this);
+  }
+}
+
+abstract class _GetUserGroupResponse implements GetUserGroupResponse {
+  const factory _GetUserGroupResponse(
+      {required int code,
+      List<UserGroupDetail> data}) = _$_GetUserGroupResponse;
+
+  factory _GetUserGroupResponse.fromJson(Map<String, dynamic> json) =
+      _$_GetUserGroupResponse.fromJson;
+
+  @override
+  int get code => throw _privateConstructorUsedError;
+  @override
+  List<UserGroupDetail> get data => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$GetUserGroupResponseCopyWith<_GetUserGroupResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+UserGroupDetail _$UserGroupDetailFromJson(Map<String, dynamic> json) {
+  return _UserGroupDetail.fromJson(json);
+}
+
+/// @nodoc
+class _$UserGroupDetailTearOff {
+  const _$UserGroupDetailTearOff();
+
+  _UserGroupDetail call(
+      {required String name,
+      required String organization,
+      List<Member> members = const []}) {
+    return _UserGroupDetail(
+      name: name,
+      organization: organization,
+      members: members,
+    );
+  }
+
+  UserGroupDetail fromJson(Map<String, Object> json) {
+    return UserGroupDetail.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $UserGroupDetail = _$UserGroupDetailTearOff();
+
+/// @nodoc
+mixin _$UserGroupDetail {
+  String get name => throw _privateConstructorUsedError;
+  String get organization => throw _privateConstructorUsedError;
+  List<Member> get members => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UserGroupDetailCopyWith<UserGroupDetail> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UserGroupDetailCopyWith<$Res> {
+  factory $UserGroupDetailCopyWith(
+          UserGroupDetail value, $Res Function(UserGroupDetail) then) =
+      _$UserGroupDetailCopyWithImpl<$Res>;
+  $Res call({String name, String organization, List<Member> members});
+}
+
+/// @nodoc
+class _$UserGroupDetailCopyWithImpl<$Res>
+    implements $UserGroupDetailCopyWith<$Res> {
+  _$UserGroupDetailCopyWithImpl(this._value, this._then);
+
+  final UserGroupDetail _value;
+  // ignore: unused_field
+  final $Res Function(UserGroupDetail) _then;
+
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? organization = freezed,
+    Object? members = freezed,
+  }) {
+    return _then(_value.copyWith(
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      organization: organization == freezed
+          ? _value.organization
+          : organization // ignore: cast_nullable_to_non_nullable
+              as String,
+      members: members == freezed
+          ? _value.members
+          : members // ignore: cast_nullable_to_non_nullable
+              as List<Member>,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$UserGroupDetailCopyWith<$Res>
+    implements $UserGroupDetailCopyWith<$Res> {
+  factory _$UserGroupDetailCopyWith(
+          _UserGroupDetail value, $Res Function(_UserGroupDetail) then) =
+      __$UserGroupDetailCopyWithImpl<$Res>;
+  @override
+  $Res call({String name, String organization, List<Member> members});
+}
+
+/// @nodoc
+class __$UserGroupDetailCopyWithImpl<$Res>
+    extends _$UserGroupDetailCopyWithImpl<$Res>
+    implements _$UserGroupDetailCopyWith<$Res> {
+  __$UserGroupDetailCopyWithImpl(
+      _UserGroupDetail _value, $Res Function(_UserGroupDetail) _then)
+      : super(_value, (v) => _then(v as _UserGroupDetail));
+
+  @override
+  _UserGroupDetail get _value => super._value as _UserGroupDetail;
+
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? organization = freezed,
+    Object? members = freezed,
+  }) {
+    return _then(_UserGroupDetail(
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      organization: organization == freezed
+          ? _value.organization
+          : organization // ignore: cast_nullable_to_non_nullable
+              as String,
+      members: members == freezed
+          ? _value.members
+          : members // ignore: cast_nullable_to_non_nullable
+              as List<Member>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_UserGroupDetail
+    with DiagnosticableTreeMixin
+    implements _UserGroupDetail {
+  const _$_UserGroupDetail(
+      {required this.name,
+      required this.organization,
+      this.members = const []});
+
+  factory _$_UserGroupDetail.fromJson(Map<String, dynamic> json) =>
+      _$_$_UserGroupDetailFromJson(json);
+
+  @override
+  final String name;
+  @override
+  final String organization;
+  @JsonKey(defaultValue: const [])
+  @override
+  final List<Member> members;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'UserGroupDetail(name: $name, organization: $organization, members: $members)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'UserGroupDetail'))
+      ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('organization', organization))
+      ..add(DiagnosticsProperty('members', members));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _UserGroupDetail &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.organization, organization) ||
+                const DeepCollectionEquality()
+                    .equals(other.organization, organization)) &&
+            (identical(other.members, members) ||
+                const DeepCollectionEquality().equals(other.members, members)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(organization) ^
+      const DeepCollectionEquality().hash(members);
+
+  @JsonKey(ignore: true)
+  @override
+  _$UserGroupDetailCopyWith<_UserGroupDetail> get copyWith =>
+      __$UserGroupDetailCopyWithImpl<_UserGroupDetail>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_UserGroupDetailToJson(this);
+  }
+}
+
+abstract class _UserGroupDetail implements UserGroupDetail {
+  const factory _UserGroupDetail(
+      {required String name,
+      required String organization,
+      List<Member> members}) = _$_UserGroupDetail;
+
+  factory _UserGroupDetail.fromJson(Map<String, dynamic> json) =
+      _$_UserGroupDetail.fromJson;
+
+  @override
+  String get name => throw _privateConstructorUsedError;
+  @override
+  String get organization => throw _privateConstructorUsedError;
+  @override
+  List<Member> get members => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$UserGroupDetailCopyWith<_UserGroupDetail> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Member _$MemberFromJson(Map<String, dynamic> json) {
+  return _Member.fromJson(json);
+}
+
+/// @nodoc
+class _$MemberTearOff {
+  const _$MemberTearOff();
+
+  _Member call({required String displayName, UserProfile? profile}) {
+    return _Member(
+      displayName: displayName,
+      profile: profile,
+    );
+  }
+
+  Member fromJson(Map<String, Object> json) {
+    return Member.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $Member = _$MemberTearOff();
+
+/// @nodoc
+mixin _$Member {
+  String get displayName => throw _privateConstructorUsedError;
+  UserProfile? get profile => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $MemberCopyWith<Member> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $MemberCopyWith<$Res> {
+  factory $MemberCopyWith(Member value, $Res Function(Member) then) =
+      _$MemberCopyWithImpl<$Res>;
+  $Res call({String displayName, UserProfile? profile});
+
+  $UserProfileCopyWith<$Res>? get profile;
+}
+
+/// @nodoc
+class _$MemberCopyWithImpl<$Res> implements $MemberCopyWith<$Res> {
+  _$MemberCopyWithImpl(this._value, this._then);
+
+  final Member _value;
+  // ignore: unused_field
+  final $Res Function(Member) _then;
+
+  @override
+  $Res call({
+    Object? displayName = freezed,
+    Object? profile = freezed,
+  }) {
+    return _then(_value.copyWith(
+      displayName: displayName == freezed
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
+              as String,
+      profile: profile == freezed
+          ? _value.profile
+          : profile // ignore: cast_nullable_to_non_nullable
+              as UserProfile?,
+    ));
+  }
+
+  @override
+  $UserProfileCopyWith<$Res>? get profile {
+    if (_value.profile == null) {
+      return null;
+    }
+
+    return $UserProfileCopyWith<$Res>(_value.profile!, (value) {
+      return _then(_value.copyWith(profile: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$MemberCopyWith<$Res> implements $MemberCopyWith<$Res> {
+  factory _$MemberCopyWith(_Member value, $Res Function(_Member) then) =
+      __$MemberCopyWithImpl<$Res>;
+  @override
+  $Res call({String displayName, UserProfile? profile});
+
+  @override
+  $UserProfileCopyWith<$Res>? get profile;
+}
+
+/// @nodoc
+class __$MemberCopyWithImpl<$Res> extends _$MemberCopyWithImpl<$Res>
+    implements _$MemberCopyWith<$Res> {
+  __$MemberCopyWithImpl(_Member _value, $Res Function(_Member) _then)
+      : super(_value, (v) => _then(v as _Member));
+
+  @override
+  _Member get _value => super._value as _Member;
+
+  @override
+  $Res call({
+    Object? displayName = freezed,
+    Object? profile = freezed,
+  }) {
+    return _then(_Member(
+      displayName: displayName == freezed
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
+              as String,
+      profile: profile == freezed
+          ? _value.profile
+          : profile // ignore: cast_nullable_to_non_nullable
+              as UserProfile?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Member with DiagnosticableTreeMixin implements _Member {
+  const _$_Member({required this.displayName, this.profile});
+
+  factory _$_Member.fromJson(Map<String, dynamic> json) =>
+      _$_$_MemberFromJson(json);
+
+  @override
+  final String displayName;
+  @override
+  final UserProfile? profile;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'Member(displayName: $displayName, profile: $profile)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Member'))
+      ..add(DiagnosticsProperty('displayName', displayName))
+      ..add(DiagnosticsProperty('profile', profile));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _Member &&
+            (identical(other.displayName, displayName) ||
+                const DeepCollectionEquality()
+                    .equals(other.displayName, displayName)) &&
+            (identical(other.profile, profile) ||
+                const DeepCollectionEquality().equals(other.profile, profile)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(displayName) ^
+      const DeepCollectionEquality().hash(profile);
+
+  @JsonKey(ignore: true)
+  @override
+  _$MemberCopyWith<_Member> get copyWith =>
+      __$MemberCopyWithImpl<_Member>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_MemberToJson(this);
+  }
+}
+
+abstract class _Member implements Member {
+  const factory _Member({required String displayName, UserProfile? profile}) =
+      _$_Member;
+
+  factory _Member.fromJson(Map<String, dynamic> json) = _$_Member.fromJson;
+
+  @override
+  String get displayName => throw _privateConstructorUsedError;
+  @override
+  UserProfile? get profile => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$MemberCopyWith<_Member> get copyWith => throw _privateConstructorUsedError;
+}
