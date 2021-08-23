@@ -3,16 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ictsc_sachiko/domain/user.dart';
+import 'package:ictsc_sachiko/service/model/user_api.dart';
 import 'package:ictsc_sachiko/ui/common/header.dart';
 import 'package:ictsc_sachiko/ui/problem_list_page.dart';
 import 'package:ictsc_sachiko/view_model/common/auth_state_notifier.dart';
+import 'package:ictsc_sachiko/view_model/user_list_page_state_notifier.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UserListPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
+    final userGroupState = useProvider(userListPageProvider);
     final auth = useProvider(authStateProvider);
+
+    final List<TableRow> members = [];
+
+    userGroupState.userGroups.asMap().forEach((key, value) => value.members
+        .asMap()
+        .forEach((key, value) => members.add(userTableRow(context, value))));
 
     return Scaffold(
       appBar: Header(appBar: AppBar()),
@@ -60,13 +68,7 @@ class UserListPage extends HookWidget {
                             1: const FlexColumnWidth(2),
                             2: const FlexColumnWidth(6),
                           },
-                          children: [
-                            // TODO APIから取得するようにする
-                            userTableRow(context, auth.user!),
-                            userTableRow(context, auth.user!),
-                            userTableRow(context, auth.user!),
-                            userTableRow(context, auth.user!),
-                          ],
+                          children: members,
                         )
                       ],
                     ),
@@ -80,7 +82,7 @@ class UserListPage extends HookWidget {
     );
   }
 
-  TableRow userTableRow(BuildContext context, User user) {
+  TableRow userTableRow(BuildContext context, Member member) {
     return TableRow(
       children: [
         Padding(
@@ -90,44 +92,44 @@ class UserListPage extends HookWidget {
             children: [
               const Gap(8),
               SelectableText(
-                user.displayName,
+                member.displayName,
                 style: Theme.of(context).textTheme.headline6,
               ),
               const Gap(8),
-              if (user.userProfile != null)
+              if (member.profile != null)
                 Row(
                   children: [
                     // Github
-                    if (user.userProfile!.githubId.isNotEmpty)
+                    if (member.profile!.githubId.isNotEmpty)
                       Row(
                         children: [
                           // Twitter
                           LinkIcon(
                               icon: EvaIcons.github,
                               url:
-                                  'https://github.com/${user.userProfile!.githubId}'),
+                                  'https://github.com/${member.profile!.githubId}'),
                         ],
                       ),
                     // Twitter
-                    if (user.userProfile!.twitterId.isNotEmpty)
+                    if (member.profile!.twitterId.isNotEmpty)
                       Row(
                         children: [
                           const Gap(8),
                           LinkIcon(
                               icon: EvaIcons.twitter,
                               url:
-                                  'https://twitter.com/${user.userProfile!.twitterId}'),
+                                  'https://twitter.com/${member.profile!.twitterId}'),
                         ],
                       ),
                     // Twitter
-                    if (user.userProfile!.facebookId.isNotEmpty)
+                    if (member.profile!.facebookId.isNotEmpty)
                       Row(
                         children: [
                           const Gap(8),
                           LinkIcon(
                               icon: EvaIcons.facebook,
                               url:
-                                  'https://www.facebook.com/${user.userProfile!.facebookId}'),
+                                  'https://www.facebook.com/${member.profile!.facebookId}'),
                         ],
                       ),
                   ],
@@ -136,9 +138,9 @@ class UserListPage extends HookWidget {
             ],
           ),
         ),
-        SelectableText(user.userGroup?.name ?? ''),
+        SelectableText(member.displayName),
         SelectableText(
-          user.userProfile?.selfIntroduction ?? '',
+          member.profile?.selfIntroduction ?? '',
           maxLines: 2,
           minLines: 1,
         ),

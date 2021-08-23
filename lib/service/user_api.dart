@@ -30,4 +30,19 @@ class UserAPI {
       return Result.failure(Error.getApiError(error));
     }
   }
+
+  /// ユーザーのフォームを送り、プロフィールを更新する。
+  Future<Result<GetUserGroupResponse>> findAllUserGroups() async {
+    try {
+      return await client
+          .get(
+        '/api/usergroups',
+      )
+          .then((result) {
+        return Result.success(GetUserGroupResponse.fromJson({...result.data}));
+      });
+    } on DioError catch (error) {
+      return Result.failure(Error.getApiError(error));
+    }
+  }
 }
