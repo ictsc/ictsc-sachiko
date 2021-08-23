@@ -6,7 +6,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/service/model/user_api.dart';
 import 'package:ictsc_sachiko/ui/common/header.dart';
 import 'package:ictsc_sachiko/ui/problem_list_page.dart';
-import 'package:ictsc_sachiko/view_model/common/auth_state_notifier.dart';
 import 'package:ictsc_sachiko/view_model/user_list_page_state_notifier.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -14,7 +13,6 @@ class UserListPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final userGroupState = useProvider(userListPageProvider);
-    final auth = useProvider(authStateProvider);
 
     final List<TableRow> members = [];
 
@@ -88,6 +86,7 @@ class UserListPage extends HookWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Gap(8),
@@ -134,7 +133,7 @@ class UserListPage extends HookWidget {
                       ),
                   ],
                 ),
-              const Gap(8),
+              // const Gap(8),
             ],
           ),
         ),
