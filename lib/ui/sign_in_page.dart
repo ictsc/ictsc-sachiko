@@ -70,6 +70,9 @@ class SignInPage extends HookWidget {
                               suffixIcon:
                                   provider.suffixObscurePasswordIconButton),
                           controller: provider.passwordController,
+                          // TODO 登録ページで使い回す予定
+                          // autovalidateMode: AutovalidateMode.onUserInteraction,
+                          // validator: provider.passwordValidator(),
                         ),
                       ),
                       Padding(

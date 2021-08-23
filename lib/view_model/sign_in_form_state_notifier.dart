@@ -30,6 +30,11 @@ class SignInPageStateNotifier extends StateNotifier<SignInFormState>
     );
   }
 
+  // TODO 登録フォームで使い回す予定
+  // Null Function(String? text) passwordValidator() => (String? text) {
+  //   state = state.copyWith(isPasswordValidationCheckPass: text > )
+  // };
+
   /// パスワード表示のボタン
   Function() onObscurePasswordButton() => () {
         state = state.copyWith(isObscurePassword: !state.isObscurePassword);
@@ -61,8 +66,14 @@ class SignInPageStateNotifier extends StateNotifier<SignInFormState>
                   context.router.pushNamed('/');
                 },
                 failure: (error) {
+                  final String message = error.when(
+                    unauthorisedRequest: () => 'メールアドレスまたはパスワードが違います。',
+                    requestError: (_) => 'メールアドレスまたはパスワードが違います。',
+                    unexpectedError: () => '',
+                  );
+
                   // エラーメッセージの処理
-                  state = state.copyWith(errorMessage: error.errorMessage);
+                  state = state.copyWith(errorMessage: message);
 
                   // パスワードのクリア
                   passwordController.clear();
