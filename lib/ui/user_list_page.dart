@@ -92,7 +92,9 @@ class UserListPage extends HookWidget {
             children: [
               const Gap(8),
               SelectableText(
-                member.displayName,
+                member.displayName.length >= 14
+                    ? member.displayName.replaceRange(14, null, '...')
+                    : member.displayName,
                 style: Theme.of(context).textTheme.headline6,
               ),
               const Gap(8),
@@ -137,11 +139,15 @@ class UserListPage extends HookWidget {
             ],
           ),
         ),
-        SelectableText(member.displayName),
         SelectableText(
-          member.profile?.selfIntroduction ?? '',
-          maxLines: 2,
-          minLines: 1,
+          member.displayName.length >= 22
+              ? member.displayName.replaceRange(22, null, '...')
+              : member.displayName,
+        ),
+        SelectableText(
+          (member.profile?.selfIntroduction ?? '').length >= 64
+              ? member.profile!.selfIntroduction.replaceRange(64, null, '...')
+              : member.profile!.selfIntroduction,
         ),
       ],
     );
