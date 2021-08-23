@@ -7,6 +7,7 @@ import 'package:ictsc_sachiko/service/model/user_api.dart';
 import 'package:ictsc_sachiko/ui/common/header.dart';
 import 'package:ictsc_sachiko/ui/problem_list_page.dart';
 import 'package:ictsc_sachiko/view_model/user_list_page_state_notifier.dart';
+import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UserListPage extends HookWidget {
@@ -67,7 +68,7 @@ class UserListPage extends HookWidget {
                             2: const FlexColumnWidth(6),
                           },
                           children: members,
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -133,7 +134,6 @@ class UserListPage extends HookWidget {
                       ),
                   ],
                 ),
-              // const Gap(8),
             ],
           ),
         ),
@@ -161,12 +161,20 @@ class LinkIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO リンク
-    return InkWell(
-      onTap: () => launch(url),
-      child: Icon(
-        icon,
-        color: Theme.of(context).textTheme.caption?.color,
-      ),
+    return Column(
+      children: [
+        Link(
+          uri: Uri.parse(url),
+          builder: (_, __) => InkWell(
+            onTap: () => launch(url),
+            child: Icon(
+              icon,
+              color: Theme.of(context).textTheme.caption?.color,
+            ),
+          ),
+        ),
+        const Gap(8),
+      ],
     );
   }
 }
