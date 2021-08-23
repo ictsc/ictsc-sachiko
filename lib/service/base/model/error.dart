@@ -9,6 +9,9 @@ part 'error.g.dart';
 class Error with _$Error {
   const factory Error.unauthorisedRequest() = _UnauthorisedRequest;
 
+  const factory Error.requestError({required ApiError apiError}) =
+      _RequestError;
+
   const factory Error.unexpectedError() = _UnexpectedError;
 
   const Error._();
@@ -32,8 +35,14 @@ class Error with _$Error {
                 return const Error.unexpectedError();
               }
 
-              if (statusCode == 401) {
-                return const Error.unauthorisedRequest();
+              if (400 <= statusCode && statusCode < 500) {
+                if (statusCode == 401) {
+                  return const Error.unauthorisedRequest();
+                }
+
+                return Error.requestError(
+                    apiError: ApiError(
+                        message: error.response?.data.toString() ?? ''));
               }
               break;
             case DioErrorType.cancel:
@@ -61,8 +70,19 @@ class Error with _$Error {
 
   String get errorMessage => when(
         unexpectedError: () => 'エラーが発生しました。しばらくしてからもう一度お試し下さい。',
-        unauthorisedRequest: () => 'メールアドレスまたはパスワードが違います。',
+        unauthorisedRequest: () => '認証エラーです。',
+        requestError: (apiError) => apiError.message,
       );
 
   factory Error.fromJson(Map<String, dynamic> json) => _$ErrorFromJson(json);
+}
+
+@freezed
+class ApiError with _$ApiError {
+  const factory ApiError({
+    @JsonKey(name: 'error') required String message,
+  }) = _ApiError;
+
+  factory ApiError.fromJson(Map<String, dynamic> json) =>
+      _$ApiErrorFromJson(json);
 }

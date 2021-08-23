@@ -15,16 +15,12 @@ _$_SignInFormState _$_$_SignInFormStateFromJson(Map<String, dynamic> json) {
       isObscurePassword:
           $checkedConvert(json, 'is_obscure_password', (v) => v as bool?) ??
               false,
-      isValidationCheckPass: $checkedConvert(
-              json, 'is_validation_check_pass', (v) => v as bool?) ??
-          false,
     );
     return val;
   }, fieldKeyMap: const {
     'errorMessage': 'error_message',
     'isLoading': 'is_loading',
-    'isObscurePassword': 'is_obscure_password',
-    'isValidationCheckPass': 'is_validation_check_pass'
+    'isObscurePassword': 'is_obscure_password'
   });
 }
 
@@ -33,5 +29,4 @@ Map<String, dynamic> _$_$_SignInFormStateToJson(_$_SignInFormState instance) =>
       'error_message': instance.errorMessage,
       'is_loading': instance.isLoading,
       'is_obscure_password': instance.isObscurePassword,
-      'is_validation_check_pass': instance.isValidationCheckPass,
     };

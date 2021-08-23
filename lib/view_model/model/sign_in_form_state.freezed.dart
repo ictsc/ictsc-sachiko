@@ -23,13 +23,11 @@ class _$SignInFormStateTearOff {
   _SignInFormState call(
       {String? errorMessage,
       bool isLoading = false,
-      bool isObscurePassword = false,
-      bool isValidationCheckPass = false}) {
+      bool isObscurePassword = false}) {
     return _SignInFormState(
       errorMessage: errorMessage,
       isLoading: isLoading,
       isObscurePassword: isObscurePassword,
-      isValidationCheckPass: isValidationCheckPass,
     );
   }
 
@@ -46,7 +44,6 @@ mixin _$SignInFormState {
   String? get errorMessage => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isObscurePassword => throw _privateConstructorUsedError;
-  bool get isValidationCheckPass => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -59,11 +56,7 @@ abstract class $SignInFormStateCopyWith<$Res> {
   factory $SignInFormStateCopyWith(
           SignInFormState value, $Res Function(SignInFormState) then) =
       _$SignInFormStateCopyWithImpl<$Res>;
-  $Res call(
-      {String? errorMessage,
-      bool isLoading,
-      bool isObscurePassword,
-      bool isValidationCheckPass});
+  $Res call({String? errorMessage, bool isLoading, bool isObscurePassword});
 }
 
 /// @nodoc
@@ -80,7 +73,6 @@ class _$SignInFormStateCopyWithImpl<$Res>
     Object? errorMessage = freezed,
     Object? isLoading = freezed,
     Object? isObscurePassword = freezed,
-    Object? isValidationCheckPass = freezed,
   }) {
     return _then(_value.copyWith(
       errorMessage: errorMessage == freezed
@@ -95,10 +87,6 @@ class _$SignInFormStateCopyWithImpl<$Res>
           ? _value.isObscurePassword
           : isObscurePassword // ignore: cast_nullable_to_non_nullable
               as bool,
-      isValidationCheckPass: isValidationCheckPass == freezed
-          ? _value.isValidationCheckPass
-          : isValidationCheckPass // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -110,11 +98,7 @@ abstract class _$SignInFormStateCopyWith<$Res>
           _SignInFormState value, $Res Function(_SignInFormState) then) =
       __$SignInFormStateCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String? errorMessage,
-      bool isLoading,
-      bool isObscurePassword,
-      bool isValidationCheckPass});
+  $Res call({String? errorMessage, bool isLoading, bool isObscurePassword});
 }
 
 /// @nodoc
@@ -133,7 +117,6 @@ class __$SignInFormStateCopyWithImpl<$Res>
     Object? errorMessage = freezed,
     Object? isLoading = freezed,
     Object? isObscurePassword = freezed,
-    Object? isValidationCheckPass = freezed,
   }) {
     return _then(_SignInFormState(
       errorMessage: errorMessage == freezed
@@ -148,10 +131,6 @@ class __$SignInFormStateCopyWithImpl<$Res>
           ? _value.isObscurePassword
           : isObscurePassword // ignore: cast_nullable_to_non_nullable
               as bool,
-      isValidationCheckPass: isValidationCheckPass == freezed
-          ? _value.isValidationCheckPass
-          : isValidationCheckPass // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -164,8 +143,7 @@ class _$_SignInFormState
   const _$_SignInFormState(
       {this.errorMessage,
       this.isLoading = false,
-      this.isObscurePassword = false,
-      this.isValidationCheckPass = false});
+      this.isObscurePassword = false});
 
   factory _$_SignInFormState.fromJson(Map<String, dynamic> json) =>
       _$_$_SignInFormStateFromJson(json);
@@ -178,13 +156,10 @@ class _$_SignInFormState
   @JsonKey(defaultValue: false)
   @override
   final bool isObscurePassword;
-  @JsonKey(defaultValue: false)
-  @override
-  final bool isValidationCheckPass;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignInFormState(errorMessage: $errorMessage, isLoading: $isLoading, isObscurePassword: $isObscurePassword, isValidationCheckPass: $isValidationCheckPass)';
+    return 'SignInFormState(errorMessage: $errorMessage, isLoading: $isLoading, isObscurePassword: $isObscurePassword)';
   }
 
   @override
@@ -194,9 +169,7 @@ class _$_SignInFormState
       ..add(DiagnosticsProperty('type', 'SignInFormState'))
       ..add(DiagnosticsProperty('errorMessage', errorMessage))
       ..add(DiagnosticsProperty('isLoading', isLoading))
-      ..add(DiagnosticsProperty('isObscurePassword', isObscurePassword))
-      ..add(
-          DiagnosticsProperty('isValidationCheckPass', isValidationCheckPass));
+      ..add(DiagnosticsProperty('isObscurePassword', isObscurePassword));
   }
 
   @override
@@ -211,10 +184,7 @@ class _$_SignInFormState
                     .equals(other.isLoading, isLoading)) &&
             (identical(other.isObscurePassword, isObscurePassword) ||
                 const DeepCollectionEquality()
-                    .equals(other.isObscurePassword, isObscurePassword)) &&
-            (identical(other.isValidationCheckPass, isValidationCheckPass) ||
-                const DeepCollectionEquality().equals(
-                    other.isValidationCheckPass, isValidationCheckPass)));
+                    .equals(other.isObscurePassword, isObscurePassword)));
   }
 
   @override
@@ -222,8 +192,7 @@ class _$_SignInFormState
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(errorMessage) ^
       const DeepCollectionEquality().hash(isLoading) ^
-      const DeepCollectionEquality().hash(isObscurePassword) ^
-      const DeepCollectionEquality().hash(isValidationCheckPass);
+      const DeepCollectionEquality().hash(isObscurePassword);
 
   @JsonKey(ignore: true)
   @override
@@ -240,8 +209,7 @@ abstract class _SignInFormState implements SignInFormState {
   const factory _SignInFormState(
       {String? errorMessage,
       bool isLoading,
-      bool isObscurePassword,
-      bool isValidationCheckPass}) = _$_SignInFormState;
+      bool isObscurePassword}) = _$_SignInFormState;
 
   factory _SignInFormState.fromJson(Map<String, dynamic> json) =
       _$_SignInFormState.fromJson;
@@ -252,8 +220,6 @@ abstract class _SignInFormState implements SignInFormState {
   bool get isLoading => throw _privateConstructorUsedError;
   @override
   bool get isObscurePassword => throw _privateConstructorUsedError;
-  @override
-  bool get isValidationCheckPass => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$SignInFormStateCopyWith<_SignInFormState> get copyWith =>

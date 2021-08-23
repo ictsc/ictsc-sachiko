@@ -16,6 +16,8 @@ Error _$ErrorFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType'] as String) {
     case 'unauthorisedRequest':
       return _UnauthorisedRequest.fromJson(json);
+    case 'requestError':
+      return _RequestError.fromJson(json);
     case 'unexpectedError':
       return _UnexpectedError.fromJson(json);
 
@@ -30,6 +32,12 @@ class _$ErrorTearOff {
 
   _UnauthorisedRequest unauthorisedRequest() {
     return const _UnauthorisedRequest();
+  }
+
+  _RequestError requestError({required ApiError apiError}) {
+    return _RequestError(
+      apiError: apiError,
+    );
   }
 
   _UnexpectedError unexpectedError() {
@@ -49,12 +57,14 @@ mixin _$Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unauthorisedRequest,
+    required TResult Function(ApiError apiError) requestError,
     required TResult Function() unexpectedError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unauthorisedRequest,
+    TResult Function(ApiError apiError)? requestError,
     TResult Function()? unexpectedError,
     required TResult orElse(),
   }) =>
@@ -62,12 +72,14 @@ mixin _$Error {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UnauthorisedRequest value) unauthorisedRequest,
+    required TResult Function(_RequestError value) requestError,
     required TResult Function(_UnexpectedError value) unexpectedError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UnauthorisedRequest value)? unauthorisedRequest,
+    TResult Function(_RequestError value)? requestError,
     TResult Function(_UnexpectedError value)? unexpectedError,
     required TResult orElse(),
   }) =>
@@ -140,6 +152,7 @@ class _$_UnauthorisedRequest extends _UnauthorisedRequest
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unauthorisedRequest,
+    required TResult Function(ApiError apiError) requestError,
     required TResult Function() unexpectedError,
   }) {
     return unauthorisedRequest();
@@ -149,6 +162,7 @@ class _$_UnauthorisedRequest extends _UnauthorisedRequest
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unauthorisedRequest,
+    TResult Function(ApiError apiError)? requestError,
     TResult Function()? unexpectedError,
     required TResult orElse(),
   }) {
@@ -162,6 +176,7 @@ class _$_UnauthorisedRequest extends _UnauthorisedRequest
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UnauthorisedRequest value) unauthorisedRequest,
+    required TResult Function(_RequestError value) requestError,
     required TResult Function(_UnexpectedError value) unexpectedError,
   }) {
     return unauthorisedRequest(this);
@@ -171,6 +186,7 @@ class _$_UnauthorisedRequest extends _UnauthorisedRequest
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UnauthorisedRequest value)? unauthorisedRequest,
+    TResult Function(_RequestError value)? requestError,
     TResult Function(_UnexpectedError value)? unexpectedError,
     required TResult orElse(),
   }) {
@@ -193,6 +209,155 @@ abstract class _UnauthorisedRequest extends Error {
 
   factory _UnauthorisedRequest.fromJson(Map<String, dynamic> json) =
       _$_UnauthorisedRequest.fromJson;
+}
+
+/// @nodoc
+abstract class _$RequestErrorCopyWith<$Res> {
+  factory _$RequestErrorCopyWith(
+          _RequestError value, $Res Function(_RequestError) then) =
+      __$RequestErrorCopyWithImpl<$Res>;
+  $Res call({ApiError apiError});
+
+  $ApiErrorCopyWith<$Res> get apiError;
+}
+
+/// @nodoc
+class __$RequestErrorCopyWithImpl<$Res> extends _$ErrorCopyWithImpl<$Res>
+    implements _$RequestErrorCopyWith<$Res> {
+  __$RequestErrorCopyWithImpl(
+      _RequestError _value, $Res Function(_RequestError) _then)
+      : super(_value, (v) => _then(v as _RequestError));
+
+  @override
+  _RequestError get _value => super._value as _RequestError;
+
+  @override
+  $Res call({
+    Object? apiError = freezed,
+  }) {
+    return _then(_RequestError(
+      apiError: apiError == freezed
+          ? _value.apiError
+          : apiError // ignore: cast_nullable_to_non_nullable
+              as ApiError,
+    ));
+  }
+
+  @override
+  $ApiErrorCopyWith<$Res> get apiError {
+    return $ApiErrorCopyWith<$Res>(_value.apiError, (value) {
+      return _then(_value.copyWith(apiError: value));
+    });
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_RequestError extends _RequestError with DiagnosticableTreeMixin {
+  const _$_RequestError({required this.apiError}) : super._();
+
+  factory _$_RequestError.fromJson(Map<String, dynamic> json) =>
+      _$_$_RequestErrorFromJson(json);
+
+  @override
+  final ApiError apiError;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'Error.requestError(apiError: $apiError)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Error.requestError'))
+      ..add(DiagnosticsProperty('apiError', apiError));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _RequestError &&
+            (identical(other.apiError, apiError) ||
+                const DeepCollectionEquality()
+                    .equals(other.apiError, apiError)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(apiError);
+
+  @JsonKey(ignore: true)
+  @override
+  _$RequestErrorCopyWith<_RequestError> get copyWith =>
+      __$RequestErrorCopyWithImpl<_RequestError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unauthorisedRequest,
+    required TResult Function(ApiError apiError) requestError,
+    required TResult Function() unexpectedError,
+  }) {
+    return requestError(apiError);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unauthorisedRequest,
+    TResult Function(ApiError apiError)? requestError,
+    TResult Function()? unexpectedError,
+    required TResult orElse(),
+  }) {
+    if (requestError != null) {
+      return requestError(apiError);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UnauthorisedRequest value) unauthorisedRequest,
+    required TResult Function(_RequestError value) requestError,
+    required TResult Function(_UnexpectedError value) unexpectedError,
+  }) {
+    return requestError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UnauthorisedRequest value)? unauthorisedRequest,
+    TResult Function(_RequestError value)? requestError,
+    TResult Function(_UnexpectedError value)? unexpectedError,
+    required TResult orElse(),
+  }) {
+    if (requestError != null) {
+      return requestError(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_RequestErrorToJson(this)..['runtimeType'] = 'requestError';
+  }
+}
+
+abstract class _RequestError extends Error {
+  const factory _RequestError({required ApiError apiError}) = _$_RequestError;
+  const _RequestError._() : super._();
+
+  factory _RequestError.fromJson(Map<String, dynamic> json) =
+      _$_RequestError.fromJson;
+
+  ApiError get apiError => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$RequestErrorCopyWith<_RequestError> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -244,6 +409,7 @@ class _$_UnexpectedError extends _UnexpectedError with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unauthorisedRequest,
+    required TResult Function(ApiError apiError) requestError,
     required TResult Function() unexpectedError,
   }) {
     return unexpectedError();
@@ -253,6 +419,7 @@ class _$_UnexpectedError extends _UnexpectedError with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unauthorisedRequest,
+    TResult Function(ApiError apiError)? requestError,
     TResult Function()? unexpectedError,
     required TResult orElse(),
   }) {
@@ -266,6 +433,7 @@ class _$_UnexpectedError extends _UnexpectedError with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UnauthorisedRequest value) unauthorisedRequest,
+    required TResult Function(_RequestError value) requestError,
     required TResult Function(_UnexpectedError value) unexpectedError,
   }) {
     return unexpectedError(this);
@@ -275,6 +443,7 @@ class _$_UnexpectedError extends _UnexpectedError with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UnauthorisedRequest value)? unauthorisedRequest,
+    TResult Function(_RequestError value)? requestError,
     TResult Function(_UnexpectedError value)? unexpectedError,
     required TResult orElse(),
   }) {
@@ -297,4 +466,158 @@ abstract class _UnexpectedError extends Error {
 
   factory _UnexpectedError.fromJson(Map<String, dynamic> json) =
       _$_UnexpectedError.fromJson;
+}
+
+ApiError _$ApiErrorFromJson(Map<String, dynamic> json) {
+  return _ApiError.fromJson(json);
+}
+
+/// @nodoc
+class _$ApiErrorTearOff {
+  const _$ApiErrorTearOff();
+
+  _ApiError call({@JsonKey(name: 'error') required String message}) {
+    return _ApiError(
+      message: message,
+    );
+  }
+
+  ApiError fromJson(Map<String, Object> json) {
+    return ApiError.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $ApiError = _$ApiErrorTearOff();
+
+/// @nodoc
+mixin _$ApiError {
+  @JsonKey(name: 'error')
+  String get message => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ApiErrorCopyWith<ApiError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ApiErrorCopyWith<$Res> {
+  factory $ApiErrorCopyWith(ApiError value, $Res Function(ApiError) then) =
+      _$ApiErrorCopyWithImpl<$Res>;
+  $Res call({@JsonKey(name: 'error') String message});
+}
+
+/// @nodoc
+class _$ApiErrorCopyWithImpl<$Res> implements $ApiErrorCopyWith<$Res> {
+  _$ApiErrorCopyWithImpl(this._value, this._then);
+
+  final ApiError _value;
+  // ignore: unused_field
+  final $Res Function(ApiError) _then;
+
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_value.copyWith(
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$ApiErrorCopyWith<$Res> implements $ApiErrorCopyWith<$Res> {
+  factory _$ApiErrorCopyWith(_ApiError value, $Res Function(_ApiError) then) =
+      __$ApiErrorCopyWithImpl<$Res>;
+  @override
+  $Res call({@JsonKey(name: 'error') String message});
+}
+
+/// @nodoc
+class __$ApiErrorCopyWithImpl<$Res> extends _$ApiErrorCopyWithImpl<$Res>
+    implements _$ApiErrorCopyWith<$Res> {
+  __$ApiErrorCopyWithImpl(_ApiError _value, $Res Function(_ApiError) _then)
+      : super(_value, (v) => _then(v as _ApiError));
+
+  @override
+  _ApiError get _value => super._value as _ApiError;
+
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_ApiError(
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_ApiError with DiagnosticableTreeMixin implements _ApiError {
+  const _$_ApiError({@JsonKey(name: 'error') required this.message});
+
+  factory _$_ApiError.fromJson(Map<String, dynamic> json) =>
+      _$_$_ApiErrorFromJson(json);
+
+  @override
+  @JsonKey(name: 'error')
+  final String message;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ApiError(message: $message)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ApiError'))
+      ..add(DiagnosticsProperty('message', message));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _ApiError &&
+            (identical(other.message, message) ||
+                const DeepCollectionEquality().equals(other.message, message)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ApiErrorCopyWith<_ApiError> get copyWith =>
+      __$ApiErrorCopyWithImpl<_ApiError>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_ApiErrorToJson(this);
+  }
+}
+
+abstract class _ApiError implements ApiError {
+  const factory _ApiError({@JsonKey(name: 'error') required String message}) =
+      _$_ApiError;
+
+  factory _ApiError.fromJson(Map<String, dynamic> json) = _$_ApiError.fromJson;
+
+  @override
+  @JsonKey(name: 'error')
+  String get message => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$ApiErrorCopyWith<_ApiError> get copyWith =>
+      throw _privateConstructorUsedError;
 }

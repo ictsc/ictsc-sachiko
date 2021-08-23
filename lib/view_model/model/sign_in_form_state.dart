@@ -10,7 +10,6 @@ class SignInFormState with _$SignInFormState {
     String? errorMessage,
     @Default(false) bool isLoading,
     @Default(false) bool isObscurePassword,
-    @Default(false) bool isValidationCheckPass,
   }) = _SignInFormState;
 
   factory SignInFormState.fromJson(Map<String, dynamic> json) =>
