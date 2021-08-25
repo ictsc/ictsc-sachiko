@@ -9,6 +9,8 @@ abstract class SignUpFormState with _$SignUpFormState {
   const factory SignUpFormState({
     String? errorMessage,
     @Default(false) bool isLoading,
+    @Default(false) bool isPasswordValidatePass,
+    @Default(false) bool isNameValidatePass,
   }) = _SignUpFormState;
 
   factory SignUpFormState.fromJson(Map<String, dynamic> json) =>

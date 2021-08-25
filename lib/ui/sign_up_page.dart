@@ -14,7 +14,8 @@ class SignUpPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    useProvider(signUpForm);
+    final state = useProvider(signUpForm);
+    final notifier = useProvider(signUpForm.notifier);
 
     return Scaffold(
       appBar: Header(appBar: AppBar()),
@@ -41,7 +42,7 @@ class SignUpPage extends HookWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    useProvider(signUpForm.notifier).errorMessage,
+                    notifier.errorMessage,
                     style: Theme.of(context)
                         .textTheme
                         .bodyText2!
@@ -55,19 +56,30 @@ class SignUpPage extends HookWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
                         decoration: const InputDecoration(labelText: 'ユーザー名'),
-                        controller: useProvider(signUpForm.notifier).nameController,
+                        controller:
+                            useProvider(signUpForm.notifier).nameController,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: notifier.nameValidator,
                       ),
                     ),
-                    Text('ユーザー名は最低3文字以上', style: Theme.of(context).textTheme.caption),
+                    Text('ユーザー名は最低3文字以上',
+                        style: Theme.of(context).textTheme.caption?.copyWith(
+                            color: state.isNameValidatePass
+                                ? Theme.of(context).primaryColor
+                                : null)),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: PasswordTextFormField(
-                        controller:
-                        useProvider(signUpForm.notifier).passwordController,
+                        controller: notifier.passwordController,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: notifier.passwordValidator,
                       ),
                     ),
                     Text('パスワードは最低8文字以上',
-                        style: Theme.of(context).textTheme.caption),
+                        style: Theme.of(context).textTheme.caption?.copyWith(
+                            color: state.isPasswordValidatePass
+                                ? Theme.of(context).primaryColor
+                                : null)),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: SizedBox(

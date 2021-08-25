@@ -20,10 +20,16 @@ SignUpFormState _$SignUpFormStateFromJson(Map<String, dynamic> json) {
 class _$SignUpFormStateTearOff {
   const _$SignUpFormStateTearOff();
 
-  _SignUpFormState call({String? errorMessage, bool isLoading = false}) {
+  _SignUpFormState call(
+      {String? errorMessage,
+      bool isLoading = false,
+      bool isPasswordValidatePass = false,
+      bool isNameValidatePass = false}) {
     return _SignUpFormState(
       errorMessage: errorMessage,
       isLoading: isLoading,
+      isPasswordValidatePass: isPasswordValidatePass,
+      isNameValidatePass: isNameValidatePass,
     );
   }
 
@@ -39,6 +45,8 @@ const $SignUpFormState = _$SignUpFormStateTearOff();
 mixin _$SignUpFormState {
   String? get errorMessage => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  bool get isPasswordValidatePass => throw _privateConstructorUsedError;
+  bool get isNameValidatePass => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +59,11 @@ abstract class $SignUpFormStateCopyWith<$Res> {
   factory $SignUpFormStateCopyWith(
           SignUpFormState value, $Res Function(SignUpFormState) then) =
       _$SignUpFormStateCopyWithImpl<$Res>;
-  $Res call({String? errorMessage, bool isLoading});
+  $Res call(
+      {String? errorMessage,
+      bool isLoading,
+      bool isPasswordValidatePass,
+      bool isNameValidatePass});
 }
 
 /// @nodoc
@@ -67,6 +79,8 @@ class _$SignUpFormStateCopyWithImpl<$Res>
   $Res call({
     Object? errorMessage = freezed,
     Object? isLoading = freezed,
+    Object? isPasswordValidatePass = freezed,
+    Object? isNameValidatePass = freezed,
   }) {
     return _then(_value.copyWith(
       errorMessage: errorMessage == freezed
@@ -76,6 +90,14 @@ class _$SignUpFormStateCopyWithImpl<$Res>
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isPasswordValidatePass: isPasswordValidatePass == freezed
+          ? _value.isPasswordValidatePass
+          : isPasswordValidatePass // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isNameValidatePass: isNameValidatePass == freezed
+          ? _value.isNameValidatePass
+          : isNameValidatePass // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -88,7 +110,11 @@ abstract class _$SignUpFormStateCopyWith<$Res>
           _SignUpFormState value, $Res Function(_SignUpFormState) then) =
       __$SignUpFormStateCopyWithImpl<$Res>;
   @override
-  $Res call({String? errorMessage, bool isLoading});
+  $Res call(
+      {String? errorMessage,
+      bool isLoading,
+      bool isPasswordValidatePass,
+      bool isNameValidatePass});
 }
 
 /// @nodoc
@@ -106,6 +132,8 @@ class __$SignUpFormStateCopyWithImpl<$Res>
   $Res call({
     Object? errorMessage = freezed,
     Object? isLoading = freezed,
+    Object? isPasswordValidatePass = freezed,
+    Object? isNameValidatePass = freezed,
   }) {
     return _then(_SignUpFormState(
       errorMessage: errorMessage == freezed
@@ -116,6 +144,14 @@ class __$SignUpFormStateCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      isPasswordValidatePass: isPasswordValidatePass == freezed
+          ? _value.isPasswordValidatePass
+          : isPasswordValidatePass // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isNameValidatePass: isNameValidatePass == freezed
+          ? _value.isNameValidatePass
+          : isNameValidatePass // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -125,7 +161,11 @@ class __$SignUpFormStateCopyWithImpl<$Res>
 class _$_SignUpFormState
     with DiagnosticableTreeMixin
     implements _SignUpFormState {
-  const _$_SignUpFormState({this.errorMessage, this.isLoading = false});
+  const _$_SignUpFormState(
+      {this.errorMessage,
+      this.isLoading = false,
+      this.isPasswordValidatePass = false,
+      this.isNameValidatePass = false});
 
   factory _$_SignUpFormState.fromJson(Map<String, dynamic> json) =>
       _$_$_SignUpFormStateFromJson(json);
@@ -135,10 +175,16 @@ class _$_SignUpFormState
   @JsonKey(defaultValue: false)
   @override
   final bool isLoading;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool isPasswordValidatePass;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool isNameValidatePass;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignUpFormState(errorMessage: $errorMessage, isLoading: $isLoading)';
+    return 'SignUpFormState(errorMessage: $errorMessage, isLoading: $isLoading, isPasswordValidatePass: $isPasswordValidatePass, isNameValidatePass: $isNameValidatePass)';
   }
 
   @override
@@ -147,7 +193,10 @@ class _$_SignUpFormState
     properties
       ..add(DiagnosticsProperty('type', 'SignUpFormState'))
       ..add(DiagnosticsProperty('errorMessage', errorMessage))
-      ..add(DiagnosticsProperty('isLoading', isLoading));
+      ..add(DiagnosticsProperty('isLoading', isLoading))
+      ..add(
+          DiagnosticsProperty('isPasswordValidatePass', isPasswordValidatePass))
+      ..add(DiagnosticsProperty('isNameValidatePass', isNameValidatePass));
   }
 
   @override
@@ -159,14 +208,22 @@ class _$_SignUpFormState
                     .equals(other.errorMessage, errorMessage)) &&
             (identical(other.isLoading, isLoading) ||
                 const DeepCollectionEquality()
-                    .equals(other.isLoading, isLoading)));
+                    .equals(other.isLoading, isLoading)) &&
+            (identical(other.isPasswordValidatePass, isPasswordValidatePass) ||
+                const DeepCollectionEquality().equals(
+                    other.isPasswordValidatePass, isPasswordValidatePass)) &&
+            (identical(other.isNameValidatePass, isNameValidatePass) ||
+                const DeepCollectionEquality()
+                    .equals(other.isNameValidatePass, isNameValidatePass)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(errorMessage) ^
-      const DeepCollectionEquality().hash(isLoading);
+      const DeepCollectionEquality().hash(isLoading) ^
+      const DeepCollectionEquality().hash(isPasswordValidatePass) ^
+      const DeepCollectionEquality().hash(isNameValidatePass);
 
   @JsonKey(ignore: true)
   @override
@@ -180,8 +237,11 @@ class _$_SignUpFormState
 }
 
 abstract class _SignUpFormState implements SignUpFormState {
-  const factory _SignUpFormState({String? errorMessage, bool isLoading}) =
-      _$_SignUpFormState;
+  const factory _SignUpFormState(
+      {String? errorMessage,
+      bool isLoading,
+      bool isPasswordValidatePass,
+      bool isNameValidatePass}) = _$_SignUpFormState;
 
   factory _SignUpFormState.fromJson(Map<String, dynamic> json) =
       _$_SignUpFormState.fromJson;
@@ -190,6 +250,10 @@ abstract class _SignUpFormState implements SignUpFormState {
   String? get errorMessage => throw _privateConstructorUsedError;
   @override
   bool get isLoading => throw _privateConstructorUsedError;
+  @override
+  bool get isPasswordValidatePass => throw _privateConstructorUsedError;
+  @override
+  bool get isNameValidatePass => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$SignUpFormStateCopyWith<_SignUpFormState> get copyWith =>
