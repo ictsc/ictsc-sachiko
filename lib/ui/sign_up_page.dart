@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:ictsc_sachiko/ui/common/form/password_textform_field.dart';
 import 'package:ictsc_sachiko/view_model/model/sign_up_form_state.dart';
 import 'package:ictsc_sachiko/view_model/sign_up_form_state_notifier.dart';
 
@@ -47,34 +48,40 @@ class SignUpPage extends HookWidget {
                         .copyWith(color: Theme.of(context).colorScheme.error),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    decoration: const InputDecoration(labelText: 'ユーザー名'),
-                    controller: useProvider(signUpForm.notifier).nameController,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    obscureText: true,
-                    decoration: const InputDecoration(labelText: 'パスワード'),
-                    controller:
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        decoration: const InputDecoration(labelText: 'ユーザー名'),
+                        controller: useProvider(signUpForm.notifier).nameController,
+                      ),
+                    ),
+                    Text('ユーザー名は最低3文字以上', style: Theme.of(context).textTheme.caption),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: PasswordTextFormField(
+                        controller:
                         useProvider(signUpForm.notifier).passwordController,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                        onPressed: useProvider(signUpForm.notifier)
-                            .onTapSignUpButton(context),
-                        child: const Padding(
-                          padding: EdgeInsets.all(16.0),
-                          child: Text('登録'),
-                        )),
-                  ),
+                      ),
+                    ),
+                    Text('パスワードは最低8文字以上',
+                        style: Theme.of(context).textTheme.caption),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                            onPressed: useProvider(signUpForm.notifier)
+                                .onTapSignUpButton(context),
+                            child: const Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Text('登録'),
+                            )),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

@@ -42,6 +42,7 @@ class App extends HookWidget {
         brightness: isDark ? Brightness.dark : null,
         primaryColor: Palette.themeColor,
         primarySwatch: Palette.themeMaterialColor,
+        fontFamily: '',
         textTheme: TextTheme(
           bodyText2: Theme.of(context).textTheme.bodyText2?.copyWith(
               fontSize: 16, height: 1.8, color: isDark ? Colors.white : null),
