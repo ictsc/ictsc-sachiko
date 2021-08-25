@@ -111,7 +111,7 @@ class ProblemLink extends StatelessWidget {
     final pointTextStyle = Theme.of(context).textTheme.bodyText2;
 
     return SizedBox(
-      height: 212,
+      height: 216,
       width: 262,
       child: Link(
         uri: Uri.parse('/#/problems/${problem.id}'),
@@ -127,18 +127,22 @@ class ProblemLink extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text.rich(TextSpan(
-                  text: '$index ',
-                  style: titleTextStyle?.copyWith(
-                      color: Theme.of(context).primaryColor),
+                Column(
                   children: [
-                    TextSpan(
-                        text: problem.title.isNotEmpty
-                            ? problem.title
-                            : 'Untitled',
-                        style: titleTextStyle),
+                    Text.rich(TextSpan(
+                      text: '$index ',
+                      style: titleTextStyle?.copyWith(
+                          color: Theme.of(context).primaryColor),
+                      children: [
+                        TextSpan(
+                            text: problem.title.isNotEmpty
+                                ? problem.title
+                                : 'Untitled',
+                            style: titleTextStyle),
+                      ],
+                    )),
                   ],
-                )),
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
