@@ -19,7 +19,8 @@ class UserListPage extends HookWidget {
 
     userGroupState.userGroups.asMap().forEach((key, value) => value.members
         .asMap()
-        .forEach((key, member) => members.add(userTableRow(context, member, value.name))));
+        .forEach((key, member) =>
+            members.add(userTableRow(context, member, value.name))));
 
     return Scaffold(
       appBar: Header(appBar: AppBar()),
@@ -49,8 +50,7 @@ class UserListPage extends HookWidget {
                 SizedBox(
                   width: 1024,
                   child: ProblemCard(
-                    //   const EdgeInsets.only(left: 16, right: 16, top: 24, bottom: 24),
-                    edgeInsets: EdgeInsets.zero,
+                    edgeInsets: const EdgeInsets.only(left: 16, right: 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
