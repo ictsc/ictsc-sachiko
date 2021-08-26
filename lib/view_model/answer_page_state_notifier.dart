@@ -145,10 +145,22 @@ class AnswerListPageStateNotifier extends StateNotifier<AnswerPageState>
                         ?.copyWith(color: Colors.white),
                   ),
                   duration: const Duration(seconds: 3),
-                  backgroundColor: Theme.of(context).primaryColor,
+                  backgroundColor: Colors.green,
                 );
               },
-              failure: (_) {},
+              failure: (_) {
+                context.showFlashBar(
+                  content: Text(
+                    '採点に失敗しました。',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2
+                        ?.copyWith(color: Colors.white),
+                  ),
+                  duration: const Duration(seconds: 3),
+                  backgroundColor: Theme.of(context).errorColor,
+                );
+              },
             ));
   }
 }

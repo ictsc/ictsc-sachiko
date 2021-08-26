@@ -151,7 +151,11 @@ class Header extends HookWidget implements PreferredSizeWidget {
             child: Center(
                 child: Row(
               children: [
-                Text(user.displayName),
+                Text(
+                  user.displayName.length > 10
+                      ? user.displayName.replaceRange(10, null, '…')
+                      : user.displayName,
+                ),
                 const Icon(Icons.arrow_drop_down),
               ],
             )),
