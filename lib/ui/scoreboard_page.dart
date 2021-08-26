@@ -12,19 +12,12 @@ class ScoreboardPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final state = useProvider(scoreboardProvider);
+    final notifier = useProvider(scoreboardProvider.notifier);
 
-    final List<TableRow> topRaking = [];
+    final List<TableRow> rankingList = [];
 
-    state.topRanking.asMap().forEach((key, value) {
-      topRaking.add(
-        rankingTableRow(context, value),
-      );
-    });
-
-    final List<TableRow> nearRaking = [];
-
-    state.nearRanking.asMap().forEach((key, value) {
-      nearRaking.add(
+    state.ranking.asMap().forEach((key, value) {
+      rankingList.add(
         rankingTableRow(context, value),
       );
     });
@@ -58,17 +51,37 @@ class ScoreboardPage extends HookWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text('トップ'),
+                      onPressed: !state.isFetchTopRanking
+                          ? notifier.onTapToggleFetchMode()
+                          : null,
+                      style: ElevatedButton.styleFrom(
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(6.0),
+                            bottomLeft: Radius.circular(6.0),
+                          ),
+                        ),
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text('上位'),
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: null,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text('自チーム周辺'),
+                      onPressed: state.isFetchTopRanking
+                          ? notifier.onTapToggleFetchMode()
+                          : null,
+                      style: ElevatedButton.styleFrom(
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(6.0),
+                            bottomRight: Radius.circular(6.0),
+                          ),
+                        ),
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text('周辺'),
                       ),
                     ),
                   ],
@@ -94,45 +107,7 @@ class ScoreboardPage extends HookWidget {
                             1: const FlexColumnWidth(2),
                             2: const FlexColumnWidth(3),
                           },
-                          children: topRaking,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                const Gap(24),
-                Padding(
-                  padding: const EdgeInsets.only(left: 16),
-                  child: Text(
-                    'スコアボード：自チームの周辺',
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline5
-                        ?.copyWith(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                const Gap(24),
-                SizedBox(
-                  width: 1024,
-                  child: ProblemCard(
-                    //   const EdgeInsets.only(left: 16, right: 16, top: 24, bottom: 24),
-                    edgeInsets: EdgeInsets.zero,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Table(
-                          defaultVerticalAlignment:
-                              TableCellVerticalAlignment.middle,
-                          border: TableBorder(
-                            horizontalInside: BorderSide(
-                              color: Theme.of(context).dividerColor,
-                            ),
-                          ),
-                          columnWidths: {
-                            1: const FlexColumnWidth(2),
-                            2: const FlexColumnWidth(3),
-                          },
-                          children: nearRaking,
+                          children: rankingList,
                         )
                       ],
                     ),

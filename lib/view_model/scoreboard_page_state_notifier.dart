@@ -22,7 +22,7 @@ class ScoreboardPageStateNotifier extends StateNotifier<ScoreboardPageState>
   void fetchTopRanking() {
     ref.read(rankingProvider).getTopRanking().then((value) => value.when(
           success: (response) {
-            state = state.copyWith(topRanking: response.data.ranking);
+            state = state.copyWith(ranking: response.data.ranking);
           },
           failure: (_) {},
         ));
@@ -30,10 +30,24 @@ class ScoreboardPageStateNotifier extends StateNotifier<ScoreboardPageState>
 
   void fetchNearMeRanking() {
     ref.read(rankingProvider).getNearMeRanking().then((value) => value.when(
-      success: (response) {
-        state = state.copyWith(nearRanking: response.data.ranking);
-      },
-      failure: (_) {},
-    ));
+          success: (response) {
+            state = state.copyWith(ranking: response.data.ranking);
+          },
+          failure: (_) {},
+        ));
+  }
+
+  Function()? onTapToggleFetchMode() {
+    if (!state.isFetchTopRanking) {
+      return () {
+        state = state.copyWith(isFetchTopRanking: !state.isFetchTopRanking);
+        fetchTopRanking();
+      };
+    } else {
+      return () {
+        state = state.copyWith(isFetchTopRanking: !state.isFetchTopRanking);
+        fetchNearMeRanking();
+      };
+    }
   }
 }

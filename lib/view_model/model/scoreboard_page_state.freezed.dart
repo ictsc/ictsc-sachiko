@@ -21,13 +21,13 @@ class _$ScoreboardPageStateTearOff {
   const _$ScoreboardPageStateTearOff();
 
   _ScoreboardPageState call(
-      {dynamic isLoading = false,
-      List<Group> topRanking = const [],
-      List<Group> nearRanking = const []}) {
+      {bool isLoading = false,
+      bool isFetchTopRanking = true,
+      List<Group> ranking = const []}) {
     return _ScoreboardPageState(
       isLoading: isLoading,
-      topRanking: topRanking,
-      nearRanking: nearRanking,
+      isFetchTopRanking: isFetchTopRanking,
+      ranking: ranking,
     );
   }
 
@@ -41,9 +41,9 @@ const $ScoreboardPageState = _$ScoreboardPageStateTearOff();
 
 /// @nodoc
 mixin _$ScoreboardPageState {
-  dynamic get isLoading => throw _privateConstructorUsedError;
-  List<Group> get topRanking => throw _privateConstructorUsedError;
-  List<Group> get nearRanking => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
+  bool get isFetchTopRanking => throw _privateConstructorUsedError;
+  List<Group> get ranking => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -56,8 +56,7 @@ abstract class $ScoreboardPageStateCopyWith<$Res> {
   factory $ScoreboardPageStateCopyWith(
           ScoreboardPageState value, $Res Function(ScoreboardPageState) then) =
       _$ScoreboardPageStateCopyWithImpl<$Res>;
-  $Res call(
-      {dynamic isLoading, List<Group> topRanking, List<Group> nearRanking});
+  $Res call({bool isLoading, bool isFetchTopRanking, List<Group> ranking});
 }
 
 /// @nodoc
@@ -72,21 +71,21 @@ class _$ScoreboardPageStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = freezed,
-    Object? topRanking = freezed,
-    Object? nearRanking = freezed,
+    Object? isFetchTopRanking = freezed,
+    Object? ranking = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      topRanking: topRanking == freezed
-          ? _value.topRanking
-          : topRanking // ignore: cast_nullable_to_non_nullable
-              as List<Group>,
-      nearRanking: nearRanking == freezed
-          ? _value.nearRanking
-          : nearRanking // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isFetchTopRanking: isFetchTopRanking == freezed
+          ? _value.isFetchTopRanking
+          : isFetchTopRanking // ignore: cast_nullable_to_non_nullable
+              as bool,
+      ranking: ranking == freezed
+          ? _value.ranking
+          : ranking // ignore: cast_nullable_to_non_nullable
               as List<Group>,
     ));
   }
@@ -99,8 +98,7 @@ abstract class _$ScoreboardPageStateCopyWith<$Res>
           $Res Function(_ScoreboardPageState) then) =
       __$ScoreboardPageStateCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {dynamic isLoading, List<Group> topRanking, List<Group> nearRanking});
+  $Res call({bool isLoading, bool isFetchTopRanking, List<Group> ranking});
 }
 
 /// @nodoc
@@ -117,18 +115,21 @@ class __$ScoreboardPageStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = freezed,
-    Object? topRanking = freezed,
-    Object? nearRanking = freezed,
+    Object? isFetchTopRanking = freezed,
+    Object? ranking = freezed,
   }) {
     return _then(_ScoreboardPageState(
-      isLoading: isLoading == freezed ? _value.isLoading : isLoading,
-      topRanking: topRanking == freezed
-          ? _value.topRanking
-          : topRanking // ignore: cast_nullable_to_non_nullable
-              as List<Group>,
-      nearRanking: nearRanking == freezed
-          ? _value.nearRanking
-          : nearRanking // ignore: cast_nullable_to_non_nullable
+      isLoading: isLoading == freezed
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isFetchTopRanking: isFetchTopRanking == freezed
+          ? _value.isFetchTopRanking
+          : isFetchTopRanking // ignore: cast_nullable_to_non_nullable
+              as bool,
+      ranking: ranking == freezed
+          ? _value.ranking
+          : ranking // ignore: cast_nullable_to_non_nullable
               as List<Group>,
     ));
   }
@@ -141,25 +142,25 @@ class _$_ScoreboardPageState
     implements _ScoreboardPageState {
   const _$_ScoreboardPageState(
       {this.isLoading = false,
-      this.topRanking = const [],
-      this.nearRanking = const []});
+      this.isFetchTopRanking = true,
+      this.ranking = const []});
 
   factory _$_ScoreboardPageState.fromJson(Map<String, dynamic> json) =>
       _$_$_ScoreboardPageStateFromJson(json);
 
   @JsonKey(defaultValue: false)
   @override
-  final dynamic isLoading;
+  final bool isLoading;
+  @JsonKey(defaultValue: true)
+  @override
+  final bool isFetchTopRanking;
   @JsonKey(defaultValue: const [])
   @override
-  final List<Group> topRanking;
-  @JsonKey(defaultValue: const [])
-  @override
-  final List<Group> nearRanking;
+  final List<Group> ranking;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ScoreboardPageState(isLoading: $isLoading, topRanking: $topRanking, nearRanking: $nearRanking)';
+    return 'ScoreboardPageState(isLoading: $isLoading, isFetchTopRanking: $isFetchTopRanking, ranking: $ranking)';
   }
 
   @override
@@ -168,8 +169,8 @@ class _$_ScoreboardPageState
     properties
       ..add(DiagnosticsProperty('type', 'ScoreboardPageState'))
       ..add(DiagnosticsProperty('isLoading', isLoading))
-      ..add(DiagnosticsProperty('topRanking', topRanking))
-      ..add(DiagnosticsProperty('nearRanking', nearRanking));
+      ..add(DiagnosticsProperty('isFetchTopRanking', isFetchTopRanking))
+      ..add(DiagnosticsProperty('ranking', ranking));
   }
 
   @override
@@ -179,20 +180,19 @@ class _$_ScoreboardPageState
             (identical(other.isLoading, isLoading) ||
                 const DeepCollectionEquality()
                     .equals(other.isLoading, isLoading)) &&
-            (identical(other.topRanking, topRanking) ||
+            (identical(other.isFetchTopRanking, isFetchTopRanking) ||
                 const DeepCollectionEquality()
-                    .equals(other.topRanking, topRanking)) &&
-            (identical(other.nearRanking, nearRanking) ||
-                const DeepCollectionEquality()
-                    .equals(other.nearRanking, nearRanking)));
+                    .equals(other.isFetchTopRanking, isFetchTopRanking)) &&
+            (identical(other.ranking, ranking) ||
+                const DeepCollectionEquality().equals(other.ranking, ranking)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(isLoading) ^
-      const DeepCollectionEquality().hash(topRanking) ^
-      const DeepCollectionEquality().hash(nearRanking);
+      const DeepCollectionEquality().hash(isFetchTopRanking) ^
+      const DeepCollectionEquality().hash(ranking);
 
   @JsonKey(ignore: true)
   @override
@@ -208,19 +208,19 @@ class _$_ScoreboardPageState
 
 abstract class _ScoreboardPageState implements ScoreboardPageState {
   const factory _ScoreboardPageState(
-      {dynamic isLoading,
-      List<Group> topRanking,
-      List<Group> nearRanking}) = _$_ScoreboardPageState;
+      {bool isLoading,
+      bool isFetchTopRanking,
+      List<Group> ranking}) = _$_ScoreboardPageState;
 
   factory _ScoreboardPageState.fromJson(Map<String, dynamic> json) =
       _$_ScoreboardPageState.fromJson;
 
   @override
-  dynamic get isLoading => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
   @override
-  List<Group> get topRanking => throw _privateConstructorUsedError;
+  bool get isFetchTopRanking => throw _privateConstructorUsedError;
   @override
-  List<Group> get nearRanking => throw _privateConstructorUsedError;
+  List<Group> get ranking => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ScoreboardPageStateCopyWith<_ScoreboardPageState> get copyWith =>

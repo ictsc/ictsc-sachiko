@@ -8,10 +8,11 @@ part 'scoreboard_page_state.g.dart';
 @freezed
 class ScoreboardPageState with _$ScoreboardPageState {
   const factory ScoreboardPageState({
-    @Default(false) isLoading,
-    @Default([]) List<Group> topRanking,
-    @Default([]) List<Group> nearRanking,
+    @Default(false) bool isLoading,
+    @Default(true) bool isFetchTopRanking,
+    @Default([]) List<Group> ranking,
   }) = _ScoreboardPageState;
 
- factory ScoreboardPageState.fromJson(Map<String, dynamic> json) => _$ScoreboardPageStateFromJson(json);
+  factory ScoreboardPageState.fromJson(Map<String, dynamic> json) =>
+      _$ScoreboardPageStateFromJson(json);
 }
