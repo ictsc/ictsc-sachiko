@@ -92,10 +92,9 @@ class UserListPage extends HookWidget {
             children: [
               const Gap(8),
               SelectableText(
-                member.displayName.length >= 14
-                    ? member.displayName.replaceRange(14, null, '...')
-                    : member.displayName,
-                style: Theme.of(context).textTheme.headline6,
+                member.displayName,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+                // style: Theme.of(context).textTheme.headline6,
               ),
               const Gap(8),
               if (member.profile != null)
