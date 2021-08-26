@@ -140,9 +140,7 @@ class UserListPage extends HookWidget {
         ),
         SelectableText(teamName),
         SelectableText(
-          (member.profile?.selfIntroduction ?? '').length >= 64
-              ? member.profile!.selfIntroduction.replaceRange(64, null, '...')
-              : member.profile?.selfIntroduction ?? '',
+            member.profile?.selfIntroduction ?? '',
         ),
       ],
     );
