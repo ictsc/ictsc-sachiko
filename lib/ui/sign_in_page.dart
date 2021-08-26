@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:ictsc_sachiko/ui/common/form/password_textform_field.dart';
 import 'package:ictsc_sachiko/view_model/model/sign_in_form_state.dart';
 import 'package:ictsc_sachiko/view_model/sign_in_form_state_notifier.dart';
 
@@ -63,16 +64,8 @@ class SignInPage extends HookWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          obscureText: !state.isObscurePassword,
-                          decoration: InputDecoration(
-                              labelText: 'パスワード',
-                              suffixIcon:
-                                  provider.suffixObscurePasswordIconButton),
+                        child: PasswordTextFormField(
                           controller: provider.passwordController,
-                          // TODO 登録ページで使い回す予定
-                          // autovalidateMode: AutovalidateMode.onUserInteraction,
-                          // validator: provider.passwordValidator(),
                         ),
                       ),
                       Padding(

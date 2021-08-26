@@ -24,7 +24,9 @@ class Client with DioMixin implements Dio {
       httpClientAdapter = clientAdapter;
     }
 
-    interceptors.add(LogInterceptor(responseBody: true));
+    if (!kReleaseMode) {
+      interceptors.add(LogInterceptor(responseBody: true));
+    }
   }
 
   static Dio getInstance() => Client._();

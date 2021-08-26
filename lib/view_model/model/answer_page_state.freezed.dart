@@ -24,7 +24,7 @@ class _$AnswerPageStateTearOff {
       {bool isLoading = false,
       Problem? problem,
       List<Answer> answers = const [],
-      bool isLatest = true,
+      bool isLatest = false,
       int answerFilterState = 0}) {
     return _AnswerPageState(
       isLoading: isLoading,
@@ -196,7 +196,7 @@ class _$_AnswerPageState
       {this.isLoading = false,
       this.problem,
       this.answers = const [],
-      this.isLatest = true,
+      this.isLatest = false,
       this.answerFilterState = 0});
 
   factory _$_AnswerPageState.fromJson(Map<String, dynamic> json) =>
@@ -210,7 +210,7 @@ class _$_AnswerPageState
   @JsonKey(defaultValue: const [])
   @override
   final List<Answer> answers;
-  @JsonKey(defaultValue: true)
+  @JsonKey(defaultValue: false)
   @override
   final bool isLatest;
   @JsonKey(defaultValue: 0)

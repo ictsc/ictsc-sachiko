@@ -19,7 +19,8 @@ class UserListPage extends HookWidget {
 
     userGroupState.userGroups.asMap().forEach((key, value) => value.members
         .asMap()
-        .forEach((key, value) => members.add(userTableRow(context, value))));
+        .forEach((key, member) =>
+            members.add(userTableRow(context, member, value.name))));
 
     return Scaffold(
       appBar: Header(appBar: AppBar()),
@@ -49,8 +50,7 @@ class UserListPage extends HookWidget {
                 SizedBox(
                   width: 1024,
                   child: ProblemCard(
-                    //   const EdgeInsets.only(left: 16, right: 16, top: 24, bottom: 24),
-                    edgeInsets: EdgeInsets.zero,
+                    edgeInsets: const EdgeInsets.only(left: 16, right: 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -81,7 +81,7 @@ class UserListPage extends HookWidget {
     );
   }
 
-  TableRow userTableRow(BuildContext context, Member member) {
+  TableRow userTableRow(BuildContext context, Member member, String teamName) {
     return TableRow(
       children: [
         Padding(
@@ -140,14 +140,14 @@ class UserListPage extends HookWidget {
           ),
         ),
         SelectableText(
-          member.displayName.length >= 22
-              ? member.displayName.replaceRange(22, null, '...')
-              : member.displayName,
+          teamName.length >= 22
+              ? teamName.replaceRange(22, null, '...')
+              : teamName,
         ),
         SelectableText(
           (member.profile?.selfIntroduction ?? '').length >= 64
               ? member.profile!.selfIntroduction.replaceRange(64, null, '...')
-              : member.profile!.selfIntroduction,
+              : member.profile?.selfIntroduction ?? '',
         ),
       ],
     );

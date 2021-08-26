@@ -21,8 +21,24 @@ class SignUpPageStateNotifier extends StateNotifier<SignUpFormState>
     return state.errorMessage ?? '';
   }
 
+  Null nameValidator(String? text) {
+    WidgetsBinding.instance?.addPostFrameCallback((_){
+      state = state.copyWith(isNameValidatePass: (text?.length ?? 0) >= 3);
+    });
+  }
+
+  Null passwordValidator(String? text) {
+    WidgetsBinding.instance?.addPostFrameCallback((_){
+      state = state.copyWith(isPasswordValidatePass: (text?.length ?? 0) >= 8);
+    });
+  }
+
   Function()? onTapSignUpButton(BuildContext context) {
     if (state.isLoading) {
+      return null;
+    }
+
+    if (!state.isNameValidatePass || !state.isPasswordValidatePass) {
       return null;
     }
 
@@ -51,8 +67,52 @@ class SignUpPageStateNotifier extends StateNotifier<SignUpFormState>
                 // ページを飛ばす
                 context.router.pushNamed('/login');
               }, failure: (error) {
+                final message = error.maybeWhen(requestError: (_) {
+                  var tmpMessage = '';
+                  if (RegExp(
+                          "Error:Field validation for 'Name' failed on the 'required' tag")
+                      .hasMatch(_.message)) {
+                    tmpMessage += 'ユーザー名は必須項目です。\n';
+                  }
+
+                  if (RegExp(
+                    "Error:Field validation for 'Password' failed on the 'required' tag",
+                  ).hasMatch(_.message)) {
+                    tmpMessage += 'パスワードは必須項目です。\n';
+                  }
+
+                  if (RegExp(
+                    "Error:Field validation for 'Password' failed on the 'min' tag",
+                  ).hasMatch(_.message)) {
+                    tmpMessage += 'パスワードは8文字以上必要です。\n';
+                  }
+
+                  if (RegExp(
+                    "Error:Field validation for 'UserGroupID' failed on the 'required' tag",
+                  ).hasMatch(_.message)) {
+                    tmpMessage += '無効なユーザーグループです。\n';
+                  }
+
+                  if (RegExp(
+                    "Error:Field validation for 'UserGroupID' failed on the 'uuid' tag",
+                  ).hasMatch(_.message)) {
+                    tmpMessage += '無効なユーザーグループです。\n';
+                  }
+
+                  if (RegExp(
+                    "Error:Field validation for 'InvitationCode' failed on the 'required' tag",
+                  ).hasMatch(_.message)) {
+                    tmpMessage += '無効な招待コードです。\n';
+                  }
+
+                  // "error":"Key: 'CreateUserRequest.UserGroupID' Error:Field validation for 'UserGroupID' failed on the 'required' tag\nKey: 'CreateUserRequest.InvitationCode' Error:Field validation for 'InvitationCode' failed on the 'required' tag"}
+                  return tmpMessage;
+                }, orElse: () {
+                  return error.errorMessage;
+                });
+
                 // エラーメッセージの処理
-                state = state.copyWith(errorMessage: error.errorMessage);
+                state = state.copyWith(errorMessage: message);
 
                 // パスワードのクリア
                 passwordController.clear();

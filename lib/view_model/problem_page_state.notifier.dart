@@ -69,7 +69,19 @@ class ProblemPageStateNotifier extends StateNotifier<ProblemPageState>
                     backgroundColor: Theme.of(context).primaryColor,
                   );
                 },
-                failure: (_) {},
+                failure: (_) {
+                  context.showFlashBar(
+                    content: Text(
+                      '回答投稿に失敗。回答を提出すると、20分間は同一の問題に回答できないです。',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText2
+                          ?.copyWith(color: Colors.white),
+                    ),
+                    duration: const Duration(seconds: 3),
+                    backgroundColor: Theme.of(context).primaryColor,
+                  );
+                },
               ))
           .whenComplete(() => state = state.copyWith(isFetchLoading: false));
     };
