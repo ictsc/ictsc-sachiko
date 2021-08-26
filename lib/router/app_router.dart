@@ -10,6 +10,7 @@ import 'package:ictsc_sachiko/ui/manage_problem_list_page.dart';
 import 'package:ictsc_sachiko/ui/problem_list_page.dart';
 import 'package:ictsc_sachiko/ui/problem_page.dart';
 import 'package:ictsc_sachiko/ui/profile_page.dart';
+import 'package:ictsc_sachiko/ui/scoreboard_page.dart';
 import 'package:ictsc_sachiko/ui/sign_in_page.dart';
 import 'package:ictsc_sachiko/ui/sign_up_page.dart';
 import 'package:ictsc_sachiko/ui/user_list_page.dart';
@@ -67,6 +68,13 @@ Widget fadeIn(BuildContext context, Animation<double> animation,
       path: '/users',
       guards: [AuthGuard],
       page: UserListPage,
+      maintainState: false,
+      transitionsBuilder: fadeIn,
+    ),
+    CustomRoute(
+      path: '/scoreboard',
+      guards: [AuthGuard],
+      page: ScoreboardPage,
       maintainState: false,
       transitionsBuilder: fadeIn,
     ),

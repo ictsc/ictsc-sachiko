@@ -1,0 +1,53 @@
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:ictsc_sachiko/service/ranking_api.dart';
+import 'package:state_notifier/state_notifier.dart';
+
+import 'model/scoreboard_page_state.dart';
+
+final scoreboardProvider = StateNotifierProvider.autoDispose<
+    ScoreboardPageStateNotifier, ScoreboardPageState>(
+  (ref) => ScoreboardPageStateNotifier(const ScoreboardPageState(), ref),
+);
+
+class ScoreboardPageStateNotifier extends StateNotifier<ScoreboardPageState>
+    with LocatorMixin {
+  ScoreboardPageStateNotifier(ScoreboardPageState state, this.ref)
+      : super(state) {
+    fetchTopRanking();
+    fetchNearMeRanking();
+  }
+
+  final ProviderReference ref;
+
+  void fetchTopRanking() {
+    ref.read(rankingProvider).getTopRanking().then((value) => value.when(
+          success: (response) {
+            state = state.copyWith(ranking: response.data.ranking);
+          },
+          failure: (_) {},
+        ));
+  }
+
+  void fetchNearMeRanking() {
+    ref.read(rankingProvider).getNearMeRanking().then((value) => value.when(
+          success: (response) {
+            state = state.copyWith(ranking: response.data.ranking);
+          },
+          failure: (_) {},
+        ));
+  }
+
+  Function()? onTapToggleFetchMode() {
+    if (!state.isFetchTopRanking) {
+      return () {
+        state = state.copyWith(isFetchTopRanking: !state.isFetchTopRanking);
+        fetchTopRanking();
+      };
+    } else {
+      return () {
+        state = state.copyWith(isFetchTopRanking: !state.isFetchTopRanking);
+        fetchNearMeRanking();
+      };
+    }
+  }
+}

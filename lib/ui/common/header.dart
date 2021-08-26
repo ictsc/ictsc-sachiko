@@ -224,6 +224,22 @@ class Header extends HookWidget implements PreferredSizeWidget {
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: Link(
+              uri: Uri.parse('/#/scoreboard'),
+              builder: (_, __) => TextButton(
+                onPressed: () {
+                  AutoRouter.of(context).pushNamed('/scoreboard');
+                },
+                child: const Text(
+                  '順位',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          ),
+        if (user != null)
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: Link(
               uri: Uri.parse('/#/users'),
               builder: (_, __) => TextButton(
                 onPressed: () {
