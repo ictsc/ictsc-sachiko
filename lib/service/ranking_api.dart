@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:ictsc_sachiko/service/model/ranking_api.dart';
 
 import 'base/client.dart';
 import 'base/model/error.dart';
@@ -14,14 +15,27 @@ class RankingAPI {
     client = reader(clientProvider);
   }
 
-  Future<Result<String>> getRanking() async {
+  Future<Result<GetRankingResponse>> getTopRanking() async {
+    try {
+      return await client
+          .get(
+            '/api/ranking/top',
+          )
+          .then((result) =>
+              Result.success(GetRankingResponse.fromJson({...result.data})));
+    } on DioError catch (error) {
+      return Result.failure(Error.getApiError(error));
+    }
+  }
+
+  Future<Result<GetRankingResponse>> getNearMeRanking() async {
     try {
       return await client
           .get(
             '/api/ranking/near-me',
-            // data: updateUserRequest.toJson(),
           )
-          .then((result) => const Result.success(''));
+          .then((result) =>
+              Result.success(GetRankingResponse.fromJson({...result.data})));
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }

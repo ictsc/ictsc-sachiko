@@ -13,12 +13,27 @@ class ScoreboardPageStateNotifier extends StateNotifier<ScoreboardPageState>
     with LocatorMixin {
   ScoreboardPageStateNotifier(ScoreboardPageState state, this.ref)
       : super(state) {
-    fetchScoreboard();
+    fetchTopRanking();
+    fetchNearMeRanking();
   }
 
   final ProviderReference ref;
 
-  void fetchScoreboard() {
-    ref.read(rankingProvider).getRanking();
+  void fetchTopRanking() {
+    ref.read(rankingProvider).getTopRanking().then((value) => value.when(
+          success: (response) {
+            state = state.copyWith(topRanking: response.data.ranking);
+          },
+          failure: (_) {},
+        ));
+  }
+
+  void fetchNearMeRanking() {
+    ref.read(rankingProvider).getNearMeRanking().then((value) => value.when(
+      success: (response) {
+        state = state.copyWith(nearRanking: response.data.ranking);
+      },
+      failure: (_) {},
+    ));
   }
 }
