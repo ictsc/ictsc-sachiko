@@ -62,9 +62,9 @@ class SignUpPage extends HookWidget {
                         validator: notifier.nameValidator,
                       ),
                     ),
-                    Text('ユーザー名は最低3文字以上',
+                    Text('ユーザー名は最低3文字以上で入力して下さい。',
                         style: Theme.of(context).textTheme.caption?.copyWith(
-                            color: state.isNameValidatePass
+                            color: !state.isNameValidatePass
                                 ? Theme.of(context).primaryColor
                                 : null)),
                     Padding(
@@ -75,9 +75,9 @@ class SignUpPage extends HookWidget {
                         validator: notifier.passwordValidator,
                       ),
                     ),
-                    Text('パスワードは最低8文字以上',
+                    Text('パスワードは最低8文字以上で入力して下さい。',
                         style: Theme.of(context).textTheme.caption?.copyWith(
-                            color: state.isPasswordValidatePass
+                            color: !state.isPasswordValidatePass
                                 ? Theme.of(context).primaryColor
                                 : null)),
                     Padding(
