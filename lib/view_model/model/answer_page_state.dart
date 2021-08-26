@@ -12,7 +12,7 @@ class AnswerPageState with _$AnswerPageState {
     @Default(false) bool isLoading,
     Problem? problem,
     @Default([]) List<Answer> answers,
-    @Default(true) bool isLatest,
+    @Default(false) bool isLatest,
     @Default(0) int answerFilterState,
   }) = _AnswerPageState;
 

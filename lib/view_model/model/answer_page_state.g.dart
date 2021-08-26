@@ -23,7 +23,7 @@ _$_AnswerPageState _$_$_AnswerPageStateFromJson(Map<String, dynamic> json) {
                   ?.map((e) => Answer.fromJson(e as Map<String, dynamic>))
                   .toList()) ??
           [],
-      isLatest: $checkedConvert(json, 'is_latest', (v) => v as bool?) ?? true,
+      isLatest: $checkedConvert(json, 'is_latest', (v) => v as bool?) ?? false,
       answerFilterState:
           $checkedConvert(json, 'answer_filter_state', (v) => v as int?) ?? 0,
     );
