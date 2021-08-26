@@ -66,20 +66,20 @@ class ProblemPageStateNotifier extends StateNotifier<ProblemPageState>
                           ?.copyWith(color: Colors.white),
                     ),
                     duration: const Duration(seconds: 3),
-                    backgroundColor: Theme.of(context).primaryColor,
+                    backgroundColor: Colors.green,
                   );
                 },
                 failure: (_) {
                   context.showFlashBar(
                     content: Text(
-                      '回答投稿に失敗。回答を提出すると、20分間は同一の問題に回答できないです。',
+                      '回答投稿に失敗。回答を提出20分間は同一の問題に回答できません。',
                       style: Theme.of(context)
                           .textTheme
                           .bodyText2
                           ?.copyWith(color: Colors.white),
                     ),
                     duration: const Duration(seconds: 3),
-                    backgroundColor: Theme.of(context).primaryColor,
+                    backgroundColor: Theme.of(context).errorColor,
                   );
                 },
               ))

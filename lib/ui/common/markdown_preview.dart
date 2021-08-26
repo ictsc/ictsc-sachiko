@@ -396,7 +396,7 @@ class Pre extends HookWidget {
                           ?.copyWith(color: Colors.white),
                     ),
                     duration: const Duration(seconds: 3),
-                    backgroundColor: Theme.of(context).primaryColor,
+                    backgroundColor: Colors.green,
                   );
                 },
                 tooltip: 'クリップボードにコピー',

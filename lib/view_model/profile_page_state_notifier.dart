@@ -76,10 +76,23 @@ class ProfilePageStateNotifier extends StateNotifier<ProfilePageState>
                         ?.copyWith(color: Colors.white),
                   ),
                   duration: const Duration(seconds: 3),
-                  backgroundColor: Theme.of(context).primaryColor,
+                  backgroundColor: Colors.green,
                 );
               },
-              failure: (_) {},
+              failure: (_) {
+                // 更新出来ましたの処理。
+                context.showFlashBar(
+                  content: Text(
+                    'プロフィール更新に失敗しました。文字列が長すぎる場合や使用不可の文字列が含まれている可能性があります。',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2
+                        ?.copyWith(color: Colors.white),
+                  ),
+                  duration: const Duration(seconds: 3),
+                  backgroundColor: Theme.of(context).errorColor,
+                );
+              },
             ),
           );
     };
