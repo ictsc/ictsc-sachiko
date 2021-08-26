@@ -73,7 +73,7 @@ class ProblemListPage extends HookWidget {
                                   '解答時の注意点',
                                   style: titleTextStyle,
                                 ),
-                                const Gap(8),
+                                const Gap(16),
                                 MarkdownPreview(data: notesContent),
                               ],
                             ),
