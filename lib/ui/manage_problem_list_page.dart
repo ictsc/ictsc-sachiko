@@ -125,34 +125,40 @@ class ManageProblemListPage extends HookWidget {
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   const Gap(48),
-                  TextButton(
-                      onPressed: () {
-                        AutoRouter.of(context).pushNamed(
-                          '/manage/problems/new/edit',
-                        );
-                      },
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.add_box,
-                            size:
-                                Theme.of(context).textTheme.subtitle1!.fontSize,
-                          ),
-                          const Gap(2),
-                          const Text('問題の作成'),
-                        ],
-                      ))
+                  Padding(
+                    padding: const EdgeInsets.only(top: 2.0),
+                    child: TextButton(
+                        onPressed: () {
+                          AutoRouter.of(context).pushNamed(
+                            '/manage/problems/new/edit',
+                          );
+                        },
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.add_box,
+                              size:
+                                  Theme.of(context).textTheme.subtitle1!.fontSize,
+                            ),
+                            const Gap(2),
+                            const Text('問題の作成'),
+                          ],
+                        )),
+                  )
                 ],
               ),
               Row(
                 children: [
-                  IconButton(
-                    onPressed: () {
-                      notifier.fetchProblems();
-                    },
-                    icon: Icon(
-                      Icons.refresh,
-                      color: Theme.of(context).primaryColor,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 2.0),
+                    child: IconButton(
+                      onPressed: () {
+                        notifier.fetchProblems();
+                      },
+                      icon: Icon(
+                        Icons.refresh,
+                        color: Theme.of(context).primaryColor,
+                      ),
                     ),
                   ),
                   const Gap(24)
