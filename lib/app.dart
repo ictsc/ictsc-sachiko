@@ -50,6 +50,8 @@ class App extends HookWidget {
               .textTheme
               .caption
               ?.copyWith(fontSize: 14, color: isDark ? Colors.grey : null),
+          subtitle1: Theme.of(context).textTheme.bodyText2?.copyWith(
+              fontSize: 16, height: 1.0, color: isDark ? Colors.white : null,),
         ),
       ),
       routerDelegate: _appRouter.delegate(),

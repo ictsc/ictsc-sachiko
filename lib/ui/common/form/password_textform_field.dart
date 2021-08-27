@@ -34,6 +34,7 @@ class PasswordTextFormField extends HookWidget {
           ),
         ),
       ),
+      style: Theme.of(context).textTheme.bodyText2,
       controller: controller,
       autovalidateMode: autovalidateMode,
       validator: validator,

@@ -75,6 +75,7 @@ class SignInPage extends HookWidget {
                               }
                             });
                           },
+                          style: Theme.of(context).textTheme.bodyText2,
                         ),
                       ),
                       Padding(
