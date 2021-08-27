@@ -9,15 +9,15 @@ import 'common/header.dart';
 
 class SignInPage extends HookWidget {
   final loginForm =
-      StateNotifierProvider<SignInPageStateNotifier, SignInFormState>(
-    (refs) => SignInPageStateNotifier(const SignInFormState(), refs),
+  StateNotifierProvider<SignInPageStateNotifier, SignInFormState>(
+        (refs) => SignInPageStateNotifier(const SignInFormState(), refs),
   );
 
   @override
   Widget build(BuildContext context) {
-    final state = useProvider(loginForm);
+    useProvider(loginForm);
 
-    final provider = context.read(loginForm.notifier);
+    final provider = useProvider(loginForm.notifier);
 
     return Scaffold(
       appBar: Header(appBar: AppBar()),
@@ -38,7 +38,8 @@ class SignInPage extends HookWidget {
                         padding: const EdgeInsets.all(16.0),
                         child: Text(
                           'ログイン',
-                          style: Theme.of(context)
+                          style: Theme
+                              .of(context)
                               .textTheme
                               .headline6!
                               .copyWith(fontWeight: FontWeight.bold),
@@ -48,11 +49,15 @@ class SignInPage extends HookWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           provider.errorMessage,
-                          style: Theme.of(context)
+                          style: Theme
+                              .of(context)
                               .textTheme
                               .bodyText2!
                               .copyWith(
-                                  color: Theme.of(context).colorScheme.error),
+                              color: Theme
+                                  .of(context)
+                                  .colorScheme
+                                  .error),
                         ),
                       ),
                       Padding(
@@ -60,12 +65,32 @@ class SignInPage extends HookWidget {
                         child: TextFormField(
                           decoration: const InputDecoration(labelText: 'ユーザー名'),
                           controller: provider.nameController,
+                          onFieldSubmitted: (_) {
+                            // Enter時の処理
+                            WidgetsBinding.instance?.addPostFrameCallback((_){
+                              final func = provider.onTapSignInButton(context);
+
+                              if (func != null) {
+                                func();
+                              }
+                            });
+                          },
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: PasswordTextFormField(
                           controller: provider.passwordController,
+                          onFieldSubmitted: (_) {
+                            // Enter時の処理
+                            WidgetsBinding.instance?.addPostFrameCallback((_){
+                              final func = provider.onTapSignInButton(context);
+
+                              if (func != null) {
+                                func();
+                              }
+                            });
+                          },
                         ),
                       ),
                       Padding(
@@ -73,11 +98,12 @@ class SignInPage extends HookWidget {
                         child: SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                              onPressed: provider.onTapSignInButton(context),
-                              child: const Padding(
-                                padding: EdgeInsets.all(16.0),
-                                child: Text('ログイン'),
-                              )),
+                            onPressed: provider.onTapSignInButton(context),
+                            child: const Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Text('ログイン'),
+                            ),
+                          ),
                         ),
                       ),
                     ],

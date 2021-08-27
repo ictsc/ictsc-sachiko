@@ -21,13 +21,13 @@ class SignUpPageStateNotifier extends StateNotifier<SignUpFormState>
     return state.errorMessage ?? '';
   }
 
-  Null nameValidator(String? text) {
+  String? nameValidator(String? text) {
     WidgetsBinding.instance?.addPostFrameCallback((_){
       state = state.copyWith(isNameValidatePass: (text?.length ?? 0) >= 3);
     });
   }
 
-  Null passwordValidator(String? text) {
+  String? passwordValidator(String? text) {
     WidgetsBinding.instance?.addPostFrameCallback((_){
       state = state.copyWith(isPasswordValidatePass: (text?.length ?? 0) >= 8);
     });

@@ -257,6 +257,16 @@ class AnswerCard extends HookWidget {
                     decoration: InputDecoration(
                         labelText: 'ポイント',
                         labelStyle: Theme.of(context).textTheme.caption),
+                    onSubmitted: (_) {
+                      WidgetsBinding.instance?.addPostFrameCallback((_){
+                        notifier.onTapAnswerSave(context, UpdateAnswerRequest(
+                          problemId: answer.problemId,
+                          answerId: answer.id,
+                          point: int.tryParse(controller?.text ?? '') ?? 0,
+                          body: answer.body,
+                        ));
+                      });
+                    },
                   ),
                 ),
                 const Gap(16),

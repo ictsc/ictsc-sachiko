@@ -60,7 +60,18 @@ class SignUpPage extends HookWidget {
                             useProvider(signUpForm.notifier).nameController,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: notifier.nameValidator,
+                        // onFieldSubmitted: (_) {
+                        //   WidgetsBinding.instance?.addPostFrameCallback((_){
+                        //     final func = useProvider(signUpForm.notifier)
+                        //         .onTapSignUpButton(context);
+                        //
+                        //     if (func != null) {
+                        //       func();
+                        //     }
+                        //   });
+                        // },
                       ),
+
                     ),
                     Text('ユーザー名は最低3文字以上で入力して下さい。',
                         style: Theme.of(context).textTheme.caption?.copyWith(
@@ -73,6 +84,16 @@ class SignUpPage extends HookWidget {
                         controller: notifier.passwordController,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: notifier.passwordValidator,
+                        // onFieldSubmitted: (_) {
+                        //   WidgetsBinding.instance?.addPostFrameCallback((_){
+                        //     final func = useProvider(signUpForm.notifier)
+                        //         .onTapSignUpButton(context);
+                        //
+                        //     if (func != null) {
+                        //       func();
+                        //     }
+                        //   });
+                        // },
                       ),
                     ),
                     Text('パスワードは最低8文字以上で入力して下さい。',
