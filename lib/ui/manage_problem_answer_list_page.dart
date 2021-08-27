@@ -8,6 +8,7 @@ import 'package:ictsc_sachiko/service/model/answer_api.dart';
 import 'package:ictsc_sachiko/ui/common/markdown_preview.dart';
 import 'package:ictsc_sachiko/ui/problem_list_page.dart';
 import 'package:ictsc_sachiko/view_model/answer_page_state_notifier.dart';
+import 'package:intl/intl.dart';
 
 import 'common/header.dart';
 
@@ -220,7 +221,7 @@ class AnswerCard extends HookWidget {
                    */
                   if (!isShowPoint)
                     SelectableText(
-                      'userGroupId: ${answer.userGroupId}',
+                      'チーム : ${answer.userGroup?.name ?? ''}',
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   /*
@@ -235,7 +236,10 @@ class AnswerCard extends HookWidget {
                     ),
                 ],
               ),
-              Text('${answer.createdAt}'),
+              Text(DateFormat('yyyy/MM/dd HH:mm:ss')
+                  .format(answer.createdAt.add(
+                const Duration(hours: 9),
+              ))),
             ],
           ),
           const Gap(16),
@@ -258,13 +262,15 @@ class AnswerCard extends HookWidget {
                         labelText: 'ポイント',
                         labelStyle: Theme.of(context).textTheme.caption),
                     onSubmitted: (_) {
-                      WidgetsBinding.instance?.addPostFrameCallback((_){
-                        notifier.onTapAnswerSave(context, UpdateAnswerRequest(
-                          problemId: answer.problemId,
-                          answerId: answer.id,
-                          point: int.tryParse(controller?.text ?? '') ?? 0,
-                          body: answer.body,
-                        ));
+                      WidgetsBinding.instance?.addPostFrameCallback((_) {
+                        notifier.onTapAnswerSave(
+                            context,
+                            UpdateAnswerRequest(
+                              problemId: answer.problemId,
+                              answerId: answer.id,
+                              point: int.tryParse(controller?.text ?? '') ?? 0,
+                              body: answer.body,
+                            ));
                       });
                     },
                   ),
@@ -272,12 +278,14 @@ class AnswerCard extends HookWidget {
                 const Gap(16),
                 ElevatedButton(
                   onPressed: () {
-                    notifier.onTapAnswerSave(context, UpdateAnswerRequest(
-                      problemId: answer.problemId,
-                      answerId: answer.id,
-                      point: int.tryParse(controller?.text ?? '') ?? 0,
-                      body: answer.body,
-                    ));
+                    notifier.onTapAnswerSave(
+                        context,
+                        UpdateAnswerRequest(
+                          problemId: answer.problemId,
+                          answerId: answer.id,
+                          point: int.tryParse(controller?.text ?? '') ?? 0,
+                          body: answer.body,
+                        ));
                   },
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
