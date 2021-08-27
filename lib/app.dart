@@ -42,16 +42,25 @@ class App extends HookWidget {
         brightness: isDark ? Brightness.dark : null,
         primaryColor: Palette.themeColor,
         primarySwatch: Palette.themeMaterialColor,
-        fontFamily: '',
+        fontFamily: 'Noto Sans JP',
         textTheme: TextTheme(
           bodyText2: Theme.of(context).textTheme.bodyText2?.copyWith(
-              fontSize: 16, height: 1.8, color: isDark ? Colors.white : null),
-          caption: Theme.of(context)
-              .textTheme
-              .caption
-              ?.copyWith(fontSize: 14, color: isDark ? Colors.grey : null),
+                fontFamily: 'Noto Sans JP',
+                fontSize: 16,
+                height: 1.8,
+                color: isDark ? Colors.white : null,
+              ),
+          caption: Theme.of(context).textTheme.caption?.copyWith(
+                fontFamily: 'Noto Sans JP',
+                fontSize: 14,
+                color: isDark ? Colors.grey : null,
+              ),
           subtitle1: Theme.of(context).textTheme.bodyText2?.copyWith(
-              fontSize: 16, height: 1.0, color: isDark ? Colors.white : null,),
+                fontFamily: 'Noto Sans JP',
+                fontSize: 16,
+                height: 1.0,
+                color: isDark ? Colors.white : null,
+              ),
         ),
       ),
       routerDelegate: _appRouter.delegate(),

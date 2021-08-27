@@ -11,7 +11,9 @@ class HomePage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final guideContent = const bool.hasEnvironment('GUIDE_CONTENTS')
-        ? const String.fromEnvironment('GUIDE_CONTENTS').replaceAll('\\n', '\n')
+        ? const String.fromEnvironment('GUIDE_CONTENTS')
+            .replaceAll('\\n', '\n')
+            .replaceAll('\\t', '\t')
         : '';
 
     return Scaffold(
