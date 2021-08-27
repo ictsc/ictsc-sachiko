@@ -272,8 +272,11 @@ class AnswerEditor extends HookWidget {
                           isPreview.value = false;
                         }
                       : null,
-                  child: const Text(
-                    'Markdown',
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'Markdown',
+                    ),
                   ),
                 ),
                 const Gap(4),
@@ -283,7 +286,10 @@ class AnswerEditor extends HookWidget {
                           isPreview.value = true;
                         }
                       : null,
-                  child: const Text('Preview'),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text('Preview'),
+                  ),
                 )
               ],
             ),
