@@ -23,6 +23,11 @@ _$_Problem _$_$_ProblemFromJson(Map<String, dynamic> json) {
           json, 'updated_at', (v) => DateTime.parse(v as String)),
       createdAt: $checkedConvert(
           json, 'created_at', (v) => DateTime.parse(v as String)),
+      unchecked: $checkedConvert(json, 'unchecked', (v) => v as int?),
+      uncheckedNearOverdue:
+          $checkedConvert(json, 'unchecked_near_overdue', (v) => v as int?),
+      uncheckedOverdue:
+          $checkedConvert(json, 'unchecked_overdue', (v) => v as int?),
     );
     return val;
   }, fieldKeyMap: const {
@@ -30,7 +35,9 @@ _$_Problem _$_$_ProblemFromJson(Map<String, dynamic> json) {
     'solvedCriterion': 'solved_criterion',
     'previousProblemId': 'previous_problem_id',
     'updatedAt': 'updated_at',
-    'createdAt': 'created_at'
+    'createdAt': 'created_at',
+    'uncheckedNearOverdue': 'unchecked_near_overdue',
+    'uncheckedOverdue': 'unchecked_overdue'
   });
 }
 
@@ -46,4 +53,7 @@ Map<String, dynamic> _$_$_ProblemToJson(_$_Problem instance) =>
       'previous_problem_id': instance.previousProblemId,
       'updated_at': instance.updatedAt.toIso8601String(),
       'created_at': instance.createdAt.toIso8601String(),
+      'unchecked': instance.unchecked,
+      'unchecked_near_overdue': instance.uncheckedNearOverdue,
+      'unchecked_overdue': instance.uncheckedOverdue,
     };

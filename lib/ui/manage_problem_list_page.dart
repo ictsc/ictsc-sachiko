@@ -32,6 +32,32 @@ class ManageProblemListPage extends HookWidget {
               );
             },
           )),
+          DataCell(Text.rich(TextSpan(text: '', children: [
+            TextSpan(
+              text: '${problem.unchecked ?? ''}',
+              style: Theme.of(context).textTheme.caption
+            ),
+            TextSpan(
+              text: ' / ',
+              style: Theme.of(context).textTheme.caption,
+            ),
+            TextSpan(
+              text: '${problem.uncheckedNearOverdue ?? ''}',
+              style: Theme.of(context).textTheme.caption?.copyWith(
+                    color: Colors.amber,
+                  ),
+            ),
+            TextSpan(
+              text: ' / ',
+              style: Theme.of(context).textTheme.caption,
+            ),
+            TextSpan(
+              text: '${problem.unchecked ?? ''}',
+              style: Theme.of(context).textTheme.caption?.copyWith(
+                    color: Theme.of(context).errorColor,
+                  ),
+            )
+          ]))),
           DataCell(DataText(problem.code)),
           if (problem.title.isNotEmpty)
             DataCell(DataText(problem.title))
@@ -153,6 +179,8 @@ class ManageProblemListPage extends HookWidget {
                             child: DataTable(
                               columns: [
                                 const DataColumn(label: HeadingText('回答一覧')),
+                                const DataColumn(
+                                    label: HeadingText('未済点 ~15分/15~19分/20分~')),
                                 const DataColumn(label: HeadingText('コード')),
                                 const DataColumn(label: HeadingText('タイトル')),
                                 const DataColumn(label: HeadingText('ID')),
@@ -334,5 +362,32 @@ class CancelDialog extends HookWidget {
         ],
       ),
     );
+  }
+}
+
+const _fullLengthCode = 65248;
+
+
+extension JapaneseString on String {
+  String alphanumericToFullLength() {
+    final regex = RegExp(r'^[a-zA-Z0-9]+$');
+    final string = runes.map<String>((rune) {
+      final char = String.fromCharCode(rune);
+      return regex.hasMatch(char)
+          ? String.fromCharCode(rune + _fullLengthCode)
+          : char;
+    });
+    return string.join();
+  }
+
+  String alphanumericToHalfLength() {
+    final regex = RegExp(r'^[Ａ-Ｚａ-ｚ０-９]+$');
+    final string = runes.map<String>((rune) {
+      final char = String.fromCharCode(rune);
+      return regex.hasMatch(char)
+          ? String.fromCharCode(rune - _fullLengthCode)
+          : char;
+    });
+    return string.join();
   }
 }

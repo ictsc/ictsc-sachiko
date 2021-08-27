@@ -30,7 +30,10 @@ class _$ProblemTearOff {
       int solvedCriterion = 0,
       String? previousProblemId,
       required DateTime updatedAt,
-      required DateTime createdAt}) {
+      required DateTime createdAt,
+      int? unchecked,
+      int? uncheckedNearOverdue,
+      int? uncheckedOverdue}) {
     return _Problem(
       id: id,
       code: code,
@@ -42,6 +45,9 @@ class _$ProblemTearOff {
       previousProblemId: previousProblemId,
       updatedAt: updatedAt,
       createdAt: createdAt,
+      unchecked: unchecked,
+      uncheckedNearOverdue: uncheckedNearOverdue,
+      uncheckedOverdue: uncheckedOverdue,
     );
   }
 
@@ -65,6 +71,9 @@ mixin _$Problem {
   String? get previousProblemId => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
+  int? get unchecked => throw _privateConstructorUsedError;
+  int? get uncheckedNearOverdue => throw _privateConstructorUsedError;
+  int? get uncheckedOverdue => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -85,7 +94,10 @@ abstract class $ProblemCopyWith<$Res> {
       int solvedCriterion,
       String? previousProblemId,
       DateTime updatedAt,
-      DateTime createdAt});
+      DateTime createdAt,
+      int? unchecked,
+      int? uncheckedNearOverdue,
+      int? uncheckedOverdue});
 }
 
 /// @nodoc
@@ -108,6 +120,9 @@ class _$ProblemCopyWithImpl<$Res> implements $ProblemCopyWith<$Res> {
     Object? previousProblemId = freezed,
     Object? updatedAt = freezed,
     Object? createdAt = freezed,
+    Object? unchecked = freezed,
+    Object? uncheckedNearOverdue = freezed,
+    Object? uncheckedOverdue = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -150,6 +165,18 @@ class _$ProblemCopyWithImpl<$Res> implements $ProblemCopyWith<$Res> {
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      unchecked: unchecked == freezed
+          ? _value.unchecked
+          : unchecked // ignore: cast_nullable_to_non_nullable
+              as int?,
+      uncheckedNearOverdue: uncheckedNearOverdue == freezed
+          ? _value.uncheckedNearOverdue
+          : uncheckedNearOverdue // ignore: cast_nullable_to_non_nullable
+              as int?,
+      uncheckedOverdue: uncheckedOverdue == freezed
+          ? _value.uncheckedOverdue
+          : uncheckedOverdue // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -169,7 +196,10 @@ abstract class _$ProblemCopyWith<$Res> implements $ProblemCopyWith<$Res> {
       int solvedCriterion,
       String? previousProblemId,
       DateTime updatedAt,
-      DateTime createdAt});
+      DateTime createdAt,
+      int? unchecked,
+      int? uncheckedNearOverdue,
+      int? uncheckedOverdue});
 }
 
 /// @nodoc
@@ -193,6 +223,9 @@ class __$ProblemCopyWithImpl<$Res> extends _$ProblemCopyWithImpl<$Res>
     Object? previousProblemId = freezed,
     Object? updatedAt = freezed,
     Object? createdAt = freezed,
+    Object? unchecked = freezed,
+    Object? uncheckedNearOverdue = freezed,
+    Object? uncheckedOverdue = freezed,
   }) {
     return _then(_Problem(
       id: id == freezed
@@ -235,6 +268,18 @@ class __$ProblemCopyWithImpl<$Res> extends _$ProblemCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      unchecked: unchecked == freezed
+          ? _value.unchecked
+          : unchecked // ignore: cast_nullable_to_non_nullable
+              as int?,
+      uncheckedNearOverdue: uncheckedNearOverdue == freezed
+          ? _value.uncheckedNearOverdue
+          : uncheckedNearOverdue // ignore: cast_nullable_to_non_nullable
+              as int?,
+      uncheckedOverdue: uncheckedOverdue == freezed
+          ? _value.uncheckedOverdue
+          : uncheckedOverdue // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -252,7 +297,10 @@ class _$_Problem with DiagnosticableTreeMixin implements _Problem {
       this.solvedCriterion = 0,
       this.previousProblemId,
       required this.updatedAt,
-      required this.createdAt});
+      required this.createdAt,
+      this.unchecked,
+      this.uncheckedNearOverdue,
+      this.uncheckedOverdue});
 
   factory _$_Problem.fromJson(Map<String, dynamic> json) =>
       _$_$_ProblemFromJson(json);
@@ -282,10 +330,16 @@ class _$_Problem with DiagnosticableTreeMixin implements _Problem {
   final DateTime updatedAt;
   @override
   final DateTime createdAt;
+  @override
+  final int? unchecked;
+  @override
+  final int? uncheckedNearOverdue;
+  @override
+  final int? uncheckedOverdue;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Problem(id: $id, code: $code, authorId: $authorId, title: $title, body: $body, point: $point, solvedCriterion: $solvedCriterion, previousProblemId: $previousProblemId, updatedAt: $updatedAt, createdAt: $createdAt)';
+    return 'Problem(id: $id, code: $code, authorId: $authorId, title: $title, body: $body, point: $point, solvedCriterion: $solvedCriterion, previousProblemId: $previousProblemId, updatedAt: $updatedAt, createdAt: $createdAt, unchecked: $unchecked, uncheckedNearOverdue: $uncheckedNearOverdue, uncheckedOverdue: $uncheckedOverdue)';
   }
 
   @override
@@ -302,7 +356,10 @@ class _$_Problem with DiagnosticableTreeMixin implements _Problem {
       ..add(DiagnosticsProperty('solvedCriterion', solvedCriterion))
       ..add(DiagnosticsProperty('previousProblemId', previousProblemId))
       ..add(DiagnosticsProperty('updatedAt', updatedAt))
-      ..add(DiagnosticsProperty('createdAt', createdAt));
+      ..add(DiagnosticsProperty('createdAt', createdAt))
+      ..add(DiagnosticsProperty('unchecked', unchecked))
+      ..add(DiagnosticsProperty('uncheckedNearOverdue', uncheckedNearOverdue))
+      ..add(DiagnosticsProperty('uncheckedOverdue', uncheckedOverdue));
   }
 
   @override
@@ -333,7 +390,16 @@ class _$_Problem with DiagnosticableTreeMixin implements _Problem {
                     .equals(other.updatedAt, updatedAt)) &&
             (identical(other.createdAt, createdAt) ||
                 const DeepCollectionEquality()
-                    .equals(other.createdAt, createdAt)));
+                    .equals(other.createdAt, createdAt)) &&
+            (identical(other.unchecked, unchecked) ||
+                const DeepCollectionEquality()
+                    .equals(other.unchecked, unchecked)) &&
+            (identical(other.uncheckedNearOverdue, uncheckedNearOverdue) ||
+                const DeepCollectionEquality().equals(
+                    other.uncheckedNearOverdue, uncheckedNearOverdue)) &&
+            (identical(other.uncheckedOverdue, uncheckedOverdue) ||
+                const DeepCollectionEquality()
+                    .equals(other.uncheckedOverdue, uncheckedOverdue)));
   }
 
   @override
@@ -348,7 +414,10 @@ class _$_Problem with DiagnosticableTreeMixin implements _Problem {
       const DeepCollectionEquality().hash(solvedCriterion) ^
       const DeepCollectionEquality().hash(previousProblemId) ^
       const DeepCollectionEquality().hash(updatedAt) ^
-      const DeepCollectionEquality().hash(createdAt);
+      const DeepCollectionEquality().hash(createdAt) ^
+      const DeepCollectionEquality().hash(unchecked) ^
+      const DeepCollectionEquality().hash(uncheckedNearOverdue) ^
+      const DeepCollectionEquality().hash(uncheckedOverdue);
 
   @JsonKey(ignore: true)
   @override
@@ -372,7 +441,10 @@ abstract class _Problem implements Problem {
       int solvedCriterion,
       String? previousProblemId,
       required DateTime updatedAt,
-      required DateTime createdAt}) = _$_Problem;
+      required DateTime createdAt,
+      int? unchecked,
+      int? uncheckedNearOverdue,
+      int? uncheckedOverdue}) = _$_Problem;
 
   factory _Problem.fromJson(Map<String, dynamic> json) = _$_Problem.fromJson;
 
@@ -396,6 +468,12 @@ abstract class _Problem implements Problem {
   DateTime get updatedAt => throw _privateConstructorUsedError;
   @override
   DateTime get createdAt => throw _privateConstructorUsedError;
+  @override
+  int? get unchecked => throw _privateConstructorUsedError;
+  @override
+  int? get uncheckedNearOverdue => throw _privateConstructorUsedError;
+  @override
+  int? get uncheckedOverdue => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ProblemCopyWith<_Problem> get copyWith =>

@@ -62,7 +62,7 @@ class Header extends HookWidget implements PreferredSizeWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
                       child: Text(
-                        'チーム：${user.userGroup?.name ?? ''}',
+                        'チーム：${(user.userGroup?.name.length ?? 0) > 10 ? user.userGroup?.name.replaceRange(10, null, '…') : user.userGroup?.name ?? ''}',
                         style: Theme.of(context)
                             .primaryTextTheme
                             .subtitle1!

@@ -17,8 +17,13 @@ abstract class Problem with _$Problem {
     String? previousProblemId,
     required DateTime updatedAt,
     required DateTime createdAt,
+    int? unchecked,
+    int? uncheckedNearOverdue,
+    int? uncheckedOverdue,
   }) = _Problem;
 
   factory Problem.fromJson(Map<String, dynamic> json) =>
       _$ProblemFromJson(json);
 }
+
+// "unchecked":0,"unchecked_near_overdue":0,"unchecked_overdue":0}
