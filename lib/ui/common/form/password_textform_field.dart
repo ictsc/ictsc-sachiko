@@ -20,12 +20,12 @@ class PasswordTextFormField extends HookWidget {
         suffixIcon: MouseRegion(
           cursor: SystemMouseCursors.click,
           child: GestureDetector(
-              onTap: () {
-                isObscurePassword.value = !isObscurePassword.value;
-              },
-              child: !isObscurePassword.value
-                  ? const Icon(Icons.visibility_off, size: 18)
-                  : const Icon(Icons.visibility, size: 18),
+            onTap: () {
+              isObscurePassword.value = !isObscurePassword.value;
+            },
+            child: !isObscurePassword.value
+                ? const Icon(Icons.visibility_off, size: 18)
+                : const Icon(Icons.visibility, size: 18),
           ),
         ),
         // provider.suffixObscurePasswordIconButton
