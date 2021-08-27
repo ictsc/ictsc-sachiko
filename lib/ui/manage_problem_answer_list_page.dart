@@ -236,7 +236,7 @@ class AnswerCard extends HookWidget {
                     ),
                 ],
               ),
-              Text(DateFormat('yyyy年年M月d日(E) HH:mm:ss')
+              Text(DateFormat('yyyy/MM/dd HH:mm:ss')
                   .format(answer.createdAt.add(
                 const Duration(hours: 9),
               ))),
