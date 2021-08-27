@@ -37,17 +37,15 @@ class ScoreboardPageStateNotifier extends StateNotifier<ScoreboardPageState>
         ));
   }
 
-  Function()? onTapToggleFetchMode() {
-    if (!state.isFetchTopRanking) {
-      return () {
-        state = state.copyWith(isFetchTopRanking: !state.isFetchTopRanking);
-        fetchTopRanking();
+  Function(Object? object) onTapToggleFetchMode() => (Object? object) {
+        if (object is bool) {
+          if (object) {
+            fetchTopRanking();
+          } else {
+            fetchNearMeRanking();
+          }
+
+          state = state.copyWith(isFetchTopRanking: object);
+        }
       };
-    } else {
-      return () {
-        state = state.copyWith(isFetchTopRanking: !state.isFetchTopRanking);
-        fetchNearMeRanking();
-      };
-    }
-  }
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/domain/problem.dart';
 import 'package:ictsc_sachiko/service/model/problem_api.dart';
@@ -15,8 +17,18 @@ class ProblemListPageStateNotifier extends StateNotifier<ProblemListPageState>
   ProblemListPageStateNotifier(ProblemListPageState state, this.ref)
       : super(state) {
     fetchProblems();
+
+    timer = Timer.periodic(
+      const Duration(seconds: 30),
+      (timer) {
+        if (state.isAutoLoad) {
+          fetchProblems();
+        }
+      },
+    );
   }
 
+  late Timer? timer;
   final ProviderReference ref;
 
   Future<void> onSelectProblem(String? problemId) async {
@@ -44,6 +56,25 @@ class ProblemListPageStateNotifier extends StateNotifier<ProblemListPageState>
               failure: (_) {},
             ))
         .whenComplete(() => state = state.copyWith(isLoading: false));
+  }
+
+  void onTapToggleAutoModeCheckBox(bool? isChecked) {
+    if (isChecked != null) {
+      state = state.copyWith(isAutoLoad: isChecked);
+
+      if (isChecked) {
+        timer = Timer.periodic(
+          const Duration(seconds: 30),
+          (timer) {
+            if (state.isAutoLoad) {
+              fetchProblems();
+            }
+          },
+        );
+      } else {
+        timer?.cancel();
+      }
+    }
   }
 
   /// 問題を削除する

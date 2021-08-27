@@ -24,9 +24,14 @@ _$_ProblemListPageState _$_$_ProblemListPageStateFromJson(
           'problem',
           (v) =>
               v == null ? null : Problem.fromJson(v as Map<String, dynamic>)),
+      isAutoLoad:
+          $checkedConvert(json, 'is_auto_load', (v) => v as bool?) ?? true,
     );
     return val;
-  }, fieldKeyMap: const {'isLoading': 'is_loading'});
+  }, fieldKeyMap: const {
+    'isLoading': 'is_loading',
+    'isAutoLoad': 'is_auto_load'
+  });
 }
 
 Map<String, dynamic> _$_$_ProblemListPageStateToJson(
@@ -35,4 +40,5 @@ Map<String, dynamic> _$_$_ProblemListPageStateToJson(
       'is_loading': instance.isLoading,
       'problems': instance.problems,
       'problem': instance.problem,
+      'is_auto_load': instance.isAutoLoad,
     };

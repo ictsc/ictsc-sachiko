@@ -47,44 +47,19 @@ class ScoreboardPage extends HookWidget {
                   ),
                 ),
                 const Gap(24),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: !state.isFetchTopRanking
-                          ? notifier.onTapToggleFetchMode()
-                          : null,
-                      style: ElevatedButton.styleFrom(
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(6.0),
-                            bottomLeft: Radius.circular(6.0),
-                          ),
-                        ),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text('上位'),
-                      ),
+                DropdownButton(
+                  value: state.isFetchTopRanking,
+                  items: [
+                    const DropdownMenuItem(
+                      value: true,
+                      child: Text('上位ランキング'),
                     ),
-                    ElevatedButton(
-                      onPressed: state.isFetchTopRanking
-                          ? notifier.onTapToggleFetchMode()
-                          : null,
-                      style: ElevatedButton.styleFrom(
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(6.0),
-                            bottomRight: Radius.circular(6.0),
-                          ),
-                        ),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text('周辺'),
-                      ),
+                    const DropdownMenuItem(
+                      value: false,
+                      child: Text('自チーム周辺ランキング'),
                     ),
                   ],
+                  onChanged: notifier.onTapToggleFetchMode(),
                 ),
                 const Gap(24),
                 SizedBox(

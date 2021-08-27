@@ -151,7 +151,7 @@ class AnswerListPageStateNotifier extends StateNotifier<AnswerPageState>
               failure: (_) {
                 context.showFlashBar(
                   content: Text(
-                    '採点に失敗しました。',
+                    '採点に失敗しました。点数が満点より多い場合や数字以外が含まれている場合は登録されません。',
                     style: Theme.of(context)
                         .textTheme
                         .bodyText2

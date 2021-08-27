@@ -1,3 +1,4 @@
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -34,9 +35,8 @@ class ManageProblemListPage extends HookWidget {
           )),
           DataCell(Text.rich(TextSpan(text: '', children: [
             TextSpan(
-              text: '${problem.unchecked ?? ''}',
-              style: Theme.of(context).textTheme.caption
-            ),
+                text: '${problem.unchecked ?? ''}',
+                style: Theme.of(context).textTheme.caption),
             TextSpan(
               text: ' / ',
               style: Theme.of(context).textTheme.caption,
@@ -137,8 +137,10 @@ class ManageProblemListPage extends HookWidget {
                           children: [
                             Icon(
                               Icons.add_box,
-                              size:
-                                  Theme.of(context).textTheme.subtitle1!.fontSize,
+                              size: Theme.of(context)
+                                  .textTheme
+                                  .subtitle1!
+                                  .fontSize,
                             ),
                             const Gap(2),
                             const Text('問題の作成'),
@@ -149,6 +151,25 @@ class ManageProblemListPage extends HookWidget {
               ),
               Row(
                 children: [
+                  Padding(
+                    // TODO 複数書いてるのをなんとかしたい
+                    padding: const EdgeInsets.only(top: 4.0),
+                    child: Row(
+                      children: [
+                        Checkbox(
+                          value: state.isAutoLoad,
+                          onChanged: notifier.onTapToggleAutoModeCheckBox,
+                        ),
+                        Text(
+                          'AutoLoad',
+                          style: Theme.of(context).textTheme.caption?.copyWith(
+                                color: Theme.of(context).primaryColor,
+                              ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Gap(16),
                   Padding(
                     padding: const EdgeInsets.only(top: 2.0),
                     child: IconButton(
@@ -372,7 +393,6 @@ class CancelDialog extends HookWidget {
 }
 
 const _fullLengthCode = 65248;
-
 
 extension JapaneseString on String {
   String alphanumericToFullLength() {
