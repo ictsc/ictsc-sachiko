@@ -4,10 +4,15 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 class PasswordTextFormField extends HookWidget {
   final TextEditingController controller;
   final AutovalidateMode? autovalidateMode;
-  final Null Function(String? text)? validator;
+  final String? Function(String? text)? validator;
+  final String? Function(String? text)? onFieldSubmitted;
 
-  const PasswordTextFormField(
-      {required this.controller, this.autovalidateMode, this.validator});
+  const PasswordTextFormField({
+    required this.controller,
+    this.autovalidateMode,
+    this.validator,
+    this.onFieldSubmitted,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +33,11 @@ class PasswordTextFormField extends HookWidget {
                 : const Icon(Icons.visibility, size: 18),
           ),
         ),
-        // provider.suffixObscurePasswordIconButton
-        // TODO 登録ページで使い回す予定
-        // autovalidateMode: AutovalidateMode.onUserInteraction,
-        // validator: provider.passwordValidator(),
       ),
       controller: controller,
-      // TODO 登録ページで使い回す予定
       autovalidateMode: autovalidateMode,
       validator: validator,
+      onFieldSubmitted: onFieldSubmitted,
     );
   }
 }
