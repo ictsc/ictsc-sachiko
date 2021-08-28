@@ -14,6 +14,8 @@ class ScoreboardPageStateNotifier extends StateNotifier<ScoreboardPageState>
     with LocatorMixin {
   ScoreboardPageStateNotifier(ScoreboardPageState state, this.ref)
       : super(state) {
+
+    // 管理者ユーザーは全件表示
     if (ref.read(authStateProvider).user?.userGroup?.isFullAccess ?? false) {
       fetchAllRanking();
     } else {
@@ -53,6 +55,8 @@ class ScoreboardPageStateNotifier extends StateNotifier<ScoreboardPageState>
   Function(Object? object) onTapToggleFetchMode() => (Object? object) {
         if (object is bool) {
           if (object) {
+            // 管理者ユーザーは全件表示
+            // TODO フロントで切り替えボタンを表示しないようにする。
             if (ref.read(authStateProvider).user?.userGroup?.isFullAccess ?? false) {
               fetchAllRanking();
             } else {
