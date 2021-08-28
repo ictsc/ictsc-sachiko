@@ -1,4 +1,3 @@
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -52,7 +51,7 @@ class ManageProblemListPage extends HookWidget {
               style: Theme.of(context).textTheme.caption,
             ),
             TextSpan(
-              text: '${problem.unchecked ?? ''}',
+              text: '${problem.uncheckedOverdue ?? ''}',
               style: Theme.of(context).textTheme.caption?.copyWith(
                     color: Theme.of(context).errorColor,
                   ),
