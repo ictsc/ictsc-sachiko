@@ -9,7 +9,7 @@ import 'package:state_notifier/state_notifier.dart';
 
 final problemListProvider = StateNotifierProvider.autoDispose<
     ProblemListPageStateNotifier, ProblemListPageState>(
-  (ref) => ProblemListPageStateNotifier(const ProblemListPageState(), ref),
+(ref) => ProblemListPageStateNotifier(const ProblemListPageState(), ref),
 );
 
 class ProblemListPageStateNotifier extends StateNotifier<ProblemListPageState>
@@ -18,17 +18,17 @@ class ProblemListPageStateNotifier extends StateNotifier<ProblemListPageState>
       : super(state) {
     fetchProblems();
 
-    timer = Timer.periodic(
-      const Duration(seconds: 30),
-      (timer) {
-        if (state.isAutoLoad) {
-          fetchProblems();
-        }
-      },
-    );
+    // timer = Timer.periodic(
+    //   const Duration(seconds: 30),
+    //   (timer) {
+    //     if (state.isAutoLoad) {
+    //       fetchProblems();
+    //     }
+    //   },
+    // );
   }
 
-  late Timer? timer;
+  // late Timer? timer;
   final ProviderReference ref;
 
   Future<void> onSelectProblem(String? problemId) async {
@@ -60,20 +60,20 @@ class ProblemListPageStateNotifier extends StateNotifier<ProblemListPageState>
 
   void onTapToggleAutoModeCheckBox(bool? isChecked) {
     if (isChecked != null) {
-      state = state.copyWith(isAutoLoad: isChecked);
+      // state = state.copyWith(isAutoLoad: isChecked);
 
-      if (isChecked) {
-        timer = Timer.periodic(
-          const Duration(seconds: 30),
-          (timer) {
-            if (state.isAutoLoad) {
-              fetchProblems();
-            }
-          },
-        );
-      } else {
-        timer?.cancel();
-      }
+    //   if (isChecked) {
+    //     timer = Timer.periodic(
+    //       const Duration(seconds: 30),
+    //       (timer) {
+    //         if (state.isAutoLoad) {
+    //           fetchProblems();
+    //         }
+    //       },
+    //     );
+    //   } else {
+    //     timer?.cancel();
+    //   }
     }
   }
 

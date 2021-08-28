@@ -379,7 +379,7 @@ class Pre extends HookWidget {
                   style: Theme.of(context)
                       .textTheme
                       .caption
-                      ?.copyWith(color: Colors.white),
+                      ?.copyWith(fontFamily: 'Roboto mono', color: Colors.white),
                 ),
               ),
             ),

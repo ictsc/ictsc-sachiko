@@ -151,25 +151,28 @@ class ManageProblemListPage extends HookWidget {
               ),
               Row(
                 children: [
-                  Padding(
-                    // TODO 複数書いてるのをなんとかしたい
-                    padding: const EdgeInsets.only(top: 4.0),
-                    child: Row(
-                      children: [
-                        Checkbox(
-                          value: state.isAutoLoad,
-                          onChanged: notifier.onTapToggleAutoModeCheckBox,
-                        ),
-                        Text(
-                          'AutoLoad',
-                          style: Theme.of(context).textTheme.caption?.copyWith(
-                                color: Theme.of(context).primaryColor,
-                              ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Gap(16),
+                  // Padding(
+                  //   // TODO 複数書いてるのをなんとかしたい
+                  //   padding: const EdgeInsets.only(top: 4.0),
+                  //   child: Row(
+                  //     children: [
+                  //       Checkbox(
+                  //         activeColor: Theme.of(context).primaryColor,
+                  //         value: state.isAutoLoad,
+                  //         onChanged: notifier.onTapToggleAutoModeCheckBox,
+                  //
+                  //
+                  //       ),
+                  //       Text(
+                  //         'AutoLoad',
+                  //         style: Theme.of(context).textTheme.caption?.copyWith(
+                  //               color: Theme.of(context).primaryColor,
+                  //             ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+                  // const Gap(16),
                   Padding(
                     padding: const EdgeInsets.only(top: 2.0),
                     child: IconButton(

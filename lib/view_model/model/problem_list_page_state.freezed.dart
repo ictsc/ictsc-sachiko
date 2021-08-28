@@ -23,13 +23,11 @@ class _$ProblemListPageStateTearOff {
   _ProblemListPageState call(
       {bool isLoading = false,
       List<Problem> problems = const [],
-      Problem? problem,
-      bool isAutoLoad = true}) {
+      Problem? problem}) {
     return _ProblemListPageState(
       isLoading: isLoading,
       problems: problems,
       problem: problem,
-      isAutoLoad: isAutoLoad,
     );
   }
 
@@ -46,7 +44,6 @@ mixin _$ProblemListPageState {
   bool get isLoading => throw _privateConstructorUsedError;
   List<Problem> get problems => throw _privateConstructorUsedError;
   Problem? get problem => throw _privateConstructorUsedError;
-  bool get isAutoLoad => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -59,11 +56,7 @@ abstract class $ProblemListPageStateCopyWith<$Res> {
   factory $ProblemListPageStateCopyWith(ProblemListPageState value,
           $Res Function(ProblemListPageState) then) =
       _$ProblemListPageStateCopyWithImpl<$Res>;
-  $Res call(
-      {bool isLoading,
-      List<Problem> problems,
-      Problem? problem,
-      bool isAutoLoad});
+  $Res call({bool isLoading, List<Problem> problems, Problem? problem});
 
   $ProblemCopyWith<$Res>? get problem;
 }
@@ -82,7 +75,6 @@ class _$ProblemListPageStateCopyWithImpl<$Res>
     Object? isLoading = freezed,
     Object? problems = freezed,
     Object? problem = freezed,
-    Object? isAutoLoad = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: isLoading == freezed
@@ -97,10 +89,6 @@ class _$ProblemListPageStateCopyWithImpl<$Res>
           ? _value.problem
           : problem // ignore: cast_nullable_to_non_nullable
               as Problem?,
-      isAutoLoad: isAutoLoad == freezed
-          ? _value.isAutoLoad
-          : isAutoLoad // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 
@@ -123,11 +111,7 @@ abstract class _$ProblemListPageStateCopyWith<$Res>
           $Res Function(_ProblemListPageState) then) =
       __$ProblemListPageStateCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {bool isLoading,
-      List<Problem> problems,
-      Problem? problem,
-      bool isAutoLoad});
+  $Res call({bool isLoading, List<Problem> problems, Problem? problem});
 
   @override
   $ProblemCopyWith<$Res>? get problem;
@@ -149,7 +133,6 @@ class __$ProblemListPageStateCopyWithImpl<$Res>
     Object? isLoading = freezed,
     Object? problems = freezed,
     Object? problem = freezed,
-    Object? isAutoLoad = freezed,
   }) {
     return _then(_ProblemListPageState(
       isLoading: isLoading == freezed
@@ -164,10 +147,6 @@ class __$ProblemListPageStateCopyWithImpl<$Res>
           ? _value.problem
           : problem // ignore: cast_nullable_to_non_nullable
               as Problem?,
-      isAutoLoad: isAutoLoad == freezed
-          ? _value.isAutoLoad
-          : isAutoLoad // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -178,10 +157,7 @@ class _$_ProblemListPageState
     with DiagnosticableTreeMixin
     implements _ProblemListPageState {
   const _$_ProblemListPageState(
-      {this.isLoading = false,
-      this.problems = const [],
-      this.problem,
-      this.isAutoLoad = true});
+      {this.isLoading = false, this.problems = const [], this.problem});
 
   factory _$_ProblemListPageState.fromJson(Map<String, dynamic> json) =>
       _$_$_ProblemListPageStateFromJson(json);
@@ -194,13 +170,10 @@ class _$_ProblemListPageState
   final List<Problem> problems;
   @override
   final Problem? problem;
-  @JsonKey(defaultValue: true)
-  @override
-  final bool isAutoLoad;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ProblemListPageState(isLoading: $isLoading, problems: $problems, problem: $problem, isAutoLoad: $isAutoLoad)';
+    return 'ProblemListPageState(isLoading: $isLoading, problems: $problems, problem: $problem)';
   }
 
   @override
@@ -210,8 +183,7 @@ class _$_ProblemListPageState
       ..add(DiagnosticsProperty('type', 'ProblemListPageState'))
       ..add(DiagnosticsProperty('isLoading', isLoading))
       ..add(DiagnosticsProperty('problems', problems))
-      ..add(DiagnosticsProperty('problem', problem))
-      ..add(DiagnosticsProperty('isAutoLoad', isAutoLoad));
+      ..add(DiagnosticsProperty('problem', problem));
   }
 
   @override
@@ -225,11 +197,7 @@ class _$_ProblemListPageState
                 const DeepCollectionEquality()
                     .equals(other.problems, problems)) &&
             (identical(other.problem, problem) ||
-                const DeepCollectionEquality()
-                    .equals(other.problem, problem)) &&
-            (identical(other.isAutoLoad, isAutoLoad) ||
-                const DeepCollectionEquality()
-                    .equals(other.isAutoLoad, isAutoLoad)));
+                const DeepCollectionEquality().equals(other.problem, problem)));
   }
 
   @override
@@ -237,8 +205,7 @@ class _$_ProblemListPageState
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(isLoading) ^
       const DeepCollectionEquality().hash(problems) ^
-      const DeepCollectionEquality().hash(problem) ^
-      const DeepCollectionEquality().hash(isAutoLoad);
+      const DeepCollectionEquality().hash(problem);
 
   @JsonKey(ignore: true)
   @override
@@ -256,8 +223,7 @@ abstract class _ProblemListPageState implements ProblemListPageState {
   const factory _ProblemListPageState(
       {bool isLoading,
       List<Problem> problems,
-      Problem? problem,
-      bool isAutoLoad}) = _$_ProblemListPageState;
+      Problem? problem}) = _$_ProblemListPageState;
 
   factory _ProblemListPageState.fromJson(Map<String, dynamic> json) =
       _$_ProblemListPageState.fromJson;
@@ -268,8 +234,6 @@ abstract class _ProblemListPageState implements ProblemListPageState {
   List<Problem> get problems => throw _privateConstructorUsedError;
   @override
   Problem? get problem => throw _privateConstructorUsedError;
-  @override
-  bool get isAutoLoad => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ProblemListPageStateCopyWith<_ProblemListPageState> get copyWith =>

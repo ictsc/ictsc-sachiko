@@ -14,7 +14,6 @@ class ScoreboardPageStateNotifier extends StateNotifier<ScoreboardPageState>
   ScoreboardPageStateNotifier(ScoreboardPageState state, this.ref)
       : super(state) {
     fetchTopRanking();
-    fetchNearMeRanking();
   }
 
   final ProviderReference ref;
