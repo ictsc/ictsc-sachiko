@@ -1,5 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/service/ranking_api.dart';
+import 'package:ictsc_sachiko/view_model/common/auth_state_notifier.dart';
 import 'package:state_notifier/state_notifier.dart';
 
 import 'model/scoreboard_page_state.dart';
@@ -13,10 +14,23 @@ class ScoreboardPageStateNotifier extends StateNotifier<ScoreboardPageState>
     with LocatorMixin {
   ScoreboardPageStateNotifier(ScoreboardPageState state, this.ref)
       : super(state) {
-    fetchTopRanking();
+    if (ref.read(authStateProvider).user?.userGroup?.isFullAccess ?? false) {
+      fetchAllRanking();
+    } else {
+      fetchTopRanking();
+    }
   }
 
   final ProviderReference ref;
+
+  void fetchAllRanking() {
+    ref.read(rankingProvider).getAllRanking().then((value) => value.when(
+          success: (response) {
+            state = state.copyWith(ranking: response.data.ranking);
+          },
+          failure: (_) {},
+        ));
+  }
 
   void fetchTopRanking() {
     ref.read(rankingProvider).getTopRanking().then((value) => value.when(
@@ -39,7 +53,11 @@ class ScoreboardPageStateNotifier extends StateNotifier<ScoreboardPageState>
   Function(Object? object) onTapToggleFetchMode() => (Object? object) {
         if (object is bool) {
           if (object) {
-            fetchTopRanking();
+            if (ref.read(authStateProvider).user?.userGroup?.isFullAccess ?? false) {
+              fetchAllRanking();
+            } else {
+              fetchTopRanking();
+            }
           } else {
             fetchNearMeRanking();
           }
