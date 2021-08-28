@@ -11,6 +11,7 @@ class ProblemListPageState with _$ProblemListPageState {
     @Default(false) bool isLoading,
     @Default([]) List<Problem> problems,
     Problem? problem,
+    // @Default(true) bool isAutoLoad,
   }) = _ProblemListPageState;
 
  factory ProblemListPageState.fromJson(Map<String, dynamic> json) => _$ProblemListPageStateFromJson(json);

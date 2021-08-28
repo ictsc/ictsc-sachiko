@@ -120,7 +120,7 @@ class ProblemPageStateNotifier extends StateNotifier<ProblemPageState>
                         ?.copyWith(color: Colors.white),
                   ),
                   duration: const Duration(seconds: 3),
-                  backgroundColor: Theme.of(context).primaryColor,
+                  backgroundColor: Colors.green,
                 );
               },
               failure: (_) {},

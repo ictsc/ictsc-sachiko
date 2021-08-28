@@ -1,3 +1,4 @@
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -34,9 +35,8 @@ class ManageProblemListPage extends HookWidget {
           )),
           DataCell(Text.rich(TextSpan(text: '', children: [
             TextSpan(
-              text: '${problem.unchecked ?? ''}',
-              style: Theme.of(context).textTheme.caption
-            ),
+                text: '${problem.unchecked ?? ''}',
+                style: Theme.of(context).textTheme.caption),
             TextSpan(
               text: ' / ',
               style: Theme.of(context).textTheme.caption,
@@ -125,34 +125,64 @@ class ManageProblemListPage extends HookWidget {
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   const Gap(48),
-                  TextButton(
-                      onPressed: () {
-                        AutoRouter.of(context).pushNamed(
-                          '/manage/problems/new/edit',
-                        );
-                      },
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.add_box,
-                            size:
-                                Theme.of(context).textTheme.subtitle1!.fontSize,
-                          ),
-                          const Gap(2),
-                          const Text('問題の作成'),
-                        ],
-                      ))
+                  Padding(
+                    padding: const EdgeInsets.only(top: 2.0),
+                    child: TextButton(
+                        onPressed: () {
+                          AutoRouter.of(context).pushNamed(
+                            '/manage/problems/new/edit',
+                          );
+                        },
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.add_box,
+                              size: Theme.of(context)
+                                  .textTheme
+                                  .subtitle1!
+                                  .fontSize,
+                            ),
+                            const Gap(2),
+                            const Text('問題の作成'),
+                          ],
+                        )),
+                  )
                 ],
               ),
               Row(
                 children: [
-                  IconButton(
-                    onPressed: () {
-                      notifier.fetchProblems();
-                    },
-                    icon: Icon(
-                      Icons.refresh,
-                      color: Theme.of(context).primaryColor,
+                  // Padding(
+                  //   // TODO 複数書いてるのをなんとかしたい
+                  //   padding: const EdgeInsets.only(top: 4.0),
+                  //   child: Row(
+                  //     children: [
+                  //       Checkbox(
+                  //         activeColor: Theme.of(context).primaryColor,
+                  //         value: state.isAutoLoad,
+                  //         onChanged: notifier.onTapToggleAutoModeCheckBox,
+                  //
+                  //
+                  //       ),
+                  //       Text(
+                  //         'AutoLoad',
+                  //         style: Theme.of(context).textTheme.caption?.copyWith(
+                  //               color: Theme.of(context).primaryColor,
+                  //             ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+                  // const Gap(16),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 2.0),
+                    child: IconButton(
+                      onPressed: () {
+                        notifier.fetchProblems();
+                      },
+                      icon: Icon(
+                        Icons.refresh,
+                        color: Theme.of(context).primaryColor,
+                      ),
                     ),
                   ),
                   const Gap(24)
@@ -366,7 +396,6 @@ class CancelDialog extends HookWidget {
 }
 
 const _fullLengthCode = 65248;
-
 
 extension JapaneseString on String {
   String alphanumericToFullLength() {
