@@ -15,6 +15,19 @@ class RankingAPI {
     client = reader(clientProvider);
   }
 
+  Future<Result<GetRankingResponse>> getAllRanking() async {
+    try {
+      return await client
+          .get(
+        '/api/ranking',
+      )
+          .then((result) =>
+          Result.success(GetRankingResponse.fromJson({...result.data})));
+    } on DioError catch (error) {
+      return Result.failure(Error.getApiError(error));
+    }
+  }
+
   Future<Result<GetRankingResponse>> getTopRanking() async {
     try {
       return await client
