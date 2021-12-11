@@ -6,42 +6,45 @@ part of 'problem.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Problem _$_$_ProblemFromJson(Map<String, dynamic> json) {
-  return $checkedNew(r'_$_Problem', json, () {
-    final val = _$_Problem(
-      id: $checkedConvert(json, 'id', (v) => v as String?) ?? '',
-      code: $checkedConvert(json, 'code', (v) => v as String),
-      authorId: $checkedConvert(json, 'author_id', (v) => v as String),
-      title: $checkedConvert(json, 'title', (v) => v as String?) ?? '',
-      body: $checkedConvert(json, 'body', (v) => v as String?) ?? '',
-      point: $checkedConvert(json, 'point', (v) => v as int?) ?? 0,
-      solvedCriterion:
-          $checkedConvert(json, 'solved_criterion', (v) => v as int?) ?? 0,
-      previousProblemId:
-          $checkedConvert(json, 'previous_problem_id', (v) => v as String?),
-      updatedAt: $checkedConvert(
-          json, 'updated_at', (v) => DateTime.parse(v as String)),
-      createdAt: $checkedConvert(
-          json, 'created_at', (v) => DateTime.parse(v as String)),
-      unchecked: $checkedConvert(json, 'unchecked', (v) => v as int?),
-      uncheckedNearOverdue:
-          $checkedConvert(json, 'unchecked_near_overdue', (v) => v as int?),
-      uncheckedOverdue:
-          $checkedConvert(json, 'unchecked_overdue', (v) => v as int?),
+_$_Problem _$$_ProblemFromJson(Map<String, dynamic> json) => $checkedCreate(
+      r'_$_Problem',
+      json,
+      ($checkedConvert) {
+        final val = _$_Problem(
+          id: $checkedConvert('id', (v) => v as String? ?? ''),
+          code: $checkedConvert('code', (v) => v as String),
+          authorId: $checkedConvert('author_id', (v) => v as String),
+          title: $checkedConvert('title', (v) => v as String? ?? ''),
+          body: $checkedConvert('body', (v) => v as String? ?? ''),
+          point: $checkedConvert('point', (v) => v as int? ?? 0),
+          solvedCriterion:
+              $checkedConvert('solved_criterion', (v) => v as int? ?? 0),
+          previousProblemId:
+              $checkedConvert('previous_problem_id', (v) => v as String?),
+          updatedAt:
+              $checkedConvert('updated_at', (v) => DateTime.parse(v as String)),
+          createdAt:
+              $checkedConvert('created_at', (v) => DateTime.parse(v as String)),
+          unchecked: $checkedConvert('unchecked', (v) => v as int?),
+          uncheckedNearOverdue:
+              $checkedConvert('unchecked_near_overdue', (v) => v as int?),
+          uncheckedOverdue:
+              $checkedConvert('unchecked_overdue', (v) => v as int?),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'authorId': 'author_id',
+        'solvedCriterion': 'solved_criterion',
+        'previousProblemId': 'previous_problem_id',
+        'updatedAt': 'updated_at',
+        'createdAt': 'created_at',
+        'uncheckedNearOverdue': 'unchecked_near_overdue',
+        'uncheckedOverdue': 'unchecked_overdue'
+      },
     );
-    return val;
-  }, fieldKeyMap: const {
-    'authorId': 'author_id',
-    'solvedCriterion': 'solved_criterion',
-    'previousProblemId': 'previous_problem_id',
-    'updatedAt': 'updated_at',
-    'createdAt': 'created_at',
-    'uncheckedNearOverdue': 'unchecked_near_overdue',
-    'uncheckedOverdue': 'unchecked_overdue'
-  });
-}
 
-Map<String, dynamic> _$_$_ProblemToJson(_$_Problem instance) =>
+Map<String, dynamic> _$$_ProblemToJson(_$_Problem instance) =>
     <String, dynamic>{
       'id': instance.id,
       'code': instance.code,

@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'answer.dart';
 
@@ -239,7 +240,7 @@ class _$_Answer with DiagnosticableTreeMixin implements _Answer {
       required this.createdAt});
 
   factory _$_Answer.fromJson(Map<String, dynamic> json) =>
-      _$_$_AnswerFromJson(json);
+      _$$_AnswerFromJson(json);
 
   @override
   final String id;
@@ -324,7 +325,7 @@ class _$_Answer with DiagnosticableTreeMixin implements _Answer {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_AnswerToJson(this);
+    return _$$_AnswerToJson(this);
   }
 }
 

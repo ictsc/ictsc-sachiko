@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'problem_api.dart';
 
@@ -232,7 +233,7 @@ class _$_CreateProblemRequest
       this.previousProblemId});
 
   factory _$_CreateProblemRequest.fromJson(Map<String, dynamic> json) =>
-      _$_$_CreateProblemRequestFromJson(json);
+      _$$_CreateProblemRequestFromJson(json);
 
   @JsonKey(defaultValue: '')
   @override
@@ -321,7 +322,7 @@ class _$_CreateProblemRequest
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_CreateProblemRequestToJson(this);
+    return _$$_CreateProblemRequestToJson(this);
   }
 }
 
@@ -491,7 +492,7 @@ class _$_CreateProblemResponse
   const _$_CreateProblemResponse({required this.code, required this.data});
 
   factory _$_CreateProblemResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_CreateProblemResponseFromJson(json);
+      _$$_CreateProblemResponseFromJson(json);
 
   @override
   final int code;
@@ -536,7 +537,7 @@ class _$_CreateProblemResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_CreateProblemResponseToJson(this);
+    return _$$_CreateProblemResponseToJson(this);
   }
 }
 
@@ -676,7 +677,7 @@ class _$_CreateProblemResponseData
   const _$_CreateProblemResponseData({required this.problem});
 
   factory _$_CreateProblemResponseData.fromJson(Map<String, dynamic> json) =>
-      _$_$_CreateProblemResponseDataFromJson(json);
+      _$$_CreateProblemResponseDataFromJson(json);
 
   @override
   final Problem problem;
@@ -715,7 +716,7 @@ class _$_CreateProblemResponseData
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_CreateProblemResponseDataToJson(this);
+    return _$$_CreateProblemResponseDataToJson(this);
   }
 }
 
@@ -838,7 +839,7 @@ class _$_DeleteProblemRequest
   const _$_DeleteProblemRequest({required this.id});
 
   factory _$_DeleteProblemRequest.fromJson(Map<String, dynamic> json) =>
-      _$_$_DeleteProblemRequestFromJson(json);
+      _$$_DeleteProblemRequestFromJson(json);
 
   @override
   final String id;
@@ -876,7 +877,7 @@ class _$_DeleteProblemRequest
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_DeleteProblemRequestToJson(this);
+    return _$$_DeleteProblemRequestToJson(this);
   }
 }
 
@@ -1000,7 +1001,7 @@ class _$_DeleteProblemResponse
   const _$_DeleteProblemResponse({required this.code});
 
   factory _$_DeleteProblemResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_DeleteProblemResponseFromJson(json);
+      _$$_DeleteProblemResponseFromJson(json);
 
   @override
   final int code;
@@ -1038,7 +1039,7 @@ class _$_DeleteProblemResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_DeleteProblemResponseToJson(this);
+    return _$$_DeleteProblemResponseToJson(this);
   }
 }
 
@@ -1187,7 +1188,7 @@ class _$_FindAllProblemResponse
   const _$_FindAllProblemResponse({required this.code, required this.data});
 
   factory _$_FindAllProblemResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_FindAllProblemResponseFromJson(json);
+      _$$_FindAllProblemResponseFromJson(json);
 
   @override
   final int code;
@@ -1232,7 +1233,7 @@ class _$_FindAllProblemResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_FindAllProblemResponseToJson(this);
+    return _$$_FindAllProblemResponseToJson(this);
   }
 }
 
@@ -1361,7 +1362,7 @@ class _$_FindAllProblemResponseData
   const _$_FindAllProblemResponseData({required this.problems});
 
   factory _$_FindAllProblemResponseData.fromJson(Map<String, dynamic> json) =>
-      _$_$_FindAllProblemResponseDataFromJson(json);
+      _$$_FindAllProblemResponseDataFromJson(json);
 
   @override
   final List<Problem> problems;
@@ -1400,7 +1401,7 @@ class _$_FindAllProblemResponseData
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_FindAllProblemResponseDataToJson(this);
+    return _$$_FindAllProblemResponseDataToJson(this);
   }
 }
 
@@ -1524,7 +1525,7 @@ class _$_FindProblemRequest
   const _$_FindProblemRequest({required this.id});
 
   factory _$_FindProblemRequest.fromJson(Map<String, dynamic> json) =>
-      _$_$_FindProblemRequestFromJson(json);
+      _$$_FindProblemRequestFromJson(json);
 
   @override
   final String id;
@@ -1561,7 +1562,7 @@ class _$_FindProblemRequest
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_FindProblemRequestToJson(this);
+    return _$$_FindProblemRequestToJson(this);
   }
 }
 
@@ -1709,7 +1710,7 @@ class _$_FindProblemResponse
   const _$_FindProblemResponse({required this.code, required this.data});
 
   factory _$_FindProblemResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_FindProblemResponseFromJson(json);
+      _$$_FindProblemResponseFromJson(json);
 
   @override
   final int code;
@@ -1754,7 +1755,7 @@ class _$_FindProblemResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_FindProblemResponseToJson(this);
+    return _$$_FindProblemResponseToJson(this);
   }
 }
 
@@ -1894,7 +1895,7 @@ class _$_FindProblemResponseData
   const _$_FindProblemResponseData({required this.problem});
 
   factory _$_FindProblemResponseData.fromJson(Map<String, dynamic> json) =>
-      _$_$_FindProblemResponseDataFromJson(json);
+      _$$_FindProblemResponseDataFromJson(json);
 
   @override
   final Problem problem;
@@ -1932,7 +1933,7 @@ class _$_FindProblemResponseData
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_FindProblemResponseDataToJson(this);
+    return _$$_FindProblemResponseDataToJson(this);
   }
 }
 
@@ -2155,7 +2156,7 @@ class _$_UpdateProblemRequest
       this.previousProblemId});
 
   factory _$_UpdateProblemRequest.fromJson(Map<String, dynamic> json) =>
-      _$_$_UpdateProblemRequestFromJson(json);
+      _$$_UpdateProblemRequestFromJson(json);
 
   @override
   final String id;
@@ -2237,7 +2238,7 @@ class _$_UpdateProblemRequest
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_UpdateProblemRequestToJson(this);
+    return _$$_UpdateProblemRequestToJson(this);
   }
 }
 
@@ -2404,7 +2405,7 @@ class _$_UpdateProblemResponse
   const _$_UpdateProblemResponse({required this.code, required this.data});
 
   factory _$_UpdateProblemResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_UpdateProblemResponseFromJson(json);
+      _$$_UpdateProblemResponseFromJson(json);
 
   @override
   final int code;
@@ -2449,7 +2450,7 @@ class _$_UpdateProblemResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_UpdateProblemResponseToJson(this);
+    return _$$_UpdateProblemResponseToJson(this);
   }
 }
 
@@ -2589,7 +2590,7 @@ class _$_UpdateProblemResponseData
   const _$_UpdateProblemResponseData({required this.problem});
 
   factory _$_UpdateProblemResponseData.fromJson(Map<String, dynamic> json) =>
-      _$_$_UpdateProblemResponseDataFromJson(json);
+      _$$_UpdateProblemResponseDataFromJson(json);
 
   @override
   final Problem problem;
@@ -2628,7 +2629,7 @@ class _$_UpdateProblemResponseData
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_UpdateProblemResponseDataToJson(this);
+    return _$$_UpdateProblemResponseDataToJson(this);
   }
 }
 
@@ -2776,7 +2777,7 @@ class _$_FileUploadResponse
   const _$_FileUploadResponse({required this.id, required this.data});
 
   factory _$_FileUploadResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_FileUploadResponseFromJson(json);
+      _$$_FileUploadResponseFromJson(json);
 
   @override
   final int id;
@@ -2820,7 +2821,7 @@ class _$_FileUploadResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_FileUploadResponseToJson(this);
+    return _$$_FileUploadResponseToJson(this);
   }
 }
 
@@ -3000,7 +3001,7 @@ class _$_FileUploadResponseData
       @JsonKey(name: 'UserID') required this.userId});
 
   factory _$_FileUploadResponseData.fromJson(Map<String, dynamic> json) =>
-      _$_$_FileUploadResponseDataFromJson(json);
+      _$$_FileUploadResponseDataFromJson(json);
 
   @override
   final String id;
@@ -3060,7 +3061,7 @@ class _$_FileUploadResponseData
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_FileUploadResponseDataToJson(this);
+    return _$$_FileUploadResponseDataToJson(this);
   }
 }
 

@@ -6,22 +6,26 @@ part of 'answer_api.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CreateAnswerRequest _$_$_CreateAnswerRequestFromJson(
-    Map<String, dynamic> json) {
-  return $checkedNew(r'_$_CreateAnswerRequest', json, () {
-    final val = _$_CreateAnswerRequest(
-      userGroupId: $checkedConvert(json, 'user_group_id', (v) => v as String),
-      problemId: $checkedConvert(json, 'problem_id', (v) => v as String),
-      body: $checkedConvert(json, 'body', (v) => v as String),
+_$_CreateAnswerRequest _$$_CreateAnswerRequestFromJson(
+        Map<String, dynamic> json) =>
+    $checkedCreate(
+      r'_$_CreateAnswerRequest',
+      json,
+      ($checkedConvert) {
+        final val = _$_CreateAnswerRequest(
+          userGroupId: $checkedConvert('user_group_id', (v) => v as String),
+          problemId: $checkedConvert('problem_id', (v) => v as String),
+          body: $checkedConvert('body', (v) => v as String),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'userGroupId': 'user_group_id',
+        'problemId': 'problem_id'
+      },
     );
-    return val;
-  }, fieldKeyMap: const {
-    'userGroupId': 'user_group_id',
-    'problemId': 'problem_id'
-  });
-}
 
-Map<String, dynamic> _$_$_CreateAnswerRequestToJson(
+Map<String, dynamic> _$$_CreateAnswerRequestToJson(
         _$_CreateAnswerRequest instance) =>
     <String, dynamic>{
       'user_group_id': instance.userGroupId,
@@ -29,112 +33,135 @@ Map<String, dynamic> _$_$_CreateAnswerRequestToJson(
       'body': instance.body,
     };
 
-_$_CreateAnswerResponse _$_$_CreateAnswerResponseFromJson(
-    Map<String, dynamic> json) {
-  return $checkedNew(r'_$_CreateAnswerResponse', json, () {
-    final val = _$_CreateAnswerResponse(
-      code: $checkedConvert(json, 'code', (v) => v as int),
-      data: $checkedConvert(json, 'data',
-          (v) => CreateAnswerResponseData.fromJson(v as Map<String, dynamic>)),
+_$_CreateAnswerResponse _$$_CreateAnswerResponseFromJson(
+        Map<String, dynamic> json) =>
+    $checkedCreate(
+      r'_$_CreateAnswerResponse',
+      json,
+      ($checkedConvert) {
+        final val = _$_CreateAnswerResponse(
+          code: $checkedConvert('code', (v) => v as int),
+          data: $checkedConvert(
+              'data',
+              (v) =>
+                  CreateAnswerResponseData.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
     );
-    return val;
-  });
-}
 
-Map<String, dynamic> _$_$_CreateAnswerResponseToJson(
+Map<String, dynamic> _$$_CreateAnswerResponseToJson(
         _$_CreateAnswerResponse instance) =>
     <String, dynamic>{
       'code': instance.code,
       'data': instance.data,
     };
 
-_$_CreateAnswerResponseData _$_$_CreateAnswerResponseDataFromJson(
-    Map<String, dynamic> json) {
-  return $checkedNew(r'_$_CreateAnswerResponseData', json, () {
-    final val = _$_CreateAnswerResponseData(
-      answer: $checkedConvert(
-          json, 'answer', (v) => Answer.fromJson(v as Map<String, dynamic>)),
+_$_CreateAnswerResponseData _$$_CreateAnswerResponseDataFromJson(
+        Map<String, dynamic> json) =>
+    $checkedCreate(
+      r'_$_CreateAnswerResponseData',
+      json,
+      ($checkedConvert) {
+        final val = _$_CreateAnswerResponseData(
+          answer: $checkedConvert(
+              'answer', (v) => Answer.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
     );
-    return val;
-  });
-}
 
-Map<String, dynamic> _$_$_CreateAnswerResponseDataToJson(
+Map<String, dynamic> _$$_CreateAnswerResponseDataToJson(
         _$_CreateAnswerResponseData instance) =>
     <String, dynamic>{
       'answer': instance.answer,
     };
 
-_$_FindAllAnswerRequest _$_$_FindAllAnswerRequestFromJson(
-    Map<String, dynamic> json) {
-  return $checkedNew(r'_$_FindAllAnswerRequest', json, () {
-    final val = _$_FindAllAnswerRequest(
-      problemId: $checkedConvert(json, 'problem_id', (v) => v as String),
+_$_FindAllAnswerRequest _$$_FindAllAnswerRequestFromJson(
+        Map<String, dynamic> json) =>
+    $checkedCreate(
+      r'_$_FindAllAnswerRequest',
+      json,
+      ($checkedConvert) {
+        final val = _$_FindAllAnswerRequest(
+          problemId: $checkedConvert('problem_id', (v) => v as String),
+        );
+        return val;
+      },
+      fieldKeyMap: const {'problemId': 'problem_id'},
     );
-    return val;
-  }, fieldKeyMap: const {'problemId': 'problem_id'});
-}
 
-Map<String, dynamic> _$_$_FindAllAnswerRequestToJson(
+Map<String, dynamic> _$$_FindAllAnswerRequestToJson(
         _$_FindAllAnswerRequest instance) =>
     <String, dynamic>{
       'problem_id': instance.problemId,
     };
 
-_$_FindAllAnswerResponse _$_$_FindAllAnswerResponseFromJson(
-    Map<String, dynamic> json) {
-  return $checkedNew(r'_$_FindAllAnswerResponse', json, () {
-    final val = _$_FindAllAnswerResponse(
-      code: $checkedConvert(json, 'code', (v) => v as int),
-      data: $checkedConvert(json, 'data',
-          (v) => FindAllAnswerResponseData.fromJson(v as Map<String, dynamic>)),
+_$_FindAllAnswerResponse _$$_FindAllAnswerResponseFromJson(
+        Map<String, dynamic> json) =>
+    $checkedCreate(
+      r'_$_FindAllAnswerResponse',
+      json,
+      ($checkedConvert) {
+        final val = _$_FindAllAnswerResponse(
+          code: $checkedConvert('code', (v) => v as int),
+          data: $checkedConvert(
+              'data',
+              (v) => FindAllAnswerResponseData.fromJson(
+                  v as Map<String, dynamic>)),
+        );
+        return val;
+      },
     );
-    return val;
-  });
-}
 
-Map<String, dynamic> _$_$_FindAllAnswerResponseToJson(
+Map<String, dynamic> _$$_FindAllAnswerResponseToJson(
         _$_FindAllAnswerResponse instance) =>
     <String, dynamic>{
       'code': instance.code,
       'data': instance.data,
     };
 
-_$_FindAllAnswerResponseData _$_$_FindAllAnswerResponseDataFromJson(
-    Map<String, dynamic> json) {
-  return $checkedNew(r'_$_FindAllAnswerResponseData', json, () {
-    final val = _$_FindAllAnswerResponseData(
-      answers: $checkedConvert(
-          json,
-          'answers',
-          (v) => (v as List<dynamic>)
-              .map((e) => Answer.fromJson(e as Map<String, dynamic>))
-              .toList()),
+_$_FindAllAnswerResponseData _$$_FindAllAnswerResponseDataFromJson(
+        Map<String, dynamic> json) =>
+    $checkedCreate(
+      r'_$_FindAllAnswerResponseData',
+      json,
+      ($checkedConvert) {
+        final val = _$_FindAllAnswerResponseData(
+          answers: $checkedConvert(
+              'answers',
+              (v) => (v as List<dynamic>)
+                  .map((e) => Answer.fromJson(e as Map<String, dynamic>))
+                  .toList()),
+        );
+        return val;
+      },
     );
-    return val;
-  });
-}
 
-Map<String, dynamic> _$_$_FindAllAnswerResponseDataToJson(
+Map<String, dynamic> _$$_FindAllAnswerResponseDataToJson(
         _$_FindAllAnswerResponseData instance) =>
     <String, dynamic>{
       'answers': instance.answers,
     };
 
-_$_UpdateAnswerRequest _$_$_UpdateAnswerRequestFromJson(
-    Map<String, dynamic> json) {
-  return $checkedNew(r'_$_UpdateAnswerRequest', json, () {
-    final val = _$_UpdateAnswerRequest(
-      problemId: $checkedConvert(json, 'problem_id', (v) => v as String),
-      answerId: $checkedConvert(json, 'answer_id', (v) => v as String),
-      point: $checkedConvert(json, 'point', (v) => v as int?),
-      body: $checkedConvert(json, 'body', (v) => v as String?),
+_$_UpdateAnswerRequest _$$_UpdateAnswerRequestFromJson(
+        Map<String, dynamic> json) =>
+    $checkedCreate(
+      r'_$_UpdateAnswerRequest',
+      json,
+      ($checkedConvert) {
+        final val = _$_UpdateAnswerRequest(
+          problemId: $checkedConvert('problem_id', (v) => v as String),
+          answerId: $checkedConvert('answer_id', (v) => v as String),
+          point: $checkedConvert('point', (v) => v as int?),
+          body: $checkedConvert('body', (v) => v as String?),
+        );
+        return val;
+      },
+      fieldKeyMap: const {'problemId': 'problem_id', 'answerId': 'answer_id'},
     );
-    return val;
-  }, fieldKeyMap: const {'problemId': 'problem_id', 'answerId': 'answer_id'});
-}
 
-Map<String, dynamic> _$_$_UpdateAnswerRequestToJson(
+Map<String, dynamic> _$$_UpdateAnswerRequestToJson(
         _$_UpdateAnswerRequest instance) =>
     <String, dynamic>{
       'problem_id': instance.problemId,
@@ -143,37 +170,45 @@ Map<String, dynamic> _$_$_UpdateAnswerRequestToJson(
       'body': instance.body,
     };
 
-_$_UpdateAnswerResponse _$_$_UpdateAnswerResponseFromJson(
-    Map<String, dynamic> json) {
-  return $checkedNew(r'_$_UpdateAnswerResponse', json, () {
-    final val = _$_UpdateAnswerResponse(
-      code: $checkedConvert(json, 'code', (v) => v as int),
-      data: $checkedConvert(json, 'data',
-          (v) => UpdateAnswerResponseData.fromJson(v as Map<String, dynamic>)),
+_$_UpdateAnswerResponse _$$_UpdateAnswerResponseFromJson(
+        Map<String, dynamic> json) =>
+    $checkedCreate(
+      r'_$_UpdateAnswerResponse',
+      json,
+      ($checkedConvert) {
+        final val = _$_UpdateAnswerResponse(
+          code: $checkedConvert('code', (v) => v as int),
+          data: $checkedConvert(
+              'data',
+              (v) =>
+                  UpdateAnswerResponseData.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
     );
-    return val;
-  });
-}
 
-Map<String, dynamic> _$_$_UpdateAnswerResponseToJson(
+Map<String, dynamic> _$$_UpdateAnswerResponseToJson(
         _$_UpdateAnswerResponse instance) =>
     <String, dynamic>{
       'code': instance.code,
       'data': instance.data,
     };
 
-_$_UpdateAnswerResponseData _$_$_UpdateAnswerResponseDataFromJson(
-    Map<String, dynamic> json) {
-  return $checkedNew(r'_$_UpdateAnswerResponseData', json, () {
-    final val = _$_UpdateAnswerResponseData(
-      answer: $checkedConvert(
-          json, 'answer', (v) => Answer.fromJson(v as Map<String, dynamic>)),
+_$_UpdateAnswerResponseData _$$_UpdateAnswerResponseDataFromJson(
+        Map<String, dynamic> json) =>
+    $checkedCreate(
+      r'_$_UpdateAnswerResponseData',
+      json,
+      ($checkedConvert) {
+        final val = _$_UpdateAnswerResponseData(
+          answer: $checkedConvert(
+              'answer', (v) => Answer.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
     );
-    return val;
-  });
-}
 
-Map<String, dynamic> _$_$_UpdateAnswerResponseDataToJson(
+Map<String, dynamic> _$$_UpdateAnswerResponseDataToJson(
         _$_UpdateAnswerResponseData instance) =>
     <String, dynamic>{
       'answer': instance.answer,
