@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'answer_api.dart';
 
@@ -144,7 +145,7 @@ class _$_CreateAnswerRequest
       {required this.userGroupId, required this.problemId, required this.body});
 
   factory _$_CreateAnswerRequest.fromJson(Map<String, dynamic> json) =>
-      _$_$_CreateAnswerRequestFromJson(json);
+      _$$_CreateAnswerRequestFromJson(json);
 
   @override
   final String userGroupId;
@@ -197,7 +198,7 @@ class _$_CreateAnswerRequest
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_CreateAnswerRequestToJson(this);
+    return _$$_CreateAnswerRequestToJson(this);
   }
 }
 
@@ -351,7 +352,7 @@ class _$_CreateAnswerResponse
   const _$_CreateAnswerResponse({required this.code, required this.data});
 
   factory _$_CreateAnswerResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_CreateAnswerResponseFromJson(json);
+      _$$_CreateAnswerResponseFromJson(json);
 
   @override
   final int code;
@@ -396,7 +397,7 @@ class _$_CreateAnswerResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_CreateAnswerResponseToJson(this);
+    return _$$_CreateAnswerResponseToJson(this);
   }
 }
 
@@ -536,7 +537,7 @@ class _$_CreateAnswerResponseData
   const _$_CreateAnswerResponseData({required this.answer});
 
   factory _$_CreateAnswerResponseData.fromJson(Map<String, dynamic> json) =>
-      _$_$_CreateAnswerResponseDataFromJson(json);
+      _$$_CreateAnswerResponseDataFromJson(json);
 
   @override
   final Answer answer;
@@ -574,7 +575,7 @@ class _$_CreateAnswerResponseData
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_CreateAnswerResponseDataToJson(this);
+    return _$$_CreateAnswerResponseDataToJson(this);
   }
 }
 
@@ -697,7 +698,7 @@ class _$_FindAllAnswerRequest
   const _$_FindAllAnswerRequest({required this.problemId});
 
   factory _$_FindAllAnswerRequest.fromJson(Map<String, dynamic> json) =>
-      _$_$_FindAllAnswerRequestFromJson(json);
+      _$$_FindAllAnswerRequestFromJson(json);
 
   @override
   final String problemId;
@@ -736,7 +737,7 @@ class _$_FindAllAnswerRequest
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_FindAllAnswerRequestToJson(this);
+    return _$$_FindAllAnswerRequestToJson(this);
   }
 }
 
@@ -885,7 +886,7 @@ class _$_FindAllAnswerResponse
   const _$_FindAllAnswerResponse({required this.code, required this.data});
 
   factory _$_FindAllAnswerResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_FindAllAnswerResponseFromJson(json);
+      _$$_FindAllAnswerResponseFromJson(json);
 
   @override
   final int code;
@@ -930,7 +931,7 @@ class _$_FindAllAnswerResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_FindAllAnswerResponseToJson(this);
+    return _$$_FindAllAnswerResponseToJson(this);
   }
 }
 
@@ -1058,7 +1059,7 @@ class _$_FindAllAnswerResponseData
   const _$_FindAllAnswerResponseData({required this.answers});
 
   factory _$_FindAllAnswerResponseData.fromJson(Map<String, dynamic> json) =>
-      _$_$_FindAllAnswerResponseDataFromJson(json);
+      _$$_FindAllAnswerResponseDataFromJson(json);
 
   @override
   final List<Answer> answers;
@@ -1097,7 +1098,7 @@ class _$_FindAllAnswerResponseData
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_FindAllAnswerResponseDataToJson(this);
+    return _$$_FindAllAnswerResponseDataToJson(this);
   }
 }
 
@@ -1264,7 +1265,7 @@ class _$_UpdateAnswerRequest
       required this.body});
 
   factory _$_UpdateAnswerRequest.fromJson(Map<String, dynamic> json) =>
-      _$_$_UpdateAnswerRequestFromJson(json);
+      _$$_UpdateAnswerRequestFromJson(json);
 
   @override
   final String problemId;
@@ -1323,7 +1324,7 @@ class _$_UpdateAnswerRequest
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_UpdateAnswerRequestToJson(this);
+    return _$$_UpdateAnswerRequestToJson(this);
   }
 }
 
@@ -1480,7 +1481,7 @@ class _$_UpdateAnswerResponse
   const _$_UpdateAnswerResponse({required this.code, required this.data});
 
   factory _$_UpdateAnswerResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_UpdateAnswerResponseFromJson(json);
+      _$$_UpdateAnswerResponseFromJson(json);
 
   @override
   final int code;
@@ -1525,7 +1526,7 @@ class _$_UpdateAnswerResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_UpdateAnswerResponseToJson(this);
+    return _$$_UpdateAnswerResponseToJson(this);
   }
 }
 
@@ -1665,7 +1666,7 @@ class _$_UpdateAnswerResponseData
   const _$_UpdateAnswerResponseData({required this.answer});
 
   factory _$_UpdateAnswerResponseData.fromJson(Map<String, dynamic> json) =>
-      _$_$_UpdateAnswerResponseDataFromJson(json);
+      _$$_UpdateAnswerResponseDataFromJson(json);
 
   @override
   final Answer answer;
@@ -1703,7 +1704,7 @@ class _$_UpdateAnswerResponseData
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_UpdateAnswerResponseDataToJson(this);
+    return _$$_UpdateAnswerResponseDataToJson(this);
   }
 }
 

@@ -6,64 +6,75 @@ part of 'ranking_api.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_GetRankingResponse _$_$_GetRankingResponseFromJson(
-    Map<String, dynamic> json) {
-  return $checkedNew(r'_$_GetRankingResponse', json, () {
-    final val = _$_GetRankingResponse(
-      code: $checkedConvert(json, 'code', (v) => v as int),
-      data: $checkedConvert(json, 'data',
-          (v) => GetRankingResponseData.fromJson(v as Map<String, dynamic>)),
+_$_GetRankingResponse _$$_GetRankingResponseFromJson(
+        Map<String, dynamic> json) =>
+    $checkedCreate(
+      r'_$_GetRankingResponse',
+      json,
+      ($checkedConvert) {
+        final val = _$_GetRankingResponse(
+          code: $checkedConvert('code', (v) => v as int),
+          data: $checkedConvert(
+              'data',
+              (v) =>
+                  GetRankingResponseData.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
     );
-    return val;
-  });
-}
 
-Map<String, dynamic> _$_$_GetRankingResponseToJson(
+Map<String, dynamic> _$$_GetRankingResponseToJson(
         _$_GetRankingResponse instance) =>
     <String, dynamic>{
       'code': instance.code,
       'data': instance.data,
     };
 
-_$_GetRankingResponseData _$_$_GetRankingResponseDataFromJson(
-    Map<String, dynamic> json) {
-  return $checkedNew(r'_$_GetRankingResponseData', json, () {
-    final val = _$_GetRankingResponseData(
-      ranking: $checkedConvert(
-              json,
+_$_GetRankingResponseData _$$_GetRankingResponseDataFromJson(
+        Map<String, dynamic> json) =>
+    $checkedCreate(
+      r'_$_GetRankingResponseData',
+      json,
+      ($checkedConvert) {
+        final val = _$_GetRankingResponseData(
+          ranking: $checkedConvert(
               'ranking',
-              (v) => (v as List<dynamic>?)
-                  ?.map((e) => Group.fromJson(e as Map<String, dynamic>))
-                  .toList()) ??
-          [],
+              (v) =>
+                  (v as List<dynamic>?)
+                      ?.map((e) => Group.fromJson(e as Map<String, dynamic>))
+                      .toList() ??
+                  []),
+        );
+        return val;
+      },
     );
-    return val;
-  });
-}
 
-Map<String, dynamic> _$_$_GetRankingResponseDataToJson(
+Map<String, dynamic> _$$_GetRankingResponseDataToJson(
         _$_GetRankingResponseData instance) =>
     <String, dynamic>{
       'ranking': instance.ranking,
     };
 
-_$_Group _$_$_GroupFromJson(Map<String, dynamic> json) {
-  return $checkedNew(r'_$_Group', json, () {
-    final val = _$_Group(
-      userGroupId: $checkedConvert(json, 'user_group_id', (v) => v as String),
-      userGroup: $checkedConvert(json, 'user_group',
-          (v) => UserGroup.fromJson(v as Map<String, dynamic>)),
-      rank: $checkedConvert(json, 'rank', (v) => v as int),
-      point: $checkedConvert(json, 'point', (v) => v as int),
+_$_Group _$$_GroupFromJson(Map<String, dynamic> json) => $checkedCreate(
+      r'_$_Group',
+      json,
+      ($checkedConvert) {
+        final val = _$_Group(
+          userGroupId: $checkedConvert('user_group_id', (v) => v as String),
+          userGroup: $checkedConvert('user_group',
+              (v) => UserGroup.fromJson(v as Map<String, dynamic>)),
+          rank: $checkedConvert('rank', (v) => v as int),
+          point: $checkedConvert('point', (v) => v as int),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'userGroupId': 'user_group_id',
+        'userGroup': 'user_group'
+      },
     );
-    return val;
-  }, fieldKeyMap: const {
-    'userGroupId': 'user_group_id',
-    'userGroup': 'user_group'
-  });
-}
 
-Map<String, dynamic> _$_$_GroupToJson(_$_Group instance) => <String, dynamic>{
+Map<String, dynamic> _$$_GroupToJson(_$_Group instance) => <String, dynamic>{
       'user_group_id': instance.userGroupId,
       'user_group': instance.userGroup,
       'rank': instance.rank,

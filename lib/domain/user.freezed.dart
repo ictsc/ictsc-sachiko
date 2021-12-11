@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'user.dart';
 
@@ -268,8 +269,7 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       this.userProfile,
       required this.isReadOnly});
 
-  factory _$_User.fromJson(Map<String, dynamic> json) =>
-      _$_$_UserFromJson(json);
+  factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
   @override
   final String id;
@@ -362,7 +362,7 @@ class _$_User with DiagnosticableTreeMixin implements _User {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_UserToJson(this);
+    return _$$_UserToJson(this);
   }
 }
 
@@ -603,7 +603,7 @@ class _$_UserProfile with DiagnosticableTreeMixin implements _UserProfile {
       required this.updatedAt});
 
   factory _$_UserProfile.fromJson(Map<String, dynamic> json) =>
-      _$_$_UserProfileFromJson(json);
+      _$$_UserProfileFromJson(json);
 
   @override
   final String id;
@@ -683,7 +683,7 @@ class _$_UserProfile with DiagnosticableTreeMixin implements _UserProfile {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_UserProfileToJson(this);
+    return _$$_UserProfileToJson(this);
   }
 }
 

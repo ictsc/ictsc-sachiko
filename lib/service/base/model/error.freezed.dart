@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'error.dart';
 
@@ -13,7 +14,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Error _$ErrorFromJson(Map<String, dynamic> json) {
-  switch (json['runtimeType'] as String) {
+  switch (json['runtimeType'] as String?) {
     case 'unauthorisedRequest':
       return _UnauthorisedRequest.fromJson(json);
     case 'requestError':
@@ -22,7 +23,8 @@ Error _$ErrorFromJson(Map<String, dynamic> json) {
       return _UnexpectedError.fromJson(json);
 
     default:
-      throw FallThroughError();
+      throw CheckedFromJsonException(json, 'runtimeType', 'Error',
+          'Invalid union type "${json['runtimeType']}"!');
   }
 }
 
@@ -62,6 +64,13 @@ mixin _$Error {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unauthorisedRequest,
+    TResult Function(ApiError apiError)? requestError,
+    TResult Function()? unexpectedError,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unauthorisedRequest,
     TResult Function(ApiError apiError)? requestError,
@@ -74,6 +83,13 @@ mixin _$Error {
     required TResult Function(_UnauthorisedRequest value) unauthorisedRequest,
     required TResult Function(_RequestError value) requestError,
     required TResult Function(_UnexpectedError value) unexpectedError,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_UnauthorisedRequest value)? unauthorisedRequest,
+    TResult Function(_RequestError value)? requestError,
+    TResult Function(_UnexpectedError value)? unexpectedError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -127,7 +143,7 @@ class _$_UnauthorisedRequest extends _UnauthorisedRequest
   const _$_UnauthorisedRequest() : super._();
 
   factory _$_UnauthorisedRequest.fromJson(Map<String, dynamic> json) =>
-      _$_$_UnauthorisedRequestFromJson(json);
+      _$$_UnauthorisedRequestFromJson(json);
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -160,6 +176,16 @@ class _$_UnauthorisedRequest extends _UnauthorisedRequest
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unauthorisedRequest,
+    TResult Function(ApiError apiError)? requestError,
+    TResult Function()? unexpectedError,
+  }) {
+    return unauthorisedRequest?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unauthorisedRequest,
     TResult Function(ApiError apiError)? requestError,
@@ -184,6 +210,16 @@ class _$_UnauthorisedRequest extends _UnauthorisedRequest
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_UnauthorisedRequest value)? unauthorisedRequest,
+    TResult Function(_RequestError value)? requestError,
+    TResult Function(_UnexpectedError value)? unexpectedError,
+  }) {
+    return unauthorisedRequest?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UnauthorisedRequest value)? unauthorisedRequest,
     TResult Function(_RequestError value)? requestError,
@@ -198,7 +234,7 @@ class _$_UnauthorisedRequest extends _UnauthorisedRequest
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_UnauthorisedRequestToJson(this)
+    return _$$_UnauthorisedRequestToJson(this)
       ..['runtimeType'] = 'unauthorisedRequest';
   }
 }
@@ -257,7 +293,7 @@ class _$_RequestError extends _RequestError with DiagnosticableTreeMixin {
   const _$_RequestError({required this.apiError}) : super._();
 
   factory _$_RequestError.fromJson(Map<String, dynamic> json) =>
-      _$_$_RequestErrorFromJson(json);
+      _$$_RequestErrorFromJson(json);
 
   @override
   final ApiError apiError;
@@ -305,6 +341,16 @@ class _$_RequestError extends _RequestError with DiagnosticableTreeMixin {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unauthorisedRequest,
+    TResult Function(ApiError apiError)? requestError,
+    TResult Function()? unexpectedError,
+  }) {
+    return requestError?.call(apiError);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unauthorisedRequest,
     TResult Function(ApiError apiError)? requestError,
@@ -329,6 +375,16 @@ class _$_RequestError extends _RequestError with DiagnosticableTreeMixin {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_UnauthorisedRequest value)? unauthorisedRequest,
+    TResult Function(_RequestError value)? requestError,
+    TResult Function(_UnexpectedError value)? unexpectedError,
+  }) {
+    return requestError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UnauthorisedRequest value)? unauthorisedRequest,
     TResult Function(_RequestError value)? requestError,
@@ -343,7 +399,7 @@ class _$_RequestError extends _RequestError with DiagnosticableTreeMixin {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_RequestErrorToJson(this)..['runtimeType'] = 'requestError';
+    return _$$_RequestErrorToJson(this)..['runtimeType'] = 'requestError';
   }
 }
 
@@ -384,7 +440,7 @@ class _$_UnexpectedError extends _UnexpectedError with DiagnosticableTreeMixin {
   const _$_UnexpectedError() : super._();
 
   factory _$_UnexpectedError.fromJson(Map<String, dynamic> json) =>
-      _$_$_UnexpectedErrorFromJson(json);
+      _$$_UnexpectedErrorFromJson(json);
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -417,6 +473,16 @@ class _$_UnexpectedError extends _UnexpectedError with DiagnosticableTreeMixin {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unauthorisedRequest,
+    TResult Function(ApiError apiError)? requestError,
+    TResult Function()? unexpectedError,
+  }) {
+    return unexpectedError?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unauthorisedRequest,
     TResult Function(ApiError apiError)? requestError,
@@ -441,6 +507,16 @@ class _$_UnexpectedError extends _UnexpectedError with DiagnosticableTreeMixin {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_UnauthorisedRequest value)? unauthorisedRequest,
+    TResult Function(_RequestError value)? requestError,
+    TResult Function(_UnexpectedError value)? unexpectedError,
+  }) {
+    return unexpectedError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UnauthorisedRequest value)? unauthorisedRequest,
     TResult Function(_RequestError value)? requestError,
@@ -455,8 +531,7 @@ class _$_UnexpectedError extends _UnexpectedError with DiagnosticableTreeMixin {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_UnexpectedErrorToJson(this)
-      ..['runtimeType'] = 'unexpectedError';
+    return _$$_UnexpectedErrorToJson(this)..['runtimeType'] = 'unexpectedError';
   }
 }
 
@@ -565,7 +640,7 @@ class _$_ApiError with DiagnosticableTreeMixin implements _ApiError {
   const _$_ApiError({@JsonKey(name: 'error') required this.message});
 
   factory _$_ApiError.fromJson(Map<String, dynamic> json) =>
-      _$_$_ApiErrorFromJson(json);
+      _$$_ApiErrorFromJson(json);
 
   @override
   @JsonKey(name: 'error')
@@ -603,7 +678,7 @@ class _$_ApiError with DiagnosticableTreeMixin implements _ApiError {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_ApiErrorToJson(this);
+    return _$$_ApiErrorToJson(this);
   }
 }
 

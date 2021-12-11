@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'user_api.dart';
 
@@ -200,7 +201,7 @@ class _$_UpdateUserRequest
       this.selfIntroduction});
 
   factory _$_UpdateUserRequest.fromJson(Map<String, dynamic> json) =>
-      _$_$_UpdateUserRequestFromJson(json);
+      _$$_UpdateUserRequestFromJson(json);
 
   @override
   final String id;
@@ -273,7 +274,7 @@ class _$_UpdateUserRequest
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_UpdateUserRequestToJson(this);
+    return _$$_UpdateUserRequestToJson(this);
   }
 }
 
@@ -436,7 +437,7 @@ class _$_UpdateUserResponse
   const _$_UpdateUserResponse({required this.code, required this.data});
 
   factory _$_UpdateUserResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_UpdateUserResponseFromJson(json);
+      _$$_UpdateUserResponseFromJson(json);
 
   @override
   final int code;
@@ -480,7 +481,7 @@ class _$_UpdateUserResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_UpdateUserResponseToJson(this);
+    return _$$_UpdateUserResponseToJson(this);
   }
 }
 
@@ -619,7 +620,7 @@ class _$_UpdateUserResponseData
   const _$_UpdateUserResponseData({required this.user});
 
   factory _$_UpdateUserResponseData.fromJson(Map<String, dynamic> json) =>
-      _$_$_UpdateUserResponseDataFromJson(json);
+      _$$_UpdateUserResponseDataFromJson(json);
 
   @override
   final User user;
@@ -657,7 +658,7 @@ class _$_UpdateUserResponseData
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_UpdateUserResponseDataToJson(this);
+    return _$$_UpdateUserResponseDataToJson(this);
   }
 }
 
@@ -793,7 +794,7 @@ class _$_GetUserGroupResponse
   const _$_GetUserGroupResponse({required this.code, this.data = const []});
 
   factory _$_GetUserGroupResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_GetUserGroupResponseFromJson(json);
+      _$$_GetUserGroupResponseFromJson(json);
 
   @override
   final int code;
@@ -839,7 +840,7 @@ class _$_GetUserGroupResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GetUserGroupResponseToJson(this);
+    return _$$_GetUserGroupResponseToJson(this);
   }
 }
 
@@ -995,7 +996,7 @@ class _$_UserGroupDetail
       this.members = const []});
 
   factory _$_UserGroupDetail.fromJson(Map<String, dynamic> json) =>
-      _$_$_UserGroupDetailFromJson(json);
+      _$$_UserGroupDetailFromJson(json);
 
   @override
   final String name;
@@ -1047,7 +1048,7 @@ class _$_UserGroupDetail
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_UserGroupDetailToJson(this);
+    return _$$_UserGroupDetailToJson(this);
   }
 }
 
@@ -1195,7 +1196,7 @@ class _$_Member with DiagnosticableTreeMixin implements _Member {
   const _$_Member({required this.displayName, this.profile});
 
   factory _$_Member.fromJson(Map<String, dynamic> json) =>
-      _$_$_MemberFromJson(json);
+      _$$_MemberFromJson(json);
 
   @override
   final String displayName;
@@ -1240,7 +1241,7 @@ class _$_Member with DiagnosticableTreeMixin implements _Member {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_MemberToJson(this);
+    return _$$_MemberToJson(this);
   }
 }
 

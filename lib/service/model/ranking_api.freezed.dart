@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'ranking_api.dart';
 
@@ -141,7 +142,7 @@ class _$_GetRankingResponse
   const _$_GetRankingResponse({required this.code, required this.data});
 
   factory _$_GetRankingResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_GetRankingResponseFromJson(json);
+      _$$_GetRankingResponseFromJson(json);
 
   @override
   final int code;
@@ -185,7 +186,7 @@ class _$_GetRankingResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GetRankingResponseToJson(this);
+    return _$$_GetRankingResponseToJson(this);
   }
 }
 
@@ -312,7 +313,7 @@ class _$_GetRankingResponseData
   const _$_GetRankingResponseData({this.ranking = const []});
 
   factory _$_GetRankingResponseData.fromJson(Map<String, dynamic> json) =>
-      _$_$_GetRankingResponseDataFromJson(json);
+      _$$_GetRankingResponseDataFromJson(json);
 
   @JsonKey(defaultValue: const [])
   @override
@@ -351,7 +352,7 @@ class _$_GetRankingResponseData
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GetRankingResponseDataToJson(this);
+    return _$$_GetRankingResponseDataToJson(this);
   }
 }
 
@@ -521,7 +522,7 @@ class _$_Group with DiagnosticableTreeMixin implements _Group {
       required this.point});
 
   factory _$_Group.fromJson(Map<String, dynamic> json) =>
-      _$_$_GroupFromJson(json);
+      _$$_GroupFromJson(json);
 
   @override
   final String userGroupId;
@@ -579,7 +580,7 @@ class _$_Group with DiagnosticableTreeMixin implements _Group {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GroupToJson(this);
+    return _$$_GroupToJson(this);
   }
 }
 

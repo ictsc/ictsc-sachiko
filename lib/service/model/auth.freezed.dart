@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'auth.dart';
 
@@ -126,7 +127,7 @@ class _$_SignInRequest with DiagnosticableTreeMixin implements _SignInRequest {
   const _$_SignInRequest({required this.name, required this.password});
 
   factory _$_SignInRequest.fromJson(Map<String, dynamic> json) =>
-      _$_$_SignInRequestFromJson(json);
+      _$$_SignInRequestFromJson(json);
 
   @override
   final String name;
@@ -171,7 +172,7 @@ class _$_SignInRequest with DiagnosticableTreeMixin implements _SignInRequest {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_SignInRequestToJson(this);
+    return _$$_SignInRequestToJson(this);
   }
 }
 
@@ -320,7 +321,7 @@ class _$_SignInResponse
   const _$_SignInResponse({required this.code, required this.data});
 
   factory _$_SignInResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_SignInResponseFromJson(json);
+      _$$_SignInResponseFromJson(json);
 
   @override
   final int code;
@@ -364,7 +365,7 @@ class _$_SignInResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_SignInResponseToJson(this);
+    return _$$_SignInResponseToJson(this);
   }
 }
 
@@ -502,7 +503,7 @@ class _$_SignInResponseData
   const _$_SignInResponseData({required this.user});
 
   factory _$_SignInResponseData.fromJson(Map<String, dynamic> json) =>
-      _$_$_SignInResponseDataFromJson(json);
+      _$$_SignInResponseDataFromJson(json);
 
   @override
   final User user;
@@ -539,7 +540,7 @@ class _$_SignInResponseData
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_SignInResponseDataToJson(this);
+    return _$$_SignInResponseDataToJson(this);
   }
 }
 
@@ -662,7 +663,7 @@ class _$_SignOutResponse
   const _$_SignOutResponse({required this.code});
 
   factory _$_SignOutResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_SignOutResponseFromJson(json);
+      _$$_SignOutResponseFromJson(json);
 
   @override
   final int code;
@@ -699,7 +700,7 @@ class _$_SignOutResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_SignOutResponseToJson(this);
+    return _$$_SignOutResponseToJson(this);
   }
 }
 
@@ -871,7 +872,7 @@ class _$_SignUpRequest with DiagnosticableTreeMixin implements _SignUpRequest {
       required this.invitationCode});
 
   factory _$_SignUpRequest.fromJson(Map<String, dynamic> json) =>
-      _$_$_SignUpRequestFromJson(json);
+      _$$_SignUpRequestFromJson(json);
 
   @override
   final String name;
@@ -930,7 +931,7 @@ class _$_SignUpRequest with DiagnosticableTreeMixin implements _SignUpRequest {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_SignUpRequestToJson(this);
+    return _$$_SignUpRequestToJson(this);
   }
 }
 
@@ -1086,7 +1087,7 @@ class _$_SignUpResponse
   const _$_SignUpResponse({required this.code, required this.data});
 
   factory _$_SignUpResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_SignUpResponseFromJson(json);
+      _$$_SignUpResponseFromJson(json);
 
   @override
   final int code;
@@ -1130,7 +1131,7 @@ class _$_SignUpResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_SignUpResponseToJson(this);
+    return _$$_SignUpResponseToJson(this);
   }
 }
 
@@ -1268,7 +1269,7 @@ class _$_SignUpResponseData
   const _$_SignUpResponseData({required this.user});
 
   factory _$_SignUpResponseData.fromJson(Map<String, dynamic> json) =>
-      _$_$_SignUpResponseDataFromJson(json);
+      _$$_SignUpResponseDataFromJson(json);
 
   @override
   final User user;
@@ -1305,7 +1306,7 @@ class _$_SignUpResponseData
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_SignUpResponseDataToJson(this);
+    return _$$_SignUpResponseDataToJson(this);
   }
 }
 
