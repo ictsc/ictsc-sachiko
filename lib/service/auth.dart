@@ -23,8 +23,10 @@ class Auth {
             '/api/auth/signin',
             data: signInRequest.toJson(),
           )
-          .then((result) =>
-              Result.success(SignInResponse.fromJson({...result.data})));
+          .then(
+            (result) =>
+                Result.success(SignInResponse.fromJson({...result.data})),
+          );
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }
@@ -33,8 +35,10 @@ class Auth {
   /// ログアウト。
   Future<Result<SignOutResponse>> signOut() async {
     try {
-      return await client.delete('/api/auth/signout').then((result) =>
-          Result.success(SignOutResponse.fromJson({...result.data})));
+      return await client.delete('/api/auth/signout').then(
+            (result) =>
+                Result.success(SignOutResponse.fromJson({...result.data})),
+          );
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }
@@ -45,11 +49,13 @@ class Auth {
     try {
       return await client
           .post(
-        '/api/users',
-        data: signUpRequest.toJson(),
-      )
-          .then((result) =>
-          Result.success(SignUpResponse.fromJson({...result.data})));
+            '/api/users',
+            data: signUpRequest.toJson(),
+          )
+          .then(
+            (result) =>
+                Result.success(SignUpResponse.fromJson({...result.data})),
+          );
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }
@@ -62,10 +68,12 @@ class Auth {
     try {
       return await client
           .get(
-        '/api/auth/self',
-      )
-          .then((result) =>
-          Result.success(SignInResponse.fromJson({...result.data})));
+            '/api/auth/self',
+          )
+          .then(
+            (result) =>
+                Result.success(SignInResponse.fromJson({...result.data})),
+          );
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }

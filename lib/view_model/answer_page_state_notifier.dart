@@ -1,5 +1,4 @@
 import 'package:flash/flash.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/domain/answer.dart';
@@ -28,17 +27,19 @@ class AnswerListPageStateNotifier extends StateNotifier<AnswerPageState>
     await ref
         .read(answerProvider)
         .getByProblemAllAnswer(FindAllAnswerRequest(problemId: problemId))
-        .then((result) => result.when(
-              success: (response) {
-                var answers = response.data.answers;
+        .then(
+          (result) => result.when(
+            success: (response) {
+              var answers = response.data.answers;
 
-                // 回答を日付順にソート
-                answers = sortAnswers(answers);
+              // 回答を日付順にソート
+              answers = sortAnswers(answers);
 
-                state = state.copyWith(answers: answers);
-              },
-              failure: (_) {},
-            ))
+              state = state.copyWith(answers: answers);
+            },
+            failure: (_) {},
+          ),
+        )
         .whenComplete(() => state = state.copyWith(isLoading: false));
   }
 
@@ -104,12 +105,14 @@ class AnswerListPageStateNotifier extends StateNotifier<AnswerPageState>
     await ref
         .read(problemProvider)
         .findByIdProblem(FindProblemRequest(id: problemId))
-        .then((result) => result.when(
-              success: (response) {
-                state = state.copyWith(problem: response.data.problem);
-              },
-              failure: (_) {},
-            ))
+        .then(
+          (result) => result.when(
+            success: (response) {
+              state = state.copyWith(problem: response.data.problem);
+            },
+            failure: (_) {},
+          ),
+        )
         .whenComplete(() => state = state.copyWith(isLoading: false));
   }
 
@@ -117,50 +120,52 @@ class AnswerListPageStateNotifier extends StateNotifier<AnswerPageState>
   ///
   /// アンサーを配列から発見し返されたアンサーで更新する。
   Future<void> onTapAnswerSave(
-      BuildContext context, UpdateAnswerRequest updateAnswerRequest) async {
-    await ref
-        .read(answerProvider)
-        .updateAnswer(updateAnswerRequest)
-        .then((value) => value.when(
-              success: (result) {
-                // アンサーのコピーを作成。
-                final answers = state.answers;
+    BuildContext context,
+    UpdateAnswerRequest updateAnswerRequest,
+  ) async {
+    await ref.read(answerProvider).updateAnswer(updateAnswerRequest).then(
+          (value) => value.when(
+            success: (result) {
+              // アンサーのコピーを作成。
+              final answers = state.answers;
 
-                // IDと一致するアンサーを見つけて位置を取得
-                final index = state.answers.indexWhere(
-                    (element) => element.id == updateAnswerRequest.answerId);
+              // IDと一致するアンサーを見つけて位置を取得
+              final index = state.answers.indexWhere(
+                (element) => element.id == updateAnswerRequest.answerId,
+              );
 
-                // 更新
-                answers[index] = result.data.answer;
+              // 更新
+              answers[index] = result.data.answer;
 
-                state = state.copyWith(answers: answers);
+              state = state.copyWith(answers: answers);
 
-                // ポップアップ
-                context.showFlashBar(
-                  content: Text(
-                    '採点しました。',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyText2
-                        ?.copyWith(color: Colors.white),
-                  ),
-                  duration: const Duration(seconds: 3),
-                  backgroundColor: Colors.green,
-                );
-              },
-              failure: (_) {
-                context.showFlashBar(
-                  content: Text(
-                    '採点に失敗しました。点数が満点より多い場合や数字以外が含まれている場合は登録されません。',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyText2
-                        ?.copyWith(color: Colors.white),
-                  ),
-                  duration: const Duration(seconds: 3),
-                  backgroundColor: Theme.of(context).errorColor,
-                );
-              },
-            ));
+              // ポップアップ
+              context.showFlashBar(
+                content: Text(
+                  '採点しました。',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText2
+                      ?.copyWith(color: Colors.white),
+                ),
+                duration: const Duration(seconds: 3),
+                backgroundColor: Colors.green,
+              );
+            },
+            failure: (_) {
+              context.showFlashBar(
+                content: Text(
+                  '採点に失敗しました。点数が満点より多い場合や数字以外が含まれている場合は登録されません。',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText2
+                      ?.copyWith(color: Colors.white),
+                ),
+                duration: const Duration(seconds: 3),
+                backgroundColor: Theme.of(context).errorColor,
+              );
+            },
+          ),
+        );
   }
 }

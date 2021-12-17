@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'problem.freezed.dart';
+
 part 'problem.g.dart';
 
 @freezed
@@ -25,5 +26,3 @@ abstract class Problem with _$Problem {
   factory Problem.fromJson(Map<String, dynamic> json) =>
       _$ProblemFromJson(json);
 }
-
-// "unchecked":0,"unchecked_near_overdue":0,"unchecked_overdue":0}

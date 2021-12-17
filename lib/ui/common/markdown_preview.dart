@@ -1,5 +1,4 @@
 import 'package:flash/flash.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -19,10 +18,11 @@ class MarkdownPreview extends HookWidget {
       return SizedBox(
         height: 96,
         child: Center(
-            child: Text(
-          '本文がありません',
-          style: TextStyle(color: Theme.of(context).textTheme.caption?.color),
-        )),
+          child: Text(
+            '本文がありません',
+            style: TextStyle(color: Theme.of(context).textTheme.caption?.color),
+          ),
+        ),
       );
     }
 
@@ -210,7 +210,11 @@ class CustomCodeBuilder extends MarkdownElementBuilder {
     return SelectableText.rich(
       TextSpan(
         text: element.textContent,
-        style: const TextStyle(color: Colors.red, fontSize: 16, fontWeight: FontWeight.bold),
+        style: const TextStyle(
+          color: Colors.red,
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }
@@ -266,7 +270,10 @@ class H1 extends HookWidget {
                 ?.copyWith(fontWeight: FontWeight.bold),
           ),
         ),
-        Container(height: 1, color: Theme.of(context).dividerColor,),
+        Container(
+          height: 1,
+          color: Theme.of(context).dividerColor,
+        ),
         const Gap(8),
       ],
     );
@@ -340,10 +347,18 @@ class BlockQuote extends HookWidget {
                 width: 4,
                 color: Theme.of(context).dividerColor,
               ),
-              Flexible(child: Padding(
-                padding: const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 8.0),
-                child: SelectableText(text, style: TextStyle(color: Theme.of(context).textTheme.caption?.color),),
-              )),
+              Flexible(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 8.0),
+                  child: SelectableText(
+                    text,
+                    style: TextStyle(
+                      color: Theme.of(context).textTheme.caption?.color,
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -373,38 +388,44 @@ class Pre extends HookWidget {
                 borderRadius: BorderRadius.circular(4),
               ),
               child: Padding(
-                padding: const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0, bottom: 4.0),
+                padding: const EdgeInsets.only(
+                  top: 20.0,
+                  left: 20.0,
+                  right: 20.0,
+                  bottom: 4.0,
+                ),
                 child: SelectableText(
                   text,
-                  style: Theme.of(context)
-                      .textTheme
-                      .caption
-                      ?.copyWith(fontFamily: 'Roboto mono', color: Colors.white),
+                  style: Theme.of(context).textTheme.caption?.copyWith(
+                        fontFamily: 'Roboto mono',
+                        color: Colors.white,
+                      ),
                 ),
               ),
             ),
             IconButton(
-                onPressed: () async {
-                  final data = ClipboardData(text: text);
-                  await Clipboard.setData(data);
-                  context.showFlashBar(
-                    content: Text(
-                      'コピーしました',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyText2
-                          ?.copyWith(color: Colors.white),
-                    ),
-                    duration: const Duration(seconds: 3),
-                    backgroundColor: Colors.green,
-                  );
-                },
-                tooltip: 'クリップボードにコピー',
-                icon: const Icon(
-                  Icons.content_copy_outlined,
-                  size: 20,
-                  color: Colors.white,
-                )),
+              onPressed: () {
+                final data = ClipboardData(text: text);
+                Clipboard.setData(data);
+                context.showFlashBar(
+                  content: Text(
+                    'コピーしました',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2
+                        ?.copyWith(color: Colors.white),
+                  ),
+                  duration: const Duration(seconds: 3),
+                  backgroundColor: Colors.green,
+                );
+              },
+              tooltip: 'クリップボードにコピー',
+              icon: const Icon(
+                Icons.content_copy_outlined,
+                size: 20,
+                color: Colors.white,
+              ),
+            ),
           ],
         ),
         const Gap(16),

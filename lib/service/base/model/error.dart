@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'error.freezed.dart';
+
 part 'error.g.dart';
 
 @freezed
@@ -41,8 +42,10 @@ class Error with _$Error {
                 }
 
                 return Error.requestError(
-                    apiError: ApiError(
-                        message: error.response?.data.toString() ?? ''));
+                  apiError: ApiError(
+                    message: error.response?.data.toString() ?? '',
+                  ),
+                );
               }
               break;
             case DioErrorType.cancel:

@@ -10,7 +10,8 @@ import 'common/header.dart';
 class SignUpPage extends HookWidget {
   final signUpForm =
       StateNotifierProvider<SignUpPageStateNotifier, SignUpFormState>(
-          (refs) => SignUpPageStateNotifier(const SignUpFormState(), refs));
+    (refs) => SignUpPageStateNotifier(const SignUpFormState(), refs),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -20,107 +21,114 @@ class SignUpPage extends HookWidget {
     return Scaffold(
       appBar: Header(appBar: AppBar()),
       body: Center(
-          child: SizedBox(
-        width: 512,
-        child: Form(
-          key: useProvider(signUpForm.notifier).formKey,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    'ユーザー登録',
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline6!
-                        .copyWith(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    notifier.errorMessage,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyText2!
-                        .copyWith(color: Theme.of(context).colorScheme.error),
-                  ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        decoration: const InputDecoration(labelText: 'ユーザー名'),
-                        controller:
-                            useProvider(signUpForm.notifier).nameController,
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        validator: notifier.nameValidator,
-                        // onFieldSubmitted: (_) {
-                        //   WidgetsBinding.instance?.addPostFrameCallback((_){
-                        //     final func = useProvider(signUpForm.notifier)
-                        //         .onTapSignUpButton(context);
-                        //
-                        //     if (func != null) {
-                        //       func();
-                        //     }
-                        //   });
-                        // },
-                      ),
-
+        child: SizedBox(
+          width: 512,
+          child: Form(
+            key: useProvider(signUpForm.notifier).formKey,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      'ユーザー登録',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline6!
+                          .copyWith(fontWeight: FontWeight.bold),
                     ),
-                    Text('ユーザー名は最低3文字以上で入力して下さい。',
-                        style: Theme.of(context).textTheme.caption?.copyWith(
-                            color: !state.isNameValidatePass
-                                ? Theme.of(context).primaryColor
-                                : null)),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: PasswordTextFormField(
-                        controller: notifier.passwordController,
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        validator: notifier.passwordValidator,
-                        // onFieldSubmitted: (_) {
-                        //   WidgetsBinding.instance?.addPostFrameCallback((_){
-                        //     final func = useProvider(signUpForm.notifier)
-                        //         .onTapSignUpButton(context);
-                        //
-                        //     if (func != null) {
-                        //       func();
-                        //     }
-                        //   });
-                        // },
-                      ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      notifier.errorMessage,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText2!
+                          .copyWith(color: Theme.of(context).colorScheme.error),
                     ),
-                    Text('パスワードは最低8文字以上で入力して下さい。',
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          decoration: const InputDecoration(labelText: 'ユーザー名'),
+                          controller:
+                              useProvider(signUpForm.notifier).nameController,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: notifier.nameValidator,
+                          // onFieldSubmitted: (_) {
+                          //   WidgetsBinding.instance?.addPostFrameCallback((_){
+                          //     final func = useProvider(signUpForm.notifier)
+                          //         .onTapSignUpButton(context);
+                          //
+                          //     if (func != null) {
+                          //       func();
+                          //     }
+                          //   });
+                          // },
+                        ),
+                      ),
+                      Text(
+                        'ユーザー名は最低3文字以上で入力して下さい。',
                         style: Theme.of(context).textTheme.caption?.copyWith(
-                            color: !state.isPasswordValidatePass
-                                ? Theme.of(context).primaryColor
-                                : null)),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
+                              color: !state.isNameValidatePass
+                                  ? Theme.of(context).primaryColor
+                                  : null,
+                            ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: PasswordTextFormField(
+                          controller: notifier.passwordController,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: notifier.passwordValidator,
+                          // onFieldSubmitted: (_) {
+                          //   WidgetsBinding.instance?.addPostFrameCallback((_){
+                          //     final func = useProvider(signUpForm.notifier)
+                          //         .onTapSignUpButton(context);
+                          //
+                          //     if (func != null) {
+                          //       func();
+                          //     }
+                          //   });
+                          // },
+                        ),
+                      ),
+                      Text(
+                        'パスワードは最低8文字以上で入力して下さい。',
+                        style: Theme.of(context).textTheme.caption?.copyWith(
+                              color: !state.isPasswordValidatePass
+                                  ? Theme.of(context).primaryColor
+                                  : null,
+                            ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
                             onPressed: useProvider(signUpForm.notifier)
                                 .onTapSignUpButton(context),
                             child: const Padding(
                               padding: EdgeInsets.all(16.0),
                               child: Text('登録'),
-                            )),
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      )),
+      ),
     );
   }
 }

@@ -22,18 +22,22 @@ class ProblemListPage extends HookWidget {
 
     final List<ResponsiveGridCol> problems = [];
 
-    state.problems.asMap().forEach((i, e) => problems.add(ResponsiveGridCol(
-          xl: 3,
-          md: 4,
-          sm: 6,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ProblemLink(
-              index: i + 1,
-              problem: e,
+    state.problems.asMap().forEach(
+          (i, e) => problems.add(
+            ResponsiveGridCol(
+              xl: 3,
+              md: 4,
+              sm: 6,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ProblemLink(
+                  index: i + 1,
+                  problem: e,
+                ),
+              ),
             ),
           ),
-        )));
+        );
 
     // 環境変数から取得
     final notesContent = const bool.hasEnvironment('NOTES_CONTENTS')
@@ -41,53 +45,54 @@ class ProblemListPage extends HookWidget {
         : '';
 
     return Scaffold(
-        appBar: Header(appBar: AppBar()),
-        body: SingleChildScrollView(
-          child: Center(
-            child: SizedBox(
-              width: 1040,
-              child: Column(
-                children: [
-                  const Gap(24),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16, top: 16),
-                    child: Text(
-                      '問題一覧',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline5
-                          ?.copyWith(fontWeight: FontWeight.bold),
-                    ),
+      appBar: Header(appBar: AppBar()),
+      body: SingleChildScrollView(
+        child: Center(
+          child: SizedBox(
+            width: 1040,
+            child: Column(
+              children: [
+                const Gap(24),
+                Padding(
+                  padding: const EdgeInsets.only(left: 16, top: 16),
+                  child: Text(
+                    '問題一覧',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline5
+                        ?.copyWith(fontWeight: FontWeight.bold),
                   ),
-                  const Gap(24),
-                  ResponsiveGridRow(
-                    children: [
-                      ResponsiveGridCol(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ProblemCard(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '解答時の注意点',
-                                  style: titleTextStyle,
-                                ),
-                                const Gap(16),
-                                MarkdownPreview(data: notesContent),
-                              ],
-                            ),
+                ),
+                const Gap(24),
+                ResponsiveGridRow(
+                  children: [
+                    ResponsiveGridCol(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ProblemCard(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '解答時の注意点',
+                                style: titleTextStyle,
+                              ),
+                              const Gap(16),
+                              MarkdownPreview(data: notesContent),
+                            ],
                           ),
                         ),
                       ),
-                      ...problems,
-                    ],
-                  )
-                ],
-              ),
+                    ),
+                    ...problems,
+                  ],
+                )
+              ],
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
 
@@ -106,7 +111,9 @@ class ProblemLink extends StatelessWidget {
         ?.copyWith(fontWeight: FontWeight.bold);
 
     final linkTextStyle = Theme.of(context).textTheme.subtitle1?.copyWith(
-        color: Theme.of(context).primaryColor, fontWeight: FontWeight.bold);
+          color: Theme.of(context).primaryColor,
+          fontWeight: FontWeight.bold,
+        );
 
     final pointTextStyle = Theme.of(context).textTheme.bodyText2;
 
@@ -129,21 +136,26 @@ class ProblemLink extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    Text.rich(TextSpan(
-                      text: '',
-                      children: [
-                        TextSpan(
-                          text: '${index.toString().alphanumericToFullLength()} ',
-                          style: titleTextStyle?.copyWith(
-                              color: Theme.of(context).primaryColor),
-                        ),
-                        TextSpan(
+                    Text.rich(
+                      TextSpan(
+                        text: '',
+                        children: [
+                          TextSpan(
+                            text:
+                                '${index.toString().alphanumericToFullLength()} ',
+                            style: titleTextStyle?.copyWith(
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ),
+                          TextSpan(
                             text: problem.title.isNotEmpty
                                 ? problem.title
                                 : 'Untitled',
-                            style: titleTextStyle),
-                      ],
-                    )),
+                            style: titleTextStyle,
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
                 Column(
@@ -199,7 +211,6 @@ class ProblemCard extends StatelessWidget {
 
 const _fullLengthCode = 65248;
 
-
 extension JapaneseString on String {
   String alphanumericToFullLength() {
     final regex = RegExp(r'^[a-zA-Z0-9]+$');
@@ -223,5 +234,3 @@ extension JapaneseString on String {
     return string.join();
   }
 }
-
-

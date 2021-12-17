@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ictsc_sachiko/domain/user_group.dart';
 
 part 'answer.freezed.dart';
+
 part 'answer.g.dart';
 
 @freezed

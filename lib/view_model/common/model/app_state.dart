@@ -10,5 +10,6 @@ class AppState with _$AppState {
     bool? isDark,
   }) = _AppState;
 
- factory AppState.fromJson(Map<String, dynamic> json) => _$AppStateFromJson(json);
+  factory AppState.fromJson(Map<String, dynamic> json) =>
+      _$AppStateFromJson(json);
 }

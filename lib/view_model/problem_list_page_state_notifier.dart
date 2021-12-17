@@ -9,7 +9,7 @@ import 'package:state_notifier/state_notifier.dart';
 
 final problemListProvider = StateNotifierProvider.autoDispose<
     ProblemListPageStateNotifier, ProblemListPageState>(
-(ref) => ProblemListPageStateNotifier(const ProblemListPageState(), ref),
+  (ref) => ProblemListPageStateNotifier(const ProblemListPageState(), ref),
 );
 
 class ProblemListPageStateNotifier extends StateNotifier<ProblemListPageState>
@@ -47,33 +47,35 @@ class ProblemListPageStateNotifier extends StateNotifier<ProblemListPageState>
     await ref
         .read(problemProvider)
         .findAllProblem()
-        .then((result) => result.when(
-              success: (response) {
-                state = state.copyWith(problems: response.data.problems);
+        .then(
+          (result) => result.when(
+            success: (response) {
+              state = state.copyWith(problems: response.data.problems);
 
-                onSelectProblem(state.problem?.id);
-              },
-              failure: (_) {},
-            ))
+              onSelectProblem(state.problem?.id);
+            },
+            failure: (_) {},
+          ),
+        )
         .whenComplete(() => state = state.copyWith(isLoading: false));
   }
 
-  void onTapToggleAutoModeCheckBox(bool? isChecked) {
+  void onTapToggleAutoModeCheckBox({bool? isChecked}) {
     if (isChecked != null) {
       // state = state.copyWith(isAutoLoad: isChecked);
 
-    //   if (isChecked) {
-    //     timer = Timer.periodic(
-    //       const Duration(seconds: 30),
-    //       (timer) {
-    //         if (state.isAutoLoad) {
-    //           fetchProblems();
-    //         }
-    //       },
-    //     );
-    //   } else {
-    //     timer?.cancel();
-    //   }
+      //   if (isChecked) {
+      //     timer = Timer.periodic(
+      //       const Duration(seconds: 30),
+      //       (timer) {
+      //         if (state.isAutoLoad) {
+      //           fetchProblems();
+      //         }
+      //       },
+      //     );
+      //   } else {
+      //     timer?.cancel();
+      //   }
     }
   }
 
@@ -84,13 +86,15 @@ class ProblemListPageStateNotifier extends StateNotifier<ProblemListPageState>
     await ref
         .read(problemProvider)
         .deleteProblem(DeleteProblemRequest(id: id))
-        .then((result) => result.when(
-              success: (_) {
-                // 最新を取得
-                fetchProblems();
-              },
-              failure: (_) {},
-            ))
+        .then(
+          (result) => result.when(
+            success: (_) {
+              // 最新を取得
+              fetchProblems();
+            },
+            failure: (_) {},
+          ),
+        )
         .whenComplete(() => state = state.copyWith(isLoading: false));
   }
 }

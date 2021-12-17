@@ -19,10 +19,12 @@ class RankingAPI {
     try {
       return await client
           .get(
-        '/api/ranking',
-      )
-          .then((result) =>
-          Result.success(GetRankingResponse.fromJson({...result.data})));
+            '/api/ranking',
+          )
+          .then(
+            (result) =>
+                Result.success(GetRankingResponse.fromJson({...result.data})),
+          );
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }
@@ -34,8 +36,10 @@ class RankingAPI {
           .get(
             '/api/ranking/top',
           )
-          .then((result) =>
-              Result.success(GetRankingResponse.fromJson({...result.data})));
+          .then(
+            (result) =>
+                Result.success(GetRankingResponse.fromJson({...result.data})),
+          );
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }
@@ -47,8 +51,10 @@ class RankingAPI {
           .get(
             '/api/ranking/near-me',
           )
-          .then((result) =>
-              Result.success(GetRankingResponse.fromJson({...result.data})));
+          .then(
+            (result) =>
+                Result.success(GetRankingResponse.fromJson({...result.data})),
+          );
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }

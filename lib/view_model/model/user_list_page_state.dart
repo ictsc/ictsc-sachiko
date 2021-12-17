@@ -12,5 +12,6 @@ class UserListPageState with _$UserListPageState {
     @Default([]) List<UserGroupDetail> userGroups,
   }) = _UserListPageState;
 
- factory UserListPageState.fromJson(Map<String, dynamic> json) => _$UserListPageStateFromJson(json);
+  factory UserListPageState.fromJson(Map<String, dynamic> json) =>
+      _$UserListPageStateFromJson(json);
 }

@@ -91,7 +91,8 @@ class UpdateAnswerResponse with _$UpdateAnswerResponse {
     required UpdateAnswerResponseData data,
   }) = _UpdateAnswerResponse;
 
- factory UpdateAnswerResponse.fromJson(Map<String, dynamic> json) => _$UpdateAnswerResponseFromJson(json);
+  factory UpdateAnswerResponse.fromJson(Map<String, dynamic> json) =>
+      _$UpdateAnswerResponseFromJson(json);
 }
 
 /// @nodoc

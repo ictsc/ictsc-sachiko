@@ -16,8 +16,12 @@ import 'package:ictsc_sachiko/ui/sign_up_page.dart';
 import 'package:ictsc_sachiko/ui/user_list_page.dart';
 
 /// フェードインさせるウィジェット、画面切り替えで使用
-Widget fadeIn(BuildContext context, Animation<double> animation,
-    Animation<double> secondaryAnimation, Widget child) {
+Widget fadeIn(
+  BuildContext context,
+  Animation<double> animation,
+  Animation<double> secondaryAnimation,
+  Widget child,
+) {
   return FadeTransition(opacity: animation, child: child);
 }
 

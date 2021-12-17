@@ -11,9 +11,12 @@ class Client with DioMixin implements Dio {
         ? String.fromEnvironment('APP_URL')
         : 'http://localhost:8080';
 
-    options = BaseOptions(baseUrl: url, headers: {
-      Headers.acceptHeader: 'application/json',
-    });
+    options = BaseOptions(
+      baseUrl: url,
+      headers: {
+        Headers.acceptHeader: 'application/json',
+      },
+    );
 
     this.options = options;
 

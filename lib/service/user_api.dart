@@ -17,15 +17,18 @@ class UserAPI {
 
   /// ユーザーのフォームを送り、プロフィールを更新する。
   Future<Result<UpdateUserResponse>> updateUser(
-      UpdateUserRequest updateUserRequest) async {
+    UpdateUserRequest updateUserRequest,
+  ) async {
     try {
       return await client
           .put(
             '/api/users/${updateUserRequest.id}',
             data: updateUserRequest.toJson(),
           )
-          .then((result) =>
-              Result.success(UpdateUserResponse.fromJson({...result.data})));
+          .then(
+            (result) =>
+                Result.success(UpdateUserResponse.fromJson({...result.data})),
+          );
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }

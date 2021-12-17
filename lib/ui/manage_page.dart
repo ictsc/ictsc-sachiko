@@ -24,7 +24,7 @@ class ManagePage extends HookWidget {
               sm: 6,
               child: Link(
                 uri: Uri.parse('/#/manage/problems'),
-                builder: (_, __) =>InkWell(
+                builder: (_, __) => InkWell(
                   onTap: () {
                     AutoRouter.of(context).pushNamed('/manage/problems');
                   },

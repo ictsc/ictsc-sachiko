@@ -12,7 +12,8 @@ class GetRankingResponse with _$GetRankingResponse {
     required GetRankingResponseData data,
   }) = _GetRankingResponse;
 
- factory GetRankingResponse.fromJson(Map<String, dynamic> json) => _$GetRankingResponseFromJson(json);
+  factory GetRankingResponse.fromJson(Map<String, dynamic> json) =>
+      _$GetRankingResponseFromJson(json);
 }
 
 /// @nodoc
@@ -22,7 +23,8 @@ class GetRankingResponseData with _$GetRankingResponseData {
     @Default([]) List<Group> ranking,
   }) = _GetRankingResponseData;
 
- factory GetRankingResponseData.fromJson(Map<String, dynamic> json) => _$GetRankingResponseDataFromJson(json);
+  factory GetRankingResponseData.fromJson(Map<String, dynamic> json) =>
+      _$GetRankingResponseDataFromJson(json);
 }
 
 @freezed

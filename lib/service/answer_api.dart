@@ -17,15 +17,18 @@ class AnswerAPI {
 
   /// 回答のフォームを送り、回答を作成する。
   Future<Result<CreateAnswerResponse>> createAnswer(
-      CreateAnswerRequest createAnswerRequest) async {
+    CreateAnswerRequest createAnswerRequest,
+  ) async {
     try {
       return await client
           .post(
             '/api/problems/${createAnswerRequest.problemId}/answers',
             data: createAnswerRequest,
           )
-          .then((result) =>
-              Result.success(CreateAnswerResponse.fromJson({...result.data})));
+          .then(
+            (result) =>
+                Result.success(CreateAnswerResponse.fromJson({...result.data})),
+          );
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }
@@ -33,14 +36,18 @@ class AnswerAPI {
 
   /// 問題ごとの回答一覧を取得する。
   Future<Result<FindAllAnswerResponse>> getByProblemAllAnswer(
-      FindAllAnswerRequest findAllAnswerRequest) async {
+    FindAllAnswerRequest findAllAnswerRequest,
+  ) async {
     try {
       return await client
           .get(
             '/api/problems/${findAllAnswerRequest.problemId}/answers',
           )
-          .then((result) =>
-              Result.success(FindAllAnswerResponse.fromJson({...result.data})));
+          .then(
+            (result) => Result.success(
+              FindAllAnswerResponse.fromJson({...result.data}),
+            ),
+          );
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }
@@ -48,7 +55,8 @@ class AnswerAPI {
 
   /// 問題ごとの回答を採点する。
   Future<Result<UpdateAnswerResponse>> updateAnswer(
-      UpdateAnswerRequest updateAnswerRequest) async {
+    UpdateAnswerRequest updateAnswerRequest,
+  ) async {
     try {
       final data = updateAnswerRequest.toJson();
       data.remove('problem_id');
@@ -58,9 +66,11 @@ class AnswerAPI {
             '/api/problems/${updateAnswerRequest.problemId}/answers/${updateAnswerRequest.answerId}',
             data: data,
           )
-          .then((result) => Result.success(
-                UpdateAnswerResponse.fromJson({...result.data}),
-              ));
+          .then(
+            (result) => Result.success(
+              UpdateAnswerResponse.fromJson({...result.data}),
+            ),
+          );
     } on DioError catch (error) {
       return Result.failure(Error.getApiError(error));
     }

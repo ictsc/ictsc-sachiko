@@ -24,12 +24,15 @@ class ManageProblemAnswerListPage extends HookWidget {
     final state = useProvider(answerListProvider);
     final notifier = useProvider(answerListProvider.notifier);
 
-    useEffect(() {
-      WidgetsBinding.instance?.addPostFrameCallback((_) async {
-        await notifier.fetchProblem(problemId);
-        await notifier.fetchAnswers(problemId);
-      });
-    }, []);
+    useEffect(
+      () {
+        WidgetsBinding.instance?.addPostFrameCallback((_) async {
+          await notifier.fetchProblem(problemId);
+          await notifier.fetchAnswers(problemId);
+        });
+      },
+      [],
+    );
 
     final titleTextStyle = Theme.of(context).textTheme.headline5?.copyWith(
           fontWeight: FontWeight.bold,
@@ -43,21 +46,23 @@ class ManageProblemAnswerListPage extends HookWidget {
     final List<Widget> answers = [];
 
     state.answers.asMap().forEach((i, answer) {
-      answers.add(Visibility(
-        visible: notifier.answerFilter(answer),
-        child: Column(
-          children: [
-            AnswerCard(
-              answer: answer,
-              controller: TextEditingController(
-                text: answer.point?.toString(),
+      answers.add(
+        Visibility(
+          visible: notifier.answerFilter(answer),
+          child: Column(
+            children: [
+              AnswerCard(
+                answer: answer,
+                controller: TextEditingController(
+                  text: answer.point?.toString(),
+                ),
+                isShowEditor: true,
               ),
-              isShowEditor: true,
-            ),
-            const Gap(40)
-          ],
+              const Gap(40)
+            ],
+          ),
         ),
-      ));
+      );
     });
 
     final problem = state.problem;
@@ -180,11 +185,12 @@ class AnswerCard extends HookWidget {
   final bool isShowEditor;
   final bool isShowPoint;
 
-  AnswerCard(
-      {required this.answer,
-      this.controller,
-      this.isShowEditor = false,
-      this.isShowPoint = false}) {
+  AnswerCard({
+    required this.answer,
+    this.controller,
+    this.isShowEditor = false,
+    this.isShowPoint = false,
+  }) {
     if (controller != null) {
       controller!.text = answer.point?.toString() ?? '';
     }
@@ -236,10 +242,13 @@ class AnswerCard extends HookWidget {
                     ),
                 ],
               ),
-              Text(DateFormat('yyyy/MM/dd HH:mm:ss')
-                  .format(answer.createdAt.add(
-                const Duration(hours: 9),
-              ))),
+              Text(
+                DateFormat('yyyy/MM/dd HH:mm:ss').format(
+                  answer.createdAt.add(
+                    const Duration(hours: 9),
+                  ),
+                ),
+              ),
             ],
           ),
           const Gap(16),
@@ -259,18 +268,20 @@ class AnswerCard extends HookWidget {
                     controller: controller,
                     key: Key(answer.id),
                     decoration: InputDecoration(
-                        labelText: 'ポイント',
-                        labelStyle: Theme.of(context).textTheme.caption),
+                      labelText: 'ポイント',
+                      labelStyle: Theme.of(context).textTheme.caption,
+                    ),
                     onSubmitted: (_) {
                       WidgetsBinding.instance?.addPostFrameCallback((_) {
                         notifier.onTapAnswerSave(
-                            context,
-                            UpdateAnswerRequest(
-                              problemId: answer.problemId,
-                              answerId: answer.id,
-                              point: int.tryParse(controller?.text ?? '') ?? 0,
-                              body: answer.body,
-                            ));
+                          context,
+                          UpdateAnswerRequest(
+                            problemId: answer.problemId,
+                            answerId: answer.id,
+                            point: int.tryParse(controller?.text ?? '') ?? 0,
+                            body: answer.body,
+                          ),
+                        );
                       });
                     },
                   ),
@@ -279,13 +290,14 @@ class AnswerCard extends HookWidget {
                 ElevatedButton(
                   onPressed: () {
                     notifier.onTapAnswerSave(
-                        context,
-                        UpdateAnswerRequest(
-                          problemId: answer.problemId,
-                          answerId: answer.id,
-                          point: int.tryParse(controller?.text ?? '') ?? 0,
-                          body: answer.body,
-                        ));
+                      context,
+                      UpdateAnswerRequest(
+                        problemId: answer.problemId,
+                        answerId: answer.id,
+                        point: int.tryParse(controller?.text ?? '') ?? 0,
+                        body: answer.body,
+                      ),
+                    );
                   },
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),

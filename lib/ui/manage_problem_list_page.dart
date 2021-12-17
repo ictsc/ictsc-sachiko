@@ -24,39 +24,49 @@ class ManageProblemListPage extends HookWidget {
           notifier.onSelectProblem(problem.id);
         },
         cells: <DataCell>[
-          DataCell(IconButton(
-            icon: const Icon(Icons.check),
-            onPressed: () {
-              AutoRouter.of(context).pushNamed(
-                '/manage/problems/${problem.id}/answers',
-              );
-            },
-          )),
-          DataCell(Text.rich(TextSpan(text: '', children: [
-            TextSpan(
-                text: '${problem.unchecked ?? ''}',
-                style: Theme.of(context).textTheme.caption),
-            TextSpan(
-              text: ' / ',
-              style: Theme.of(context).textTheme.caption,
+          DataCell(
+            IconButton(
+              icon: const Icon(Icons.check),
+              onPressed: () {
+                AutoRouter.of(context).pushNamed(
+                  '/manage/problems/${problem.id}/answers',
+                );
+              },
             ),
-            TextSpan(
-              text: '${problem.uncheckedNearOverdue ?? ''}',
-              style: Theme.of(context).textTheme.caption?.copyWith(
-                    color: Colors.amber,
+          ),
+          DataCell(
+            Text.rich(
+              TextSpan(
+                text: '',
+                children: [
+                  TextSpan(
+                    text: '${problem.unchecked ?? ''}',
+                    style: Theme.of(context).textTheme.caption,
                   ),
-            ),
-            TextSpan(
-              text: ' / ',
-              style: Theme.of(context).textTheme.caption,
-            ),
-            TextSpan(
-              text: '${problem.uncheckedOverdue ?? ''}',
-              style: Theme.of(context).textTheme.caption?.copyWith(
-                    color: Theme.of(context).errorColor,
+                  TextSpan(
+                    text: ' / ',
+                    style: Theme.of(context).textTheme.caption,
                   ),
-            )
-          ]))),
+                  TextSpan(
+                    text: '${problem.uncheckedNearOverdue ?? ''}',
+                    style: Theme.of(context).textTheme.caption?.copyWith(
+                          color: Colors.amber,
+                        ),
+                  ),
+                  TextSpan(
+                    text: ' / ',
+                    style: Theme.of(context).textTheme.caption,
+                  ),
+                  TextSpan(
+                    text: '${problem.uncheckedOverdue ?? ''}',
+                    style: Theme.of(context).textTheme.caption?.copyWith(
+                          color: Theme.of(context).errorColor,
+                        ),
+                  )
+                ],
+              ),
+            ),
+          ),
           DataCell(DataText(problem.code)),
           if (problem.title.isNotEmpty)
             DataCell(DataText(problem.title))
@@ -66,40 +76,49 @@ class ManageProblemListPage extends HookWidget {
           DataCell(DataText('${problem.point}pt')),
           DataCell(DataText('${problem.solvedCriterion}pt')),
           // 問題文
-          DataCell(SizedBox(
+          DataCell(
+            SizedBox(
               width: 512,
               child: DataText(
                 problem.body.replaceAll('\n', '　'),
                 textOverflow: TextOverflow.ellipsis,
                 maxLines: 1,
-              ))),
+              ),
+            ),
+          ),
           DataCell(DataText('${problem.updatedAt}')),
           DataCell(DataText('${problem.createdAt}')),
-          DataCell(IconButton(
-            icon: const Icon(Icons.edit),
-            onPressed: () {
-              AutoRouter.of(context).push(
-                CreateProblemRoute(problemId: problem.id),
-              );
-            },
-          )),
-          DataCell(IconButton(
-            icon: const Icon(Icons.delete),
-            onPressed: () {
-              /// 問題削除のダイアログ
-              showDialog(
+          DataCell(
+            IconButton(
+              icon: const Icon(Icons.edit),
+              onPressed: () {
+                AutoRouter.of(context).push(
+                  CreateProblemRoute(problemId: problem.id),
+                );
+              },
+            ),
+          ),
+          DataCell(
+            IconButton(
+              icon: const Icon(Icons.delete),
+              onPressed: () {
+                /// 問題削除のダイアログ
+                showDialog(
                   context: context,
                   builder: (_) {
                     return Center(
                       child: SizedBox(
-                          width: 512,
-                          child: CancelDialog(
-                            problem: problem,
-                          )),
+                        width: 512,
+                        child: CancelDialog(
+                          problem: problem,
+                        ),
+                      ),
                     );
-                  });
-            },
-          )),
+                  },
+                );
+              },
+            ),
+          ),
         ],
       );
     }).toList();
@@ -127,24 +146,23 @@ class ManageProblemListPage extends HookWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 2.0),
                     child: TextButton(
-                        onPressed: () {
-                          AutoRouter.of(context).pushNamed(
-                            '/manage/problems/new/edit',
-                          );
-                        },
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.add_box,
-                              size: Theme.of(context)
-                                  .textTheme
-                                  .subtitle1!
-                                  .fontSize,
-                            ),
-                            const Gap(2),
-                            const Text('問題の作成'),
-                          ],
-                        )),
+                      onPressed: () {
+                        AutoRouter.of(context).pushNamed(
+                          '/manage/problems/new/edit',
+                        );
+                      },
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.add_box,
+                            size:
+                                Theme.of(context).textTheme.subtitle1!.fontSize,
+                          ),
+                          const Gap(2),
+                          const Text('問題の作成'),
+                        ],
+                      ),
+                    ),
                   )
                 ],
               ),
@@ -209,15 +227,19 @@ class ManageProblemListPage extends HookWidget {
                               columns: [
                                 const DataColumn(label: HeadingText('回答一覧')),
                                 const DataColumn(
-                                    label: HeadingText('未済点 ~15分/15~19分/20分~')),
+                                  label: HeadingText('未済点 ~15分/15~19分/20分~'),
+                                ),
                                 const DataColumn(label: HeadingText('コード')),
                                 const DataColumn(label: HeadingText('タイトル')),
                                 const DataColumn(label: HeadingText('ID')),
                                 const DataColumn(
-                                    label: HeadingText('ポイント'), numeric: true),
+                                  label: HeadingText('ポイント'),
+                                  numeric: true,
+                                ),
                                 const DataColumn(
-                                    label: HeadingText('解決基準ポイント'),
-                                    numeric: true),
+                                  label: HeadingText('解決基準ポイント'),
+                                  numeric: true,
+                                ),
                                 const DataColumn(label: HeadingText('問題文')),
                                 const DataColumn(label: HeadingText('更新日')),
                                 const DataColumn(label: HeadingText('作成日')),
@@ -252,7 +274,8 @@ class ManageProblemListPage extends HookWidget {
                                     ProblemCard(
                                       edgeInsets: const EdgeInsets.all(48.0),
                                       child: MarkdownPreview(
-                                          data: state.problem?.body ?? ''),
+                                        data: state.problem?.body ?? '',
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -286,11 +309,13 @@ class HeadingText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(text,
-        style: Theme.of(context)
-            .textTheme
-            .caption!
-            .copyWith(color: Theme.of(context).textTheme.bodyText2?.color));
+    return Text(
+      text,
+      style: Theme.of(context)
+          .textTheme
+          .caption!
+          .copyWith(color: Theme.of(context).textTheme.bodyText2?.color),
+    );
   }
 }
 
@@ -349,8 +374,9 @@ class CancelDialog extends HookWidget {
               style: textStyle,
               children: [
                 TextSpan(
-                    text: problem.title,
-                    style: textStyle?.copyWith(fontWeight: FontWeight.bold)),
+                  text: problem.title,
+                  style: textStyle?.copyWith(fontWeight: FontWeight.bold),
+                ),
                 TextSpan(
                   text: ' の問題文、回答などがすべて削除されます。',
                   style: textStyle,
@@ -365,8 +391,9 @@ class CancelDialog extends HookWidget {
               style: textStyle,
               children: [
                 TextSpan(
-                    text: problem.title,
-                    style: textStyle?.copyWith(fontWeight: FontWeight.bold)),
+                  text: problem.title,
+                  style: textStyle?.copyWith(fontWeight: FontWeight.bold),
+                ),
                 TextSpan(
                   text: ' と入力して確認して下さい',
                   style: textStyle,
@@ -381,13 +408,14 @@ class CancelDialog extends HookWidget {
           ),
           const Gap(16),
           ElevatedButton(
-              onPressed: problem.title == text.value
-                  ? () async {
-                      notifier.deleteProblems(problem.id);
-                      Navigator.pop(context);
-                    }
-                  : null,
-              child: const Center(child: Text('確認して削除する。')))
+            onPressed: problem.title == text.value
+                ? () async {
+                    notifier.deleteProblems(problem.id);
+                    Navigator.pop(context);
+                  }
+                : null,
+            child: const Center(child: Text('確認して削除する。')),
+          )
         ],
       ),
     );

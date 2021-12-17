@@ -41,7 +41,6 @@ class UpdateUserResponseData with _$UpdateUserResponseData {
       _$UpdateUserResponseDataFromJson(json);
 }
 
-
 @freezed
 class GetUserGroupResponse with _$GetUserGroupResponse {
   const factory GetUserGroupResponse({
@@ -49,7 +48,8 @@ class GetUserGroupResponse with _$GetUserGroupResponse {
     @Default([]) List<UserGroupDetail> data,
   }) = _GetUserGroupResponse;
 
- factory GetUserGroupResponse.fromJson(Map<String, dynamic> json) => _$GetUserGroupResponseFromJson(json);
+  factory GetUserGroupResponse.fromJson(Map<String, dynamic> json) =>
+      _$GetUserGroupResponseFromJson(json);
 }
 
 @freezed
@@ -60,7 +60,8 @@ class UserGroupDetail with _$UserGroupDetail {
     @Default([]) List<Member> members,
   }) = _UserGroupDetail;
 
- factory UserGroupDetail.fromJson(Map<String, dynamic> json) => _$UserGroupDetailFromJson(json);
+  factory UserGroupDetail.fromJson(Map<String, dynamic> json) =>
+      _$UserGroupDetailFromJson(json);
 }
 
 @freezed
@@ -70,5 +71,5 @@ class Member with _$Member {
     UserProfile? profile,
   }) = _Member;
 
- factory Member.fromJson(Map<String, dynamic> json) => _$MemberFromJson(json);
+  factory Member.fromJson(Map<String, dynamic> json) => _$MemberFromJson(json);
 }

@@ -5,9 +5,14 @@ linter:
     prefer_single_quotes: true
     sort_pub_dependencies: false
     prefer_const_literals_to_create_immutables: false
+    depend_on_referenced_packages: false
 
 analyzer:
   exclude:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
     - "**/*.gr.dart"
+    - "generated_plugin_registrant.dart"
+  errors:
+    # https://github.com/rrousselGit/freezed/issues/488
+    invalid_annotation_target: ignore

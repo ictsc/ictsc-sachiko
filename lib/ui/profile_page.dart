@@ -10,8 +10,9 @@ import 'package:ictsc_sachiko/view_model/profile_page_state_notifier.dart';
 
 class ProfilePage extends HookWidget {
   final profilePageStateProvider = StateNotifierProvider.autoDispose<
-          ProfilePageStateNotifier, ProfilePageState>(
-      (ref) => ProfilePageStateNotifier(const ProfilePageState(), ref));
+      ProfilePageStateNotifier, ProfilePageState>(
+    (ref) => ProfilePageStateNotifier(const ProfilePageState(), ref),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +28,11 @@ class ProfilePage extends HookWidget {
     final formKey = GlobalKey<FormState>();
 
     return Scaffold(
-        appBar: Header(appBar: AppBar()),
-        body: SingleChildScrollView(
-          child: Center(
-            child: Column(children: [
+      appBar: Header(appBar: AppBar()),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
               const Gap(40),
               SizedBox(
                 width: 1024,
@@ -40,11 +42,13 @@ class ProfilePage extends HookWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('プロフィール',
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline5
-                                ?.copyWith(fontWeight: FontWeight.bold)),
+                        Text(
+                          'プロフィール',
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline5
+                              ?.copyWith(fontWeight: FontWeight.bold),
+                        ),
                         const Gap(8),
                         Container(
                           height: 1,
@@ -69,7 +73,8 @@ class ProfilePage extends HookWidget {
                           label: '自己紹介',
                           hintText: '自己紹介',
                           minLines: 3,
-                          controller: profileProvider.selfIntroductionController,
+                          controller:
+                              profileProvider.selfIntroductionController,
                         ),
                         const Gap(32),
                         SizedBox(
@@ -115,20 +120,25 @@ class ProfilePage extends HookWidget {
                         ),
                         const Gap(32),
                         ElevatedButton(
-                            onPressed: profileProvider.onSaveButton(
-                                context: context, key: formKey),
-                            child: const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text('更新する'),
-                            ))
+                          onPressed: profileProvider.onSaveButton(
+                            context: context,
+                            key: formKey,
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('更新する'),
+                          ),
+                        )
                       ],
                     ),
                   ),
                 ),
               )
-            ]),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
 
@@ -140,13 +150,14 @@ class ProfileTextForm extends HookWidget {
   final double size;
   final int? minLines;
 
-  const ProfileTextForm(
-      {required this.controller,
-      this.isRequired = false,
-      required this.label,
-      this.size = 512,
-      this.hintText,
-      this.minLines});
+  const ProfileTextForm({
+    required this.controller,
+    this.isRequired = false,
+    required this.label,
+    this.size = 512,
+    this.hintText,
+    this.minLines,
+  });
 
   @override
   Widget build(BuildContext context) {

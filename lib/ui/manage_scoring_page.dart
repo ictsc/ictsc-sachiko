@@ -8,30 +8,37 @@ class ManageScoringPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final dataRows = [
-      const DataRow(cells: [
-        DataCell(Icon(
-          Icons.check,
-          color: Colors.green,
-        )),
-        DataCell(Text('2018-01-27 06:54:33')),
-        DataCell(
-            Text('問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文')),
-        DataCell(Text('Aチーム')),
-        DataCell(Text('0')),
-        // DataCell(SizedBox(
-        //   width: MediaQuery.of(context).size.width / 4,
-        //   child: Text(
-        //     'adsfjk;adfjkl;sadfkjl;sadfkjkl;sadfjkl;sdfkjlk;asdfjkl;asdfkjkladfjkl;adsfjkl;asdfjkl;asdfjkl;dsfkjk;sdfkjkl;asdfkjkl;sadfkjk;sadfkjk;sadfkjl;',
-        //     //.replaceAll('\n', '　'),
-        //     overflow: TextOverflow.ellipsis,
-        //     maxLines: 1,
-        //   ),
-        // )),
-        DataCell(Text(
-          '詳細',
-          style: TextStyle(color: Colors.blue),
-        )),
-      ]),
+      const DataRow(
+        cells: [
+          DataCell(
+            Icon(
+              Icons.check,
+              color: Colors.green,
+            ),
+          ),
+          DataCell(Text('2018-01-27 06:54:33')),
+          DataCell(
+            Text('問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文問題文'),
+          ),
+          DataCell(Text('Aチーム')),
+          DataCell(Text('0')),
+          // DataCell(SizedBox(
+          //   width: MediaQuery.of(context).size.width / 4,
+          //   child: Text(
+          //     'adsfjk;adfjkl;sadfkjl;sadfkjkl;sadfjkl;sdfkjlk;asdfjkl;asdfkjkladfjkl;adsfjkl;asdfjkl;asdfjkl;dsfkjk;sdfkjkl;asdfkjkl;sadfkjk;sadfkjk;sadfkjl;',
+          //     //.replaceAll('\n', '　'),
+          //     overflow: TextOverflow.ellipsis,
+          //     maxLines: 1,
+          //   ),
+          // )),
+          DataCell(
+            Text(
+              '詳細',
+              style: TextStyle(color: Colors.blue),
+            ),
+          ),
+        ],
+      ),
     ];
 
     return Scaffold(
@@ -62,7 +69,9 @@ class ManageScoringPage extends HookWidget {
                   const DataColumn(label: Center(child: Text('問題'))),
                   const DataColumn(label: Center(child: Text('チーム'))),
                   const DataColumn(
-                      label: Center(child: Text('得点')), numeric: true),
+                    label: Center(child: Text('得点')),
+                    numeric: true,
+                  ),
                   // const DataColumn(label: Center(child: Text('内容'))),
                   const DataColumn(label: Center(child: Text(''))),
                 ],

@@ -9,8 +9,8 @@ import 'common/header.dart';
 
 class SignInPage extends HookWidget {
   final loginForm =
-  StateNotifierProvider<SignInPageStateNotifier, SignInFormState>(
-        (refs) => SignInPageStateNotifier(const SignInFormState(), refs),
+      StateNotifierProvider<SignInPageStateNotifier, SignInFormState>(
+    (refs) => SignInPageStateNotifier(const SignInFormState(), refs),
   );
 
   @override
@@ -38,8 +38,7 @@ class SignInPage extends HookWidget {
                         padding: const EdgeInsets.all(16.0),
                         child: Text(
                           'ログイン',
-                          style: Theme
-                              .of(context)
+                          style: Theme.of(context)
                               .textTheme
                               .headline6!
                               .copyWith(fontWeight: FontWeight.bold),
@@ -49,15 +48,10 @@ class SignInPage extends HookWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           provider.errorMessage,
-                          style: Theme
-                              .of(context)
-                              .textTheme
-                              .bodyText2!
-                              .copyWith(
-                              color: Theme
-                                  .of(context)
-                                  .colorScheme
-                                  .error),
+                          style:
+                              Theme.of(context).textTheme.bodyText2!.copyWith(
+                                    color: Theme.of(context).colorScheme.error,
+                                  ),
                         ),
                       ),
                       Padding(
@@ -67,7 +61,7 @@ class SignInPage extends HookWidget {
                           controller: provider.nameController,
                           onFieldSubmitted: (_) {
                             // Enter時の処理
-                            WidgetsBinding.instance?.addPostFrameCallback((_){
+                            WidgetsBinding.instance?.addPostFrameCallback((_) {
                               final func = provider.onTapSignInButton(context);
 
                               if (func != null) {
@@ -84,7 +78,7 @@ class SignInPage extends HookWidget {
                           controller: provider.passwordController,
                           onFieldSubmitted: (_) {
                             // Enter時の処理
-                            WidgetsBinding.instance?.addPostFrameCallback((_){
+                            WidgetsBinding.instance?.addPostFrameCallback((_) {
                               final func = provider.onTapSignInButton(context);
 
                               if (func != null) {

@@ -1,5 +1,4 @@
 import 'package:flash/flash.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/service/model/user_api.dart';
@@ -37,8 +36,10 @@ class ProfilePageStateNotifier extends StateNotifier<ProfilePageState>
   late final TextEditingController selfIntroductionController;
 
   /// プロフィールを更新するボタンの処理。
-  void Function()? onSaveButton(
-      {required BuildContext context, required GlobalKey<FormState> key}) {
+  void Function()? onSaveButton({
+    required BuildContext context,
+    required GlobalKey<FormState> key,
+  }) {
     return () {
       final user = ref.read(authStateProvider).user;
 

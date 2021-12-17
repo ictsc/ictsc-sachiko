@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flash/flash.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/service/base/client.dart';
@@ -35,10 +34,11 @@ class CreateProblemPageStateNotifier
   }
 
   /// 保存処理の関数を返す
-  void Function()? onSaveButton(
-      {required BuildContext context,
-      required GlobalKey<FormState> key,
-      String? id}) {
+  void Function()? onSaveButton({
+    required BuildContext context,
+    required GlobalKey<FormState> key,
+    String? id,
+  }) {
     if (state.isLoading) {
       return null;
     }
@@ -64,12 +64,14 @@ class CreateProblemPageStateNotifier
         ref
             .read(problemProvider)
             .createProblem(createProblemRequest)
-            .then((response) => response.when(
-                  success: (_) async {
-                    AutoRouter.of(context).pushNamed('/manage/problems');
-                  },
-                  failure: (_) {},
-                ))
+            .then(
+              (response) => response.when(
+                success: (_) async {
+                  AutoRouter.of(context).pushNamed('/manage/problems');
+                },
+                failure: (_) {},
+              ),
+            )
             .whenComplete(() => state = state.copyWith(isLoading: false));
       };
     }
@@ -94,46 +96,48 @@ class CreateProblemPageStateNotifier
       ref
           .read(problemProvider)
           .updateProblem(updateProblemRequest)
-          .then((response) => response.when(
-                success: (_) async {
-                  AutoRouter.of(context).pushNamed('/manage/problems');
-                },
-                failure: (_) {},
-              ))
+          .then(
+            (response) => response.when(
+              success: (_) async {
+                AutoRouter.of(context).pushNamed('/manage/problems');
+              },
+              failure: (_) {},
+            ),
+          )
           .whenComplete(() => state = state.copyWith(isLoading: false));
     };
   }
 
   void fetchProblem(BuildContext context, String id) {
-    ref
-        .read(problemProvider)
-        .findByIdProblem(FindProblemRequest(id: id))
-        .then((response) => response.when(
-              success: (result) {
-                final problem = result.data.problem;
+    ref.read(problemProvider).findByIdProblem(FindProblemRequest(id: id)).then(
+          (response) => response.when(
+            success: (result) {
+              final problem = result.data.problem;
 
-                titleController.text = problem.title;
-                bodyController.text = problem.body;
-                pointController.text = problem.point.toString();
-                solvedCriterionController.text =
-                    problem.solvedCriterion.toString();
-                previousProblemTitleController.text =
-                    problem.previousProblemId.toString();
-                codeController.text = problem.code;
+              titleController.text = problem.title;
+              bodyController.text = problem.body;
+              pointController.text = problem.point.toString();
+              solvedCriterionController.text =
+                  problem.solvedCriterion.toString();
+              previousProblemTitleController.text =
+                  problem.previousProblemId.toString();
+              codeController.text = problem.code;
 
-                state = state.copyWith(problem: problem);
-              },
-              failure: (_) {
-                AutoRouter.of(context).pushNamed('/');
-              },
-            ));
+              state = state.copyWith(problem: problem);
+            },
+            failure: (_) {
+              AutoRouter.of(context).pushNamed('/');
+            },
+          ),
+        );
   }
 
   Function() onFileUpload(BuildContext context) => () async {
         final picked = await FilePicker.platform.pickFiles(
-            type: FileType.custom,
-            allowedExtensions: ['jpg', 'png'],
-            withData: true);
+          type: FileType.custom,
+          allowedExtensions: ['jpg', 'png'],
+          withData: true,
+        );
 
         final file = picked?.files.first;
 

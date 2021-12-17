@@ -17,10 +17,12 @@ class UserListPage extends HookWidget {
 
     final List<TableRow> members = [];
 
-    userGroupState.userGroups.asMap().forEach((key, value) => value.members
-        .asMap()
-        .forEach((key, member) =>
-            members.add(userTableRow(context, member, value.name))));
+    userGroupState.userGroups.asMap().forEach(
+          (key, value) => value.members.asMap().forEach(
+                (key, member) =>
+                    members.add(userTableRow(context, member, value.name)),
+              ),
+        );
 
     return Scaffold(
       appBar: Header(appBar: AppBar()),
@@ -29,54 +31,55 @@ class UserListPage extends HookWidget {
         physics: const ClampingScrollPhysics(),
         itemCount: 1,
         itemBuilder: (_, i) => Center(
-            child: Padding(
-          padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-          child: SizedBox(
-            width: 1024,
-            child: Column(
-              children: [
-                const Gap(24),
-                Padding(
-                  padding: const EdgeInsets.only(left: 16, top: 16),
-                  child: Text(
-                    '参加者',
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline5
-                        ?.copyWith(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                const Gap(24),
-                SizedBox(
-                  width: 1024,
-                  child: ProblemCard(
-                    edgeInsets: const EdgeInsets.only(left: 16, right: 16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Table(
-                          defaultVerticalAlignment:
-                              TableCellVerticalAlignment.middle,
-                          border: TableBorder(
-                            horizontalInside: BorderSide(
-                              color: Theme.of(context).dividerColor,
-                            ),
-                          ),
-                          columnWidths: {
-                            0: const FlexColumnWidth(2),
-                            1: const FlexColumnWidth(2),
-                            2: const FlexColumnWidth(6),
-                          },
-                          children: members,
-                        ),
-                      ],
+          child: Padding(
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+            child: SizedBox(
+              width: 1024,
+              child: Column(
+                children: [
+                  const Gap(24),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16, top: 16),
+                    child: Text(
+                      '参加者',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline5
+                          ?.copyWith(fontWeight: FontWeight.bold),
                     ),
                   ),
-                ),
-              ],
+                  const Gap(24),
+                  SizedBox(
+                    width: 1024,
+                    child: ProblemCard(
+                      edgeInsets: const EdgeInsets.only(left: 16, right: 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Table(
+                            defaultVerticalAlignment:
+                                TableCellVerticalAlignment.middle,
+                            border: TableBorder(
+                              horizontalInside: BorderSide(
+                                color: Theme.of(context).dividerColor,
+                              ),
+                            ),
+                            columnWidths: {
+                              0: const FlexColumnWidth(2),
+                              1: const FlexColumnWidth(2),
+                              2: const FlexColumnWidth(6),
+                            },
+                            children: members,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-        )),
+        ),
       ),
     );
   }
@@ -106,9 +109,10 @@ class UserListPage extends HookWidget {
                         children: [
                           // Twitter
                           LinkIcon(
-                              icon: EvaIcons.github,
-                              url:
-                                  'https://github.com/${member.profile!.githubId}'),
+                            icon: EvaIcons.github,
+                            url:
+                                'https://github.com/${member.profile!.githubId}',
+                          ),
                         ],
                       ),
                     // Twitter
@@ -117,9 +121,10 @@ class UserListPage extends HookWidget {
                         children: [
                           const Gap(8),
                           LinkIcon(
-                              icon: EvaIcons.twitter,
-                              url:
-                                  'https://twitter.com/${member.profile!.twitterId}'),
+                            icon: EvaIcons.twitter,
+                            url:
+                                'https://twitter.com/${member.profile!.twitterId}',
+                          ),
                         ],
                       ),
                     // Twitter
@@ -128,9 +133,10 @@ class UserListPage extends HookWidget {
                         children: [
                           const Gap(8),
                           LinkIcon(
-                              icon: EvaIcons.facebook,
-                              url:
-                                  'https://www.facebook.com/${member.profile!.facebookId}'),
+                            icon: EvaIcons.facebook,
+                            url:
+                                'https://www.facebook.com/${member.profile!.facebookId}',
+                          ),
                         ],
                       ),
                   ],
@@ -140,7 +146,7 @@ class UserListPage extends HookWidget {
         ),
         SelectableText(teamName),
         SelectableText(
-            member.profile?.selfIntroduction ?? '',
+          member.profile?.selfIntroduction ?? '',
         ),
       ],
     );

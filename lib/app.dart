@@ -19,11 +19,14 @@ class App extends HookWidget {
     final app = useProvider(appStateProvider);
 
     //　起動時に一度だけログイン済みかチェックする
-    useEffect(() {
-      WidgetsBinding.instance?.addPostFrameCallback((_) {
-        context.read(authStateProvider.notifier).signCheck();
-      });
-    }, []);
+    useEffect(
+      () {
+        WidgetsBinding.instance?.addPostFrameCallback((_) {
+          context.read(authStateProvider.notifier).signCheck();
+        });
+      },
+      [],
+    );
 
     if (!useProvider(authStateProvider).isLoginChecked) {
       return Container();

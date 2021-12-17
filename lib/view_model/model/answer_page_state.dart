@@ -16,5 +16,6 @@ class AnswerPageState with _$AnswerPageState {
     @Default(0) int answerFilterState,
   }) = _AnswerPageState;
 
- factory AnswerPageState.fromJson(Map<String, dynamic> json) => _$AnswerPageStateFromJson(json);
+  factory AnswerPageState.fromJson(Map<String, dynamic> json) =>
+      _$AnswerPageStateFromJson(json);
 }

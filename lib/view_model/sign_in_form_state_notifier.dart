@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ictsc_sachiko/service/model/auth.dart';
@@ -54,31 +53,35 @@ class SignInPageStateNotifier extends StateNotifier<SignInFormState>
 
       ref
           .read(authStateProvider.notifier)
-          .signIn(SignInRequest(
-            name: nameController.text,
-            password: passwordController.text,
-          ))
-          .then((response) => response.when(
-                success: (value) {
-                  state = state.copyWith(errorMessage: '');
+          .signIn(
+            SignInRequest(
+              name: nameController.text,
+              password: passwordController.text,
+            ),
+          )
+          .then(
+            (response) => response.when(
+              success: (value) {
+                state = state.copyWith(errorMessage: '');
 
-                  // ページを飛ばす
-                  context.router.pushNamed('/');
-                },
-                failure: (error) {
-                  final String message = error.when(
-                    unauthorisedRequest: () => 'メールアドレスまたはパスワードが違います。',
-                    requestError: (_) => 'メールアドレスまたはパスワードが違います。',
-                    unexpectedError: () => '',
-                  );
+                // ページを飛ばす
+                context.router.pushNamed('/');
+              },
+              failure: (error) {
+                final String message = error.when(
+                  unauthorisedRequest: () => 'メールアドレスまたはパスワードが違います。',
+                  requestError: (_) => 'メールアドレスまたはパスワードが違います。',
+                  unexpectedError: () => '',
+                );
 
-                  // エラーメッセージの処理
-                  state = state.copyWith(errorMessage: message);
+                // エラーメッセージの処理
+                state = state.copyWith(errorMessage: message);
 
-                  // パスワードのクリア
-                  passwordController.clear();
-                },
-              ))
+                // パスワードのクリア
+                passwordController.clear();
+              },
+            ),
+          )
           .whenComplete(
             () => state = state.copyWith(isLoading: false),
           );

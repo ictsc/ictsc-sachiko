@@ -10,8 +10,9 @@ import 'package:ictsc_sachiko/view_model/model/problem_page_state.dart';
 import 'package:state_notifier/state_notifier.dart';
 
 final problemPageStateProvider = StateNotifierProvider.autoDispose<
-        ProblemPageStateNotifier, ProblemPageState>(
-    (ref) => ProblemPageStateNotifier(const ProblemPageState(), ref));
+    ProblemPageStateNotifier, ProblemPageState>(
+  (ref) => ProblemPageStateNotifier(const ProblemPageState(), ref),
+);
 
 class ProblemPageStateNotifier extends StateNotifier<ProblemPageState>
     with LocatorMixin {
@@ -27,12 +28,14 @@ class ProblemPageStateNotifier extends StateNotifier<ProblemPageState>
     await ref
         .read(problemProvider)
         .findByIdProblem(FindProblemRequest(id: id))
-        .then((result) => result.when(
-              success: (response) {
-                state = state.copyWith(problem: response.data.problem);
-              },
-              failure: (_) {},
-            ))
+        .then(
+          (result) => result.when(
+            success: (response) {
+              state = state.copyWith(problem: response.data.problem);
+            },
+            failure: (_) {},
+          ),
+        )
         .whenComplete(() => state = state.copyWith(isLoading: false));
   }
 
@@ -55,34 +58,36 @@ class ProblemPageStateNotifier extends StateNotifier<ProblemPageState>
               body: bodyController.text,
             ),
           )
-          .then((result) => result.when(
-                success: (response) {
-                  context.showFlashBar(
-                    content: Text(
-                      '回答を受け付けました。',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyText2
-                          ?.copyWith(color: Colors.white),
-                    ),
-                    duration: const Duration(seconds: 3),
-                    backgroundColor: Colors.green,
-                  );
-                },
-                failure: (_) {
-                  context.showFlashBar(
-                    content: Text(
-                      '回答投稿に失敗。回答を提出20分間は同一の問題に回答できません。',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyText2
-                          ?.copyWith(color: Colors.white),
-                    ),
-                    duration: const Duration(seconds: 3),
-                    backgroundColor: Theme.of(context).errorColor,
-                  );
-                },
-              ))
+          .then(
+            (result) => result.when(
+              success: (response) {
+                context.showFlashBar(
+                  content: Text(
+                    '回答を受け付けました。',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2
+                        ?.copyWith(color: Colors.white),
+                  ),
+                  duration: const Duration(seconds: 3),
+                  backgroundColor: Colors.green,
+                );
+              },
+              failure: (_) {
+                context.showFlashBar(
+                  content: Text(
+                    '回答投稿に失敗。回答を提出20分間は同一の問題に回答できません。',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2
+                        ?.copyWith(color: Colors.white),
+                  ),
+                  duration: const Duration(seconds: 3),
+                  backgroundColor: Theme.of(context).errorColor,
+                );
+              },
+            ),
+          )
           .whenComplete(() => state = state.copyWith(isFetchLoading: false));
     };
   }

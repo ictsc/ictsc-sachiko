@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -67,10 +66,9 @@ class Header extends HookWidget implements PreferredSizeWidget {
                             .primaryTextTheme
                             .subtitle1!
                             .copyWith(
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .bodyText2!
-                                    .color),
+                              color:
+                                  Theme.of(context).textTheme.bodyText2!.color,
+                            ),
                       ),
                     ),
                     const Padding(
@@ -91,8 +89,8 @@ class Header extends HookWidget implements PreferredSizeWidget {
                         .primaryTextTheme
                         .bodyText2!
                         .copyWith(
-                            color:
-                                Theme.of(context).textTheme.bodyText2!.color),
+                          color: Theme.of(context).textTheme.bodyText2!.color,
+                        ),
                   ),
                 ),
               ),
@@ -108,8 +106,8 @@ class Header extends HookWidget implements PreferredSizeWidget {
                           .primaryTextTheme
                           .bodyText2!
                           .copyWith(
-                              color:
-                                  Theme.of(context).textTheme.bodyText2!.color),
+                            color: Theme.of(context).textTheme.bodyText2!.color,
+                          ),
                     ),
                     Switch(
                       activeColor: Theme.of(context).primaryColor,
@@ -140,8 +138,8 @@ class Header extends HookWidget implements PreferredSizeWidget {
                           .primaryTextTheme
                           .bodyText2!
                           .copyWith(
-                              color:
-                                  Theme.of(context).textTheme.bodyText2!.color),
+                            color: Theme.of(context).textTheme.bodyText2!.color,
+                          ),
                     ),
                   ],
                 ),
@@ -149,16 +147,17 @@ class Header extends HookWidget implements PreferredSizeWidget {
             ],
             offset: const Offset(0, 48),
             child: Center(
-                child: Row(
-              children: [
-                Text(
-                  user.displayName.length > 10
-                      ? user.displayName.replaceRange(10, null, '…')
-                      : user.displayName,
-                ),
-                const Icon(Icons.arrow_drop_down),
-              ],
-            )),
+              child: Row(
+                children: [
+                  Text(
+                    user.displayName.length > 10
+                        ? user.displayName.replaceRange(10, null, '…')
+                        : user.displayName,
+                  ),
+                  const Icon(Icons.arrow_drop_down),
+                ],
+              ),
+            ),
           ),
         ],
       );
@@ -168,8 +167,10 @@ class Header extends HookWidget implements PreferredSizeWidget {
       // 戻るボタンを削除
       automaticallyImplyLeading: false,
       leading: GestureDetector(
-        onTap: () => context.router.pushAndPopUntil(const HomeRoute(),
-            predicate: (route) => route.isFirst),
+        onTap: () => context.router.pushAndPopUntil(
+          const HomeRoute(),
+          predicate: (route) => route.isFirst,
+        ),
         child: Row(
           children: [
             SizedBox(
@@ -269,10 +270,15 @@ class Header extends HookWidget implements PreferredSizeWidget {
             ),
           ),
         Padding(
-            padding: const EdgeInsets.only(
-                top: 8.0, bottom: 8.0, left: 8.0, right: 16.0),
-            // ログインページへのボタン
-            child: toLoginLinkButton()),
+          padding: const EdgeInsets.only(
+            top: 8.0,
+            bottom: 8.0,
+            left: 8.0,
+            right: 16.0,
+          ),
+          // ログインページへのボタン
+          child: toLoginLinkButton(),
+        ),
       ],
     );
   }

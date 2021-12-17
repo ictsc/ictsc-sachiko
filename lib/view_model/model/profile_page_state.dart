@@ -10,5 +10,6 @@ class ProfilePageState with _$ProfilePageState {
     @Default(false) isLoading,
   }) = _ProfilePageState;
 
- factory ProfilePageState.fromJson(Map<String, dynamic> json) => _$ProfilePageStateFromJson(json);
+  factory ProfilePageState.fromJson(Map<String, dynamic> json) =>
+      _$ProfilePageStateFromJson(json);
 }

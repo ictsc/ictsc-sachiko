@@ -17,15 +17,13 @@ class UserListPageStateNotifier extends StateNotifier<UserListPageState>
   final ProviderReference ref;
 
   Future<void> fetchUserGroup() async {
-
-    await ref
-        .read(userProvider)
-        .findAllUserGroups()
-        .then((result) => result.when(
-              success: (response) {
-                state = state.copyWith(userGroups: response.data);
-              },
-              failure: (_) {},
-            ));
+    await ref.read(userProvider).findAllUserGroups().then(
+          (result) => result.when(
+            success: (response) {
+              state = state.copyWith(userGroups: response.data);
+            },
+            failure: (_) {},
+          ),
+        );
   }
 }

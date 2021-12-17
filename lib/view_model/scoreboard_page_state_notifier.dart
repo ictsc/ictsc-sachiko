@@ -14,7 +14,6 @@ class ScoreboardPageStateNotifier extends StateNotifier<ScoreboardPageState>
     with LocatorMixin {
   ScoreboardPageStateNotifier(ScoreboardPageState state, this.ref)
       : super(state) {
-
     // 管理者ユーザーは全件表示
     if (ref.read(authStateProvider).user?.userGroup?.isFullAccess ?? false) {
       fetchAllRanking();
@@ -26,30 +25,36 @@ class ScoreboardPageStateNotifier extends StateNotifier<ScoreboardPageState>
   final ProviderReference ref;
 
   void fetchAllRanking() {
-    ref.read(rankingProvider).getAllRanking().then((value) => value.when(
-          success: (response) {
-            state = state.copyWith(ranking: response.data.ranking);
-          },
-          failure: (_) {},
-        ));
+    ref.read(rankingProvider).getAllRanking().then(
+          (value) => value.when(
+            success: (response) {
+              state = state.copyWith(ranking: response.data.ranking);
+            },
+            failure: (_) {},
+          ),
+        );
   }
 
   void fetchTopRanking() {
-    ref.read(rankingProvider).getTopRanking().then((value) => value.when(
-          success: (response) {
-            state = state.copyWith(ranking: response.data.ranking);
-          },
-          failure: (_) {},
-        ));
+    ref.read(rankingProvider).getTopRanking().then(
+          (value) => value.when(
+            success: (response) {
+              state = state.copyWith(ranking: response.data.ranking);
+            },
+            failure: (_) {},
+          ),
+        );
   }
 
   void fetchNearMeRanking() {
-    ref.read(rankingProvider).getNearMeRanking().then((value) => value.when(
-          success: (response) {
-            state = state.copyWith(ranking: response.data.ranking);
-          },
-          failure: (_) {},
-        ));
+    ref.read(rankingProvider).getNearMeRanking().then(
+          (value) => value.when(
+            success: (response) {
+              state = state.copyWith(ranking: response.data.ranking);
+            },
+            failure: (_) {},
+          ),
+        );
   }
 
   Function(Object? object) onTapToggleFetchMode() => (Object? object) {
@@ -57,7 +62,8 @@ class ScoreboardPageStateNotifier extends StateNotifier<ScoreboardPageState>
           if (object) {
             // 管理者ユーザーは全件表示
             // TODO フロントで切り替えボタンを表示しないようにする。
-            if (ref.read(authStateProvider).user?.userGroup?.isFullAccess ?? false) {
+            if (ref.read(authStateProvider).user?.userGroup?.isFullAccess ??
+                false) {
               fetchAllRanking();
             } else {
               fetchTopRanking();
