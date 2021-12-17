@@ -189,45 +189,51 @@ class AppRouter extends _i13.RootStackRouter {
       ];
 }
 
-/// generated route for [_i1.HomePage]
+/// generated route for
+/// [_i1.HomePage]
 class HomeRoute extends _i13.PageRouteInfo<void> {
-  const HomeRoute() : super(name, path: '/');
+  const HomeRoute() : super(HomeRoute.name, path: '/');
 
   static const String name = 'HomeRoute';
 }
 
-/// generated route for [_i2.SignInPage]
+/// generated route for
+/// [_i2.SignInPage]
 class SignInRoute extends _i13.PageRouteInfo<void> {
-  const SignInRoute() : super(name, path: '/login');
+  const SignInRoute() : super(SignInRoute.name, path: '/login');
 
   static const String name = 'SignInRoute';
 }
 
-/// generated route for [_i3.SignUpPage]
+/// generated route for
+/// [_i3.SignUpPage]
 class SignUpRoute extends _i13.PageRouteInfo<void> {
-  const SignUpRoute() : super(name, path: '/signup');
+  const SignUpRoute() : super(SignUpRoute.name, path: '/signup');
 
   static const String name = 'SignUpRoute';
 }
 
-/// generated route for [_i4.ProfilePage]
+/// generated route for
+/// [_i4.ProfilePage]
 class ProfileRoute extends _i13.PageRouteInfo<void> {
-  const ProfileRoute() : super(name, path: '/profile');
+  const ProfileRoute() : super(ProfileRoute.name, path: '/profile');
 
   static const String name = 'ProfileRoute';
 }
 
-/// generated route for [_i5.ProblemListPage]
+/// generated route for
+/// [_i5.ProblemListPage]
 class ProblemListRoute extends _i13.PageRouteInfo<void> {
-  const ProblemListRoute() : super(name, path: '/problems');
+  const ProblemListRoute() : super(ProblemListRoute.name, path: '/problems');
 
   static const String name = 'ProblemListRoute';
 }
 
-/// generated route for [_i6.ProblemPage]
+/// generated route for
+/// [_i6.ProblemPage]
 class ProblemRoute extends _i13.PageRouteInfo<ProblemRouteArgs> {
   ProblemRoute({required String id})
-      : super(name,
+      : super(ProblemRoute.name,
             path: '/problems/:id',
             args: ProblemRouteArgs(id: id),
             rawPathParams: {'id': id});
@@ -246,31 +252,35 @@ class ProblemRouteArgs {
   }
 }
 
-/// generated route for [_i7.UserListPage]
+/// generated route for
+/// [_i7.UserListPage]
 class UserListRoute extends _i13.PageRouteInfo<void> {
-  const UserListRoute() : super(name, path: '/users');
+  const UserListRoute() : super(UserListRoute.name, path: '/users');
 
   static const String name = 'UserListRoute';
 }
 
-/// generated route for [_i8.ScoreboardPage]
+/// generated route for
+/// [_i8.ScoreboardPage]
 class ScoreboardRoute extends _i13.PageRouteInfo<void> {
-  const ScoreboardRoute() : super(name, path: '/scoreboard');
+  const ScoreboardRoute() : super(ScoreboardRoute.name, path: '/scoreboard');
 
   static const String name = 'ScoreboardRoute';
 }
 
-/// generated route for [_i9.ManagePage]
+/// generated route for
+/// [_i9.ManagePage]
 class ManageRoute extends _i13.PageRouteInfo<void> {
-  const ManageRoute() : super(name, path: '/manage');
+  const ManageRoute() : super(ManageRoute.name, path: '/manage');
 
   static const String name = 'ManageRoute';
 }
 
-/// generated route for [_i10.CreateProblemPage]
+/// generated route for
+/// [_i10.CreateProblemPage]
 class CreateProblemRoute extends _i13.PageRouteInfo<CreateProblemRouteArgs> {
   CreateProblemRoute({String? problemId})
-      : super(name,
+      : super(CreateProblemRoute.name,
             path: '/manage/problems/:problemId/edit',
             args: CreateProblemRouteArgs(problemId: problemId),
             rawPathParams: {'problemId': problemId});
@@ -289,18 +299,21 @@ class CreateProblemRouteArgs {
   }
 }
 
-/// generated route for [_i11.ManageProblemListPage]
+/// generated route for
+/// [_i11.ManageProblemListPage]
 class ManageProblemListRoute extends _i13.PageRouteInfo<void> {
-  const ManageProblemListRoute() : super(name, path: '/manage/problems');
+  const ManageProblemListRoute()
+      : super(ManageProblemListRoute.name, path: '/manage/problems');
 
   static const String name = 'ManageProblemListRoute';
 }
 
-/// generated route for [_i12.ManageProblemAnswerListPage]
+/// generated route for
+/// [_i12.ManageProblemAnswerListPage]
 class ManageProblemAnswerListRoute
     extends _i13.PageRouteInfo<ManageProblemAnswerListRouteArgs> {
   ManageProblemAnswerListRoute({required String problemId})
-      : super(name,
+      : super(ManageProblemAnswerListRoute.name,
             path: '/manage/problems/:problemId/answers',
             args: ManageProblemAnswerListRouteArgs(problemId: problemId),
             rawPathParams: {'problemId': problemId});
