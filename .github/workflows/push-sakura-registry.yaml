@@ -3,7 +3,7 @@ name: build_image
 on:
   push:
     branches:
-      - main
+      - "*"
 
 jobs:
   build_and_push:
