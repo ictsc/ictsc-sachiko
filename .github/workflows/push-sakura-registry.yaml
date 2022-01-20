@@ -1,10 +1,7 @@
 # test
 name: build_image
 
-on:
-  push:
-    branches:
-      - "*"
+on: [push, pull_request]
 
 jobs:
   build_and_push:
