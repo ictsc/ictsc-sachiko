@@ -42,5 +42,5 @@ jobs:
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.set-tag.outputs.version }}
-          cache-from: type=registry,ref=${{ secrets.SAKURACR_USER }}/${{ env.IMAGE_NAME }}:latest
-          cache-to: type=registry,ref=${{ secrets.SAKURACR_USER }}/${{ env.IMAGE_NAME }}:latest,mode=max
+          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest,mode=max
