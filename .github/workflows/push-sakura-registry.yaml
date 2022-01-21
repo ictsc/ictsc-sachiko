@@ -1,10 +1,9 @@
 name: build_image
 
-#on:
-#  push:
-#    branches:
-#      - main
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build_and_push:
