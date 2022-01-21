@@ -1,9 +1,10 @@
 name: build_image
 
-on:
-  push:
-    branches:
-      - main
+#on:
+#  push:
+#    branches:
+#      - main
+on: [push, pull_request]
 
 jobs:
   build_and_push:
@@ -40,3 +41,5 @@ jobs:
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.set-tag.outputs.version }}
+          cache-from: type=registry,ref=${{ secrets.SAKURACR_USER }}/${{ env.IMAGE_NAME }}:latest
+          cache-to: type=registry,ref=${{ secrets.SAKURACR_USER }}/${{ env.IMAGE_NAME }}:latest,mode=max
