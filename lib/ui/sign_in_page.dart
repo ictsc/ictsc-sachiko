@@ -85,6 +85,7 @@ class SignInPage extends HookWidget {
                                 func();
                               }
                             });
+                            return null;
                           },
                         ),
                       ),

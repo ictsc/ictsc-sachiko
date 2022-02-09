@@ -25,6 +25,7 @@ class ProblemPage extends HookWidget {
         WidgetsBinding.instance?.addPostFrameCallback((_) {
           notifier.fetchProblem(id);
         });
+        return null;
       },
       [],
     );

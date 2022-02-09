@@ -30,6 +30,7 @@ class ManageProblemAnswerListPage extends HookWidget {
           await notifier.fetchProblem(problemId);
           await notifier.fetchAnswers(problemId);
         });
+        return null;
       },
       [],
     );
