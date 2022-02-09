@@ -31,6 +31,7 @@ class CreateProblemPage extends HookWidget {
             notifier.fetchProblem(context, id);
           }
         });
+        return null;
       },
       [],
     );

@@ -24,6 +24,7 @@ class App extends HookWidget {
         WidgetsBinding.instance?.addPostFrameCallback((_) {
           context.read(authStateProvider.notifier).signCheck();
         });
+        return null;
       },
       [],
     );

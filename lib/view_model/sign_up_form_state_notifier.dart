@@ -25,12 +25,14 @@ class SignUpPageStateNotifier extends StateNotifier<SignUpFormState>
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       state = state.copyWith(isNameValidatePass: (text?.length ?? 0) >= 3);
     });
+    return null;
   }
 
   String? passwordValidator(String? text) {
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       state = state.copyWith(isPasswordValidatePass: (text?.length ?? 0) >= 8);
     });
+    return null;
   }
 
   Function()? onTapSignUpButton(BuildContext context) {
