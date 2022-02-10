@@ -1,9 +1,9 @@
 ### ビルド用コンテナ ###
 FROM ubuntu:20.04 AS builder
 
-ARG app_title="ICTSC"
+ARG app_title="ICTSC DEV リハーサル"
 ARG guide_contents="# ガイドライン（スコアサーバー）"
-ARG app_url="http://localhost:8080"
+ARG app_url="http://contest.dev.ictsc.net"
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     curl \
