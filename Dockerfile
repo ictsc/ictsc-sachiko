@@ -20,8 +20,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     wget \
   && apt-get clean
 
-RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
-RUN git checkout -b master v2.8.1
+RUN git clone https://github.com/flutter/flutter.git -b 2.8.1 /usr/local/flutter
 
 ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
 
