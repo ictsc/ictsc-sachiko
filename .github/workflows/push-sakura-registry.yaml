@@ -1,9 +1,6 @@
 name: build_image
 
-on:
-  push:
-    branches:
-      - main
+on: push
 
 jobs:
   build_and_push:
@@ -15,9 +12,14 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
 
-      - name: Set tag to environment variable
-        id: set-tag
-        run: echo "::set-output name=version::$(git rev-parse --short HEAD)"
+      - name: Set tags
+        uses: docker/metadata-action@v3
+        id: image-tag
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest
+            type=sha
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -35,10 +37,9 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: .
+          context: ./
+          file: ./Dockerfile
           push: true
-          tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.set-tag.outputs.version }}
-          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-          cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest,mode=max
+          tags: ${{ steps.image-tag.outputs.tags }}
+          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache
+          cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache,mode=max
