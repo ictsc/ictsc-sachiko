@@ -43,9 +43,9 @@ jobs:
           context: ./
           file: ./Dockerfile
           build-args: |
-            ARG app_title="ICTSC"
-            ARG guide_contents="# ガイドライン（スコアサーバー）"
-            ARG app_url="https://contest.ictsc.net"
+            app_title="ICTSC"
+            guide_contents="# ガイドライン（スコアサーバー）"
+            app_url="https://contest.ictsc.net"
           push: true
           tags: ${{ steps.image-tag.outputs.tags }}
           cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache
