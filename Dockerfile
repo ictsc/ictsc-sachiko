@@ -1,9 +1,9 @@
 ### ビルド用コンテナ ###
 FROM ubuntu:20.04 AS builder
 
-ARG app_title="ICTSC DEV リハーサル"
+ARG app_title="ICTSC"
 ARG guide_contents="# ガイドライン（スコアサーバー）"
-ARG app_url="http://contest.dev.ictsc.net"
+ARG app_url="http://localhost"
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     curl \
@@ -20,7 +20,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     wget \
   && apt-get clean
 
-RUN git clone https://github.com/flutter/flutter.git -b 2.8.1 /usr/local/flutter
+RUN git clone https://github.com/flutter/flutter.git -b 2.10.0 /usr/local/flutter
 
 ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
 
