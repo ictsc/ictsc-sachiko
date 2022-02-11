@@ -18,8 +18,8 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=raw,value=latest
-            type=sha
+            type=raw,prefix=dev-,value=latest
+            type=sha,prefix=dev-,format=short
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
