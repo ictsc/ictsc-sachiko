@@ -1,6 +1,9 @@
 name: build_dev_image
 
-on: push
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build_and_push:
