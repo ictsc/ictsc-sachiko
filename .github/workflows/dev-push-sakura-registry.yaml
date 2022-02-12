@@ -39,9 +39,9 @@ jobs:
         with:
           context: ./
           build-args: |
-            app_title="ICTSC DEV リハーサル"
-            guide_contents="# リハーサル ガイドライン（スコアサーバー）"
-            app_url="https://contest.dev.ictsc.net"
+            app_title=ICTSC DEV リハーサル
+            guide_contents=# リハーサル ガイドライン（スコアサーバー）
+            app_url=https://contest.dev.ictsc.net
           push: true
           tags: ${{ steps.image-tag.outputs.tags }}
           cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache
