@@ -40,7 +40,7 @@ jobs:
           context: ./
           build-args: |
             app_title="ICTSC DEV リハーサル"
-            guide_contents="# ガイドライン（スコアサーバー）"
+            guide_contents="# リハーサル ガイドライン（スコアサーバー）"
             app_url="https://contest.dev.ictsc.net"
           push: true
           tags: ${{ steps.image-tag.outputs.tags }}
