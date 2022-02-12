@@ -44,7 +44,7 @@ jobs:
           file: ./Dockerfile
           build-args: |
             app_title=ICTSC
-            guide_contents="# ガイドライン（スコアサーバー）
+            guide_contents=# ガイドライン（スコアサーバー）
             app_url=https://contest.ictsc.net
           push: true
           tags: ${{ steps.image-tag.outputs.tags }}
