@@ -41,6 +41,7 @@ RUN flutter config --enable-web
 RUN flutter pub get
 RUN flutter build web \
     --release \
+    --web-renderer=html \
     --dart-define="APP_TITLE=${app_title}" \
     --dart-define="GUIDE_CONTENTS=${guide_contents}" \
     --dart-define="APP_URL=${app_url}"
