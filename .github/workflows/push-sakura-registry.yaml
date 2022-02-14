@@ -7,7 +7,7 @@ on:
 
 jobs:
   build_and_push:
-    runs-on: [self-hosted, linux, x64]
+    runs-on: ubuntu-latest
     env:
       IMAGE_NAME: ictsc-sachiko
       REGISTRY: ictsc2021.sakuracr.jp
@@ -48,5 +48,5 @@ jobs:
             app_url=https://contest.ictsc.net
           push: true
           tags: ${{ steps.image-tag.outputs.tags }}
-          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache
-          cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache,mode=max
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
