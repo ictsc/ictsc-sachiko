@@ -24,10 +24,9 @@ RUN git clone https://github.com/flutter/flutter.git -b 2.10.0 /usr/local/flutte
 
 ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
 
-COPY . /tmp/
+RUN flutter config --enable-web
 
 # フォントのインストール
-WORKDIR /tmp/assets/fonts
 RUN wget -O Noto_Sans_JP.zip https://fonts.google.com/download?family=Noto%20Sans%20JP \
   && unzip Noto_Sans_JP.zip "NotoSansJP-Regular.otf" "NotoSansJP-Bold.otf" \
   && rm -f Noto_Sans_JP.zip
@@ -35,9 +34,13 @@ RUN wget -O Roboto_Mono.zip https://fonts.google.com/download?family=Roboto%20Mo
   && unzip -j Roboto_Mono.zip "*RobotoMono-Regular.ttf" \
   && rm -f Roboto_Mono.zip
 
+COPY . /tmp/
+
+# copy fonts
+RUN mkdir /tmp/assets/fonts && cp *tf /tmp/assets/fonts/
+
 WORKDIR /tmp
 
-RUN flutter config --enable-web
 RUN flutter pub get
 RUN flutter build web \
     --release \
@@ -51,5 +54,6 @@ RUN flutter build web \
 FROM nginx:stable-alpine
 
 COPY --from=builder /tmp/build/web /usr/share/nginx/html/
+COPY assets /usr/share/nginx/html/assets
 
 COPY docker/nginx/default.conf /etc/nginx/conf.d/default.conf
