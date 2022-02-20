@@ -42,9 +42,10 @@ jobs:
         with:
           context: ./
           build-args: |
-            app_title=ICTSC DEV リハーサル
-            guide_contents=# リハーサル ガイドライン（スコアサーバー）
+            app_title=ICTSC DEV
+            guide_contents=# ガイドライン
             app_url=https://contest.dev.ictsc.net
+            notes_contents=
           push: true
           tags: ${{ steps.image-tag.outputs.tags }}
           cache-from: type=gha

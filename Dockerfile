@@ -4,6 +4,7 @@ FROM ubuntu:20.04 AS builder
 ARG app_title="ICTSC"
 ARG guide_contents="# ガイドライン（スコアサーバー）"
 ARG app_url="http://localhost"
+ARG notes_contents=""
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     curl \
@@ -47,7 +48,8 @@ RUN flutter build web \
     --web-renderer=html \
     --dart-define="APP_TITLE=${app_title}" \
     --dart-define="GUIDE_CONTENTS=${guide_contents}" \
-    --dart-define="APP_URL=${app_url}"
+    --dart-define="APP_URL=${app_url}" \
+    --dart-define="NOTES_CONTENTS=${notes_contents}"
 
 
 ### メインコンテナ ###

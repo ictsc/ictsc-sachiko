@@ -42,9 +42,10 @@ jobs:
         with:
           context: ./
           build-args: |
-            app_title=ICTSC 運営用ページ
-            guide_contents=# 運営用ガイドライン（スコアサーバー）
+            app_title=ICTSC2021 冬の陣 運営向け
+            guide_contents=# 運営用ガイドライン
             app_url=https://contest.mgmt.ictsc.net
+            notes_contents=
           push: true
           tags: ${{ steps.image-tag.outputs.tags }}
           cache-from: type=gha

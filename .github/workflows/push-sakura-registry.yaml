@@ -43,9 +43,10 @@ jobs:
           context: ./
           file: ./Dockerfile
           build-args: |
-            app_title=ICTSC
-            guide_contents=# ガイドライン（スコアサーバー）
+            app_title=ICTSC2021 冬の陣
+            guide_contents=# ガイドライン
             app_url=https://contest.ictsc.net
+            notes_contents=
           push: true
           tags: ${{ steps.image-tag.outputs.tags }}
           cache-from: type=gha
