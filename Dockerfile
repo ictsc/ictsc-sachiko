@@ -43,8 +43,10 @@ RUN mkdir /tmp/assets/fonts && cp *tf /tmp/assets/fonts/
 WORKDIR /tmp
 
 RUN flutter pub get
+RUN cp /tmp/lib/ui/other/builder.dart ~/.pub-cache/hosted/pub.dartlang.org/flutter_markdown-0.6.9/lib/src
 RUN flutter build web \
     --release \
+    --no-sound-null-safety \
     --web-renderer=html \
     --dart-define="APP_TITLE=${app_title}" \
     --dart-define="GUIDE_CONTENTS=${guide_contents}" \
