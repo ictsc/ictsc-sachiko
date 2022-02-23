@@ -201,15 +201,24 @@ class ProblemPage extends HookWidget {
                                     )
                                   ],
                                   controller: notifier.bodyController,
-                                  submitButton: ElevatedButton(
-                                    onPressed:
-                                        notifier.onPostAnswer(context, id),
-                                    child: const Padding(
-                                      padding: EdgeInsets.all(8.0),
-                                      child: Text(
-                                        '提出する',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
+                                  submitButton: GestureDetector(
+                                    onTap: notifier.onPostAnswer(context, id),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Theme.of(context).primaryColor,
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(6.0),
+                                        ),
+                                      ),
+                                      child: const Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(8, 2, 8, 5),
+                                        child: Text(
+                                          '提出する',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -252,7 +261,7 @@ class ProblemPage extends HookWidget {
 
 class AnswerEditor extends HookWidget {
   final TextEditingController controller;
-  final ElevatedButton? submitButton;
+  final Widget? submitButton;
   final String? hintText;
   final List<Widget>? actions;
   final int? minLines;
