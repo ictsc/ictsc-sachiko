@@ -47,7 +47,7 @@ RUN cp /tmp/lib/ui/other/builder.dart ~/.pub-cache/hosted/pub.dartlang.org/flutt
 RUN flutter build web \
     --release \
     --no-sound-null-safety \
-    --web-renderer=html \
+    --web-renderer=canvaskit \
     --dart-define="APP_TITLE=${app_title}" \
     --dart-define="GUIDE_CONTENTS=${guide_contents}" \
     --dart-define="APP_URL=${app_url}" \
